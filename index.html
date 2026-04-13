@@ -1,262 +1,709 @@
-
-<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
-<html>
+<!DOCTYPE html>
+<html lang="en">
 <head>
-  <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
-  <meta http-equiv="Content-Style-Type" content="text/css">
-  <title></title>
-  <meta name="Generator" content="Cocoa HTML Writer">
-  <meta name="CocoaVersion" content="2685.3">
-  <style type="text/css">
-    body {background-color: #f9f9f9}
-    p.p1 {margin: 0.0px 0.0px 0.0px 0.0px; font: 15.0px 'Helvetica Neue'; color: #141414; -webkit-text-stroke: #141414}
-    p.p2 {margin: 0.0px 0.0px 0.0px 0.0px; font: 13.0px 'Helvetica Neue'; color: #646464; -webkit-text-stroke: #646464}
-    p.p4 {margin: 0.0px 0.0px 0.0px 0.0px; font: 12.0px 'Helvetica Neue'; color: #4133a8; -webkit-text-stroke: #4133a8}
-    p.p6 {margin: 0.0px 0.0px 30.0px 0.0px; font: 18.0px 'Helvetica Neue'; color: #343434; -webkit-text-stroke: #343434}
-    p.p7 {margin: 0.0px 0.0px 0.0px 0.0px; font: 13.0px 'Helvetica Neue'; color: #343434; -webkit-text-stroke: #343434; background-color: #ffffff}
-    p.p8 {margin: 0.0px 0.0px 0.0px 0.0px; font: 14.0px 'Helvetica Neue'; color: #ffffff; -webkit-text-stroke: #ffffff; background-color: #4133a8}
-    p.p9 {margin: 0.0px 0.0px 0.0px 0.0px; font: 14.0px 'Helvetica Neue'; color: #141414; -webkit-text-stroke: #141414; background-color: #ffffff}
-    p.p10 {margin: 0.0px 0.0px 0.0px 0.0px; font: 36.0px 'Helvetica Neue'; color: #ffffff; -webkit-text-stroke: #ffffff}
-    p.p11 {margin: 0.0px 0.0px 0.0px 0.0px; font: 12.0px 'Helvetica Neue'; color: #ffffff; color: rgba(255, 255, 255, 0.5); -webkit-text-stroke: rgba(255, 255, 255, 0.5)}
-    p.p12 {margin: 0.0px 0.0px 0.0px 0.0px; font: 36.0px 'Helvetica Neue'; color: #9f95e7; -webkit-text-stroke: #9f95e7}
-    p.p13 {margin: 0.0px 0.0px 0.0px 0.0px; font: 11.0px 'Helvetica Neue'; color: #4133a8; -webkit-text-stroke: #4133a8}
-    p.p15 {margin: 0.0px 0.0px 36.0px 0.0px; font: 16.0px 'Helvetica Neue'; color: #646464; -webkit-text-stroke: #646464}
-    p.p16 {margin: 0.0px 0.0px 0.0px 0.0px; font: 13.0px 'Helvetica Neue'; color: #4133a8; -webkit-text-stroke: #4133a8}
-    p.p17 {margin: 0.0px 0.0px 0.0px 0.0px; font: 18.0px 'Helvetica Neue'; color: #141414; -webkit-text-stroke: #141414}
-    p.p18 {margin: 0.0px 0.0px 0.0px 0.0px; font: 11.0px 'Helvetica Neue'; color: #4133a8; -webkit-text-stroke: #4133a8; background-color: #eae8fe}
-    p.p19 {margin: 0.0px 0.0px 0.0px 0.0px; font: 11.0px 'Helvetica Neue'; color: #125c44; -webkit-text-stroke: #125c44; background-color: #daf3ea}
-    p.p20 {margin: 0.0px 0.0px 0.0px 0.0px; font: 11.0px 'Helvetica Neue'; color: #713e0c; -webkit-text-stroke: #713e0c; background-color: #f8ead1}
-    p.p21 {margin: 0.0px 0.0px 0.0px 0.0px; font: 11.0px 'Helvetica Neue'; color: #646464; -webkit-text-stroke: #646464}
-    p.p22 {margin: 0.0px 0.0px 0.0px 0.0px; font: 14.0px 'Helvetica Neue'; color: #343434; -webkit-text-stroke: #343434}
-    p.p23 {margin: 0.0px 0.0px 0.0px 0.0px; font: 15.0px 'Helvetica Neue'; color: #713e0c; -webkit-text-stroke: #713e0c}
-    p.p24 {margin: 0.0px 0.0px 0.0px 0.0px; font: 14.0px 'Helvetica Neue'; color: #141414; -webkit-text-stroke: #141414}
-    p.p25 {margin: 0.0px 0.0px 0.0px 0.0px; font: 15.0px 'Helvetica Neue'; color: #125c44; -webkit-text-stroke: #125c44}
-    p.p26 {margin: 0.0px 0.0px 0.0px 0.0px; font: 15.0px 'Helvetica Neue'; color: #4133a8; -webkit-text-stroke: #4133a8}
-    p.p27 {margin: 0.0px 0.0px 0.0px 0.0px; font: 11.0px 'Helvetica Neue'; color: #852b17; -webkit-text-stroke: #852b17; background-color: #f8e7e1}
-    p.p28 {margin: 0.0px 0.0px 0.0px 0.0px; font: 28.0px 'Helvetica Neue'; color: #9f95e7; -webkit-text-stroke: #9f95e7}
-    p.p29 {margin: 0.0px 0.0px 0.0px 0.0px; font: 18.0px 'Helvetica Neue'; color: #ffffff; -webkit-text-stroke: #ffffff}
-    p.p30 {margin: 0.0px 0.0px 0.0px 0.0px; font: 14.0px 'Helvetica Neue'; color: #ffffff; color: rgba(255, 255, 255, 0.65); -webkit-text-stroke: rgba(255, 255, 255, 0.65)}
-    p.p31 {margin: 0.0px 0.0px 0.0px 0.0px; font: 16.0px 'Helvetica Neue'; color: #ffffff; -webkit-text-stroke: #ffffff}
-    p.p32 {margin: 0.0px 0.0px 0.0px 0.0px; font: 13.0px 'Helvetica Neue'; color: #ffffff; color: rgba(255, 255, 255, 0.72); -webkit-text-stroke: rgba(255, 255, 255, 0.72)}
-    p.p33 {margin: 0.0px 0.0px 0.0px 0.0px; font: 16.0px 'Helvetica Neue'; color: #0d4032; -webkit-text-stroke: #0d4032}
-    p.p34 {margin: 0.0px 0.0px 0.0px 0.0px; font: 13.0px 'Helvetica Neue'; color: #125c44; -webkit-text-stroke: #125c44}
-    p.p35 {margin: 0.0px 0.0px 0.0px 0.0px; font: 16.0px 'Helvetica Neue'; color: #4f2a08; -webkit-text-stroke: #4f2a08}
-    p.p36 {margin: 0.0px 0.0px 0.0px 0.0px; font: 13.0px 'Helvetica Neue'; color: #713e0c; -webkit-text-stroke: #713e0c}
-    p.p37 {margin: 0.0px 0.0px 0.0px 0.0px; text-align: right; font: 12.0px 'Helvetica Neue'; color: #646464; -webkit-text-stroke: #646464}
-    p.p38 {margin: 0.0px 0.0px 0.0px 0.0px; font: 16.0px 'Helvetica Neue'; color: #141414; -webkit-text-stroke: #141414}
-    p.p39 {margin: 0.0px 0.0px 0.0px 0.0px; font: 14.0px 'Helvetica Neue'; color: #646464; -webkit-text-stroke: #646464}
-    p.p40 {margin: 0.0px 0.0px 0.0px 0.0px; font: 11.0px 'Helvetica Neue'; color: #9f95e7; -webkit-text-stroke: #9f95e7}
-    p.p42 {margin: 0.0px 0.0px 12.0px 0.0px; font: 15.0px 'Helvetica Neue'; color: #ffffff; color: rgba(255, 255, 255, 0.55); -webkit-text-stroke: rgba(255, 255, 255, 0.55)}
-    p.p43 {margin: 0.0px 0.0px 0.0px 0.0px; font: 11.0px 'Helvetica Neue'; color: #ffffff; color: rgba(255, 255, 255, 0.4); -webkit-text-stroke: rgba(255, 255, 255, 0.4)}
-    p.p44 {margin: 0.0px 0.0px 0.0px 0.0px; font: 16.0px 'Helvetica Neue'; color: #9f95e7; -webkit-text-stroke: #9f95e7}
-    li.li2 {margin: 0.0px 0.0px 0.0px 0.0px; font: 13.0px 'Helvetica Neue'; color: #646464; -webkit-text-stroke: #646464}
-    li.li3 {margin: 0.0px 0.0px 0.0px 0.0px; font: 13.0px 'Helvetica Neue'; color: #ffffff; -webkit-text-stroke: #ffffff}
-    span.s1 {font-kerning: none; background-color: rgba(249, 249, 249, 0.95)}
-    span.s2 {background-color: rgba(249, 249, 249, 0.95); -webkit-text-stroke: 0px #000000}
-    span.s3 {background-color: #4133a8; -webkit-text-stroke: 0px #000000}
-    span.s4 {font-kerning: none; background-color: #4133a8}
-    span.s5 {font-kerning: none; background-color: #eae8fe}
-    span.s6 {font-kerning: none; background-color: #ffffff}
-    span.s7 {font-kerning: none}
-    span.s8 {font-kerning: none; color: #4133a8; background-color: #ffffff; -webkit-text-stroke: 0px #4133a8}
-    span.s9 {font-kerning: none; background-color: #141414}
-    span.s10 {font-kerning: none; color: #9f95e7; background-color: #141414; -webkit-text-stroke: 0px #9f95e7}
-    span.s11 {font-kerning: none; color: #ffffff; background-color: #141414; -webkit-text-stroke: 0px #ffffff}
-    span.s12 {font-kerning: none; background-color: #f8ead1}
-    span.s13 {font-kerning: none; background-color: #f9f9f9}
-    span.s14 {font-kerning: none; background-color: #daf3ea}
-    span.s15 {font-kerning: none; background-color: rgba(255, 255, 255, 0.059)}
-    span.s16 {font: 16.0px 'Helvetica Neue'; font-kerning: none; color: #9f95e7; -webkit-text-stroke: 0px #9f95e7}
-    ul.ul1 {list-style-type: disc}
-  </style>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Gargi Singh — Portfolio</title>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;900&display=swap" rel="stylesheet">
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  :root {
+    --purple: #534AB7;
+    --purple-light: #EEEDFE;
+    --purple-mid: #AFA9EC;
+    --teal: #0F6E56;
+    --teal-light: #E1F5EE;
+    --amber: #854F0B;
+    --amber-light: #FAEEDA;
+    --coral: #993C1D;
+    --coral-light: #FAECE7;
+    --ink: #1a1a1a;
+    --ink-mid: #444;
+    --ink-muted: #777;
+    --border: #e5e5e5;
+    --bg: #fafafa;
+    --white: #fff;
+  }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    font-family: 'Inter', sans-serif;
+    background: var(--bg);
+    color: var(--ink);
+    font-size: 16px;
+    line-height: 1.6;
+  }
+
+  /* NAV */
+  nav {
+    position: sticky;
+    top: 0;
+    background: rgba(250,250,250,0.95);
+    backdrop-filter: blur(8px);
+    border-bottom: 1px solid var(--border);
+    z-index: 100;
+    padding: 0 2rem;
+  }
+  .nav-inner {
+    max-width: 1000px;
+    margin: 0 auto;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    height: 56px;
+  }
+  .nav-logo { font-size: 15px; font-weight: 700; color: var(--ink); text-decoration: none; letter-spacing: -0.3px; }
+  .nav-links { display: flex; gap: 2rem; list-style: none; }
+  .nav-links a { font-size: 13px; color: var(--ink-muted); text-decoration: none; font-weight: 500; }
+  .nav-links a:hover { color: var(--ink); }
+  .nav-cta {
+    background: var(--purple);
+    color: #fff !important;
+    padding: 7px 16px;
+    border-radius: 8px;
+    font-size: 13px !important;
+    font-weight: 600 !important;
+  }
+
+  /* LAYOUT */
+  .wrap { max-width: 1000px; margin: 0 auto; padding: 0 2rem; }
+  section { padding: 6rem 0; }
+  section:not(:last-child) { border-bottom: 1px solid var(--border); }
+
+  /* HERO */
+  .hero {
+    padding: 7rem 0 6rem;
+    background: var(--white);
+  }
+  .hero-inner { max-width: 1000px; margin: 0 auto; padding: 0 2rem; }
+  .hero-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    background: var(--purple-light);
+    color: var(--purple);
+    font-size: 12px;
+    font-weight: 600;
+    padding: 6px 14px;
+    border-radius: 999px;
+    margin-bottom: 2rem;
+    letter-spacing: 0.02em;
+  }
+  .hero-badge::before {
+    content: '';
+    width: 7px; height: 7px;
+    background: var(--purple);
+    border-radius: 50%;
+    display: inline-block;
+  }
+  .hero h1 {
+    font-size: clamp(42px, 7vw, 80px);
+    font-weight: 900;
+    line-height: 1.0;
+    letter-spacing: -2px;
+    color: var(--ink);
+    margin-bottom: 1.5rem;
+  }
+  .hero h1 span { color: var(--purple); }
+  .hero-sub {
+    font-size: 18px;
+    color: var(--ink-mid);
+    max-width: 620px;
+    line-height: 1.7;
+    margin-bottom: 2.5rem;
+  }
+  .hero-pills { display: flex; flex-wrap: wrap; gap: 8px; margin-bottom: 3rem; }
+  .hero-pill {
+    font-size: 13px;
+    font-weight: 500;
+    padding: 6px 16px;
+    border-radius: 999px;
+    border: 1.5px solid var(--border);
+    color: var(--ink-mid);
+    background: var(--white);
+  }
+  .hero-actions { display: flex; gap: 12px; flex-wrap: wrap; }
+  .btn-primary {
+    background: var(--purple);
+    color: #fff;
+    padding: 12px 24px;
+    border-radius: 10px;
+    font-size: 14px;
+    font-weight: 600;
+    text-decoration: none;
+    display: inline-block;
+  }
+  .btn-secondary {
+    background: var(--white);
+    color: var(--ink);
+    padding: 12px 24px;
+    border-radius: 10px;
+    font-size: 14px;
+    font-weight: 600;
+    text-decoration: none;
+    display: inline-block;
+    border: 1.5px solid var(--border);
+  }
+
+  /* METRICS STRIP */
+  .metrics-strip {
+    background: var(--ink);
+    padding: 0;
+  }
+  .metrics-strip .wrap {
+    display: grid;
+    grid-template-columns: repeat(5, 1fr);
+    border-left: 1px solid rgba(255,255,255,0.08);
+  }
+  .metric-cell {
+    padding: 2.5rem 2rem;
+    border-right: 1px solid rgba(255,255,255,0.08);
+  }
+  .metric-num {
+    font-size: 36px;
+    font-weight: 900;
+    color: #fff;
+    letter-spacing: -1px;
+    line-height: 1;
+    margin-bottom: 6px;
+  }
+  .metric-num span { color: #AFA9EC; }
+  .metric-label { font-size: 12px; color: rgba(255,255,255,0.5); font-weight: 500; line-height: 1.4; }
+
+  /* SECTION HEADERS */
+  .sec-eyebrow {
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--purple);
+    margin-bottom: 0.75rem;
+  }
+  .sec-title {
+    font-size: clamp(28px, 4vw, 42px);
+    font-weight: 900;
+    letter-spacing: -1px;
+    line-height: 1.1;
+    color: var(--ink);
+    margin-bottom: 1rem;
+  }
+  .sec-intro {
+    font-size: 16px;
+    color: var(--ink-muted);
+    max-width: 580px;
+    line-height: 1.7;
+    margin-bottom: 3rem;
+  }
+
+  /* CASE STUDIES */
+  .case { margin-bottom: 2rem; border: 1.5px solid var(--border); border-radius: 16px; overflow: hidden; background: var(--white); }
+  .case-header {
+    padding: 1.75rem 2rem;
+    display: grid;
+    grid-template-columns: auto 1fr;
+    gap: 1.25rem;
+    align-items: start;
+    cursor: pointer;
+    border-bottom: 1.5px solid var(--border);
+  }
+  .case-num-badge {
+    width: 36px; height: 36px;
+    background: var(--purple-light);
+    color: var(--purple);
+    border-radius: 8px;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 13px; font-weight: 700;
+  }
+  .case-title { font-size: 18px; font-weight: 700; color: var(--ink); margin-bottom: 4px; line-height: 1.3; }
+  .case-tags { display: flex; flex-wrap: wrap; gap: 6px; margin-top: 8px; }
+  .tag { font-size: 11px; font-weight: 600; padding: 3px 10px; border-radius: 6px; }
+  .tag-purple { background: var(--purple-light); color: var(--purple); }
+  .tag-teal { background: var(--teal-light); color: var(--teal); }
+  .tag-amber { background: var(--amber-light); color: var(--amber); }
+  .tag-coral { background: var(--coral-light); color: var(--coral); }
+
+  .case-body { padding: 2rem; }
+  .cols3 { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 1.5rem; }
+  .col-label { font-size: 11px; font-weight: 700; letter-spacing: 0.08em; text-transform: uppercase; color: var(--ink-muted); margin-bottom: 0.6rem; }
+  .col-text { font-size: 14px; color: var(--ink-mid); line-height: 1.75; }
+
+  .signal-row { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1rem; margin-top: 1.5rem; padding-top: 1.5rem; border-top: 1px solid var(--border); }
+  .signal-card { background: var(--bg); border-radius: 12px; padding: 1.25rem; }
+  .signal-icon { width: 32px; height: 32px; border-radius: 8px; display: flex; align-items: center; justify-content: center; font-size: 15px; font-weight: 700; margin-bottom: 0.75rem; }
+  .signal-title { font-size: 14px; font-weight: 700; color: var(--ink); margin-bottom: 4px; }
+  .signal-text { font-size: 13px; color: var(--ink-muted); line-height: 1.6; }
+
+  /* FIRSTCLUB FIT */
+  .fit-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; }
+  .fit-card { border: 1.5px solid var(--border); border-radius: 14px; padding: 1.5rem; background: var(--white); }
+  .fit-q { font-size: 12px; font-weight: 600; color: var(--purple); margin-bottom: 0.5rem; letter-spacing: 0.02em; }
+  .fit-a { font-size: 15px; font-weight: 700; color: var(--ink); margin-bottom: 0.5rem; }
+  .fit-body { font-size: 13px; color: var(--ink-muted); line-height: 1.7; }
+
+  .honest-box {
+    background: var(--ink);
+    border-radius: 14px;
+    padding: 2rem;
+    margin-bottom: 1.5rem;
+    display: grid;
+    grid-template-columns: auto 1fr;
+    gap: 1.5rem;
+    align-items: start;
+  }
+  .honest-icon { font-size: 28px; }
+  .honest-title { font-size: 18px; font-weight: 700; color: #fff; margin-bottom: 0.5rem; }
+  .honest-body { font-size: 14px; color: rgba(255,255,255,0.65); line-height: 1.75; }
+
+  /* TIMELINE */
+  .tl { position: relative; }
+  .tl::before { content: ''; position: absolute; left: 107px; top: 6px; bottom: 0; width: 2px; background: var(--border); }
+  .tl-item { display: grid; grid-template-columns: 90px 1fr; gap: 0 2rem; margin-bottom: 0; }
+  .tl-date { font-size: 12px; color: var(--ink-muted); font-weight: 500; padding-top: 4px; text-align: right; line-height: 1.5; }
+  .tl-right { padding: 0 0 2.5rem 2rem; position: relative; }
+  .tl-right::before { content: ''; position: absolute; left: -1px; top: 8px; width: 10px; height: 10px; border-radius: 50%; background: var(--purple); border: 2px solid var(--bg); }
+  .tl-role { font-size: 16px; font-weight: 700; color: var(--ink); margin-bottom: 2px; }
+  .tl-org { font-size: 13px; color: var(--purple); font-weight: 600; margin-bottom: 0.6rem; }
+  .tl-body { font-size: 14px; color: var(--ink-muted); line-height: 1.7; }
+  .tl-tags { display: flex; flex-wrap: wrap; gap: 6px; margin-top: 0.75rem; }
+
+  /* SUPERPOWERS */
+  .sp-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; }
+  .sp-card { border-radius: 14px; padding: 1.5rem; }
+  .sp-card:nth-child(1) { background: var(--purple); color: #fff; }
+  .sp-card:nth-child(2) { background: var(--teal-light); }
+  .sp-card:nth-child(3) { background: var(--amber-light); }
+  .sp-card:nth-child(4) { background: var(--ink); color: #fff; }
+  .sp-title { font-size: 16px; font-weight: 700; margin-bottom: 0.6rem; }
+  .sp-body { font-size: 13px; line-height: 1.75; opacity: 0.85; }
+  .sp-card:nth-child(1) .sp-title, .sp-card:nth-child(4) .sp-title { color: #fff; }
+  .sp-card:nth-child(1) .sp-body, .sp-card:nth-child(4) .sp-body { color: rgba(255,255,255,0.72); }
+  .sp-card:nth-child(2) .sp-title { color: #085041; }
+  .sp-card:nth-child(2) .sp-body { color: #0F6E56; }
+  .sp-card:nth-child(3) .sp-title { color: #633806; }
+  .sp-card:nth-child(3) .sp-body { color: #854F0B; }
+
+  /* CONTACT */
+  .contact-section { background: var(--ink); }
+  .contact-section .sec-eyebrow { color: #AFA9EC; }
+  .contact-section .sec-title { color: #fff; }
+  .contact-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; margin-top: 2rem; }
+  .contact-card { background: rgba(255,255,255,0.06); border-radius: 14px; padding: 1.5rem; border: 1px solid rgba(255,255,255,0.1); }
+  .contact-label { font-size: 11px; font-weight: 600; color: rgba(255,255,255,0.4); letter-spacing: 0.08em; text-transform: uppercase; margin-bottom: 0.4rem; }
+  .contact-val { font-size: 16px; font-weight: 600; color: #fff; }
+  .contact-val a { color: #AFA9EC; text-decoration: none; }
+
+  /* RESPONSIVE */
+  @media (max-width: 700px) {
+    .metrics-strip .wrap { grid-template-columns: 1fr 1fr; }
+    .cols3 { grid-template-columns: 1fr; }
+    .signal-row { grid-template-columns: 1fr; }
+    .fit-grid { grid-template-columns: 1fr; }
+    .sp-grid { grid-template-columns: 1fr; }
+    .contact-grid { grid-template-columns: 1fr; }
+    .tl::before { left: 77px; }
+    .nav-links { display: none; }
+  }
+</style>
 </head>
 <body>
-<p class="p1"><span class="s1">Gargi Singh</span></p>
-<ul class="ul1">
-  <li class="li2"><span class="s2"></span><span class="s1">Work</span></li>
-  <li class="li2"><span class="s2"></span><span class="s1">Why FirstClub</span></li>
-  <li class="li2"><span class="s2"></span><span class="s1">Story</span></li>
-  <li class="li3"><span class="s3"></span><span class="s4">Let's talk</span></li>
-</ul>
-<p class="p4"><span class="s5">Open to work · Programme / Operations Manager</span></p>
-<h1 style="margin: 0.0px 0.0px 18.0px 0.0px; font: 56.0px 'Helvetica Neue'; color: #141414; -webkit-text-stroke: #141414"><span class="s6">I don't just</span><span class="s7"><br>
-</span><span class="s6">run ops.</span><span class="s7"><br>
-</span><span class="s8">I build it.</span></h1>
-<p class="p6"><span class="s6">Product Operations Manager at Bridgetown Research. I spot what's broken, design what should exist, and ship it — with no playbook, no template, and no waiting for permission.</span></p>
-<p class="p7"><span class="s7">Operations strategy</span></p>
-<p class="p7"><span class="s7">Product thinking</span></p>
-<p class="p7"><span class="s7">Vendor cost &amp; selection logic</span></p>
-<p class="p7"><span class="s7">Fraud &amp; quality systems</span></p>
-<p class="p7"><span class="s7">Cross-functional execution</span></p>
-<p class="p7"><span class="s7">Team of 4</span></p>
-<p class="p7"><span class="s7">Zero-to-one builder</span></p>
-<p class="p8"><span class="s7">See what I built</span></p>
-<p class="p9"><span class="s7">Why FirstClub?</span></p>
-<p class="p10"><span class="s9">11</span><span class="s10">mo</span></p>
-<p class="p11"><span class="s9">Associate to Manager</span></p>
-<p class="p10"><span class="s9">4</span></p>
-<p class="p11"><span class="s9">Direct reports, OKRs set</span></p>
-<p class="p10"><span class="s9">100</span><span class="s10">+</span></p>
-<p class="p11"><span class="s9">Live projects tracked</span></p>
-<p class="p10"><span class="s9">5</span></p>
-<p class="p11"><span class="s9">Systems built from scratch</span></p>
-<p class="p12"><span class="s11">0</span><span class="s9">→1</span></p>
-<p class="p11"><span class="s9">Every time, no playbook</span></p>
-<p class="p13"><span class="s7">WHAT I ACTUALLY BUILT</span></p>
-<h2 style="margin: 0.0px 0.0px 12.0px 0.0px; font: 32.0px 'Helvetica Neue'; color: #141414; -webkit-text-stroke: #141414"><span class="s7">Strategy, product &amp;<br>
-ops — all in one role.</span></h2>
-<p class="p15"><span class="s7">These aren't job descriptions. These are things that didn't exist, that I identified, designed, and shipped.</span></p>
-<p class="p16"><span class="s5">01</span></p>
-<p class="p17"><span class="s6">EN launching logic — which vendor, for which project, and why</span></p>
-<p class="p18"><span class="s7">Vendor strategy</span></p>
-<p class="p19"><span class="s7">Cost optimisation</span></p>
-<p class="p20"><span class="s7">Currently building</span></p>
-<p class="p21"><span class="s6">THE PROBLEM</span></p>
-<p class="p22"><span class="s6">Bridgetown works with multiple expert networks — NewtonX, Dialectica, Ace, and others. For every project, the wrong vendor means higher cost, slower turnaround, or lower quality experts. No structured logic existed for which EN to launch with.</span></p>
-<p class="p21"><span class="s6">WHAT I'M BUILDING</span></p>
-<p class="p22"><span class="s6">A vendor selection framework that decides which expert networks to engage based on project characteristics: client profile, nature of research, TAT requirements, panel type, and historical success rates per EN. Strategy, not guesswork.</span></p>
-<p class="p21"><span class="s6">WHY IT MATTERS</span></p>
-<p class="p22"><span class="s6">This is a cost and quality optimisation engine. Each EN has a negotiated CPI (cost per interview). I own both the CPI negotiations and the logic that deploys those vendors — directly affecting margin and client satisfaction on every single project.</span></p>
-<p class="p16"><span class="s5">02</span></p>
-<p class="p17"><span class="s6">Client pre-approval workflow — a product feature I proposed and shipped</span></p>
-<p class="p18"><span class="s7">Product strategy</span></p>
-<p class="p19"><span class="s7">Client experience</span></p>
-<p class="p19"><span class="s7">End to end</span></p>
-<p class="p21"><span class="s6">THE PROBLEM</span></p>
-<p class="p22"><span class="s6">Clients were apprehensive about who would show up for their research interviews. No visibility before the call. This caused friction, distrust, and drop-offs — a client experience problem disguised as an ops problem.</span></p>
-<p class="p21"><span class="s6">WHAT I PROPOSED</span></p>
-<p class="p22"><span class="s6">I identified this as a product gap, not a comms fix. Proposed a pre-approval workflow where clients review and approve experts before confirmation. Took it from idea to design to shipped feature — fully end to end.</span></p>
-<p class="p21"><span class="s6">THE RESULT</span></p>
-<p class="p22"><span class="s6">A live, client-facing workflow that reduced apprehension, improved trust, and strengthened client relationships — without adding significant ops overhead. I owned the why, the what, and the how.</span></p>
-<p class="p16"><span class="s5">03</span></p>
-<p class="p17"><span class="s6">Autopublish — making quality decisions without humans in the loop</span></p>
-<p class="p18"><span class="s7">Fraud detection</span></p>
-<p class="p19"><span class="s7">Quality systems</span></p>
-<p class="p20"><span class="s7">Shipped &amp; live</span></p>
-<p class="p21"><span class="s6">THE PROBLEM</span></p>
-<p class="p22"><span class="s6">Every transcript from every expert call needed manual review before publishing to clients. Slow, inconsistent, unscalable. The team was the bottleneck. Volume was growing.</span></p>
-<p class="p21"><span class="s6">WHAT I DESIGNED</span></p>
-<p class="p22"><span class="s6">Defined the three signals that determine whether a transcript should publish — then drove the build of an automated system around them. Not a workflow change. A product decision: what does "good" look like, encoded into a system?</span></p>
-<p class="p21"><span class="s6">LIVE IN PRODUCTION</span></p>
-<p class="p22"><span class="s6">Three automated checks now run on every transcript. Only edge cases reach a human reviewer. The quality function scaled without scaling headcount — that's the only kind of system worth building.</span></p>
-<p class="p23"><span class="s12">!</span></p>
-<p class="p24"><span class="s13">Fraud detection</span></p>
-<p class="p2"><span class="s13">Automatically flags LLM or bot-generated responses. Catches AI-generated expert answers before they reach clients.</span></p>
-<p class="p25"><span class="s14">★</span></p>
-<p class="p24"><span class="s13">Quality score /5</span></p>
-<p class="p2"><span class="s13">Every transcript rated out of 5. Consistent, objective publish decisions without a human in the loop every time.</span></p>
-<p class="p26"><span class="s5">✓</span></p>
-<p class="p24"><span class="s13">LinkedIn identity match</span></p>
-<p class="p2"><span class="s13">Cross-references expert identity. Flags mismatches for human review. Protects client data integrity end to end.</span></p>
-<p class="p16"><span class="s5">04</span></p>
-<p class="p17"><span class="s6">Ops dashboard — 100+ projects, one command centre</span></p>
-<p class="p18"><span class="s7">Operations design</span></p>
-<p class="p19"><span class="s7">Product thinking</span></p>
-<p class="p20"><span class="s7">Team enablement</span></p>
-<p class="p21"><span class="s6">THE PROBLEM</span></p>
-<p class="p22"><span class="s6">100+ active expert recruitment projects across multiple clients with no central tracking. Status lived in people's heads. No visibility on what was blocked, active, or overdue. No way to assign or monitor ownership at scale.</span></p>
-<p class="p21"><span class="s6">WHAT I SHAPED</span></p>
-<p class="p22"><span class="s6">Defined what the dashboard needed to show and why. Two core views: Requests (project pipeline, status, EN success rates, owner assignment) and Review (transcript compliance, fraud/quality signals, network performance). Strategic input that turned a tool into a decision engine.</span></p>
-<p class="p21"><span class="s6">HOW IT RUNS TODAY</span></p>
-<p class="p22"><span class="s6">My team of 4 uses it daily to manage workload and assignments. Leadership uses it for resource decisions. Every vendor success rate, every project status, every transcript in queue — one place. No more chasing updates.</span></p>
-<p class="p16"><span class="s5">05</span></p>
-<p class="p17"><span class="s6">Expert network expansion — filling sourcing gaps strategically</span></p>
-<p class="p18"><span class="s7">Procurement</span></p>
-<p class="p19"><span class="s7">Strategic partnerships</span></p>
-<p class="p27"><span class="s7">Supply strategy</span></p>
-<p class="p21"><span class="s6">THE PROBLEM</span></p>
-<p class="p22"><span class="s6">Primary research sourcing had coverage gaps — certain expert profiles, geographies, or industries were hard to fill through existing ENs. Pushing existing vendors harder wasn't the answer.</span></p>
-<p class="p21"><span class="s6">WHAT I DID</span></p>
-<p class="p22"><span class="s6">Identified where the gaps were. Evaluated new expert networks, led outreach, negotiated CPIs, and onboarded them. Then fed that data into the EN launching logic — so the right EN gets deployed per project, not just the familiar one.</span></p>
-<p class="p21"><span class="s6">THE RESULT</span></p>
-<p class="p22"><span class="s6">A more diverse, cost-optimised vendor ecosystem. EN success rates are tracked in the dashboard per project type. Vendor decisions are now data-driven — not relationship-driven.</span></p>
-<p class="p13"><span class="s6">WHY FIRSTCLUB</span></p>
-<h2 style="margin: 0.0px 0.0px 12.0px 0.0px; font: 32.0px 'Helvetica Neue'; color: #141414; -webkit-text-stroke: #141414"><span class="s6">No q-comm background.</span><span class="s7"><br>
-</span><span class="s6">But hear me out.</span></h2>
-<p class="p15"><span class="s6">FirstClub said: "If you have experience building, scaling, or fixing chaos — we'd love to talk." That's the whole pitch.</span></p>
-<p class="p28"><span class="s9">⚠</span></p>
-<p class="p29"><span class="s9">The honest answer first</span></p>
-<p class="p30"><span class="s9">I haven't worked in quick commerce, warehousing, or last-mile logistics. I know that. But I've spent 14 months building operations infrastructure from scratch with no playbook — and earning a promotion while doing it. The domain is different. The problems aren't.</span></p>
-<p class="p4"><span class="s6">FirstClub needs → Operations Design</span></p>
-<p class="p1"><span class="s6">I've designed operations from zero</span></p>
-<p class="p2"><span class="s6">Every system at Bridgetown — dashboard, autopublish, vendor selection, client pre-approval — I built without a template. Operations design isn't about knowing the domain. It's about asking the right questions and making the right calls. That's what I do.</span></p>
-<p class="p4"><span class="s6">FirstClub needs → Build scalable systems</span></p>
-<p class="p1"><span class="s6">Scalability is my design constraint</span></p>
-<p class="p2"><span class="s6">The autopublish system exists because I asked: what happens when volume doubles? The EN launching logic exists because manual vendor decisions don't scale. Every system I build is designed to run without me in the room.</span></p>
-<p class="p4"><span class="s6">FirstClub needs → Cross-functional initiatives</span></p>
-<p class="p1"><span class="s6">I live in the cross-functional space</span></p>
-<p class="p2"><span class="s6">At Bridgetown I work across product, ops, client success, and vendor networks simultaneously. The client pre-approval feature required me to understand a client problem, translate it into a product solution, and coordinate its delivery. Cross-functional by definition.</span></p>
-<p class="p4"><span class="s6">FirstClub needs → CODB charters</span></p>
-<p class="p1"><span class="s6">I own cost decisions on every project</span></p>
-<p class="p2"><span class="s6">I negotiate CPIs with expert networks and decide which vendor to engage per project — that's cost-of-doing-business thinking applied directly. I'm building a selection logic that optimises vendor spend across project type, TAT, and client profile.</span></p>
-<p class="p4"><span class="s6">FirstClub needs → Supply chain thinking</span></p>
-<p class="p1"><span class="s6">Expert sourcing is a supply chain problem</span></p>
-<p class="p2"><span class="s6">At Bridgetown, "inventory" is a panel of experts. "Supply chain" is the EN network that sources them. I manage supply gaps, vendor performance, lead times (TAT), and quality. Same structural problems. Different domain. The mental model is identical.</span></p>
-<p class="p4"><span class="s6">FirstClub needs → Leaders who scale with us</span></p>
-<p class="p1"><span class="s6">Zero ops background → Manager in 11 months</span></p>
-<p class="p2"><span class="s6">Joined as an Associate with no traditional ops pedigree. Identified gaps, proposed solutions, shipped them, got promoted, and now manage a team of 4 with OKRs. I don't wait to be given scope — I find it. That's the profile that scales with a company.</span></p>
-<p class="p13"><span class="s13">WHAT MAKES ME DIFFERENT</span></p>
-<h2 style="margin: 0.0px 0.0px 12.0px 0.0px; font: 32.0px 'Helvetica Neue'; color: #141414; -webkit-text-stroke: #141414"><span class="s13">The edges you're</span><span class="s7"><br>
-</span><span class="s13">not expecting.</span></h2>
-<p class="p31"><span class="s4">Psychology → systems that get adopted</span></p>
-<p class="p32"><span class="s4">MSc Counselling Psychology (CGPA 8.96) trained me in how people actually behave — not how they're supposed to. I build processes that account for real behaviour. That's why my systems get used, my vendors stay, and my team is engaged without micromanagement.</span></p>
-<p class="p33"><span class="s14">I learn fast and I say so</span></p>
-<p class="p34"><span class="s14">I came into product ops from psychology. No traditional ops pedigree. But I was promoted in 11 months, shipped a live fraud detection system, and now manage a team of 4. I don't pretend to know what I don't. I figure it out, document it, and make sure no one has to go through it again.</span></p>
-<p class="p35"><span class="s12">Strategy and execution in the same person</span></p>
-<p class="p36"><span class="s12">I design the EN launching logic AND negotiate vendor CPIs AND manage the team that runs the projects. Most ops people do one of these. I do all three — and I see how they connect. That's what makes programmes actually work.</span></p>
-<p class="p31"><span class="s9">Comfortable with first-principles chaos</span></p>
-<p class="p32"><span class="s9">Every system I've built was built with no template, no prior process, no senior to copy from. That's exactly the environment FirstClub describes. I don't need a playbook. I write one.</span></p>
-<p class="p13"><span class="s6">CAREER ARC</span></p>
-<h2 style="margin: 0.0px 0.0px 12.0px 0.0px; font: 32.0px 'Helvetica Neue'; color: #141414; -webkit-text-stroke: #141414"><span class="s6">How I got here.</span></h2>
-<p class="p15"><span class="s6">From counselling psychology to product ops — not a pivot, a superpower in the making.</span></p>
-<p class="p37"><span class="s6">Jan 2026</span></p>
-<p class="p37"><span class="s6">→ now</span></p>
-<p class="p38"><span class="s6">Product Operations Manager</span></p>
-<p class="p16"><span class="s6">Bridgetown Research · Bengaluru</span></p>
-<p class="p39"><span class="s6">Promoted after 11 months. Leading a team of 4 with OKRs. Own vendor CPI negotiations, EN launching logic, client pre-approval feature, autopublish fraud/quality system, and the ops dashboard. Full strategic and operational accountability across 100+ live projects.</span></p>
-<p class="p18"><span class="s7">Team of 4</span></p>
-<p class="p19"><span class="s7">Vendor strategy</span></p>
-<p class="p20"><span class="s7">Product ops</span></p>
-<p class="p27"><span class="s7">Systems design</span></p>
-<p class="p37"><span class="s6">Mar 2025</span></p>
-<p class="p37"><span class="s6">→ Jan 2026</span></p>
-<p class="p38"><span class="s6">Operations Associate</span></p>
-<p class="p16"><span class="s6">Bridgetown Research · Bengaluru</span></p>
-<p class="p39"><span class="s6">Joined with no ops background. Learned the landscape fast. Started identifying gaps — tracking, vendor coordination, transcript review bottlenecks. Proposed and shaped solutions that became core infrastructure. Promoted in 11 months.</span></p>
-<p class="p18"><span class="s7">Zero-to-one</span></p>
-<p class="p19"><span class="s7">Fast learner</span></p>
-<p class="p37"><span class="s6">Jul 2024</span></p>
-<p class="p37"><span class="s6">→ Jan 2025</span></p>
-<p class="p38"><span class="s6">Psychologist &amp; Projects Lead</span></p>
-<p class="p16"><span class="s6">Soukhya · Goa</span></p>
-<p class="p39"><span class="s6">Set up project monitoring systems. Managed brand and digital content strategy voluntarily. Led Mental Health Illness Week Workshops. The ops instinct clicked here — kept asking "why don't we have a system for this?"</span></p>
-<p class="p19"><span class="s7">Project coordination</span></p>
-<p class="p20"><span class="s7">Systems thinking</span></p>
-<p class="p37"><span class="s6">May 2023</span></p>
-<p class="p37"><span class="s6">→ May 2024</span></p>
-<p class="p38"><span class="s6">School Counselor / Psychologist</span></p>
-<p class="p16"><span class="s6">VIBGYOR Group of Schools · Mumbai</span></p>
-<p class="p39"><span class="s6">Cross-functional work across admin, educators, and parents. Designed and implemented assessment protocols. Led workshops reaching 1,000+ participants annually. My first taste of designing a process that actually scaled.</span></p>
-<p class="p18"><span class="s7">Cross-functional</span></p>
-<p class="p19"><span class="s7">1,000+ reach</span></p>
-<p class="p37"><span class="s6">2021–2023</span></p>
-<p class="p38"><span class="s6">MSc Counselling Psychology · CGPA 8.96/10</span></p>
-<p class="p16"><span class="s6">Christ University, Delhi</span></p>
-<p class="p39"><span class="s6">2 international conference presentations. Trainer, ToT Program. Class Representative. Design Thinking certification, University of Virginia (2024).</span></p>
-<p class="p37"><span class="s6">2018–2021</span></p>
-<p class="p38"><span class="s6">BA Psychology (Honours) · CGPA 7.97/10</span></p>
-<p class="p16"><span class="s6">Delhi University</span></p>
-<p class="p39"><span class="s6">Research methodology, behavioural systems, human motivation — the foundation that makes the ops work different.</span></p>
-<p class="p40"><span class="s9">LET'S TALK</span></p>
-<h2 style="margin: 0.0px 0.0px 12.0px 0.0px; font: 32.0px 'Helvetica Neue'; color: #ffffff; -webkit-text-stroke: #ffffff"><span class="s9">Applying for Programme /</span><span class="s7"><br>
-</span><span class="s9">Operations Manager</span><span class="s7"><br>
-</span><span class="s9">at FirstClub.</span></h2>
-<p class="p42"><span class="s9">Happy to walk through any case study in detail — or talk about what I'd do in the first 90 days.</span></p>
-<p class="p43"><span class="s15">PHONE</span></p>
-<p class="p31"><span class="s15">+91 96196 06780</span></p>
-<p class="p43"><span class="s15">EMAIL</span></p>
-<p class="p44"><span class="s15"><a href="mailto:gargisingh.work@gmail.com">gargisingh.work@gmail.com<span class="s16"></span></a></span></p>
-<p class="p43"><span class="s15">LINKEDIN</span></p>
-<p class="p44"><span class="s15"><a href="https://linkedin.com/in/gargi-singh-6a157b212">linkedin.com/in/gargi-singh-6a157b212<span class="s16"></span></a></span></p>
-</body>
-</html>
+
+<nav>
+  <div class="nav-inner">
+    <a class="nav-logo" href="#">Gargi Singh</a>
+    <ul class="nav-links">
+      <li><a href="#work">Work</a></li>
+      <li><a href="#firstclub">Why FirstClub</a></li>
+      <li><a href="#story">Story</a></li>
+      <li><a href="#contact" class="nav-cta">Let's talk</a></li>
+    </ul>
+  </div>
+</nav>
+
+<!-- HERO -->
+<div class="hero">
+  <div class="hero-inner">
+    <div class="hero-badge">Open to work · Programme / Operations Manager</div>
+    <h1>I don't just<br>run ops.<br><span>I build it.</span></h1>
+    <p class="hero-sub">Product Operations Manager at Bridgetown Research. I spot what's broken, design what should exist, and ship it — with no playbook, no template, and no waiting for permission.</p>
+    <div class="hero-pills">
+      <span class="hero-pill">Operations strategy</span>
+      <span class="hero-pill">Product thinking</span>
+      <span class="hero-pill">Vendor cost &amp; selection logic</span>
+      <span class="hero-pill">Fraud &amp; quality systems</span>
+      <span class="hero-pill">Cross-functional execution</span>
+      <span class="hero-pill">Team of 4</span>
+      <span class="hero-pill">Zero-to-one builder</span>
+    </div>
+    <div class="hero-actions">
+      <a href="#work" class="btn-primary">See what I built</a>
+      <a href="#firstclub" class="btn-secondary">Why FirstClub?</a>
+    </div>
+  </div>
+</div>
+
+<!-- METRICS STRIP -->
+<div class="metrics-strip">
+  <div class="wrap">
+    <div class="metric-cell">
+      <div class="metric-num">11<span>mo</span></div>
+      <div class="metric-label">Associate to Manager</div>
+    </div>
+    <div class="metric-cell">
+      <div class="metric-num">4</div>
+      <div class="metric-label">Direct reports, OKRs set</div>
+    </div>
+    <div class="metric-cell">
+      <div class="metric-num">100<span>+</span></div>
+      <div class="metric-label">Live projects tracked</div>
+    </div>
+    <div class="metric-cell">
+      <div class="metric-num">5</div>
+      <div class="metric-label">Systems built from scratch</div>
+    </div>
+    <div class="metric-cell">
+      <div class="metric-num">0<span>→1</span></div>
+      <div class="metric-label">Every time, no playbook</div>
+    </div>
+  </div>
+</div>
+
+<!-- CASE STUDIES -->
+<section id="work">
+  <div class="wrap">
+    <div class="sec-eyebrow">What I actually built</div>
+    <h2 class="sec-title">Strategy, product &amp;<br>ops — all in one role.</h2>
+    <p class="sec-intro">These aren't job descriptions. These are things that didn't exist, that I identified, designed, and shipped.</p>
+
+    <!-- Case 01 -->
+    <div class="case">
+      <div class="case-header">
+        <div class="case-num-badge">01</div>
+        <div>
+          <div class="case-title">EN launching logic — which vendor, for which project, and why</div>
+          <div class="case-tags">
+            <span class="tag tag-purple">Vendor strategy</span>
+            <span class="tag tag-teal">Cost optimisation</span>
+            <span class="tag tag-amber">Currently building</span>
+          </div>
+        </div>
+      </div>
+      <div class="case-body">
+        <div class="cols3">
+          <div>
+            <div class="col-label">The problem</div>
+            <div class="col-text">Bridgetown works with multiple expert networks — NewtonX, Dialectica, Ace, and others. For every project, the wrong vendor means higher cost, slower turnaround, or lower quality experts. No structured logic existed for which EN to launch with.</div>
+          </div>
+          <div>
+            <div class="col-label">What I'm building</div>
+            <div class="col-text">A vendor selection framework that decides which expert networks to engage based on project characteristics: client profile, nature of research, TAT requirements, panel type, and historical success rates per EN. Strategy, not guesswork.</div>
+          </div>
+          <div>
+            <div class="col-label">Why it matters</div>
+            <div class="col-text">This is a cost and quality optimisation engine. Each EN has a negotiated CPI (cost per interview). I own both the CPI negotiations and the logic that deploys those vendors — directly affecting margin and client satisfaction on every single project.</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Case 02 -->
+    <div class="case">
+      <div class="case-header">
+        <div class="case-num-badge">02</div>
+        <div>
+          <div class="case-title">Client pre-approval workflow — a product feature I proposed and shipped</div>
+          <div class="case-tags">
+            <span class="tag tag-purple">Product strategy</span>
+            <span class="tag tag-teal">Client experience</span>
+            <span class="tag tag-teal">End to end</span>
+          </div>
+        </div>
+      </div>
+      <div class="case-body">
+        <div class="cols3">
+          <div>
+            <div class="col-label">The problem</div>
+            <div class="col-text">Clients were apprehensive about who would show up for their research interviews. No visibility before the call. This caused friction, distrust, and drop-offs — a client experience problem disguised as an ops problem.</div>
+          </div>
+          <div>
+            <div class="col-label">What I proposed</div>
+            <div class="col-text">I identified this as a product gap, not a comms fix. Proposed a pre-approval workflow where clients review and approve experts before confirmation. Took it from idea to design to shipped feature — fully end to end.</div>
+          </div>
+          <div>
+            <div class="col-label">The result</div>
+            <div class="col-text">A live, client-facing workflow that reduced apprehension, improved trust, and strengthened client relationships — without adding significant ops overhead. I owned the why, the what, and the how.</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Case 03 -->
+    <div class="case">
+      <div class="case-header">
+        <div class="case-num-badge">03</div>
+        <div>
+          <div class="case-title">Autopublish — making quality decisions without humans in the loop</div>
+          <div class="case-tags">
+            <span class="tag tag-purple">Fraud detection</span>
+            <span class="tag tag-teal">Quality systems</span>
+            <span class="tag tag-amber">Shipped &amp; live</span>
+          </div>
+        </div>
+      </div>
+      <div class="case-body">
+        <div class="cols3">
+          <div>
+            <div class="col-label">The problem</div>
+            <div class="col-text">Every transcript from every expert call needed manual review before publishing to clients. Slow, inconsistent, unscalable. The team was the bottleneck. Volume was growing.</div>
+          </div>
+          <div>
+            <div class="col-label">What I designed</div>
+            <div class="col-text">Defined the three signals that determine whether a transcript should publish — then drove the build of an automated system around them. Not a workflow change. A product decision: what does "good" look like, encoded into a system?</div>
+          </div>
+          <div>
+            <div class="col-label">Live in production</div>
+            <div class="col-text">Three automated checks now run on every transcript. Only edge cases reach a human reviewer. The quality function scaled without scaling headcount — that's the only kind of system worth building.</div>
+          </div>
+        </div>
+        <div class="signal-row">
+          <div class="signal-card">
+            <div class="signal-icon" style="background:#FAEEDA;color:#854F0B;">!</div>
+            <div class="signal-title">Fraud detection</div>
+            <div class="signal-text">Automatically flags LLM or bot-generated responses. Catches AI-generated expert answers before they reach clients.</div>
+          </div>
+          <div class="signal-card">
+            <div class="signal-icon" style="background:#E1F5EE;color:#0F6E56;">★</div>
+            <div class="signal-title">Quality score /5</div>
+            <div class="signal-text">Every transcript rated out of 5. Consistent, objective publish decisions without a human in the loop every time.</div>
+          </div>
+          <div class="signal-card">
+            <div class="signal-icon" style="background:#EEEDFE;color:#534AB7;">✓</div>
+            <div class="signal-title">LinkedIn identity match</div>
+            <div class="signal-text">Cross-references expert identity. Flags mismatches for human review. Protects client data integrity end to end.</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Case 04 -->
+    <div class="case">
+      <div class="case-header">
+        <div class="case-num-badge">04</div>
+        <div>
+          <div class="case-title">Ops dashboard — 100+ projects, one command centre</div>
+          <div class="case-tags">
+            <span class="tag tag-purple">Operations design</span>
+            <span class="tag tag-teal">Product thinking</span>
+            <span class="tag tag-amber">Team enablement</span>
+          </div>
+        </div>
+      </div>
+      <div class="case-body">
+        <div class="cols3">
+          <div>
+            <div class="col-label">The problem</div>
+            <div class="col-text">100+ active expert recruitment projects across multiple clients with no central tracking. Status lived in people's heads. No visibility on what was blocked, active, or overdue. No way to assign or monitor ownership at scale.</div>
+          </div>
+          <div>
+            <div class="col-label">What I shaped</div>
+            <div class="col-text">Defined what the dashboard needed to show and why. Two core views: Requests (project pipeline, status, EN success rates, owner assignment) and Review (transcript compliance, fraud/quality signals, network performance). Strategic input that turned a tool into a decision engine.</div>
+          </div>
+          <div>
+            <div class="col-label">How it runs today</div>
+            <div class="col-text">My team of 4 uses it daily to manage workload and assignments. Leadership uses it for resource decisions. Every vendor success rate, every project status, every transcript in queue — one place. No more chasing updates.</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Case 05 -->
+    <div class="case">
+      <div class="case-header">
+        <div class="case-num-badge">05</div>
+        <div>
+          <div class="case-title">Expert network expansion — filling sourcing gaps strategically</div>
+          <div class="case-tags">
+            <span class="tag tag-purple">Procurement</span>
+            <span class="tag tag-teal">Strategic partnerships</span>
+            <span class="tag tag-coral">Supply strategy</span>
+          </div>
+        </div>
+      </div>
+      <div class="case-body">
+        <div class="cols3">
+          <div>
+            <div class="col-label">The problem</div>
+            <div class="col-text">Primary research sourcing had coverage gaps — certain expert profiles, geographies, or industries were hard to fill through existing ENs. Pushing existing vendors harder wasn't the answer.</div>
+          </div>
+          <div>
+            <div class="col-label">What I did</div>
+            <div class="col-text">Identified where the gaps were. Evaluated new expert networks, led outreach, negotiated CPIs, and onboarded them. Then fed that data into the EN launching logic — so the right EN gets deployed per project, not just the familiar one.</div>
+          </div>
+          <div>
+            <div class="col-label">The result</div>
+            <div class="col-text">A more diverse, cost-optimised vendor ecosystem. EN success rates are tracked in the dashboard per project type. Vendor decisions are now data-driven — not relationship-driven.</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FIRSTCLUB FIT -->
+<section id="firstclub" style="background:#fff;">
+  <div class="wrap">
+    <div class="sec-eyebrow">Why FirstClub</div>
+    <h2 class="sec-title">No q-comm background.<br>But hear me out.</h2>
+    <p class="sec-intro">FirstClub said: "If you have experience building, scaling, or fixing chaos — we'd love to talk." That's the whole pitch.</p>
+
+    <div class="honest-box">
+      <div class="honest-icon" style="font-size:28px;color:#AFA9EC;">&#9888;</div>
+      <div>
+        <div class="honest-title">The honest answer first</div>
+        <div class="honest-body">I haven't worked in quick commerce, warehousing, or last-mile logistics. I know that. But I've spent 14 months building operations infrastructure from scratch with no playbook — and earning a promotion while doing it. The domain is different. The problems aren't.</div>
+      </div>
+    </div>
+
+    <div class="fit-grid">
+      <div class="fit-card">
+        <div class="fit-q">FirstClub needs → Operations Design</div>
+        <div class="fit-a">I've designed operations from zero</div>
+        <div class="fit-body">Every system at Bridgetown — dashboard, autopublish, vendor selection, client pre-approval — I built without a template. Operations design isn't about knowing the domain. It's about asking the right questions and making the right calls. That's what I do.</div>
+      </div>
+      <div class="fit-card">
+        <div class="fit-q">FirstClub needs → Build scalable systems</div>
+        <div class="fit-a">Scalability is my design constraint</div>
+        <div class="fit-body">The autopublish system exists because I asked: what happens when volume doubles? The EN launching logic exists because manual vendor decisions don't scale. Every system I build is designed to run without me in the room.</div>
+      </div>
+      <div class="fit-card">
+        <div class="fit-q">FirstClub needs → Cross-functional initiatives</div>
+        <div class="fit-a">I live in the cross-functional space</div>
+        <div class="fit-body">At Bridgetown I work across product, ops, client success, and vendor networks simultaneously. The client pre-approval feature required me to understand a client problem, translate it into a product solution, and coordinate its delivery. Cross-functional by definition.</div>
+      </div>
+      <div class="fit-card">
+        <div class="fit-q">FirstClub needs → CODB charters</div>
+        <div class="fit-a">I own cost decisions on every project</div>
+        <div class="fit-body">I negotiate CPIs with expert networks and decide which vendor to engage per project — that's cost-of-doing-business thinking applied directly. I'm building a selection logic that optimises vendor spend across project type, TAT, and client profile.</div>
+      </div>
+      <div class="fit-card">
+        <div class="fit-q">FirstClub needs → Supply chain thinking</div>
+        <div class="fit-a">Expert sourcing is a supply chain problem</div>
+        <div class="fit-body">At Bridgetown, "inventory" is a panel of experts. "Supply chain" is the EN network that sources them. I manage supply gaps, vendor performance, lead times (TAT), and quality. Same structural problems. Different domain. The mental model is identical.</div>
+      </div>
+      <div class="fit-card">
+        <div class="fit-q">FirstClub needs → Leaders who scale with us</div>
+        <div class="fit-a">Zero ops background → Manager in 11 months</div>
+        <div class="fit-body">Joined as an Associate with no traditional ops pedigree. Identified gaps, proposed solutions, shipped them, got promoted, and now manage a team of 4 with OKRs. I don't wait to be given scope — I find it. That's the profile that scales with a company.</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- SUPERPOWERS -->
+<section style="background:var(--bg);">
+  <div class="wrap">
+    <div class="sec-eyebrow">What makes me different</div>
+    <h2 class="sec-title">The edges you're<br>not expecting.</h2>
+    <div class="sp-grid">
+      <div class="sp-card">
+        <div class="sp-title">Psychology → systems that get adopted</div>
+        <div class="sp-body">MSc Counselling Psychology (CGPA 8.96) trained me in how people actually behave — not how they're supposed to. I build processes that account for real behaviour. That's why my systems get used, my vendors stay, and my team is engaged without micromanagement.</div>
+      </div>
+      <div class="sp-card">
+        <div class="sp-title">I learn fast and I say so</div>
+        <div class="sp-body">I came into product ops from psychology. No traditional ops pedigree. But I was promoted in 11 months, shipped a live fraud detection system, and now manage a team of 4. I don't pretend to know what I don't. I figure it out, document it, and make sure no one has to go through it again.</div>
+      </div>
+      <div class="sp-card">
+        <div class="sp-title">Strategy and execution in the same person</div>
+        <div class="sp-body">I design the EN launching logic AND negotiate vendor CPIs AND manage the team that runs the projects. Most ops people do one of these. I do all three — and I see how they connect. That's what makes programmes actually work.</div>
+      </div>
+      <div class="sp-card">
+        <div class="sp-title">Comfortable with first-principles chaos</div>
+        <div class="sp-body">Every system I've built was built with no template, no prior process, no senior to copy from. That's exactly the environment FirstClub describes. I don't need a playbook. I write one.</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- TIMELINE -->
+<section id="story" style="background:#fff;">
+  <div class="wrap">
+    <div class="sec-eyebrow">Career arc</div>
+    <h2 class="sec-title">How I got here.</h2>
+    <p class="sec-intro">From counselling psychology to product ops — not a pivot, a superpower in the making.</p>
+    <div class="tl">
+      <div class="tl-item">
+        <div class="tl-date">Jan 2026<br>→ now</div>
+        <div class="tl-right">
+          <div class="tl-role">Product Operations Manager</div>
+          <div class="tl-org">Bridgetown Research · Bengaluru</div>
+          <div class="tl-body">Promoted after 11 months. Leading a team of 4 with OKRs. Own vendor CPI negotiations, EN launching logic, client pre-approval feature, autopublish fraud/quality system, and the ops dashboard. Full strategic and operational accountability across 100+ live projects.</div>
+          <div class="tl-tags"><span class="tag tag-purple">Team of 4</span><span class="tag tag-teal">Vendor strategy</span><span class="tag tag-amber">Product ops</span><span class="tag tag-coral">Systems design</span></div>
+        </div>
+      </div>
+      <div class="tl-item">
+        <div class="tl-date">Mar 2025<br>→ Jan 2026</div>
+        <div class="tl-right">
+          <div class="tl-role">Operations Associate</div>
+          <div class="tl-org">Bridgetown Research · Bengaluru</div>
+          <div class="tl-body">Joined with no ops background. Learned the landscape fast. Started identifying gaps — tracking, vendor coordination, transcript review bottlenecks. Proposed and shaped solutions that became core infrastructure. Promoted in 11 months.</div>
+          <div class="tl-tags"><span class="tag tag-purple">Zero-to-one</span><span class="tag tag-teal">Fast learner</span></div>
+        </div>
+      </div>
+      <div class="tl-item">
+        <div class="tl-date">Jul 2024<br>→ Jan 2025</div>
+        <div class="tl-right">
+          <div class="tl-role">Psychologist &amp; Projects Lead</div>
+          <div class="tl-org">Soukhya · Goa</div>
+          <div class="tl-body">Set up project monitoring systems. Managed brand and digital content strategy voluntarily. Led Mental Health Illness Week Workshops. The ops instinct clicked here — kept asking "why don't we have a system for this?"</div>
+          <div class="tl-tags"><span class="tag tag-teal">Project coordination</span><span class="tag tag-amber">Systems thinking</span></div>
+        </div>
+      </div>
+      <div class="tl-item">
+        <div class="tl-date">May 2023<br>→ May 2024</div>
+        <div class="tl-right">
+          <div class="tl-role">School Counselor / Psychologist</div>
+          <div class="tl-org">VIBGYOR Group of Schools · Mumbai</div>
+          <div class="tl-body">Cross-functional work across admin, educators, and parents. Designed and implemented assessment protocols. Led workshops reaching 1,000+ participants annually. My first taste of designing a process that actually scaled.</div>
+          <div class="tl-tags"><span class="tag tag-purple">Cross-functional</span><span class="tag tag-teal">1,000+ reach</span></div>
+        </div>
+      </div>
+      <div class="tl-item">
+        <div class="tl-date">2021–2023</div>
+        <div class="tl-right">
+          <div class="tl-role">MSc Counselling Psychology · CGPA 8.96/10</div>
+          <div class="tl-org">Christ University, Delhi</div>
+          <div class="tl-body">2 international conference presentations. Trainer, ToT Program. Class Representative. Design Thinking certification, University of Virginia (2024).</div>
+        </div>
+      </div>
+      <div class="tl-item">
+        <div class="tl-date">2018–2021</div>
+        <div class="tl-right">
+          <div class="tl-role">BA Psychology (Honours) · CGPA 7.97/10</div>
+          <div class="tl-org">Delhi University</div>
+          <div class="tl-body">Research methodology, behavioural systems, human motivation — the foundation that makes the ops work different.</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CONTACT -->
+<section id="contact" class="contact-section">
+  <div class="wrap">
+    <div class="sec-eyebrow">Let's talk</div>
+    <h2 class="sec-title" style="color:#fff;">Applying for Programme /<br>Operations Manager<br>at FirstClub.</h2>
+    <p style="font-size:15px;color:rgba(255,255,255,0.55);max-width:500px;line-height:1.7;margin-bottom:1rem;">Happy to walk through any case study in detail — or talk about what I'd do in the first 90 days.</p>
+    <div class="contact-grid">
+      <div class="contact-card">
+        <div class="contact-label">Phone</div>
+        <div class="contact-val">+91 96196 06780</div>
+      </div>
+      <div class="contact-card">
+        <div class="contact-label">Email</div>
+        <div class="contact-val"><a href="/cdn-cgi/l/email-protection#781f190a1f110b11161f10560f170a13381f15191114561b1715"><span class="__cf_email__" data-cfemail="7c1b1d0e1b150f15121b14520b130e173c1b111d1510521f1311">[email&#160;protected]</span></a></div>
+      </div>
+      <div class="contact-card" style="grid-column: 1 / -1;">
+        <div class="contact-label">LinkedIn</div>
+        <div class="contact-val"><a href="https://linkedin.com/in/g
