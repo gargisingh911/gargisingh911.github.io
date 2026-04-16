@@ -1,0 +1,350 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Gargi Singh — Slikk</title>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;900&display=swap" rel="stylesheet">
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+:root{
+  --yellow:#FFE03D;--yellow-deep:#C9A800;
+  --black:#0D0D0D;--black-2:#1a1a1a;
+  --white:#FFFFFF;--off:#F5F5F0;
+  --gray:#888;--border:#E5E5E5;
+  --teal:#0F6E56;--teal-light:#E1F5EE;
+}
+html{scroll-behavior:smooth}
+body{font-family:'Inter',sans-serif;background:var(--black);color:var(--white);font-size:16px;line-height:1.6}
+nav{position:sticky;top:0;background:var(--black);border-bottom:1px solid rgba(255,255,255,0.08);z-index:100;padding:0 2rem}
+.nav-inner{max-width:1040px;margin:0 auto;display:flex;align-items:center;justify-content:space-between;height:56px}
+.nav-logo{font-size:15px;font-weight:900;color:var(--white);text-decoration:none;letter-spacing:-0.5px}
+.nav-logo span{color:var(--yellow)}
+.nav-links{display:flex;gap:2rem;list-style:none}
+.nav-links a{font-size:13px;color:rgba(255,255,255,0.45);text-decoration:none;font-weight:500}
+.nav-links a:hover{color:var(--yellow)}
+.nav-cta{background:var(--yellow);color:var(--black)!important;padding:7px 18px;border-radius:999px;font-size:13px!important;font-weight:700!important}
+.wrap{max-width:1040px;margin:0 auto;padding:0 2rem}
+.hero{background:var(--black);overflow:hidden;border-bottom:1px solid rgba(255,255,255,0.08)}
+.hero-inner{max-width:1040px;margin:0 auto;padding:5rem 2rem 0;display:grid;grid-template-columns:1fr 1fr;gap:2rem;align-items:end}
+.hero-left{padding-bottom:5rem}
+.hero-tag{display:inline-flex;align-items:center;gap:8px;border:1.5px solid rgba(255,255,255,0.15);color:rgba(255,255,255,0.5);font-size:11px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;padding:5px 14px;border-radius:999px;margin-bottom:2rem}
+.hero-tag::before{content:'';width:6px;height:6px;background:var(--yellow);border-radius:50%}
+.hero h1{font-size:clamp(44px,6.5vw,78px);font-weight:900;line-height:.95;letter-spacing:-2.5px;color:var(--white);margin-bottom:1.5rem}
+.hero h1 .y{color:var(--yellow)}
+.hero h1 .outline{-webkit-text-stroke:1.5px rgba(255,255,255,0.3);color:transparent}
+.hero-sub{font-size:15px;color:rgba(255,255,255,0.5);line-height:1.75;max-width:440px;margin-bottom:2rem}
+.hero-sub strong{color:var(--white);font-weight:600}
+.hero-actions{display:flex;gap:10px;flex-wrap:wrap}
+.btn-yellow{background:var(--yellow);color:var(--black);padding:12px 24px;border-radius:999px;font-size:14px;font-weight:700;text-decoration:none;display:inline-block}
+.btn-ghost{background:transparent;color:var(--white);padding:12px 24px;border-radius:999px;font-size:14px;font-weight:600;text-decoration:none;display:inline-block;border:1.5px solid rgba(255,255,255,0.2)}
+.hero-right{display:flex;flex-direction:column;gap:0}
+.stat-card-big{background:var(--yellow);border-radius:20px 20px 0 0;padding:2.5rem;margin-bottom:1px}
+.stat-card-big .num{font-size:60px;font-weight:900;color:var(--black);line-height:1;letter-spacing:-2px;margin-bottom:4px}
+.stat-card-big .num sub{font-size:28px}
+.stat-card-big .label{font-size:13px;font-weight:700;color:rgba(0,0,0,0.5);text-transform:uppercase;letter-spacing:.06em}
+.stat-row{display:grid;grid-template-columns:1fr 1fr;gap:1px}
+.stat-sm{background:rgba(255,255,255,0.05);padding:1.5rem;border-top:1px solid rgba(255,255,255,0.08)}
+.stat-sm:first-child{border-radius:0 0 0 20px}
+.stat-sm:last-child{border-radius:0 0 20px 0}
+.stat-sm .num{font-size:32px;font-weight:900;color:var(--white);line-height:1;letter-spacing:-1px;margin-bottom:3px}
+.stat-sm .num span{color:var(--yellow);font-size:20px}
+.stat-sm .label{font-size:11px;color:rgba(255,255,255,0.35);font-weight:600;text-transform:uppercase;letter-spacing:.06em}
+.ticker{background:var(--yellow);padding:.65rem 0;overflow:hidden;white-space:nowrap}
+.ticker-track{display:inline-block;animation:scroll 18s linear infinite}
+.ticker-track span{font-size:12px;font-weight:800;color:var(--black);letter-spacing:.06em;text-transform:uppercase;margin:0 2rem}
+.ticker-track span::before{content:'★';margin-right:1rem;font-size:10px}
+@keyframes scroll{0%{transform:translateX(0)}100%{transform:translateX(-50%)}}
+section{padding:5rem 0;border-bottom:1px solid rgba(255,255,255,0.08)}
+.sec-eyebrow{font-size:11px;font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:var(--yellow);margin-bottom:.6rem}
+.sec-title{font-size:clamp(28px,4vw,42px);font-weight:900;letter-spacing:-1px;line-height:1.05;color:var(--white);margin-bottom:.75rem}
+.sec-intro{font-size:15px;color:rgba(255,255,255,0.45);line-height:1.7;margin-bottom:3rem;max-width:560px}
+.user-card{background:rgba(255,255,255,0.04);border:1.5px solid rgba(255,255,255,0.08);border-radius:20px;padding:2.5rem;margin-bottom:1.5rem;display:grid;grid-template-columns:auto 1fr;gap:2rem;align-items:center}
+.user-avatar{width:64px;height:64px;background:var(--yellow);border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:22px;font-weight:900;color:var(--black);flex-shrink:0}
+.user-name{font-size:16px;font-weight:700;color:var(--white);margin-bottom:2px}
+.user-tag{font-size:12px;color:rgba(255,255,255,0.35);font-weight:500;margin-bottom:1rem}
+.user-quote{font-size:15px;color:rgba(255,255,255,0.7);line-height:1.7;font-style:italic}
+.user-items{display:flex;gap:8px;margin-top:1rem;flex-wrap:wrap}
+.user-item{font-size:11px;font-weight:700;padding:4px 12px;border-radius:999px;background:rgba(255,255,255,0.08);color:rgba(255,255,255,0.5)}
+.pov-box{background:var(--yellow);border-radius:20px;padding:2.5rem;margin-bottom:1.5rem}
+.pov-label{font-size:11px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:rgba(0,0,0,0.4);margin-bottom:.5rem}
+.pov-title{font-size:22px;font-weight:900;color:var(--black);line-height:1.2;margin-bottom:.75rem}
+.pov-body{font-size:14px;color:rgba(0,0,0,0.65);line-height:1.75}
+.gap-grid{display:grid;grid-template-columns:1fr 1fr;gap:1px;background:rgba(255,255,255,0.08);border-radius:20px;overflow:hidden;margin-bottom:1.5rem}
+.gap-cell{background:var(--black-2);padding:2rem}
+.gap-label{font-size:11px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:rgba(255,255,255,0.3);margin-bottom:.75rem}
+.gap-title{font-size:17px;font-weight:800;color:var(--white);margin-bottom:.5rem;line-height:1.3}
+.gap-body{font-size:13px;color:rgba(255,255,255,0.45);line-height:1.7}
+.gap-cell.highlight{background:rgba(255,224,61,0.06);border:1.5px solid rgba(255,224,61,0.2)}
+.gap-cell.highlight .gap-label{color:var(--yellow)}
+.gap-cell.highlight .gap-title{color:var(--yellow)}
+.gap-cell.highlight .gap-body{color:rgba(255,255,255,0.6)}
+.built-row{display:grid;grid-template-columns:1fr 1fr 1fr;gap:1rem;margin-bottom:1rem}
+.b-card{border:1.5px solid rgba(255,255,255,0.08);border-radius:16px;padding:1.75rem;background:rgba(255,255,255,0.02);position:relative;overflow:hidden}
+.b-card::after{content:'';position:absolute;top:0;left:0;right:0;height:3px;background:var(--yellow)}
+.b-card.dim::after{background:rgba(255,255,255,0.15)}
+.b-num{font-size:11px;font-weight:700;color:var(--yellow);letter-spacing:.08em;text-transform:uppercase;margin-bottom:.75rem}
+.b-card.dim .b-num{color:rgba(255,255,255,0.3)}
+.b-title{font-size:15px;font-weight:800;color:var(--white);line-height:1.3;margin-bottom:.5rem}
+.b-body{font-size:13px;color:rgba(255,255,255,0.4);line-height:1.6}
+.b-badge{display:inline-block;font-size:11px;font-weight:700;padding:3px 10px;border-radius:999px;margin-top:.75rem}
+.badge-live{background:var(--teal-light);color:var(--teal)}
+.badge-build{background:rgba(255,224,61,0.15);color:var(--yellow)}
+.gg{background:var(--yellow);border-radius:20px;overflow:hidden;margin-top:2rem}
+.gg-head{padding:2rem 2.5rem 1.5rem;border-bottom:1px solid rgba(0,0,0,0.1)}
+.gg-label{font-size:11px;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:rgba(0,0,0,0.4);margin-bottom:.3rem}
+.gg-title{font-size:20px;font-weight:900;color:var(--black)}
+.gg-cells{display:grid;grid-template-columns:repeat(4,1fr)}
+.gg-c{padding:1.5rem 2rem;border-right:1px solid rgba(0,0,0,0.1)}
+.gg-c:last-child{border-right:none}
+.gg-v{font-size:22px;font-weight:900;color:var(--black);line-height:1;margin-bottom:.3rem}
+.gg-d{font-size:12px;color:rgba(0,0,0,0.4);line-height:1.4}
+.why-grid{display:grid;grid-template-columns:1fr 1fr;gap:1rem}
+.why-card{border-radius:16px;padding:2rem}
+.why-card.y{background:var(--yellow)}
+.why-card.dark{background:rgba(255,255,255,0.04);border:1.5px solid rgba(255,255,255,0.08)}
+.why-title{font-size:18px;font-weight:900;margin-bottom:.5rem;line-height:1.2}
+.why-card.y .why-title{color:var(--black)}
+.why-card.dark .why-title{color:var(--white)}
+.why-body{font-size:13px;line-height:1.7}
+.why-card.y .why-body{color:rgba(0,0,0,0.6)}
+.why-card.dark .why-body{color:rgba(255,255,255,0.45)}
+.tl{position:relative}
+.tl::before{content:'';position:absolute;left:92px;top:8px;bottom:0;width:2px;background:rgba(255,255,255,0.08)}
+.tl-item{display:grid;grid-template-columns:76px 1fr;gap:0 2rem}
+.tl-date{font-size:11px;color:rgba(255,255,255,0.25);font-weight:600;padding-top:4px;text-align:right;line-height:1.4}
+.tl-right{padding:0 0 2.5rem 2rem;position:relative}
+.tl-right::before{content:'';position:absolute;left:-1px;top:7px;width:10px;height:10px;border-radius:50%;background:var(--yellow);border:2px solid var(--black)}
+.tl-role{font-size:16px;font-weight:800;color:var(--white);margin-bottom:2px}
+.tl-org{font-size:13px;color:var(--yellow);font-weight:600;margin-bottom:.5rem}
+.tl-body{font-size:13px;color:rgba(255,255,255,0.4);line-height:1.7}
+.tl-tags{display:flex;flex-wrap:wrap;gap:5px;margin-top:.6rem}
+.tag{font-size:11px;font-weight:700;padding:4px 12px;border-radius:999px}
+.tag-y{background:rgba(255,224,61,0.12);color:var(--yellow)}
+.tag-w{background:rgba(255,255,255,0.08);color:rgba(255,255,255,0.5)}
+.contact-hero{background:var(--yellow);padding:5rem 0}
+.contact-inner{max-width:1040px;margin:0 auto;padding:0 2rem;display:grid;grid-template-columns:1fr 1fr;gap:4rem;align-items:center}
+.contact-left .sec-eyebrow{color:rgba(0,0,0,0.4)}
+.contact-left .sec-title{color:var(--black)}
+.contact-left p{font-size:15px;color:rgba(0,0,0,0.55);line-height:1.7;margin-top:.75rem}
+.contact-cards{display:flex;flex-direction:column;gap:.75rem}
+.contact-card{background:rgba(0,0,0,0.08);border:1px solid rgba(0,0,0,0.1);border-radius:14px;padding:1.25rem 1.5rem;display:flex;align-items:center;justify-content:space-between}
+.c-label{font-size:11px;font-weight:700;color:rgba(0,0,0,0.35);letter-spacing:.08em;text-transform:uppercase;margin-bottom:3px}
+.c-val{font-size:15px;font-weight:700;color:var(--black)}
+.c-val a{color:var(--black);text-decoration:none}
+.c-arrow{font-size:18px;color:rgba(0,0,0,0.25)}
+@media(max-width:720px){
+  .hero-inner,.gap-grid,.built-row,.why-grid,.contact-inner{grid-template-columns:1fr}
+  .hero-right{flex-direction:row;flex-wrap:wrap}
+  .stat-card-big{border-radius:20px;width:100%}
+  .stat-row{width:100%}
+  .stat-sm:first-child{border-radius:0 0 0 16px}
+  .stat-sm:last-child{border-radius:0 0 16px 0}
+  .gg-cells{grid-template-columns:1fr 1fr}
+  .user-card{grid-template-columns:1fr}
+  .tl::before{left:72px}
+  .nav-links{display:none}
+}
+</style>
+</head>
+<body>
+<nav>
+  <div class="nav-inner">
+    <a class="nav-logo" href="#">Gargi <span>Singh</span></a>
+    <ul class="nav-links">
+      <li><a href="#user">As a user</a></li>
+      <li><a href="#built">What I built</a></li>
+      <li><a href="#why">Why Slikk</a></li>
+      <li><a href="#contact" class="nav-cta">Let's talk</a></li>
+    </ul>
+  </div>
+</nav>
+<div class="hero">
+  <div class="hero-inner">
+    <div class="hero-left">
+      <div class="hero-tag">Product & Operations · Open to roles</div>
+      <h1>I ordered<br>from <span class="y">Slikk.</span><br>Then I wanted<br>to <span class="outline">build it.</span></h1>
+      <p class="hero-sub">Product Operations Manager at Bridgetown Research — founding team, <strong>Series A startup</strong>. I build systems from zero, hire the team that runs them, and own the decisions that make them scale. Slikk's next phase needs exactly that.</p>
+      <div class="hero-actions">
+        <a href="#built" class="btn-yellow">See what I built</a>
+        <a href="#user" class="btn-ghost">My Slikk POV</a>
+      </div>
+    </div>
+    <div class="hero-right">
+      <div class="stat-card-big">
+        <div class="num">11<sub>mo</sub></div>
+        <div class="label">Associate → Manager</div>
+      </div>
+      <div class="stat-row">
+        <div class="stat-sm"><div class="num">4</div><div class="label">Team I hired</div></div>
+        <div class="stat-sm"><div class="num">6<span>+</span></div><div class="label">Systems shipped</div></div>
+      </div>
+    </div>
+  </div>
+</div>
+<div class="ticker">
+  <div class="ticker-track">
+    <span>Hired my team of 4</span><span>Negotiated all vendor terms</span><span>Built fraud detection system</span><span>Shipped client-facing features</span><span>Automated manual workflows</span><span>Designed vendor dashboard</span><span>Promoted in 11 months</span><span>Actual Slikk customer</span><span>Hired my team of 4</span><span>Negotiated all vendor terms</span><span>Built fraud detection system</span><span>Shipped client-facing features</span><span>Automated manual workflows</span><span>Designed vendor dashboard</span><span>Promoted in 11 months</span><span>Actual Slikk customer</span>
+  </div>
+</div>
+<section id="user">
+  <div class="wrap">
+    <div class="sec-eyebrow">I'm not just applying. I'm a user.</div>
+    <h2 class="sec-title">Ordered clothes.<br>Ordered accessories.<br>Loved it. Then asked:<br>"what would I fix?"</h2>
+    <p class="sec-intro">Most applicants research Slikk. I've actually used it. Here's my honest take — and the one gap I'd go after first.</p>
+    <div class="user-card">
+      <div class="user-avatar">GS</div>
+      <div>
+        <div class="user-name">Gargi Singh · Bengaluru</div>
+        <div class="user-tag">Actual customer · ordered clothes & hair accessories</div>
+        <div class="user-quote">"The 60-minute promise delivered. The quality exceeded what I expected from a quick-commerce fashion play. The app is clean, the curation feels intentional, not overwhelming. It felt like someone actually thought about what a Bengaluru 20-something wants — not just what's in stock."</div>
+        <div class="user-items">
+          <span class="user-item">Clothes</span>
+          <span class="user-item">Hair accessories</span>
+          <span class="user-item">60-min delivery ✓</span>
+          <span class="user-item">Try & Buy ✓</span>
+        </div>
+      </div>
+    </div>
+    <div class="pov-box">
+      <div class="pov-label">The real problem — and it's not what most people say</div>
+      <div class="pov-title">The return problem is a symptom. The disease is pre-dispatch quality.</div>
+      <div class="pov-body">Everyone talks about Slikk's return experience being slow. But look at the 1-star reviews — the pattern is specific: products arriving worn, missing tags, smelling used, visibly defective. Customers aren't returning because they changed their mind. They're returning because the item that arrived wasn't what was promised. That's not a returns ops problem. That's a pre-dispatch quality control failure. Fix the quality gate before dispatch, and the return volume drops dramatically — making the returns experience easier to fix too. One problem upstream eliminates two problems downstream.</div>
+    </div>
+    <div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:1rem;margin-bottom:1.5rem;">
+      <div style="background:rgba(255,255,255,0.03);border:1.5px solid rgba(255,255,255,0.08);border-radius:16px;padding:1.5rem;">
+        <div style="display:flex;gap:4px;margin-bottom:.75rem;"><span style="color:#FFB800;font-size:13px;">★</span><span style="color:rgba(255,255,255,0.15);font-size:13px;">★★★★</span></div>
+        <div style="font-size:13px;font-weight:700;color:var(--white);margin-bottom:.5rem;line-height:1.3;">"Product was worn out — seemed like someone had used it already"</div>
+        <div style="font-size:12px;color:rgba(255,255,255,0.35);line-height:1.6;">Placed a return. Rejected because "product is used" — even though it arrived that way. ₹2,600 lost. They claimed 7-day return policy but didn't honour it.</div>
+        <div style="margin-top:.75rem;font-size:11px;color:rgba(255,255,255,0.2);">Ree@634 · May 2025</div>
+      </div>
+      <div style="background:rgba(255,255,255,0.03);border:1.5px solid rgba(255,255,255,0.08);border-radius:16px;padding:1.5rem;">
+        <div style="display:flex;gap:4px;margin-bottom:.75rem;"><span style="color:#FFB800;font-size:13px;">★</span><span style="color:rgba(255,255,255,0.15);font-size:13px;">★★★★</span></div>
+        <div style="font-size:13px;font-weight:700;color:var(--white);margin-bottom:.5rem;line-height:1.3;">"Received a broken item — return denied as 'not covered under policy'"</div>
+        <div style="font-size:12px;color:rgba(255,255,255,0.35);line-height:1.6;">Damage clearly not caused by customer. Customer support disconnected the call. "Better alternative: use Klydo instead."</div>
+        <div style="margin-top:.75rem;font-size:11px;color:rgba(255,255,255,0.2);">_amit_ga · Jan 2025</div>
+      </div>
+      <div style="background:rgba(255,255,255,0.03);border:1.5px solid rgba(255,255,255,0.08);border-radius:16px;padding:1.5rem;">
+        <div style="display:flex;gap:4px;margin-bottom:.75rem;"><span style="color:#FFB800;font-size:13px;">★</span><span style="color:rgba(255,255,255,0.15);font-size:13px;">★★★★</span></div>
+        <div style="font-size:13px;font-weight:700;color:var(--white);margin-bottom:.5rem;line-height:1.3;">"Received without tag — return denied because of missing tag"</div>
+        <div style="font-size:12px;color:rgba(255,255,255,0.35);line-height:1.6;">Item arrived tagless. Poor quality. Return refused for missing tag — the same tag that wasn't there on delivery. "Has made me lose trust in this platform."</div>
+        <div style="margin-top:.75rem;font-size:11px;color:rgba(255,255,255,0.2);">Van09742 · Oct 2025</div>
+      </div>
+    </div>
+    <div style="background:rgba(255,224,61,0.06);border:1.5px solid rgba(255,224,61,0.15);border-radius:14px;padding:1.25rem 1.5rem;margin-bottom:1.5rem;display:flex;align-items:center;gap:1rem;">
+      <div style="font-size:22px;color:var(--yellow);flex-shrink:0;">→</div>
+      <div style="font-size:13px;color:rgba(255,255,255,0.6);line-height:1.6;"><span style="color:var(--yellow);font-weight:700;">The pattern:</span> All three reviews describe the same root cause — item condition at dispatch. Worn items, missing tags, broken products. The return experience is the headline complaint, but the actual failure is upstream. A pre-dispatch quality check system catches all three before they reach the customer.</div>
+    </div>
+    <div class="gap-grid">
+      <div class="gap-cell">
+        <div class="gap-label">What Slikk already nails</div>
+        <div class="gap-title">The delivery promise is real</div>
+        <div class="gap-body">60-min delivery, curated selection, Try & Buy, clean app. The core product works. That's rare for a 2-year-old startup. The $10M Series A from Nexus + Lightspeed confirms the market believes it too.</div>
+      </div>
+      <div class="gap-cell highlight">
+        <div class="gap-label">The gap I'd fix first</div>
+        <div class="gap-title">Pre-dispatch quality gate — before the item leaves the dark store</div>
+        <div class="gap-body">A structured quality check at dispatch: tag present, condition verified, no visible defects. Log it. If something slips through, the customer has photographic proof at origin — making return disputes instant to resolve. This is exactly the kind of system I've built. Different context, identical problem.</div>
+      </div>
+    </div>
+  </div>
+</section>
+<section id="built">
+  <div class="wrap">
+    <div class="sec-eyebrow">What I built at Bridgetown</div>
+    <h2 class="sec-title">Same problems.<br>Different industry.</h2>
+    <p class="sec-intro">Quality at scale. Vendor ops. Team building. Process automation. These aren't fashion-specific problems — they're ops problems. And I've been solving them.</p>
+    <div class="built-row">
+      <div class="b-card"><div class="b-num">01 · Quality system</div><div class="b-title">Automated quality signals — replaced manual review entirely</div><div class="b-body">Built a 3-signal automated system: fraud detection, quality score out of 5, identity verification. Same instinct as Slikk's pre-dispatch quality checks — encode what "good" looks like, automate the decision.</div><span class="b-badge badge-live">Live</span></div>
+      <div class="b-card"><div class="b-num">02 · Partner product</div><div class="b-title">Vendor dashboard — partners track their own pipeline</div><div class="b-body">Built a vendor-facing dashboard so external partners self-serve status updates. Reduced ops overhead, improved partner accountability. Direct parallel to Slikk's brand partner operations.</div><span class="b-badge badge-live">Live</span></div>
+      <div class="b-card"><div class="b-num">03 · Selection logic</div><div class="b-title">Vendor selection framework — right partner, every project</div><div class="b-body">Designing a framework that maps project characteristics to optimal vendor. Cost optimisation + quality. Same logic applies to category management — which brand, which SKU, which slot.</div><span class="b-badge badge-build">Building</span></div>
+    </div>
+    <div class="built-row">
+      <div class="b-card dim"><div class="b-num">04 · Team building</div><div class="b-title">Hired, onboarded & manage my team of 4</div><div class="b-body">Designed the interview process, ran every interview, made every hire, set OKRs. Didn't inherit a team — built one. At a Series A startup scaling fast, that's exactly the hire Slikk needs.</div><span class="b-badge badge-live">Done</span></div>
+      <div class="b-card dim"><div class="b-num">05 · Client product</div><div class="b-title">Pre-approval feature — proposed & shipped end to end</div><div class="b-body">Identified a product gap, proposed it to leadership, coordinated the build, shipped it. The instinct to spot a user experience problem and turn it into a product fix — that's what Slikk's product-ops role needs.</div><span class="b-badge badge-live">Live</span></div>
+      <div class="b-card dim"><div class="b-num">06 · Automation</div><div class="b-title">Multiple manual workflows → automated</div><div class="b-body">Every time my team was doing something a system could do, I built the system. At a fast-scaling startup, automation isn't a nice-to-have — it's how you keep quality consistent without proportional headcount growth.</div><span class="b-badge badge-live">Ongoing</span></div>
+    </div>
+    <div class="gg">
+      <div class="gg-head"><div class="gg-label">The go-getter pattern</div><div class="gg-title">Every initiative was unsolicited. Every one shipped.</div></div>
+      <div class="gg-cells">
+        <div class="gg-c"><div class="gg-v">Spotted.</div><div class="gg-d">Gap identified before anyone named it</div></div>
+        <div class="gg-c"><div class="gg-v">Proposed.</div><div class="gg-d">Made the case to leadership directly</div></div>
+        <div class="gg-c"><div class="gg-v">Built.</div><div class="gg-d">Designed, coordinated, shipped</div></div>
+        <div class="gg-c"><div class="gg-v">Runs.</div><div class="gg-d">Live, working, no babysitting needed</div></div>
+      </div>
+    </div>
+  </div>
+</section>
+<section id="why">
+  <div class="wrap">
+    <div class="sec-eyebrow">Why Slikk</div>
+    <h2 class="sec-title">I want to work on<br>a problem I've<br>already felt.</h2>
+    <p class="sec-intro">I'm not applying to Slikk because it's a hot startup. I'm applying because I used it, loved it, saw the gap, and want to be the person who closes it.</p>
+    <div class="why-grid">
+      <div class="why-card y"><div class="why-title">Series A is exactly where I belong</div><div class="why-body">I'm part of the founding team at Bridgetown — a Series A startup with no vertical hierarchy. I've operated at the strategic level since day one. I don't need structure to function. I create it. Slikk's $10M raise and multi-city expansion phase is the exact moment I'd add the most value.</div></div>
+      <div class="why-card dark"><div class="why-title">The quality problem is a product-ops problem</div><div class="why-body">The 1-star reviews aren't random — they're a pattern. Items arriving worn, missing tags, visibly defective. That's a pre-dispatch quality gate problem. I built an automated quality signal system at Bridgetown that replaced manual review entirely. Same problem, different context. I already know how to solve this.</div></div>
+      <div class="why-card dark"><div class="why-title">Fashion q-comm is an unsolved ops problem</div><div class="why-body">Blinkit solved grocery q-comm ops. Nobody has solved fashion yet — the SKU complexity, the try-on variability, the return rates. Slikk is earliest in the space. Being on the founding ops team of the category winner is a once-in-a-career opportunity. I'm not missing it.</div></div>
+      <div class="why-card y"><div class="why-title">I learn fast and I say so</div><div class="why-body">I came into product ops from psychology — no traditional background. Promoted in 11 months, built a team of 4, shipped 6 systems. Fashion q-comm is a new domain. The problems aren't. Give me 90 days and I'll have a better handle on Slikk's ops gaps than most people who've been in fashion for years.</div></div>
+    </div>
+  </div>
+</section>
+<section id="story">
+  <div class="wrap">
+    <div class="sec-eyebrow">Career arc</div>
+    <h2 class="sec-title">How I got here.</h2>
+    <p class="sec-intro">Psychology → ops → strategy. The compounding edge that makes the ops work different.</p>
+    <div class="tl">
+      <div class="tl-item">
+        <div class="tl-date">Jan 2026<br>→ now</div>
+        <div class="tl-right">
+          <div class="tl-role">Product Operations Manager</div>
+          <div class="tl-org">Bridgetown Research · Bengaluru · Founding team</div>
+          <div class="tl-body">Promoted after 11 months. Hired & manage team of 4. Own vendor strategy, automated quality systems, vendor dashboard, client product features, process automation. Work directly with founder and Strategy PM (Director). Full accountability across 100+ live projects.</div>
+          <div class="tl-tags"><span class="tag tag-y">Founding team</span><span class="tag tag-y">Hired team of 4</span><span class="tag tag-w">Series A</span><span class="tag tag-w">Systems design</span></div>
+        </div>
+      </div>
+      <div class="tl-item">
+        <div class="tl-date">Mar 2025<br>→ Jan 2026</div>
+        <div class="tl-right">
+          <div class="tl-role">Operations Associate</div>
+          <div class="tl-org">Bridgetown Research · Bengaluru</div>
+          <div class="tl-body">Joined with no ops background. Identified gaps, proposed solutions, built the infrastructure. Promoted in 11 months for thinking above the role.</div>
+          <div class="tl-tags"><span class="tag tag-y">Zero-to-one</span><span class="tag tag-w">Fast learner</span></div>
+        </div>
+      </div>
+      <div class="tl-item">
+        <div class="tl-date">Jul 2024<br>→ Jan 2025</div>
+        <div class="tl-right">
+          <div class="tl-role">Psychologist & Projects Lead</div>
+          <div class="tl-org">Soukhya · Goa</div>
+          <div class="tl-body">Led projects, managed external relationships, built content strategy voluntarily. The ops instinct clicked here — kept asking "why don't we have a system for this?"</div>
+          <div class="tl-tags"><span class="tag tag-w">Projects lead</span><span class="tag tag-w">External relationships</span></div>
+        </div>
+      </div>
+      <div class="tl-item">
+        <div class="tl-date">2021–2023</div>
+        <div class="tl-right">
+          <div class="tl-role">MSc Counselling Psychology · CGPA 8.96/10</div>
+          <div class="tl-org">Christ University, Delhi</div>
+          <div class="tl-body">Research methodology, behavioural systems, human motivation. Design Thinking certification, University of Virginia (2024). The foundation that makes the ops work different.</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+<div class="contact-hero" id="contact">
+  <div class="contact-inner">
+    <div class="contact-left">
+      <div class="sec-eyebrow">Let's talk</div>
+      <h2 class="sec-title" style="color:var(--black)">Open to product<br>& ops roles<br>at Slikk.</h2>
+      <p>Happy to walk through any of the above — or talk about what I'd do in the first 60 days. (Appropriate unit of time for Slikk.)</p>
+    </div>
+    <div class="contact-cards">
+      <div class="contact-card"><div><div class="c-label">Phone</div><div class="c-val">+91 96196 06780</div></div><div class="c-arrow">→</div></div>
+      <div class="contact-card"><div><div class="c-label">Email</div><div class="c-val"><a href="mailto:gargisingh.work@gmail.com">gargisingh.work@gmail.com</a></div></div><div class="c-arrow">→</div></div>
+      <div class="contact-card"><div><div class="c-label">LinkedIn</div><div class="c-val"><a href="https://linkedin.com/in/gargi-singh-6a157b212" target="_blank">linkedin.com/in/gargi-singh-6a157b212</a></div></div><div class="c-arrow">→</div></div>
+    </div>
+  </div>
+</div>
+</body>
+</html>
