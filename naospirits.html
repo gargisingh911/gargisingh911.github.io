@@ -1,0 +1,319 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Gargi Singh — Nao Spirits</title>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;900&family=Playfair+Display:ital,wght@0,700;0,900;1,400;1,700&display=swap" rel="stylesheet">
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+:root{
+  --red:#C0392B;--red-light:#FDF0EE;--red-mid:#E8C4C0;
+  --ink:#111111;--white:#FFFFFF;--off:#FAFAFA;
+  --border:#E8E8E8;--muted:#888;
+}
+html{scroll-behavior:smooth}
+body{font-family:'Inter',sans-serif;background:var(--white);color:var(--ink);font-size:16px;line-height:1.6}
+.reveal{opacity:0;transform:translateY(32px);transition:opacity .7s ease,transform .7s ease}
+.reveal.visible{opacity:1;transform:translateY(0)}
+.reveal-left{opacity:0;transform:translateX(-32px);transition:opacity .7s ease,transform .7s ease}
+.reveal-left.visible{opacity:1;transform:translateX(0)}
+.reveal-right{opacity:0;transform:translateX(32px);transition:opacity .7s ease,transform .7s ease}
+.reveal-right.visible{opacity:1;transform:translateX(0)}
+.delay-1{transition-delay:.1s}.delay-2{transition-delay:.2s}.delay-3{transition-delay:.3s}.delay-4{transition-delay:.4s}
+nav{position:sticky;top:0;background:rgba(255,255,255,0.97);backdrop-filter:blur(12px);border-bottom:1px solid var(--border);z-index:100;padding:0 2rem}
+.nav-inner{max-width:1040px;margin:0 auto;display:flex;align-items:center;justify-content:space-between;height:56px}
+.nav-logo{font-family:'Playfair Display',serif;font-size:17px;font-weight:700;color:var(--ink);text-decoration:none}
+.nav-logo span{color:var(--red)}
+.nav-links{display:flex;gap:2rem;list-style:none}
+.nav-links a{font-size:13px;color:var(--muted);text-decoration:none;font-weight:500;transition:color .2s}
+.nav-links a:hover{color:var(--red)}
+.nav-cta{background:var(--ink);color:#fff!important;padding:7px 18px;border-radius:999px;font-size:13px!important;font-weight:600!important;transition:background .2s!important}
+.nav-cta:hover{background:var(--red)!important}
+.wrap{max-width:1040px;margin:0 auto;padding:0 2rem}
+.hero{background:var(--white);border-bottom:1px solid var(--border);overflow:hidden}
+.hero-inner{max-width:1040px;margin:0 auto;padding:6rem 2rem 5rem;display:grid;grid-template-columns:1fr 1fr;gap:5rem;align-items:center}
+.hero-kicker{display:inline-flex;align-items:center;gap:8px;font-size:11px;font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:var(--red);margin-bottom:1.5rem}
+.hero-kicker::before{content:'';width:24px;height:1px;background:var(--red)}
+.hero h1{font-family:'Playfair Display',serif;font-size:clamp(40px,5.5vw,68px);font-weight:900;line-height:1.05;letter-spacing:-.02em;color:var(--ink);margin-bottom:1.5rem}
+.hero h1 em{font-style:italic;color:var(--red)}
+.hero-pitch{font-size:15px;color:var(--muted);line-height:1.8;margin-bottom:2rem;max-width:420px}
+.hero-actions{display:flex;gap:10px;flex-wrap:wrap}
+.btn-ink{background:var(--ink);color:#fff;padding:12px 24px;border-radius:999px;font-size:14px;font-weight:600;text-decoration:none;display:inline-block;transition:background .2s}
+.btn-ink:hover{background:var(--red)}
+.btn-outline{background:transparent;color:var(--ink);padding:12px 24px;border-radius:999px;font-size:14px;font-weight:500;text-decoration:none;display:inline-block;border:1.5px solid var(--border);transition:border-color .2s,color .2s}
+.btn-outline:hover{border-color:var(--red);color:var(--red)}
+.hero-stats{display:flex;flex-direction:column;gap:0;border:1.5px solid var(--border);border-radius:20px;overflow:hidden}
+.hs-top{background:var(--ink);padding:2.5rem}
+.hs-top .num{font-family:'Playfair Display',serif;font-size:56px;font-weight:900;color:var(--white);line-height:1;letter-spacing:-2px;margin-bottom:4px}
+.hs-top .num sub{font-size:24px;font-family:'Inter',sans-serif}
+.hs-top .label{font-size:11px;color:rgba(255,255,255,0.4);font-weight:600;text-transform:uppercase;letter-spacing:.08em}
+.hs-bot{display:grid;grid-template-columns:1fr 1fr;border-top:1px solid var(--border)}
+.hs-cell{padding:1.5rem;border-right:1px solid var(--border)}
+.hs-cell:last-child{border-right:none}
+.hs-cell .num{font-size:32px;font-weight:900;color:var(--ink);line-height:1;letter-spacing:-1px;margin-bottom:3px}
+.hs-cell .num span{color:var(--red);font-size:18px}
+.hs-cell .label{font-size:11px;color:var(--muted);font-weight:600;text-transform:uppercase;letter-spacing:.06em}
+.red-strip{background:var(--red);padding:.6rem 0;overflow:hidden;white-space:nowrap}
+.ticker-track{display:inline-block;animation:scroll 28s linear infinite}
+.ticker-track span{font-size:11px;font-weight:700;color:rgba(255,255,255,0.8);letter-spacing:.1em;text-transform:uppercase;margin:0 2.5rem}
+.ticker-track span::before{content:'·';margin-right:2.5rem;opacity:.5}
+@keyframes scroll{0%{transform:translateX(0)}100%{transform:translateX(-50%)}}
+section{padding:6rem 0;border-bottom:1px solid var(--border)}
+.sec-eyebrow{font-size:11px;font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:var(--red);margin-bottom:.75rem;display:flex;align-items:center;gap:10px}
+.sec-eyebrow::after{content:'';flex:1;height:1px;background:var(--border);max-width:60px}
+.sec-title{font-family:'Playfair Display',serif;font-size:clamp(28px,4vw,44px);font-weight:900;line-height:1.05;color:var(--ink);margin-bottom:.75rem}
+.sec-intro{font-size:15px;color:var(--muted);line-height:1.7;margin-bottom:3rem;max-width:560px}
+.story-grid{display:grid;grid-template-columns:1fr 1fr;gap:1px;background:var(--border);border-radius:20px;overflow:hidden;margin-bottom:1.5rem}
+.story-pull{background:var(--ink);padding:3rem;position:relative}
+.story-pull::before{content:'\201C';font-family:'Playfair Display',serif;font-size:120px;color:rgba(192,57,43,0.2);position:absolute;top:-10px;left:20px;line-height:1}
+.story-pull blockquote{font-family:'Playfair Display',serif;font-size:19px;font-style:italic;color:rgba(255,255,255,0.85);line-height:1.65;position:relative;z-index:1}
+.story-pull cite{display:block;font-size:12px;font-style:normal;color:rgba(255,255,255,0.35);font-weight:600;letter-spacing:.08em;text-transform:uppercase;margin-top:1.5rem}
+.story-right{background:var(--white);padding:3rem;display:flex;flex-direction:column;justify-content:space-between}
+.city-item{margin-bottom:1.5rem}.city-item:last-child{margin-bottom:0}
+.city-label{font-size:11px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--red);margin-bottom:.4rem}
+.city-title{font-size:16px;font-weight:800;color:var(--ink);margin-bottom:.3rem}
+.city-body{font-size:13px;color:var(--muted);line-height:1.65}
+.city-divider{height:1px;background:var(--border);margin:1.5rem 0}
+.built-grid{display:grid;grid-template-columns:1fr 1fr 1fr;gap:1rem;margin-bottom:1rem}
+.b-card{background:var(--white);border:1.5px solid var(--border);border-radius:16px;padding:1.75rem;position:relative;overflow:hidden;transition:border-color .2s,transform .2s}
+.b-card:hover{border-color:var(--red);transform:translateY(-2px)}
+.b-card::before{content:'';position:absolute;top:0;left:0;right:0;height:3px;background:var(--ink)}
+.b-card.red::before{background:var(--red)}
+.b-num{font-size:11px;font-weight:700;color:var(--muted);letter-spacing:.08em;text-transform:uppercase;margin-bottom:.75rem}
+.b-card.red .b-num{color:var(--red)}
+.b-title{font-size:15px;font-weight:800;color:var(--ink);line-height:1.3;margin-bottom:.5rem}
+.b-body{font-size:13px;color:var(--muted);line-height:1.6}
+.b-badge{display:inline-block;font-size:11px;font-weight:700;padding:3px 10px;border-radius:999px;margin-top:.75rem}
+.badge-live{background:var(--off);color:var(--ink);border:1px solid var(--border)}
+.badge-build{background:var(--red-light);color:var(--red)}
+.gg{background:var(--ink);border-radius:20px;overflow:hidden;margin-top:2rem}
+.gg-head{padding:2rem 2.5rem 1.5rem;border-bottom:1px solid rgba(255,255,255,0.06);display:flex;align-items:center;justify-content:space-between}
+.gg-eye{font-size:11px;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:var(--red)}
+.gg-title{font-family:'Playfair Display',serif;font-size:20px;font-weight:700;color:var(--white)}
+.gg-cells{display:grid;grid-template-columns:repeat(4,1fr)}
+.gg-c{padding:1.75rem 2rem;border-right:1px solid rgba(255,255,255,0.06);transition:background .2s}
+.gg-c:hover{background:rgba(255,255,255,0.03)}
+.gg-c:last-child{border-right:none}
+.gg-v{font-size:22px;font-weight:900;color:var(--white);line-height:1;margin-bottom:.4rem}
+.gg-c:hover .gg-v{color:var(--red)}
+.gg-d{font-size:12px;color:rgba(255,255,255,0.3);line-height:1.4}
+.why-grid{display:grid;grid-template-columns:1fr 1fr 1fr;gap:1rem}
+.why-card{border-radius:16px;padding:2rem;transition:transform .2s}
+.why-card:hover{transform:translateY(-2px)}
+.why-card.dark{background:var(--ink)}.why-card.red{background:var(--red)}.why-card.light{background:var(--off);border:1.5px solid var(--border)}
+.why-title{font-family:'Playfair Display',serif;font-size:18px;font-weight:700;margin-bottom:.5rem;line-height:1.2}
+.why-card.dark .why-title{color:var(--white)}.why-card.red .why-title{color:var(--white)}.why-card.light .why-title{color:var(--ink)}
+.why-body{font-size:13px;line-height:1.7}
+.why-card.dark .why-body{color:rgba(255,255,255,0.5)}.why-card.red .why-body{color:rgba(255,255,255,0.75)}.why-card.light .why-body{color:var(--muted)}
+.tl{position:relative}
+.tl::before{content:'';position:absolute;left:92px;top:8px;bottom:0;width:1px;background:var(--border)}
+.tl-item{display:grid;grid-template-columns:76px 1fr;gap:0 2rem}
+.tl-date{font-size:11px;color:var(--muted);font-weight:600;padding-top:4px;text-align:right;line-height:1.4}
+.tl-right{padding:0 0 2.5rem 2rem;position:relative}
+.tl-right::before{content:'';position:absolute;left:-4px;top:7px;width:8px;height:8px;border-radius:50%;background:var(--white);border:2px solid var(--ink)}
+.tl-item:first-child .tl-right::before{background:var(--red);border-color:var(--red)}
+.tl-role{font-size:16px;font-weight:800;color:var(--ink);margin-bottom:2px}
+.tl-org{font-size:13px;color:var(--red);font-weight:600;margin-bottom:.5rem}
+.tl-body{font-size:13px;color:var(--muted);line-height:1.7}
+.tl-tags{display:flex;flex-wrap:wrap;gap:5px;margin-top:.6rem}
+.tag{font-size:11px;font-weight:600;padding:4px 12px;border-radius:999px}
+.tag-r{background:var(--red-light);color:var(--red)}.tag-d{background:var(--ink);color:#fff}.tag-l{background:var(--off);color:var(--muted);border:1px solid var(--border)}
+.contact-sec{background:var(--ink);padding:6rem 0}
+.contact-inner{max-width:1040px;margin:0 auto;padding:0 2rem;display:grid;grid-template-columns:1fr 1fr;gap:4rem;align-items:center}
+.contact-left .sec-eyebrow{color:rgba(192,57,43,0.7)}.contact-left .sec-eyebrow::after{background:rgba(255,255,255,0.1)}
+.contact-left .sec-title{color:var(--white)}
+.contact-left p{font-size:15px;color:rgba(255,255,255,0.4);line-height:1.7;margin-top:.75rem}
+.contact-cards{display:flex;flex-direction:column;gap:.75rem}
+.contact-card{background:rgba(255,255,255,0.04);border:1px solid rgba(255,255,255,0.08);border-radius:14px;padding:1.25rem 1.5rem;display:flex;align-items:center;justify-content:space-between;transition:border-color .2s,background .2s}
+.contact-card:hover{border-color:rgba(192,57,43,0.4);background:rgba(192,57,43,0.05)}
+.c-label{font-size:11px;font-weight:700;color:rgba(255,255,255,0.25);letter-spacing:.08em;text-transform:uppercase;margin-bottom:3px}
+.c-val{font-size:15px;font-weight:600;color:var(--white)}.c-val a{color:var(--white);text-decoration:none}
+.c-arrow{font-size:18px;color:rgba(255,255,255,0.2)}
+.counter{display:inline-block}
+@media(max-width:720px){
+  .hero-inner,.story-grid,.built-grid,.why-grid,.contact-inner{grid-template-columns:1fr}
+  .hs-bot{grid-template-columns:1fr 1fr}.gg-cells{grid-template-columns:1fr 1fr}
+  .tl::before{left:72px}.nav-links{display:none}
+}
+</style>
+</head>
+<body>
+<nav>
+  <div class="nav-inner">
+    <a class="nav-logo" href="#">Gargi <span>Singh</span></a>
+    <ul class="nav-links">
+      <li><a href="#story">Story</a></li>
+      <li><a href="#built">What I built</a></li>
+      <li><a href="#why">Why Nao</a></li>
+      <li><a href="#contact" class="nav-cta">Let's talk</a></li>
+    </ul>
+  </div>
+</nav>
+<div class="hero">
+  <div class="hero-inner">
+    <div class="hero-left">
+      <div class="hero-kicker reveal">Strategy & Operations · COO Office</div>
+      <h1 class="reveal delay-1">Two cities.<br>One bottle.<br><em>One reason<br>to apply.</em></h1>
+      <p class="hero-pitch reveal delay-2">Product Operations Manager at Bridgetown Research — founding team, Series A. In 14 months I hired a team of 4, built 6 operational systems, and owned every strategic decision. I work directly with the founder daily. I'm looking for a role where brand, strategy and operations live in the same person.</p>
+      <div class="hero-actions reveal delay-3">
+        <a href="#story" class="btn-ink">My story</a>
+        <a href="#built" class="btn-outline">What I built</a>
+      </div>
+    </div>
+    <div class="hero-stats reveal-right delay-2">
+      <div class="hs-top">
+        <div class="num"><span class="counter" data-target="11">0</span><sub>mo</sub></div>
+        <div class="label">Associate → Manager</div>
+      </div>
+      <div class="hs-bot">
+        <div class="hs-cell"><div class="num"><span class="counter" data-target="4">0</span></div><div class="label">Ops associates hired</div></div>
+        <div class="hs-cell"><div class="num"><span class="counter" data-target="6">0</span><span>+</span></div><div class="label">Systems shipped</div></div>
+      </div>
+    </div>
+  </div>
+</div>
+<div class="red-strip">
+  <div class="ticker-track">
+    <span>Founding team · Series A</span><span>Hired team of 4</span><span>Greater Than · Delhi University</span><span>MTW Bar · Panjim · Out of Office</span><span>6 systems shipped</span><span>Works with founder daily</span><span>COO office candidate</span><span>Founding team · Series A</span><span>Hired team of 4</span><span>Greater Than · Delhi University</span><span>MTW Bar · Panjim · Out of Office</span><span>6 systems shipped</span><span>Works with founder daily</span><span>COO office candidate</span>
+  </div>
+</div>
+<section id="story">
+  <div class="wrap">
+    <div class="sec-eyebrow reveal">Why I'm here</div>
+    <h2 class="sec-title reveal delay-1">Not every application<br>starts with a job listing.</h2>
+    <p class="sec-intro reveal delay-2">This one started in a college dorm in Delhi and ended in a dimly lit bar in Goa.</p>
+    <div class="story-grid reveal delay-1">
+      <div class="story-pull">
+        <blockquote>"I walked into MTW in Panjim — that kind of bar where the lighting is low and the menu knows what it's doing. Ordered an Out of Office. The bartender reached for Greater Than. The same gin from my Delhi University days. That recognition across two completely different cities and chapters of my life — that's what a great brand builds. I didn't just feel nostalgic. I felt like I understood something."</blockquote>
+        <cite>Gargi Singh · Delhi → Goa → Bengaluru</cite>
+      </div>
+      <div class="story-right">
+        <div class="city-item">
+          <div class="city-label">Chapter 1 · Delhi University</div>
+          <div class="city-title">Greater Than. The beginning.</div>
+          <div class="city-body">My first real craft gin. The one that made Indian spirits feel genuinely world-class — not imitating something foreign, proudly rooted in Indian botanicals. It stayed with me across every city after.</div>
+        </div>
+        <div class="city-divider"></div>
+        <div class="city-item">
+          <div class="city-label">Chapter 2 · MTW · Panjim · Goa</div>
+          <div class="city-title">Out of Office. Everything clicked.</div>
+          <div class="city-body">Moved to Goa for work. Discovered MTW — a moody cocktail bar in Panjim that knows exactly what it's doing. Ordered an Out of Office made with Greater Than. Same bottle, completely different world. That's what great brand-building does.</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+<section id="built" style="background:var(--off);">
+  <div class="wrap">
+    <div class="sec-eyebrow reveal">What I built at Bridgetown</div>
+    <h2 class="sec-title reveal delay-1">Building systems<br>that protect quality<br>as brands scale.</h2>
+    <p class="sec-intro reveal delay-2">Different industry, same instinct — how do you maintain what makes something great as the machine gets bigger?</p>
+    <div class="built-grid">
+      <div class="b-card reveal delay-1"><div class="b-num">01 · Quality</div><div class="b-title">Automated quality signals — 3 checks, zero manual review</div><div class="b-body">Built a system that maintained quality standards as volume grew without adding headcount. Same instinct Nao needs: protect what makes the product exceptional as distribution scales.</div><span class="b-badge badge-live">Live</span></div>
+      <div class="b-card reveal delay-2"><div class="b-num">02 · Partner systems</div><div class="b-title">Vendor dashboard — partner accountability at scale</div><div class="b-body">Built a vendor-facing dashboard so external partners self-serve and stay accountable. As Nao scales its on-trade bar partnerships and export relationships, systematic partner management becomes critical.</div><span class="b-badge badge-live">Live</span></div>
+      <div class="b-card reveal delay-3"><div class="b-num">03 · Commercial</div><div class="b-title">Vendor selection & CPI negotiation</div><div class="b-body">Own all commercial terms with vendor partners. P&L thinking at the most granular level — directly applicable to navigating pricing, margins, and trade terms as Nao enters new markets.</div><span class="b-badge badge-build">Building</span></div>
+    </div>
+    <div class="built-grid" style="margin-top:1rem">
+      <div class="b-card red reveal delay-1"><div class="b-num">04 · Team building</div><div class="b-title">Hired, interviewed & manage my team of 4</div><div class="b-body">Designed the interview process, ran every interview, made every hire, set OKRs. Didn't inherit a team — built one with specific gaps in mind. I hire people who operate without structure.</div><span class="b-badge badge-live">Done</span></div>
+      <div class="b-card red reveal delay-2"><div class="b-num">05 · Strategic initiatives</div><div class="b-title">6 systems — all unsolicited, all live</div><div class="b-body">Every operational system at Bridgetown started as a gap I spotted and a proposal I took to leadership. Autopublish, vendor dashboard, pre-approval feature — none were asked for. All were needed.</div><span class="b-badge badge-live">Live</span></div>
+      <div class="b-card red reveal delay-3"><div class="b-num">06 · Founding team</div><div class="b-title">Direct leadership interface daily</div><div class="b-body">Work directly with founder and Strategy PM. At a Series A with no vertical structure, every decision is strategic. I've been operating at the COO-adjacent level since I joined — not by title, by scope.</div><span class="b-badge badge-live">Ongoing</span></div>
+    </div>
+    <div class="gg reveal">
+      <div class="gg-head"><div><div class="gg-eye">The pattern</div><div class="gg-title">Every initiative was unsolicited. Every one shipped.</div></div></div>
+      <div class="gg-cells">
+        <div class="gg-c"><div class="gg-v">Spotted.</div><div class="gg-d">Gap identified before anyone named it</div></div>
+        <div class="gg-c"><div class="gg-v">Proposed.</div><div class="gg-d">Made the case to leadership directly</div></div>
+        <div class="gg-c"><div class="gg-v">Built.</div><div class="gg-d">Designed, coordinated, shipped</div></div>
+        <div class="gg-c"><div class="gg-v">Runs.</div><div class="gg-d">Live, no babysitting needed</div></div>
+      </div>
+    </div>
+  </div>
+</section>
+<section id="why">
+  <div class="wrap">
+    <div class="sec-eyebrow reveal">Why Nao Spirits</div>
+    <h2 class="sec-title reveal delay-1">I'm not applying<br>to a company. I'm<br>applying to a brand<br>I already love.</h2>
+    <p class="sec-intro reveal delay-2">Greater Than has been part of my life across two cities. That's not a line. It's the reason.</p>
+    <div class="why-grid">
+      <div class="why-card dark reveal delay-1"><div class="why-title">Scaling craft identity is an ops & strategy problem</div><div class="why-body">Great craft brands lose their edge when they start operating like FMCG companies. The bar partnerships, the bartender relationships, the community that made Greater Than the "pouring brand at the best bars" — those need to be systematically protected as volume scales. That's exactly the kind of problem I've been solving.</div></div>
+      <div class="why-card light reveal delay-2"><div class="why-title">I've been a fan before I was an applicant</div><div class="why-body">Delhi University. MTW Panjim. Out of Office cocktail. Greater Than has shown up in two completely different chapters of my life and felt like home both times. I'm not applying because it's a prestigious brand. I'm applying because I genuinely love what it's built.</div></div>
+      <div class="why-card light reveal delay-3"><div class="why-title">Series A founding team experience</div><div class="why-body">I'm part of the founding team at Bridgetown — Series A, no hierarchy, full ownership. I work directly with the founder daily. I've operated at the strategic level since day one. Nao needs someone who can hold both the brand's identity and the operational rigour in their head at the same time. That's what I do.</div></div>
+    </div>
+  </div>
+</section>
+<section style="background:var(--off);">
+  <div class="wrap">
+    <div class="sec-eyebrow reveal">Career arc</div>
+    <h2 class="sec-title reveal delay-1">How I got here.</h2>
+    <p class="sec-intro reveal delay-2">Psychology → ops → strategy. The compounding edge that makes the work different.</p>
+    <div class="tl">
+      <div class="tl-item reveal">
+        <div class="tl-date">Jan 2026<br>→ now</div>
+        <div class="tl-right">
+          <div class="tl-role">Product Operations Manager</div>
+          <div class="tl-org">Bridgetown Research · Bengaluru · Founding team</div>
+          <div class="tl-body">Promoted after 11 months. Hired & manage team of 4 with OKRs. Work directly with founder and Strategy PM. Own vendor strategy, automated quality systems, vendor dashboard, client product features, and process automation.</div>
+          <div class="tl-tags"><span class="tag tag-r">Founding team</span><span class="tag tag-r">Hired team of 4</span><span class="tag tag-d">Series A</span><span class="tag tag-l">Systems design</span></div>
+        </div>
+      </div>
+      <div class="tl-item reveal delay-1">
+        <div class="tl-date">Jul 2024<br>→ Jan 2025</div>
+        <div class="tl-right">
+          <div class="tl-role">Psychologist & Projects Lead</div>
+          <div class="tl-org">Soukhya · Goa · Where MTW happened</div>
+          <div class="tl-body">Led mental health projects, managed external relationships. Lived in Goa. Discovered MTW. Rediscovered Greater Than. The ops instinct clicked — kept asking "why don't we have a system for this?"</div>
+          <div class="tl-tags"><span class="tag tag-r">Goa · MTW</span><span class="tag tag-d">Projects lead</span></div>
+        </div>
+      </div>
+      <div class="tl-item reveal delay-2">
+        <div class="tl-date">2021–2023</div>
+        <div class="tl-right">
+          <div class="tl-role">MSc Counselling Psychology · CGPA 8.96/10</div>
+          <div class="tl-org">Christ University, Delhi · Where Greater Than began</div>
+          <div class="tl-body">Research methodology, behavioural systems, human motivation. Delhi days — first encounter with Greater Than. Design Thinking certification, University of Virginia (2024).</div>
+          <div class="tl-tags"><span class="tag tag-r">Delhi · Greater Than</span><span class="tag tag-l">CGPA 8.96</span></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+<div class="contact-sec" id="contact">
+  <div class="contact-inner">
+    <div class="contact-left reveal-left">
+      <div class="sec-eyebrow">Let's talk</div>
+      <h2 class="sec-title">Open to strategy,<br>growth & COO<br>office roles<br>at Nao Spirits.</h2>
+      <p>Happy to talk through the above — or just share what an Out of Office at MTW tastes like at midnight.</p>
+    </div>
+    <div class="contact-cards reveal-right">
+      <div class="contact-card"><div><div class="c-label">Phone</div><div class="c-val">+91 96196 06780</div></div><div class="c-arrow">→</div></div>
+      <div class="contact-card"><div><div class="c-label">Email</div><div class="c-val"><a href="mailto:gargisingh.work@gmail.com">gargisingh.work@gmail.com</a></div></div><div class="c-arrow">→</div></div>
+      <div class="contact-card"><div><div class="c-label">LinkedIn</div><div class="c-val"><a href="https://linkedin.com/in/gargi-singh-6a157b212" target="_blank">linkedin.com/in/gargi-singh-6a157b212</a></div></div><div class="c-arrow">→</div></div>
+    </div>
+  </div>
+</div>
+<script>
+const observer = new IntersectionObserver((entries) => {
+  entries.forEach(e => { if(e.isIntersecting) e.target.classList.add('visible'); });
+}, {threshold: 0.1});
+document.querySelectorAll('.reveal, .reveal-left, .reveal-right').forEach(el => observer.observe(el));
+function animateCounter(el) {
+  const target = parseInt(el.dataset.target);
+  const duration = 1200;
+  const start = performance.now();
+  function update(now) {
+    const elapsed = now - start;
+    const progress = Math.min(elapsed / duration, 1);
+    const ease = 1 - Math.pow(1 - progress, 3);
+    el.textContent = Math.round(ease * target);
+    if(progress < 1) requestAnimationFrame(update);
+  }
+  requestAnimationFrame(update);
+}
+const counterObserver = new IntersectionObserver((entries) => {
+  entries.forEach(e => { if(e.isIntersecting) { animateCounter(e.target); counterObserver.unobserve(e.target); } });
+}, {threshold: 0.5});
+document.querySelectorAll('.counter').forEach(el => counterObserver.observe(el));
+</script>
+</body>
+</html>
