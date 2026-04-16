@@ -1,0 +1,314 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Gargi Singh — Strategy & Operations</title>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;900&display=swap" rel="stylesheet">
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+:root{
+  --pink:#D4537E;--pink-deep:#993556;--pink-light:#FBEAF0;--pink-pale:#FDF2F6;
+  --ink:#1a1a1a;--ink-mid:#444;--ink-muted:#888;
+  --border:#F0D6E3;--white:#fff;--bg:#FDF7F9;
+}
+html{scroll-behavior:smooth}
+body{font-family:'Inter',sans-serif;background:var(--bg);color:var(--ink);font-size:16px;line-height:1.6}
+nav{position:sticky;top:0;background:rgba(253,247,249,0.96);backdrop-filter:blur(8px);border-bottom:1px solid var(--border);z-index:100;padding:0 2rem}
+.nav-inner{max-width:1040px;margin:0 auto;display:flex;align-items:center;justify-content:space-between;height:56px}
+.nav-logo{font-size:15px;font-weight:700;color:var(--ink);text-decoration:none;letter-spacing:-.3px}
+.nav-links{display:flex;gap:2rem;list-style:none}
+.nav-links a{font-size:13px;color:var(--ink-muted);text-decoration:none;font-weight:500}
+.nav-links a:hover{color:var(--pink)}
+.nav-cta{background:var(--pink);color:#fff!important;padding:7px 18px;border-radius:999px;font-size:13px!important;font-weight:600!important}
+.wrap{max-width:1040px;margin:0 auto;padding:0 2rem}
+.hero{background:var(--pink);overflow:hidden;position:relative}
+.hero-inner{max-width:1040px;margin:0 auto;padding:4rem 2rem 0;display:grid;grid-template-columns:1fr 380px;gap:3rem;align-items:end}
+.hero-left{padding-bottom:4rem}
+.hero-kicker{display:inline-block;background:rgba(255,255,255,0.2);color:#fff;font-size:11px;font-weight:700;letter-spacing:.12em;text-transform:uppercase;padding:5px 14px;border-radius:999px;margin-bottom:1.5rem}
+.hero h1{font-size:clamp(44px,7vw,80px);font-weight:900;line-height:.95;letter-spacing:-2.5px;color:#fff;margin-bottom:1.5rem}
+.hero h1 .outline{-webkit-text-stroke:2px #fff;color:transparent}
+.hero-pitch{background:rgba(255,255,255,0.12);border-left:3px solid rgba(255,255,255,0.5);padding:1rem 1.25rem;border-radius:0 8px 8px 0;margin-bottom:2rem}
+.hero-pitch p{font-size:15px;color:rgba(255,255,255,0.9);line-height:1.7}
+.hero-actions{display:flex;gap:10px;flex-wrap:wrap}
+.btn-white{background:#fff;color:var(--pink);padding:11px 22px;border-radius:999px;font-size:14px;font-weight:700;text-decoration:none;display:inline-block}
+.btn-outline{background:transparent;color:#fff;padding:11px 22px;border-radius:999px;font-size:14px;font-weight:600;text-decoration:none;display:inline-block;border:2px solid rgba(255,255,255,0.5)}
+.hero-right{display:flex;flex-direction:column;justify-content:flex-end;gap:0}
+.stat-block{padding:1.25rem 1.5rem;border-top:1px solid rgba(255,255,255,0.2)}
+.stat-block:first-child{border-top:none}
+.stat-num{font-size:42px;font-weight:900;color:#fff;line-height:1;letter-spacing:-1.5px}
+.stat-num sub{font-size:20px;font-weight:600;vertical-align:baseline}
+.stat-label{font-size:12px;color:rgba(255,255,255,0.6);margin-top:2px;line-height:1.3}
+.ticker{background:var(--ink);padding:.7rem 0;overflow:hidden;white-space:nowrap}
+.ticker-track{display:inline-block;animation:scroll 22s linear infinite}
+.ticker-track span{font-size:12px;font-weight:600;color:rgba(255,255,255,0.6);letter-spacing:.06em;text-transform:uppercase;margin:0 2.5rem}
+.ticker-track span b{color:var(--pink);font-weight:800}
+@keyframes scroll{0%{transform:translateX(0)}100%{transform:translateX(-50%)}}
+section{padding:5rem 0;border-bottom:1px solid var(--border)}
+.sec-eyebrow{font-size:11px;font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:var(--pink);margin-bottom:.6rem}
+.sec-title{font-size:clamp(28px,4vw,40px);font-weight:900;letter-spacing:-1px;line-height:1.1;color:var(--ink);margin-bottom:.75rem}
+.sec-intro{font-size:15px;color:var(--ink-muted);line-height:1.7;margin-bottom:3rem;max-width:560px}
+.statement-grid{display:grid;grid-template-columns:2fr 1fr;gap:1px;background:var(--border);border-radius:20px;overflow:hidden;margin-bottom:1px}
+.statement-grid-2{display:grid;grid-template-columns:1fr 1fr;gap:1px;background:var(--border);border-radius:0 0 20px 20px;overflow:hidden}
+.s-cell{background:var(--white);padding:2.5rem}
+.s-cell.pink{background:var(--pink);padding:2.5rem}
+.s-cell.pale{background:var(--pink-pale)}
+.s-num{font-size:72px;font-weight:900;line-height:1;letter-spacing:-3px;color:var(--pink);margin-bottom:.25rem}
+.s-cell.pink .s-num{color:rgba(255,255,255,0.25)}
+.s-label{font-size:13px;color:var(--ink-muted);font-weight:500;margin-bottom:1rem}
+.s-cell.pink .s-label{color:rgba(255,255,255,0.6)}
+.s-title{font-size:20px;font-weight:800;color:var(--ink);line-height:1.2;margin-bottom:.5rem}
+.s-cell.pink .s-title{color:#fff}
+.s-body{font-size:13px;color:var(--ink-muted);line-height:1.7}
+.s-cell.pink .s-body{color:rgba(255,255,255,0.7)}
+.tag-row{display:flex;flex-wrap:wrap;gap:6px;margin-top:1rem}
+.tag{font-size:11px;font-weight:600;padding:4px 12px;border-radius:999px}
+.tag-pink{background:var(--pink-light);color:var(--pink-deep)}
+.tag-dark{background:var(--ink);color:#fff}
+.built-grid{display:grid;grid-template-columns:1fr 1fr 1fr;gap:1rem}
+.built-card{background:var(--white);border:1.5px solid var(--border);border-radius:16px;padding:1.75rem;position:relative;overflow:hidden}
+.built-card::before{content:'';position:absolute;top:0;left:0;right:0;height:4px;background:var(--pink)}
+.built-card.dim::before{background:var(--ink)}
+.built-num{font-size:11px;font-weight:700;color:var(--pink);letter-spacing:.08em;text-transform:uppercase;margin-bottom:.75rem}
+.built-card.dim .built-num{color:var(--ink-muted)}
+.built-title{font-size:16px;font-weight:800;color:var(--ink);line-height:1.3;margin-bottom:.6rem}
+.built-body{font-size:13px;color:var(--ink-muted);line-height:1.6}
+.built-status{display:inline-block;font-size:11px;font-weight:700;padding:3px 10px;border-radius:999px;margin-top:.75rem}
+.status-live{background:#E1F5EE;color:#0F6E56}
+.status-building{background:var(--pink-light);color:var(--pink-deep)}
+.gg-strip{background:var(--ink);border-radius:20px;overflow:hidden;margin:3rem 0 0}
+.gg-top{padding:2rem 2.5rem 1.5rem;border-bottom:1px solid rgba(255,255,255,0.08)}
+.gg-eyebrow{font-size:11px;font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:var(--pink);margin-bottom:.4rem}
+.gg-headline{font-size:22px;font-weight:900;color:#fff}
+.gg-grid{display:grid;grid-template-columns:repeat(4,1fr)}
+.gg-cell{padding:1.75rem 2rem;border-right:1px solid rgba(255,255,255,0.08)}
+.gg-cell:last-child{border-right:none}
+.gg-verb{font-size:24px;font-weight:900;color:#fff;line-height:1;margin-bottom:.4rem}
+.gg-desc{font-size:12px;color:rgba(255,255,255,0.4);line-height:1.5}
+.parallel{display:grid;grid-template-columns:1fr 1fr;gap:1px;background:var(--border);border-radius:20px;overflow:hidden;margin-bottom:1.5rem}
+.par-cell{background:var(--white);padding:2rem}
+.par-cell.dark{background:var(--ink)}
+.par-label{font-size:11px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;margin-bottom:.75rem;color:var(--pink)}
+.par-title{font-size:16px;font-weight:800;color:var(--ink);margin-bottom:.4rem;line-height:1.3}
+.par-cell.dark .par-title{color:#fff}
+.par-body{font-size:13px;color:var(--ink-muted);line-height:1.7}
+.par-cell.dark .par-body{color:rgba(255,255,255,0.55)}
+.tl{position:relative}
+.tl::before{content:'';position:absolute;left:92px;top:8px;bottom:0;width:2px;background:var(--border)}
+.tl-item{display:grid;grid-template-columns:76px 1fr;gap:0 2rem;margin-bottom:0}
+.tl-date{font-size:11px;color:var(--ink-muted);font-weight:600;padding-top:4px;text-align:right;line-height:1.4}
+.tl-right{padding:0 0 2.5rem 2rem;position:relative}
+.tl-right::before{content:'';position:absolute;left:-1px;top:7px;width:10px;height:10px;border-radius:50%;background:var(--pink);border:2px solid var(--bg)}
+.tl-role{font-size:16px;font-weight:800;color:var(--ink);margin-bottom:2px}
+.tl-org{font-size:13px;color:var(--pink);font-weight:600;margin-bottom:.5rem}
+.tl-body{font-size:13px;color:var(--ink-muted);line-height:1.7}
+.tl-tags{display:flex;flex-wrap:wrap;gap:5px;margin-top:.6rem}
+.contact-section{background:var(--pink)}
+.contact-inner{max-width:1040px;margin:0 auto;padding:5rem 2rem;display:grid;grid-template-columns:1fr 1fr;gap:4rem;align-items:center}
+.contact-left .sec-eyebrow{color:rgba(255,255,255,0.6)}
+.contact-left .sec-title{color:#fff}
+.contact-left p{font-size:15px;color:rgba(255,255,255,0.65);line-height:1.7;margin-top:.75rem}
+.contact-cards{display:flex;flex-direction:column;gap:.75rem}
+.contact-card{background:rgba(255,255,255,0.12);border:1px solid rgba(255,255,255,0.2);border-radius:14px;padding:1.25rem 1.5rem;display:flex;align-items:center;justify-content:space-between}
+.c-label{font-size:11px;font-weight:700;color:rgba(255,255,255,0.5);letter-spacing:.08em;text-transform:uppercase;margin-bottom:3px}
+.c-val{font-size:15px;font-weight:600;color:#fff}
+.c-val a{color:#fff;text-decoration:none}
+.c-arrow{font-size:18px;color:rgba(255,255,255,0.4)}
+@media(max-width:720px){
+  .hero-inner{grid-template-columns:1fr}
+  .hero-right{display:grid;grid-template-columns:1fr 1fr;gap:0}
+  .statement-grid,.statement-grid-2,.built-grid,.parallel,.contact-inner{grid-template-columns:1fr}
+  .gg-grid{grid-template-columns:1fr 1fr}
+  .tl::before{left:72px}
+  .nav-links{display:none}
+}
+</style>
+</head>
+<body>
+<nav>
+  <div class="nav-inner">
+    <a class="nav-logo" href="#">Gargi Singh</a>
+    <ul class="nav-links">
+      <li><a href="#built">What I built</a></li>
+      <li><a href="#why">Why Nykaa</a></li>
+      <li><a href="#story">Story</a></li>
+      <li><a href="#contact" class="nav-cta">Let's talk</a></li>
+    </ul>
+  </div>
+</nav>
+<div class="hero">
+  <div class="hero-inner">
+    <div class="hero-left">
+      <span class="hero-kicker">Strategy & Operations · CXO's Office</span>
+      <h1>I don't wait<br>for the brief.<br><span class="outline">I write it.</span></h1>
+      <div class="hero-pitch">
+        <p>Product Operations Manager at Bridgetown Research — Series A, no hierarchy, full ownership. In 14 months I hired a team of 4, built 6 operational systems from scratch, automated what didn't need humans, and owned every cost decision along the way. I'm looking for a role where strategy and execution live in the same person. Nykaa's CXO office is exactly that.</p>
+      </div>
+      <div class="hero-actions">
+        <a href="#built" class="btn-white">See what I built</a>
+        <a href="#why" class="btn-outline">Why Nykaa</a>
+      </div>
+    </div>
+    <div class="hero-right">
+      <div class="stat-block"><div class="stat-num">11<sub>mo</sub></div><div class="stat-label">Associate → Manager</div></div>
+      <div class="stat-block"><div class="stat-num">4</div><div class="stat-label">Team members I hired & manage</div></div>
+      <div class="stat-block"><div class="stat-num">6</div><div class="stat-label">Systems built from zero, all live</div></div>
+      <div class="stat-block"><div class="stat-num">0→1</div><div class="stat-label">Every time. No playbook.</div></div>
+    </div>
+  </div>
+</div>
+<div class="ticker">
+  <div class="ticker-track">
+    <span><b>Hired</b> my team of 4</span><span><b>Negotiated</b> all vendor terms</span><span><b>Built</b> fraud detection system</span><span><b>Shipped</b> client-facing product features</span><span><b>Automated</b> manual review workflows</span><span><b>Designed</b> vendor dashboard</span><span><b>Ran</b> monthly vendor check-ins</span><span><b>Promoted</b> in 11 months</span><span><b>Hired</b> my team of 4</span><span><b>Negotiated</b> all vendor terms</span><span><b>Built</b> fraud detection system</span><span><b>Shipped</b> client-facing product features</span><span><b>Automated</b> manual review workflows</span><span><b>Designed</b> vendor dashboard</span><span><b>Ran</b> monthly vendor check-ins</span><span><b>Promoted</b> in 11 months</span>
+  </div>
+</div>
+<section>
+  <div class="wrap">
+    <div class="sec-eyebrow">What I own</div>
+    <h2 class="sec-title">Four charters.<br>All unsolicited.</h2>
+    <p class="sec-intro">At a Series A startup with no vertical hierarchy, you either own the strategy or nobody does. Here's what I've owned since day one.</p>
+    <div class="statement-grid">
+      <div class="s-cell pink">
+        <div class="s-num">6+</div>
+        <div class="s-label">Strategic initiatives shipped</div>
+        <div class="s-title">Strategy & infrastructure</div>
+        <div class="s-body">Every operational system at Bridgetown — quality pipeline, vendor dashboard, selection logic, client features — started as a gap I spotted and a proposal I made to leadership. All live.</div>
+      </div>
+      <div class="s-cell pale">
+        <div class="s-num" style="color:var(--pink)">↓</div>
+        <div class="s-label">Cost per unit over time</div>
+        <div class="s-title">Cost & commercial decisions</div>
+        <div class="s-body">Own all vendor commercial terms. Negotiate CPIs. Decide which vendor deploys per project. Every cost decision runs through me.</div>
+        <div class="tag-row"><span class="tag tag-pink">P&L thinking</span><span class="tag tag-pink">Vendor negotiation</span></div>
+      </div>
+    </div>
+    <div class="statement-grid-2">
+      <div class="s-cell">
+        <div class="s-num">×4</div>
+        <div class="s-label">Team built from scratch</div>
+        <div class="s-title">Hiring & people ops</div>
+        <div class="s-body">Designed the interview process, ran every interview, made every hire, set OKRs. Didn't inherit a team — built one with specific gaps in mind.</div>
+        <div class="tag-row"><span class="tag tag-dark">Hiring</span><span class="tag tag-dark">OKRs</span><span class="tag tag-dark">Team management</span></div>
+      </div>
+      <div class="s-cell pale">
+        <div class="s-num" style="color:var(--pink)">∞</div>
+        <div class="s-label">Simultaneous workstreams</div>
+        <div class="s-title">Cross-functional programmes</div>
+        <div class="s-body">Product, ops, client success, vendor networks — running in parallel, no one to hand off to. I coordinate all of them and own every outcome.</div>
+        <div class="tag-row"><span class="tag tag-pink">No handoffs</span><span class="tag tag-pink">End to end</span></div>
+      </div>
+    </div>
+  </div>
+</section>
+<section id="built" style="background:#fff;">
+  <div class="wrap">
+    <div class="sec-eyebrow">What I built</div>
+    <h2 class="sec-title">Six systems.<br>Zero templates.</h2>
+    <p class="sec-intro">Each one started as something nobody asked for. I spotted the gap, made the case, and shipped it.</p>
+    <div class="built-grid">
+      <div class="built-card"><div class="built-num">01 · Quality system</div><div class="built-title">Autopublish — fraud, quality & identity signals</div><div class="built-body">Replaced manual transcript review with 3 automated signals. Quality now scales with volume, not headcount.</div><div><span class="built-status status-live">Live</span></div></div>
+      <div class="built-card"><div class="built-num">02 · Partner product</div><div class="built-title">Vendor dashboard — partners track their own pipeline</div><div class="built-body">Built a vendor-facing dashboard so partners self-serve status updates. Eliminated ad hoc comms overhead entirely.</div><div><span class="built-status status-live">Live</span></div></div>
+      <div class="built-card"><div class="built-num">03 · Commercial logic</div><div class="built-title">Vendor selection framework — right partner, every project</div><div class="built-body">Framework matching project characteristics to optimal vendor. Combined with monthly check-ins per vendor partner.</div><div><span class="built-status status-building">Building</span></div></div>
+      <div class="built-card dim"><div class="built-num">04 · Client product</div><div class="built-title">Pre-approval workflow — client-facing feature end to end</div><div class="built-body">Proposed, designed and shipped a feature giving clients visibility into experts before interviews. Reduced drop-offs.</div><div><span class="built-status status-live">Live</span></div></div>
+      <div class="built-card dim"><div class="built-num">05 · UX ownership</div><div class="built-title">Expert interview experience — ticket queue & improvements</div><div class="built-body">Own the product ticket queue for simplifying the expert interview-taking experience. Triage, prioritise, ship.</div><div><span class="built-status status-live">Ongoing</span></div></div>
+      <div class="built-card dim"><div class="built-num">06 · Automation</div><div class="built-title">Multiple manual processes → automated workflows</div><div class="built-body">Wherever my team was doing something a system could do, I built the system. Leaner ops, no proportional cost growth.</div><div><span class="built-status status-live">Ongoing</span></div></div>
+    </div>
+    <div class="gg-strip">
+      <div class="gg-top"><div class="gg-eyebrow">The go-getter in four words</div><div class="gg-headline">Every initiative here was unsolicited.</div></div>
+      <div class="gg-grid">
+        <div class="gg-cell"><div class="gg-verb">Spotted.</div><div class="gg-desc">Gap identified before anyone named it</div></div>
+        <div class="gg-cell"><div class="gg-verb">Proposed.</div><div class="gg-desc">Made the case to leadership directly</div></div>
+        <div class="gg-cell"><div class="gg-verb">Built.</div><div class="gg-desc">Designed, coordinated, shipped it</div></div>
+        <div class="gg-cell"><div class="gg-verb">Runs.</div><div class="gg-desc">Live and working without me babysitting</div></div>
+      </div>
+    </div>
+  </div>
+</section>
+<section id="why">
+  <div class="wrap">
+    <div class="sec-eyebrow">Why Nykaa's CXO office</div>
+    <h2 class="sec-title">I've been doing<br>this work already.</h2>
+    <p class="sec-intro">CXO's office means working closest to where decisions land. At a Series A with no hierarchy — that's been every day.</p>
+    <div class="parallel">
+      <div class="par-cell"><div class="par-label">Nykaa CXO office does</div><div class="par-title">Strategic initiative ownership — spot the gap, build the case, drive it</div><div class="par-body">Senior Managers in the CXO office identify strategic problems and drive cross-functional programmes to solve them.</div></div>
+      <div class="par-cell dark"><div class="par-label">I do at Bridgetown</div><div class="par-title">All 6 initiatives were unsolicited proposals that I took to live production</div><div class="par-body">No one asked for the autopublish system, the vendor dashboard, or the pre-approval feature. I spotted each gap, made the case to leadership, and owned the delivery.</div></div>
+    </div>
+    <div class="parallel">
+      <div class="par-cell"><div class="par-label">Nykaa CXO office does</div><div class="par-title">P&L thinking and commercial decision-making</div><div class="par-body">Strategy that touches revenue, cost, and unit economics — not just process design.</div></div>
+      <div class="par-cell dark"><div class="par-label">I do at Bridgetown</div><div class="par-title">Own all vendor CPIs and the logic that deploys them per project</div><div class="par-body">Every project's cost is a decision I make — which vendor, at what rate, for which client. That's P&L thinking at the most granular level.</div></div>
+    </div>
+    <div class="parallel">
+      <div class="par-cell"><div class="par-label">Nykaa CXO office does</div><div class="par-title">Work across functions with no formal authority</div><div class="par-body">Influence without ownership — coordinating product, ops, finance, and business teams to drive outcomes.</div></div>
+      <div class="par-cell dark"><div class="par-label">I do at Bridgetown</div><div class="par-title">Run cross-functional programmes across product, ops, vendors, and clients with no hierarchy</div><div class="par-body">Series A means no vertical structure. Every programme I've run required influencing across functions with no formal authority. I've been training for CXO office work since day one.</div></div>
+    </div>
+  </div>
+</section>
+<section id="story" style="background:#fff;">
+  <div class="wrap">
+    <div class="sec-eyebrow">Career arc</div>
+    <h2 class="sec-title">How I got here.</h2>
+    <p class="sec-intro">Psychology → ops → strategy. Not a pivot. A compounding edge.</p>
+    <div class="tl">
+      <div class="tl-item">
+        <div class="tl-date">Jan 2026<br>→ now</div>
+        <div class="tl-right">
+          <div class="tl-role">Product Operations Manager</div>
+          <div class="tl-org">Bridgetown Research · Bengaluru</div>
+          <div class="tl-body">Promoted after 11 months. Hired & manage team of 4 with OKRs. Own vendor cost strategy, automated quality systems, vendor dashboard, expert UX, client product features, and ops infrastructure. Direct leadership interface. Full strategic + operational accountability.</div>
+          <div class="tl-tags"><span class="tag tag-pink">Hired team of 4</span><span class="tag tag-pink">Strategic ownership</span><span class="tag tag-dark">P&L decisions</span><span class="tag tag-dark">Automation</span></div>
+        </div>
+      </div>
+      <div class="tl-item">
+        <div class="tl-date">Mar 2025<br>→ Jan 2026</div>
+        <div class="tl-right">
+          <div class="tl-role">Operations Associate</div>
+          <div class="tl-org">Bridgetown Research · Bengaluru</div>
+          <div class="tl-body">Joined with no ops background. Identified gaps, proposed solutions, built the infrastructure. Promoted in 11 months for thinking above the role.</div>
+          <div class="tl-tags"><span class="tag tag-pink">Zero-to-one</span><span class="tag tag-dark">Gap identification</span></div>
+        </div>
+      </div>
+      <div class="tl-item">
+        <div class="tl-date">Jul 2024<br>→ Jan 2025</div>
+        <div class="tl-right">
+          <div class="tl-role">Psychologist & Projects Lead</div>
+          <div class="tl-org">Soukhya · Goa</div>
+          <div class="tl-body">Led mental health projects, managed external relationships, built content strategy voluntarily. Kept asking: "why don't we have a system for this?" That question is what got me into ops.</div>
+          <div class="tl-tags"><span class="tag tag-pink">Projects lead</span><span class="tag tag-dark">External relationships</span></div>
+        </div>
+      </div>
+      <div class="tl-item">
+        <div class="tl-date">May 2023<br>→ May 2024</div>
+        <div class="tl-right">
+          <div class="tl-role">School Counselor / Psychologist</div>
+          <div class="tl-org">VIBGYOR Group of Schools · Mumbai</div>
+          <div class="tl-body">Cross-functional work across admin, educators, and parents. Designed assessment protocols. Led workshops reaching 1,000+ participants annually.</div>
+          <div class="tl-tags"><span class="tag tag-pink">Cross-functional</span><span class="tag tag-dark">1,000+ reach</span></div>
+        </div>
+      </div>
+      <div class="tl-item">
+        <div class="tl-date">2021–2023</div>
+        <div class="tl-right">
+          <div class="tl-role">MSc Counselling Psychology · CGPA 8.96/10</div>
+          <div class="tl-org">Christ University, Delhi</div>
+          <div class="tl-body">Research methodology, behavioural systems, human motivation. 2 international conference presentations. Design Thinking certification, University of Virginia (2024).</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+<section id="contact" class="contact-section" style="padding:0;border:none">
+  <div class="contact-inner">
+    <div class="contact-left">
+      <div class="sec-eyebrow">Let's talk</div>
+      <h2 class="sec-title" style="color:#fff;">Open to strategy<br>& CXO office<br>roles at Nykaa.</h2>
+      <p>Happy to walk through any initiative in detail — or talk through a specific strategic problem you're working on right now.</p>
+    </div>
+    <div class="contact-cards">
+      <div class="contact-card"><div><div class="c-label">Phone</div><div class="c-val">+91 96196 06780</div></div><div class="c-arrow">→</div></div>
+      <div class="contact-card"><div><div class="c-label">Email</div><div class="c-val"><a href="mailto:gargisingh.work@gmail.com">gargisingh.work@gmail.com</a></div></div><div class="c-arrow">→</div></div>
+      <div class="contact-card"><div><div class="c-label">LinkedIn</div><div class="c-val"><a href="https://linkedin.com/in/gargi-singh-6a157b212" target="_blank">linkedin.com/in/gargi-singh-6a157b212</a></div></div><div class="c-arrow">→</div></div>
+    </div>
+  </div>
+</section>
+</body>
+</html>
