@@ -1,0 +1,346 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Gargi Singh — OpenFX</title>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;900&family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+:root{
+  --blue:#0047FF;--blue-light:#EEF3FF;--blue-dark:#0035CC;
+  --ink:#0A0A0F;--white:#FFFFFF;--off:#F7F7FA;
+  --border:#E4E4EC;--muted:#6B6B80;
+  --green:#00C48C;--green-light:#E6FAF5;
+}
+html{scroll-behavior:smooth}
+body{font-family:'Space Grotesk',sans-serif;background:var(--ink);color:var(--white);font-size:16px;line-height:1.6}
+.reveal{opacity:0;transform:translateY(28px);transition:opacity .65s ease,transform .65s ease}
+.reveal.visible{opacity:1;transform:translateY(0)}
+.reveal-left{opacity:0;transform:translateX(-28px);transition:opacity .65s ease,transform .65s ease}
+.reveal-left.visible{opacity:1;transform:translateX(0)}
+.reveal-right{opacity:0;transform:translateX(28px);transition:opacity .65s ease,transform .65s ease}
+.reveal-right.visible{opacity:1;transform:translateX(0)}
+.delay-1{transition-delay:.1s}.delay-2{transition-delay:.2s}.delay-3{transition-delay:.3s}.delay-4{transition-delay:.4s}
+nav{position:sticky;top:0;background:rgba(10,10,15,0.95);backdrop-filter:blur(12px);border-bottom:1px solid rgba(255,255,255,0.06);z-index:100;padding:0 2rem}
+.nav-inner{max-width:1100px;margin:0 auto;display:flex;align-items:center;justify-content:space-between;height:56px}
+.nav-logo{font-size:15px;font-weight:700;color:var(--white);text-decoration:none;letter-spacing:-.3px}
+.nav-logo span{color:var(--blue)}
+.nav-links{display:flex;gap:2rem;list-style:none}
+.nav-links a{font-size:13px;color:rgba(255,255,255,0.4);text-decoration:none;font-weight:500;transition:color .2s}
+.nav-links a:hover{color:var(--blue)}
+.nav-cta{background:var(--blue);color:#fff!important;padding:7px 18px;border-radius:999px;font-size:13px!important;font-weight:600!important}
+.wrap{max-width:1100px;margin:0 auto;padding:0 2rem}
+.hero{background:var(--ink);min-height:100vh;display:flex;align-items:center;position:relative;overflow:hidden;border-bottom:1px solid rgba(255,255,255,0.06)}
+.hero-grid{position:absolute;inset:0;background-image:linear-gradient(rgba(0,71,255,0.03) 1px,transparent 1px),linear-gradient(90deg,rgba(0,71,255,0.03) 1px,transparent 1px);background-size:60px 60px;pointer-events:none}
+.hero-glow{position:absolute;top:-200px;right:-200px;width:600px;height:600px;background:radial-gradient(circle,rgba(0,71,255,0.12) 0%,transparent 70%);pointer-events:none}
+.hero-inner{max-width:1100px;margin:0 auto;padding:0 2rem;position:relative;z-index:1;width:100%}
+.hero-badge{display:inline-flex;align-items:center;gap:8px;background:rgba(0,71,255,0.1);border:1px solid rgba(0,71,255,0.25);color:var(--blue);font-size:11px;font-weight:600;letter-spacing:.12em;text-transform:uppercase;padding:6px 14px;border-radius:999px;margin-bottom:2.5rem}
+.hero-badge::before{content:'';width:6px;height:6px;background:var(--blue);border-radius:50%;animation:pulse 2s infinite}
+@keyframes pulse{0%,100%{opacity:1;transform:scale(1)}50%{opacity:.5;transform:scale(.8)}}
+.hero h1{font-size:clamp(48px,7vw,88px);font-weight:700;line-height:.95;letter-spacing:-3px;color:var(--white);margin-bottom:2rem}
+.hero h1 .blue{color:var(--blue)}
+.hero h1 .dim{color:rgba(255,255,255,0.2)}
+.hero-sub{font-size:17px;color:rgba(255,255,255,0.5);line-height:1.75;max-width:520px;margin-bottom:3rem;font-family:'Inter',sans-serif;font-weight:400}
+.hero-sub strong{color:var(--white);font-weight:600}
+.hero-actions{display:flex;gap:12px;flex-wrap:wrap;margin-bottom:5rem}
+.btn-blue{background:var(--blue);color:#fff;padding:13px 26px;border-radius:999px;font-size:14px;font-weight:600;text-decoration:none;display:inline-block;transition:background .2s,transform .2s}
+.btn-blue:hover{background:var(--blue-dark);transform:translateY(-1px)}
+.btn-ghost{background:transparent;color:rgba(255,255,255,0.7);padding:13px 26px;border-radius:999px;font-size:14px;font-weight:500;text-decoration:none;display:inline-block;border:1px solid rgba(255,255,255,0.15);transition:border-color .2s,color .2s}
+.btn-ghost:hover{border-color:var(--blue);color:var(--blue)}
+.hero-stats{display:grid;grid-template-columns:repeat(4,1fr);gap:1px;background:rgba(255,255,255,0.06);border-top:1px solid rgba(255,255,255,0.06)}
+.hs{padding:1.75rem 0;border-right:1px solid rgba(255,255,255,0.06)}
+.hs:last-child{border-right:none}
+.hs .num{font-size:40px;font-weight:700;color:var(--white);line-height:1;letter-spacing:-1.5px;margin-bottom:4px}
+.hs .num .counter{display:inline-block}
+.hs .num sub{font-size:18px;font-weight:600;color:var(--blue)}
+.hs .label{font-size:12px;color:rgba(255,255,255,0.3);font-weight:500;text-transform:uppercase;letter-spacing:.08em}
+.ticker{background:var(--blue);padding:.65rem 0;overflow:hidden;white-space:nowrap}
+.ticker-track{display:inline-block;animation:scroll 22s linear infinite}
+.ticker-track span{font-size:11px;font-weight:700;color:rgba(255,255,255,0.85);letter-spacing:.1em;text-transform:uppercase;margin:0 2rem}
+.ticker-track span::before{content:'◆';margin-right:1rem;font-size:8px;opacity:.6}
+@keyframes scroll{0%{transform:translateX(0)}100%{transform:translateX(-50%)}}
+section{padding:6rem 0;border-bottom:1px solid rgba(255,255,255,0.06)}
+section.light{background:var(--off);border-bottom:1px solid var(--border)}
+section.light *{color:inherit}
+.sec-eyebrow{font-size:11px;font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:var(--blue);margin-bottom:.75rem}
+.sec-title{font-size:clamp(28px,4vw,46px);font-weight:700;letter-spacing:-1.5px;line-height:1.05;color:var(--white);margin-bottom:.75rem}
+section.light .sec-title{color:var(--ink)}
+.sec-intro{font-size:15px;color:rgba(255,255,255,0.45);line-height:1.75;margin-bottom:3rem;max-width:560px;font-family:'Inter',sans-serif}
+section.light .sec-intro{color:var(--muted)}
+.match-grid{display:grid;grid-template-columns:1fr 1fr;gap:1px;background:rgba(255,255,255,0.06);border-radius:16px;overflow:hidden;margin-bottom:1rem}
+.match-cell{background:#13131A;padding:2rem}
+.match-cell.highlight{background:rgba(0,71,255,0.08);border:1px solid rgba(0,71,255,0.2)}
+.match-label{font-size:11px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:rgba(255,255,255,0.3);margin-bottom:.6rem}
+.match-cell.highlight .match-label{color:var(--blue)}
+.match-req{font-size:15px;font-weight:600;color:rgba(255,255,255,0.6);margin-bottom:.4rem;line-height:1.4}
+.match-cell.highlight .match-req{color:var(--white)}
+.match-proof{font-size:13px;color:rgba(255,255,255,0.35);line-height:1.65;font-family:'Inter',sans-serif}
+.match-cell.highlight .match-proof{color:rgba(255,255,255,0.6)}
+.built-grid{display:grid;grid-template-columns:1fr 1fr 1fr;gap:1rem;margin-bottom:1rem}
+.b-card{background:#13131A;border:1px solid rgba(255,255,255,0.06);border-radius:14px;padding:1.75rem;position:relative;overflow:hidden;transition:border-color .2s,transform .2s}
+.b-card:hover{border-color:var(--blue);transform:translateY(-2px)}
+.b-card::before{content:'';position:absolute;top:0;left:0;right:0;height:2px;background:rgba(255,255,255,0.08)}
+.b-card.blue::before{background:var(--blue)}
+.b-card.green::before{background:var(--green)}
+.b-num{font-size:11px;font-weight:700;color:rgba(255,255,255,0.25);letter-spacing:.08em;text-transform:uppercase;margin-bottom:.75rem}
+.b-card.blue .b-num{color:var(--blue)}
+.b-card.green .b-num{color:var(--green)}
+.b-title{font-size:15px;font-weight:600;color:var(--white);line-height:1.3;margin-bottom:.5rem}
+.b-body{font-size:13px;color:rgba(255,255,255,0.35);line-height:1.65;font-family:'Inter',sans-serif}
+.b-badge{display:inline-block;font-size:11px;font-weight:700;padding:3px 10px;border-radius:999px;margin-top:.75rem}
+.badge-live{background:rgba(0,196,140,0.1);color:rgba(0,196,140,0.7);border:1px solid rgba(0,196,140,0.2)}
+.badge-build{background:rgba(0,71,255,0.08);color:rgba(0,71,255,0.6);border:1px solid rgba(0,71,255,0.15)}
+.badge-stealth{background:rgba(255,255,255,0.04);color:rgba(255,255,255,0.25);border:1px solid rgba(255,255,255,0.08)}
+.stealth-card{background:linear-gradient(135deg,#0A0A0F 0%,#0D1525 100%);border:1px solid rgba(0,71,255,0.2);border-radius:20px;padding:3rem;margin-bottom:1.5rem;position:relative;overflow:hidden}
+.stealth-card::before{content:'';position:absolute;top:-100px;right:-100px;width:300px;height:300px;background:radial-gradient(circle,rgba(0,71,255,0.08) 0%,transparent 70%)}
+.stealth-label{font-size:11px;font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:var(--blue);margin-bottom:.75rem;opacity:.7}
+.stealth-title{font-size:24px;font-weight:700;color:var(--white);line-height:1.2;margin-bottom:.75rem;letter-spacing:-.5px}
+.stealth-body{font-size:14px;color:rgba(255,255,255,0.5);line-height:1.8;font-family:'Inter',sans-serif;max-width:680px}
+.stealth-tags{display:flex;gap:8px;flex-wrap:wrap;margin-top:1.5rem}
+.stealth-tag{font-size:11px;font-weight:600;padding:5px 14px;border-radius:999px;background:rgba(0,71,255,0.1);color:var(--blue);border:1px solid rgba(0,71,255,0.2)}
+.gg{background:#13131A;border:1px solid rgba(255,255,255,0.06);border-radius:16px;overflow:hidden;margin-top:2rem}
+.gg-head{padding:2rem 2.5rem 1.5rem;border-bottom:1px solid rgba(255,255,255,0.06)}
+.gg-eye{font-size:11px;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:var(--blue);margin-bottom:.3rem}
+.gg-title{font-size:20px;font-weight:700;color:var(--white);letter-spacing:-.5px}
+.gg-cells{display:grid;grid-template-columns:repeat(4,1fr)}
+.gg-c{padding:1.5rem 2rem;border-right:1px solid rgba(255,255,255,0.06);transition:background .2s}
+.gg-c:hover{background:rgba(0,71,255,0.05)}
+.gg-c:last-child{border-right:none}
+.gg-v{font-size:20px;font-weight:700;color:var(--white);line-height:1;margin-bottom:.4rem}
+.gg-c:hover .gg-v{color:var(--blue)}
+.gg-d{font-size:12px;color:rgba(255,255,255,0.25);line-height:1.4;font-family:'Inter',sans-serif}
+.why-grid{display:grid;grid-template-columns:1fr 1fr;gap:1rem}
+.why-card{border-radius:14px;padding:2rem;transition:transform .2s}
+.why-card:hover{transform:translateY(-2px)}
+.why-card.blue{background:var(--blue)}.why-card.dark{background:#13131A;border:1px solid rgba(255,255,255,0.06)}
+.why-title{font-size:17px;font-weight:700;margin-bottom:.5rem;line-height:1.2;letter-spacing:-.3px}
+.why-card.blue .why-title{color:#fff}.why-card.dark .why-title{color:var(--white)}
+.why-body{font-size:13px;line-height:1.7;font-family:'Inter',sans-serif}
+.why-card.blue .why-body{color:rgba(255,255,255,0.75)}.why-card.dark .why-body{color:rgba(255,255,255,0.4)}
+.tl{position:relative}
+.tl::before{content:'';position:absolute;left:92px;top:8px;bottom:0;width:1px;background:rgba(255,255,255,0.08)}
+.tl-item{display:grid;grid-template-columns:76px 1fr;gap:0 2rem}
+.tl-date{font-size:11px;color:rgba(255,255,255,0.25);font-weight:600;padding-top:4px;text-align:right;line-height:1.4}
+.tl-right{padding:0 0 2.5rem 2rem;position:relative}
+.tl-right::before{content:'';position:absolute;left:-4px;top:7px;width:8px;height:8px;border-radius:50%;background:var(--ink);border:2px solid rgba(255,255,255,0.2)}
+.tl-item:first-child .tl-right::before{background:var(--blue);border-color:var(--blue)}
+.tl-role{font-size:16px;font-weight:600;color:var(--white);margin-bottom:2px}
+.tl-org{font-size:13px;color:var(--blue);font-weight:600;margin-bottom:.5rem}
+.tl-body{font-size:13px;color:rgba(255,255,255,0.35);line-height:1.7;font-family:'Inter',sans-serif}
+.tl-tags{display:flex;flex-wrap:wrap;gap:5px;margin-top:.6rem}
+.tag{font-size:11px;font-weight:600;padding:4px 12px;border-radius:999px}
+.tag-b{background:rgba(0,71,255,0.12);color:var(--blue)}
+.tag-g{background:rgba(0,196,140,0.12);color:var(--green)}
+.tag-w{background:rgba(255,255,255,0.06);color:rgba(255,255,255,0.4)}
+.contact-sec{background:#13131A;padding:6rem 0;border-top:1px solid rgba(255,255,255,0.06)}
+.contact-inner{max-width:1100px;margin:0 auto;padding:0 2rem;display:grid;grid-template-columns:1fr 1fr;gap:4rem;align-items:center}
+.contact-left .sec-title{color:var(--white)}
+.contact-left p{font-size:15px;color:rgba(255,255,255,0.35);line-height:1.7;margin-top:.75rem;font-family:'Inter',sans-serif}
+.contact-cards{display:flex;flex-direction:column;gap:.75rem}
+.contact-card{background:rgba(255,255,255,0.03);border:1px solid rgba(255,255,255,0.07);border-radius:12px;padding:1.25rem 1.5rem;display:flex;align-items:center;justify-content:space-between;transition:border-color .2s,background .2s}
+.contact-card:hover{border-color:rgba(0,71,255,0.4);background:rgba(0,71,255,0.05)}
+.c-label{font-size:11px;font-weight:700;color:rgba(255,255,255,0.2);letter-spacing:.08em;text-transform:uppercase;margin-bottom:3px}
+.c-val{font-size:15px;font-weight:600;color:var(--white)}.c-val a{color:var(--white);text-decoration:none}
+.c-arrow{font-size:18px;color:rgba(255,255,255,0.15)}
+@media(max-width:720px){
+  .hero-stats{grid-template-columns:1fr 1fr}
+  .match-grid,.built-grid,.why-grid,.contact-inner{grid-template-columns:1fr}
+  .gg-cells{grid-template-columns:1fr 1fr}
+  .tl::before{left:72px}.nav-links{display:none}
+}
+</style>
+</head>
+<body>
+<nav>
+  <div class="nav-inner">
+    <a class="nav-logo" href="#">Gargi <span>Singh</span></a>
+    <ul class="nav-links">
+      <li><a href="#match">Why I fit</a></li>
+      <li><a href="#built">What I built</a></li>
+      <li><a href="#why">Why OpenFX</a></li>
+      <li><a href="#contact" class="nav-cta">Let's talk</a></li>
+    </ul>
+  </div>
+</nav>
+<div class="hero">
+  <div class="hero-grid"></div>
+  <div class="hero-glow"></div>
+  <div class="hero-inner">
+    <div class="hero-badge reveal">Business Operations · OpenFX</div>
+    <h1 class="reveal delay-1">I build ops<br>that <span class="blue">scale.</span><br><span class="dim">Then I build<br>what's next.</span></h1>
+    <p class="hero-sub reveal delay-2">Product Operations Manager at Bridgetown Research — <strong>founding team, Series A</strong>. I've built quality systems, automated workflows, hired teams, negotiated commercial terms, and shipped product features — all from zero. No playbook. No precedent. Just ownership.</p>
+    <div class="hero-actions reveal delay-3">
+      <a href="#match" class="btn-blue">See the fit</a>
+      <a href="#built" class="btn-ghost">What I built</a>
+    </div>
+    <div class="hero-stats reveal delay-4">
+      <div class="hs"><div class="num"><span class="counter" data-target="11">0</span><sub>mo</sub></div><div class="label">Associate → Manager</div></div>
+      <div class="hs"><div class="num"><span class="counter" data-target="4">0</span></div><div class="label">Ops associates hired</div></div>
+      <div class="hs"><div class="num"><span class="counter" data-target="6">0</span><sub>+</sub></div><div class="label">Systems shipped</div></div>
+      <div class="hs"><div class="num"><span class="counter" data-target="100">0</span><sub>+</sub></div><div class="label">Live projects managed</div></div>
+    </div>
+  </div>
+</div>
+<div class="ticker">
+  <div class="ticker-track">
+    <span>Founding team · Series A</span><span>Automated quality systems</span><span>Vendor cost negotiation</span><span>Hired ops team of 4</span><span>Shipped product features</span><span>Works with founder daily</span><span>Built stealth expert network</span><span>Cross-functional ops</span><span>Founding team · Series A</span><span>Automated quality systems</span><span>Vendor cost negotiation</span><span>Hired ops team of 4</span><span>Shipped product features</span><span>Works with founder daily</span><span>Built stealth expert network</span><span>Cross-functional ops</span>
+  </div>
+</div>
+<section id="match">
+  <div class="wrap">
+    <div class="sec-eyebrow reveal">Role fit</div>
+    <h2 class="sec-title reveal delay-1">OpenFX needs cross-<br>functional ops ownership.<br>That's my entire job.</h2>
+    <p class="sec-intro reveal delay-2">Every responsibility in the JD — partner operations, revenue ops, finance support, automation, process improvement — I've touched versions of all of them. Here's the direct translation.</p>
+    <div class="match-grid reveal delay-1">
+      <div class="match-cell"><div class="match-label">OpenFX needs</div><div class="match-req">Partner onboarding & performance metrics</div><div class="match-proof">Targeting 3 banking partners per currency region. Partner scoring and retention.</div></div>
+      <div class="match-cell highlight"><div class="match-label">I've done this</div><div class="match-req">Built vendor dashboard + selection framework + CPI negotiation</div><div class="match-proof">Own all commercial terms with vendor partners. Built the logic for which vendor deploys per project. External partners self-serve their pipeline through a dashboard I designed and shipped.</div></div>
+    </div>
+    <div class="match-grid reveal delay-2">
+      <div class="match-cell"><div class="match-label">OpenFX needs</div><div class="match-req">Automation of compliance & operational workflows — 90%+ targets</div><div class="match-proof">KYB automation, compliance workstreams, financial reporting dashboards.</div></div>
+      <div class="match-cell highlight"><div class="match-label">I've done this</div><div class="match-req">Built autopublish system — 3 automated signals replacing manual review</div><div class="match-proof">Designed and shipped fraud detection, quality scoring, and identity verification that replaced manual transcript review entirely. Same instinct: encode what "correct" looks like, automate the decision, remove the human bottleneck.</div></div>
+    </div>
+    <div class="match-grid reveal delay-3">
+      <div class="match-cell"><div class="match-label">OpenFX needs</div><div class="match-req">Translate high-level strategy into actionable plans and KPIs</div><div class="match-proof">Cross-functional link between business ops, finance, legal, and trade operations.</div></div>
+      <div class="match-cell highlight"><div class="match-label">I've done this</div><div class="match-req">Work directly with founder & Strategy PM — all strategic initiatives mine</div><div class="match-proof">Every system at Bridgetown started as a gap I spotted, a proposal I made to leadership, and a project I owned end to end. No vertical hierarchy. Full accountability across product, ops, vendor, and client workstreams simultaneously.</div></div>
+    </div>
+  </div>
+</section>
+<section id="built" class="light">
+  <div class="wrap">
+    <div class="sec-eyebrow reveal">What I built</div>
+    <h2 class="sec-title reveal delay-1">Six systems.<br>Zero templates.<br>All live.</h2>
+    <p class="sec-intro reveal delay-2">At a Series A with no ops playbook, every system had to be designed from scratch. Here's what I built — and why it maps directly to OpenFX.</p>
+    <div class="built-grid">
+      <div class="b-card blue reveal delay-1"><div class="b-num">01 · Automation</div><div class="b-title">Autopublish — fraud, quality & identity signals</div><div class="b-body">3-signal automated system replacing manual review. Fraud detection, quality score /5, identity match. Scales with volume, not headcount. OpenFX parallel: KYB automation, compliance workstream automation.</div><span class="b-badge badge-live">Live</span></div>
+      <div class="b-card blue reveal delay-2"><div class="b-num">02 · Partner ops</div><div class="b-title">Vendor dashboard — partners self-serve their pipeline</div><div class="b-body">Built a vendor-facing product so external partners track status without ops overhead. OpenFX parallel: banking partner management, liquidity partner onboarding and retention.</div><span class="b-badge badge-live">Live</span></div>
+      <div class="b-card blue reveal delay-3"><div class="b-num">03 · Commercial logic</div><div class="b-title">Vendor selection framework + CPI negotiation</div><div class="b-body">Framework matching project characteristics to optimal vendor. Own all commercial terms. OpenFX parallel: partner performance scoring, revenue ops, ARPU optimisation logic.</div><span class="b-badge badge-build">Building</span></div>
+    </div>
+    <div class="built-grid" style="margin-top:1rem">
+      <div class="b-card green reveal delay-1"><div class="b-num">04 · Client product</div><div class="b-title">Pre-approval workflow — proposed & shipped end to end</div><div class="b-body">Identified a client trust gap, proposed the fix, coordinated the build, shipped it. OpenFX parallel: client onboarding experience, wallet share monitoring, upsell/cross-sell flows.</div><span class="b-badge badge-live">Live</span></div>
+      <div class="b-card green reveal delay-2"><div class="b-num">05 · Team</div><div class="b-title">Hired, onboarded & manage ops team of 4</div><div class="b-body">Designed the interview process, ran every interview, set OKRs. Didn't inherit a team — built one. OpenFX is scaling fast across 4 cities — the hire who can build the team matters.</div><span class="b-badge badge-live">Done</span></div>
+      <div class="b-card reveal delay-3" style="border-color:rgba(255,255,255,0.1);background:#13131A;"><div class="b-num" style="color:var(--blue)">06 · Stealth</div><div class="b-title" style="color:var(--white)">Branding & building a new expert network vertical</div><div class="b-body" style="color:rgba(255,255,255,0.4)">Led the branding and early build of a new industry specialist network — currently in stealth. Involved in positioning, naming, go-to-market thinking, and operational design. First time building something from a brand level up.</div><span class="b-badge badge-stealth">In stealth</span></div>
+    </div>
+    <div class="gg reveal">
+      <div class="gg-head"><div class="gg-eye">The pattern</div><div class="gg-title">Every initiative was unsolicited. Every one shipped.</div></div>
+      <div class="gg-cells">
+        <div class="gg-c"><div class="gg-v">Spotted.</div><div class="gg-d">Gap identified before anyone named it</div></div>
+        <div class="gg-c"><div class="gg-v">Proposed.</div><div class="gg-d">Made the case to leadership directly</div></div>
+        <div class="gg-c"><div class="gg-v">Built.</div><div class="gg-d">Designed, coordinated, shipped</div></div>
+        <div class="gg-c"><div class="gg-v">Runs.</div><div class="gg-d">Live, no babysitting needed</div></div>
+      </div>
+    </div>
+  </div>
+</section>
+<section>
+  <div class="wrap">
+    <div class="sec-eyebrow reveal">Beyond ops</div>
+    <h2 class="sec-title reveal delay-1">I don't wait for<br>the brief. I write it.</h2>
+    <p class="sec-intro reveal delay-2">The work that's hardest to put on a CV — spotting a business opportunity, naming it, shaping it, building it from nothing.</p>
+    <div class="stealth-card reveal delay-1">
+      <div class="stealth-label">Currently in stealth · Bridgetown Research</div>
+      <div class="stealth-title">Led the branding & early build of a new industry specialist network</div>
+      <div class="stealth-body">Bridgetown identified an opportunity to build a new vertical — a curated network of industry specialists to address a sourcing gap in our core business. I was brought in to lead the branding: positioning, naming, identity, and the operational design of how the network would work. This wasn't an ops task handed to me. It was a blank page. I worked directly with the founder to define what the network stands for, who it's for, and how it comes to market. It's currently in stealth — but it's the work I'm most proud of, because it required thinking at the intersection of brand, strategy, and operations simultaneously.</div>
+      <div class="stealth-tags">
+        <span class="stealth-tag">Brand strategy</span><span class="stealth-tag">0→1 build</span><span class="stealth-tag">Founder collaboration</span><span class="stealth-tag">Go-to-market</span><span class="stealth-tag">In stealth</span>
+      </div>
+    </div>
+  </div>
+</section>
+<section id="why" class="light">
+  <div class="wrap">
+    <div class="sec-eyebrow reveal">Why OpenFX</div>
+    <h2 class="sec-title reveal delay-1">Cross-border payments<br>is the last frontier<br>of broken ops.</h2>
+    <p class="sec-intro reveal delay-2">Money moves slower than data. OpenFX is fixing that. I want to be in the room where the infrastructure gets built.</p>
+    <div class="why-grid">
+      <div class="why-card blue reveal delay-1"><div class="why-title">The Business Ops Manager role is a 0→1 job</div><div class="why-body">The JD says "kickstart and manage key operational areas, facilitate handover as the company grows." That's exactly what I've been doing at Bridgetown — building the systems that didn't exist, then handing them off to the team I hired. I don't need to be told what to build. I find it.</div></div>
+      <div class="why-card dark reveal delay-2"><div class="why-title">Series A, backed by Accel & Lightspeed — my operating context</div><div class="why-body">I'm part of the founding team at Bridgetown — Series A, no vertical hierarchy, full ownership. I've never had a manager tell me what to build. The pace, ambiguity, and stakes of a well-backed early-stage company is where I operate best.</div></div>
+      <div class="why-card dark reveal delay-3"><div class="why-title">Automation is the job — and I've done it</div><div class="why-body">100% FX settlement automation. 90% KYB automation. 95% working capital utilisation. These targets require someone who thinks in systems, not tasks. I replaced an entire manual review process with 3 automated signals. That's the mindset OpenFX needs across every ops function.</div></div>
+      <div class="why-card blue reveal delay-4"><div class="why-title">Global infrastructure, Bengaluru team — exactly where I am</div><div class="why-body">Miami, London, Dubai, Bengaluru — OpenFX is building global infrastructure with a distributed team. I'm based in Bengaluru, operating across time zones and functions daily. The cross-border complexity of this role isn't a challenge for me. It's familiar.</div></div>
+    </div>
+  </div>
+</section>
+<section>
+  <div class="wrap">
+    <div class="sec-eyebrow reveal">Career arc</div>
+    <h2 class="sec-title reveal delay-1">How I got here.</h2>
+    <p class="sec-intro reveal delay-2">Psychology → ops → strategy. The compounding edge that makes every system different.</p>
+    <div class="tl">
+      <div class="tl-item reveal">
+        <div class="tl-date">Jan 2026<br>→ now</div>
+        <div class="tl-right">
+          <div class="tl-role">Product Operations Manager</div>
+          <div class="tl-org">Bridgetown Research · Bengaluru · Founding team</div>
+          <div class="tl-body">Promoted after 11 months. Hired & manage ops team of 4 with OKRs. Work directly with founder and Strategy PM (Director). Own vendor strategy, automated quality systems, vendor dashboard, client product features, process automation, and stealth expert network vertical.</div>
+          <div class="tl-tags"><span class="tag tag-b">Founding team</span><span class="tag tag-b">Hired team of 4</span><span class="tag tag-g">Automation</span><span class="tag tag-w">Series A</span></div>
+        </div>
+      </div>
+      <div class="tl-item reveal delay-1">
+        <div class="tl-date">Mar 2025<br>→ Jan 2026</div>
+        <div class="tl-right">
+          <div class="tl-role">Operations Associate</div>
+          <div class="tl-org">Bridgetown Research · Bengaluru</div>
+          <div class="tl-body">Joined with no ops background. Identified gaps, proposed solutions, built the infrastructure. Promoted in 11 months for thinking above the role.</div>
+          <div class="tl-tags"><span class="tag tag-b">Zero-to-one</span><span class="tag tag-w">Fast learner</span></div>
+        </div>
+      </div>
+      <div class="tl-item reveal delay-2">
+        <div class="tl-date">Jul 2024<br>→ Jan 2025</div>
+        <div class="tl-right">
+          <div class="tl-role">Psychologist & Projects Lead</div>
+          <div class="tl-org">Soukhya · Goa</div>
+          <div class="tl-body">Led projects, managed external relationships, built content strategy voluntarily. Kept asking "why don't we have a system for this?" — that question got me into ops.</div>
+          <div class="tl-tags"><span class="tag tag-w">Projects lead</span><span class="tag tag-w">Goa</span></div>
+        </div>
+      </div>
+      <div class="tl-item reveal delay-3">
+        <div class="tl-date">2021–2023</div>
+        <div class="tl-right">
+          <div class="tl-role">MSc Counselling Psychology · CGPA 8.96/10</div>
+          <div class="tl-org">Christ University, Delhi</div>
+          <div class="tl-body">Research methodology, behavioural systems, human motivation. Design Thinking certification, University of Virginia (2024). The foundation that makes the ops work different.</div>
+          <div class="tl-tags"><span class="tag tag-g">CGPA 8.96</span><span class="tag tag-w">Design thinking</span></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+<div class="contact-sec" id="contact">
+  <div class="contact-inner">
+    <div class="contact-left reveal-left">
+      <div class="sec-eyebrow">Let's talk</div>
+      <h2 class="sec-title">Open to Business<br>Operations roles<br>at OpenFX.</h2>
+      <p>Happy to walk through any initiative in detail — or talk through a specific operational problem you're working on right now.</p>
+    </div>
+    <div class="contact-cards reveal-right">
+      <div class="contact-card"><div><div class="c-label">Phone</div><div class="c-val">+91 96196 06780</div></div><div class="c-arrow">→</div></div>
+      <div class="contact-card"><div><div class="c-label">Email</div><div class="c-val"><a href="mailto:gargisingh.work@gmail.com">gargisingh.work@gmail.com</a></div></div><div class="c-arrow">→</div></div>
+      <div class="contact-card"><div><div class="c-label">LinkedIn</div><div class="c-val"><a href="https://linkedin.com/in/gargi-singh-6a157b212" target="_blank">linkedin.com/in/gargi-singh-6a157b212</a></div></div><div class="c-arrow">→</div></div>
+    </div>
+  </div>
+</div>
+<script>
+const observer = new IntersectionObserver((entries) => {
+  entries.forEach(e => { if(e.isIntersecting) e.target.classList.add('visible'); });
+}, {threshold: 0.1});
+document.querySelectorAll('.reveal, .reveal-left, .reveal-right').forEach(el => observer.observe(el));
+function animateCounter(el) {
+  const target = parseInt(el.dataset.target);
+  const duration = 1400;
+  const start = performance.now();
+  function update(now) {
+    const elapsed = now - start;
+    const progress = Math.min(elapsed / duration, 1);
+    const ease = 1 - Math.pow(1 - progress, 3);
+    el.textContent = Math.round(ease * target);
+    if(progress < 1) requestAnimationFrame(update);
+  }
+  requestAnimationFrame(update);
+}
+const counterObserver = new IntersectionObserver((entries) => {
+  entries.forEach(e => { if(e.isIntersecting) { animateCounter(e.target); counterObserver.unobserve(e.target); } });
+}, {threshold: 0.5});
+document.querySelectorAll('.counter').forEach(el => counterObserver.observe(el));
+</script>
+</body>
+</html>
