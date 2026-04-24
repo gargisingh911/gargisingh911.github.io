@@ -1,0 +1,350 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Gargi Singh — Urban Company</title>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;900&family=Fraunces:ital,wght@0,700;0,900;1,400;1,700&display=swap" rel="stylesheet">
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+:root{
+  --orange:#E8530A;--orange-light:#FEF0EA;--orange-mid:#F4845F;
+  --ink:#1A1008;--white:#FFFFFF;--off:#FDFAF7;
+  --border:#EDE5DC;--muted:#7A6A5A;
+  --teal:#0A7A6A;--teal-light:#E6F5F2;
+}
+html{scroll-behavior:smooth}
+body{font-family:'Inter',sans-serif;background:var(--off);color:var(--ink);font-size:16px;line-height:1.6}
+.reveal{opacity:0;transform:translateY(28px);transition:opacity .7s ease,transform .7s ease}
+.reveal.visible{opacity:1;transform:translateY(0)}
+.reveal-left{opacity:0;transform:translateX(-28px);transition:opacity .7s ease,transform .7s ease}
+.reveal-left.visible{opacity:1;transform:translateX(0)}
+.reveal-right{opacity:0;transform:translateX(28px);transition:opacity .7s ease,transform .7s ease}
+.reveal-right.visible{opacity:1;transform:translateX(0)}
+.delay-1{transition-delay:.1s}.delay-2{transition-delay:.2s}.delay-3{transition-delay:.3s}.delay-4{transition-delay:.4s}
+nav{position:sticky;top:0;background:rgba(253,250,247,0.97);backdrop-filter:blur(12px);border-bottom:1px solid var(--border);z-index:100;padding:0 2rem}
+.nav-inner{max-width:1060px;margin:0 auto;display:flex;align-items:center;justify-content:space-between;height:56px}
+.nav-logo{font-family:'Fraunces',serif;font-size:17px;font-weight:700;color:var(--ink);text-decoration:none}
+.nav-logo span{color:var(--orange)}
+.nav-links{display:flex;gap:2rem;list-style:none}
+.nav-links a{font-size:13px;color:var(--muted);text-decoration:none;font-weight:500;transition:color .2s}
+.nav-links a:hover{color:var(--orange)}
+.nav-cta{background:var(--orange);color:#fff!important;padding:7px 18px;border-radius:999px;font-size:13px!important;font-weight:600!important}
+.wrap{max-width:1060px;margin:0 auto;padding:0 2rem}
+.hero{background:var(--ink);overflow:hidden;position:relative}
+.hero-warm{position:absolute;inset:0;background:radial-gradient(ellipse at 80% 20%,rgba(232,83,10,0.15) 0%,transparent 60%)}
+.hero-inner{max-width:1060px;margin:0 auto;padding:5rem 2rem 0;display:grid;grid-template-columns:1fr 420px;gap:4rem;align-items:end;position:relative;z-index:1}
+.hero-left{padding-bottom:5rem}
+.hero-kicker{display:inline-flex;align-items:center;gap:8px;background:rgba(232,83,10,0.12);border:1px solid rgba(232,83,10,0.25);color:var(--orange-mid);font-size:11px;font-weight:700;letter-spacing:.12em;text-transform:uppercase;padding:6px 14px;border-radius:999px;margin-bottom:2rem}
+.hero h1{font-family:'Fraunces',serif;font-size:clamp(42px,6vw,76px);font-weight:900;line-height:1;letter-spacing:-.02em;color:var(--white);margin-bottom:1.5rem}
+.hero h1 em{font-style:italic;color:var(--orange-mid)}
+.hero-pitch{font-size:15px;color:rgba(255,255,255,0.55);line-height:1.8;max-width:440px;margin-bottom:2rem}
+.hero-pitch strong{color:var(--white);font-weight:600}
+.hero-actions{display:flex;gap:10px;flex-wrap:wrap}
+.btn-orange{background:var(--orange);color:#fff;padding:12px 24px;border-radius:999px;font-size:14px;font-weight:600;text-decoration:none;display:inline-block;transition:background .2s,transform .2s}
+.btn-orange:hover{background:#C4420A;transform:translateY(-1px)}
+.btn-ghost{background:transparent;color:rgba(255,255,255,0.6);padding:12px 24px;border-radius:999px;font-size:14px;font-weight:500;text-decoration:none;display:inline-block;border:1px solid rgba(255,255,255,0.15);transition:border-color .2s,color .2s}
+.btn-ghost:hover{border-color:var(--orange-mid);color:var(--orange-mid)}
+.hero-right{padding-bottom:4rem}
+.stat-card-top{background:var(--orange);border-radius:20px 20px 0 0;padding:2.5rem}
+.stat-card-top .num{font-family:'Fraunces',serif;font-size:56px;font-weight:900;color:#fff;line-height:1;letter-spacing:-2px;margin-bottom:4px}
+.stat-card-top .num sub{font-size:24px;font-family:'Inter',sans-serif}
+.stat-card-top .label{font-size:11px;color:rgba(255,255,255,0.6);font-weight:600;text-transform:uppercase;letter-spacing:.08em}
+.stat-bot{display:grid;grid-template-columns:1fr 1fr;gap:1px;background:rgba(255,255,255,0.08);border-radius:0 0 20px 20px;overflow:hidden}
+.stat-sm{background:rgba(255,255,255,0.05);padding:1.5rem}
+.stat-sm .num{font-size:30px;font-weight:900;color:var(--white);line-height:1;letter-spacing:-1px;margin-bottom:3px}
+.stat-sm .num span{color:var(--orange-mid);font-size:18px}
+.stat-sm .label{font-size:11px;color:rgba(255,255,255,0.3);font-weight:600;text-transform:uppercase;letter-spacing:.06em}
+.ticker{background:var(--orange);padding:.65rem 0;overflow:hidden;white-space:nowrap}
+.ticker-track{display:inline-block;animation:scroll 24s linear infinite}
+.ticker-track span{font-size:11px;font-weight:700;color:rgba(255,255,255,0.85);letter-spacing:.1em;text-transform:uppercase;margin:0 2rem}
+.ticker-track span::before{content:'✦';margin-right:1rem;font-size:8px;opacity:.6}
+@keyframes scroll{0%{transform:translateX(0)}100%{transform:translateX(-50%)}}
+section{padding:6rem 0;border-bottom:1px solid var(--border)}
+.sec-eyebrow{font-size:11px;font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:var(--orange);margin-bottom:.75rem}
+.sec-title{font-family:'Fraunces',serif;font-size:clamp(28px,4vw,44px);font-weight:900;line-height:1.05;color:var(--ink);margin-bottom:.75rem}
+.sec-intro{font-size:15px;color:var(--muted);line-height:1.75;margin-bottom:3rem;max-width:560px}
+.story-grid{display:grid;grid-template-columns:1fr 1fr;gap:2rem;margin-bottom:2rem}
+.story-pull{background:var(--ink);border-radius:20px;padding:3rem;position:relative;overflow:hidden}
+.story-pull::before{content:'"';font-family:'Fraunces',serif;font-size:140px;color:rgba(232,83,10,0.15);position:absolute;top:-20px;left:16px;line-height:1}
+.story-pull blockquote{font-family:'Fraunces',serif;font-size:18px;font-style:italic;color:rgba(255,255,255,0.85);line-height:1.65;position:relative;z-index:1}
+.story-pull cite{display:block;font-size:12px;font-style:normal;color:rgba(255,255,255,0.3);font-weight:600;letter-spacing:.08em;text-transform:uppercase;margin-top:1.5rem}
+.story-right{display:flex;flex-direction:column;gap:1rem}
+.story-tile{background:var(--white);border:1.5px solid var(--border);border-radius:16px;padding:1.75rem;transition:border-color .2s}
+.story-tile:hover{border-color:var(--orange)}
+.story-tile-label{font-size:11px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--orange);margin-bottom:.4rem}
+.story-tile-title{font-size:15px;font-weight:700;color:var(--ink);margin-bottom:.3rem}
+.story-tile-body{font-size:13px;color:var(--muted);line-height:1.65}
+.match-grid{display:grid;grid-template-columns:1fr 1fr;gap:1px;background:var(--border);border-radius:16px;overflow:hidden;margin-bottom:1rem}
+.match-cell{background:var(--white);padding:2rem}
+.match-cell.highlight{background:var(--orange-light)}
+.match-label{font-size:11px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--muted);margin-bottom:.6rem}
+.match-cell.highlight .match-label{color:var(--orange)}
+.match-req{font-size:15px;font-weight:700;color:var(--ink);margin-bottom:.4rem;line-height:1.4}
+.match-proof{font-size:13px;color:var(--muted);line-height:1.65}
+.match-cell.highlight .match-proof{color:#5A3020}
+.built-grid{display:grid;grid-template-columns:1fr 1fr 1fr;gap:1rem;margin-bottom:1rem}
+.b-card{background:var(--white);border:1.5px solid var(--border);border-radius:16px;padding:1.75rem;position:relative;overflow:hidden;transition:border-color .2s,transform .2s}
+.b-card:hover{border-color:var(--orange);transform:translateY(-2px)}
+.b-card::before{content:'';position:absolute;top:0;left:0;right:0;height:3px;background:var(--border)}
+.b-card.orange::before{background:var(--orange)}
+.b-card.teal::before{background:var(--teal)}
+.b-num{font-size:11px;font-weight:700;color:var(--muted);letter-spacing:.08em;text-transform:uppercase;margin-bottom:.75rem}
+.b-card.orange .b-num{color:var(--orange)}
+.b-card.teal .b-num{color:var(--teal)}
+.b-title{font-size:15px;font-weight:700;color:var(--ink);line-height:1.3;margin-bottom:.5rem}
+.b-body{font-size:13px;color:var(--muted);line-height:1.65}
+.b-badge{display:inline-block;font-size:11px;font-weight:700;padding:3px 10px;border-radius:999px;margin-top:.75rem}
+.badge-live{background:var(--teal-light);color:var(--teal)}
+.badge-build{background:var(--orange-light);color:var(--orange)}
+.gg{background:var(--ink);border-radius:20px;overflow:hidden;margin-top:2rem}
+.gg-head{padding:2rem 2.5rem 1.5rem;border-bottom:1px solid rgba(255,255,255,0.06)}
+.gg-eye{font-size:11px;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:var(--orange-mid);margin-bottom:.3rem}
+.gg-title{font-family:'Fraunces',serif;font-size:20px;font-weight:700;color:var(--white)}
+.gg-cells{display:grid;grid-template-columns:repeat(4,1fr)}
+.gg-c{padding:1.5rem 2rem;border-right:1px solid rgba(255,255,255,0.06);transition:background .2s}
+.gg-c:hover{background:rgba(232,83,10,0.05)}
+.gg-c:last-child{border-right:none}
+.gg-v{font-size:20px;font-weight:900;color:var(--white);line-height:1;margin-bottom:.4rem}
+.gg-c:hover .gg-v{color:var(--orange-mid)}
+.gg-d{font-size:12px;color:rgba(255,255,255,0.3);line-height:1.4}
+.why-grid{display:grid;grid-template-columns:1fr 1fr;gap:1rem}
+.why-card{border-radius:16px;padding:2rem;transition:transform .2s}
+.why-card:hover{transform:translateY(-2px)}
+.why-card.orange{background:var(--orange)}.why-card.dark{background:var(--ink)}.why-card.light{background:var(--white);border:1.5px solid var(--border)}
+.why-title{font-family:'Fraunces',serif;font-size:18px;font-weight:700;margin-bottom:.5rem;line-height:1.2}
+.why-card.orange .why-title{color:#fff}.why-card.dark .why-title{color:var(--white)}.why-card.light .why-title{color:var(--ink)}
+.why-body{font-size:13px;line-height:1.7}
+.why-card.orange .why-body{color:rgba(255,255,255,0.8)}.why-card.dark .why-body{color:rgba(255,255,255,0.45)}.why-card.light .why-body{color:var(--muted)}
+.tl{position:relative}
+.tl::before{content:'';position:absolute;left:92px;top:8px;bottom:0;width:1px;background:var(--border)}
+.tl-item{display:grid;grid-template-columns:76px 1fr;gap:0 2rem}
+.tl-date{font-size:11px;color:var(--muted);font-weight:600;padding-top:4px;text-align:right;line-height:1.4}
+.tl-right{padding:0 0 2.5rem 2rem;position:relative}
+.tl-right::before{content:'';position:absolute;left:-4px;top:7px;width:8px;height:8px;border-radius:50%;background:var(--off);border:2px solid var(--border)}
+.tl-item:first-child .tl-right::before{background:var(--orange);border-color:var(--orange)}
+.tl-role{font-size:16px;font-weight:700;color:var(--ink);margin-bottom:2px}
+.tl-org{font-size:13px;color:var(--orange);font-weight:600;margin-bottom:.5rem}
+.tl-body{font-size:13px;color:var(--muted);line-height:1.7}
+.tl-tags{display:flex;flex-wrap:wrap;gap:5px;margin-top:.6rem}
+.tag{font-size:11px;font-weight:600;padding:4px 12px;border-radius:999px}
+.tag-o{background:var(--orange-light);color:var(--orange)}.tag-t{background:var(--teal-light);color:var(--teal)}.tag-d{background:var(--ink);color:#fff}
+.contact-sec{background:var(--orange);padding:6rem 0}
+.contact-inner{max-width:1060px;margin:0 auto;padding:0 2rem;display:grid;grid-template-columns:1fr 1fr;gap:4rem;align-items:center}
+.contact-left .sec-eyebrow{color:rgba(255,255,255,0.6)}.contact-left .sec-title{color:#fff}
+.contact-left p{font-size:15px;color:rgba(255,255,255,0.65);line-height:1.7;margin-top:.75rem}
+.contact-cards{display:flex;flex-direction:column;gap:.75rem}
+.contact-card{background:rgba(255,255,255,0.12);border:1px solid rgba(255,255,255,0.2);border-radius:14px;padding:1.25rem 1.5rem;display:flex;align-items:center;justify-content:space-between;transition:background .2s}
+.contact-card:hover{background:rgba(255,255,255,0.2)}
+.c-label{font-size:11px;font-weight:700;color:rgba(255,255,255,0.5);letter-spacing:.08em;text-transform:uppercase;margin-bottom:3px}
+.c-val{font-size:15px;font-weight:600;color:#fff}.c-val a{color:#fff;text-decoration:none}
+.c-arrow{font-size:18px;color:rgba(255,255,255,0.4)}
+.counter{display:inline-block}
+@media(max-width:720px){
+  .hero-inner,.story-grid,.match-grid,.built-grid,.why-grid,.contact-inner{grid-template-columns:1fr}
+  .stat-bot{grid-template-columns:1fr 1fr}.gg-cells{grid-template-columns:1fr 1fr}
+  .tl::before{left:72px}.nav-links{display:none}
+}
+</style>
+</head>
+<body>
+<nav>
+  <div class="nav-inner">
+    <a class="nav-logo" href="#">Gargi <span>Singh</span></a>
+    <ul class="nav-links">
+      <li><a href="#story">Why me</a></li>
+      <li><a href="#match">Role fit</a></li>
+      <li><a href="#built">What I built</a></li>
+      <li><a href="#contact" class="nav-cta">Let's talk</a></li>
+    </ul>
+  </div>
+</nav>
+<div class="hero">
+  <div class="hero-warm"></div>
+  <div class="hero-inner">
+    <div class="hero-left">
+      <div class="hero-kicker reveal">Senior Manager · Strategy & Operations</div>
+      <h1 class="reveal delay-1">I build from<br><em>zero to one.</em><br>Then I build<br>the team.</h1>
+      <p class="hero-pitch reveal delay-2">Product Operations Manager at Bridgetown Research — <strong>founding team, Series A</strong>. In 14 months I went from Associate to Manager, built 6 operational systems, hired a team of 4, and owned every strategic decision along the way. No playbook. No vertical hierarchy. Just outcomes.</p>
+      <div class="hero-actions reveal delay-3">
+        <a href="#story" class="btn-orange">My story</a>
+        <a href="#match" class="btn-ghost">See the fit</a>
+      </div>
+    </div>
+    <div class="hero-right reveal-right delay-2">
+      <div class="stat-card-top">
+        <div class="num"><span class="counter" data-target="11">0</span><sub>mo</sub></div>
+        <div class="label">Associate → Manager</div>
+      </div>
+      <div class="stat-bot">
+        <div class="stat-sm"><div class="num"><span class="counter" data-target="4">0</span></div><div class="label">Ops associates hired</div></div>
+        <div class="stat-sm"><div class="num"><span class="counter" data-target="6">0</span><span>+</span></div><div class="label">Systems shipped</div></div>
+      </div>
+    </div>
+  </div>
+</div>
+<div class="ticker">
+  <div class="ticker-track">
+    <span>Founding team · Series A</span><span>0→1 systems builder</span><span>Cross-functional ops</span><span>Hired ops team of 4</span><span>Automated quality workflows</span><span>Vendor P&L decisions</span><span>Works with founder daily</span><span>10x outcomes mindset</span><span>Founding team · Series A</span><span>0→1 systems builder</span><span>Cross-functional ops</span><span>Hired ops team of 4</span><span>Automated quality workflows</span><span>Vendor P&L decisions</span><span>Works with founder daily</span><span>10x outcomes mindset</span>
+  </div>
+</div>
+<section id="story">
+  <div class="wrap">
+    <div class="sec-eyebrow reveal">Why I'm the right hire</div>
+    <h2 class="sec-title reveal delay-1">Urban Company's JD<br>describes my last<br>14 months exactly.</h2>
+    <p class="sec-intro reveal delay-2">Fast-paced startup. 0→1 builds. Cross-functional teams. 10x outcomes. I haven't just done this — it's been my entire operating context.</p>
+    <div class="story-grid reveal delay-1">
+      <div class="story-pull">
+        <blockquote>"At a Series A startup with no hierarchy and no playbook, you either own the strategy or nobody does. I spotted every gap, proposed every fix, built every system, and hired the team that runs them. Not because I was asked to. Because that's what the company needed."</blockquote>
+        <cite>Gargi Singh · Product Operations Manager · Bridgetown Research</cite>
+      </div>
+      <div class="story-right">
+        <div class="story-tile"><div class="story-tile-label">0→1 builder</div><div class="story-tile-title">Every system started as a blank page</div><div class="story-tile-body">No ops infrastructure existed when I joined. I built the quality pipeline, vendor dashboard, selection framework, client features, and automation systems — all from scratch, all live.</div></div>
+        <div class="story-tile"><div class="story-tile-label">Cross-functional link</div><div class="story-tile-title">Product, ops, vendors, clients — I run all of them</div><div class="story-tile-body">No handoffs. No vertical structure. Every workstream runs through me. I coordinate across product, ops, vendor partners, and client-facing teams simultaneously.</div></div>
+        <div class="story-tile"><div class="story-tile-label">10x mindset</div><div class="story-tile-title">Promoted in 11 months. Hired my own team.</div><div class="story-tile-body">The fastest way to prove a 10x outcome is to get promoted before anyone expected it — and then hire the team that makes the next 10x possible.</div></div>
+      </div>
+    </div>
+  </div>
+</section>
+<section id="match" style="background:var(--white);">
+  <div class="wrap">
+    <div class="sec-eyebrow reveal">Role fit</div>
+    <h2 class="sec-title reveal delay-1">Senior Category Manager<br>— Strategy & Growth.<br>Line by line.</h2>
+    <p class="sec-intro reveal delay-2">Urban Company wants someone who can run business planning, quality improvement, programme management, and growth strategy. Here's the direct translation.</p>
+    <div class="match-grid reveal delay-1">
+      <div class="match-cell"><div class="match-label">Urban Company needs</div><div class="match-req">Business planning & strategy → actionable KPIs</div><div class="match-proof">Founder's Office / CEO's Office background. Translate high-level strategy into measurable plans across functions.</div></div>
+      <div class="match-cell highlight"><div class="match-label">I've done this</div><div class="match-req">Work directly with founder & Strategy PM on every strategic initiative</div><div class="match-proof">Every system at Bridgetown started as a strategic gap I identified and a proposal I made to leadership. Full ownership from idea to OKRs — no middleman, no translation layer.</div></div>
+    </div>
+    <div class="match-grid reveal delay-2">
+      <div class="match-cell"><div class="match-label">Urban Company needs</div><div class="match-req">Quality improvement & programme management at scale</div><div class="match-proof">Drive quality systems, manage cross-functional programmes, and improve operational consistency as the business scales.</div></div>
+      <div class="match-cell highlight"><div class="match-label">I've done this</div><div class="match-req">Built autopublish — 3-signal automated quality system replacing manual review</div><div class="match-proof">Fraud detection, quality score /5, identity verification — all automated. Quality now scales with volume, not headcount. Simultaneously managing 100+ live projects across ops, product, and vendor workstreams.</div></div>
+    </div>
+    <div class="match-grid reveal delay-3">
+      <div class="match-cell"><div class="match-label">Urban Company needs</div><div class="match-req">Lead cross-functional teams, drive growth strategy, build from 0→1</div><div class="match-proof">Programme Manager / Strategy & Ops background. Someone who builds, not just manages.</div></div>
+      <div class="match-cell highlight"><div class="match-label">I've done this</div><div class="match-req">Hired team of 4, set OKRs, shipped 6 systems — all unsolicited</div><div class="match-proof">Designed the hiring process, ran every interview, made every hire. Set team OKRs. Every initiative I've run was spotted by me, proposed by me, built by me — before anyone named the gap. That's the 0→1 instinct Urban Company is looking for.</div></div>
+    </div>
+  </div>
+</section>
+<section id="built">
+  <div class="wrap">
+    <div class="sec-eyebrow reveal">What I built</div>
+    <h2 class="sec-title reveal delay-1">Six systems.<br>Zero templates.<br>All unsolicited.</h2>
+    <p class="sec-intro reveal delay-2">Everything here started as a gap I spotted. Every single one is live.</p>
+    <div class="built-grid">
+      <div class="b-card orange reveal delay-1"><div class="b-num">01 · Quality & automation</div><div class="b-title">Autopublish — fraud, quality & identity signals</div><div class="b-body">Replaced manual review with 3 automated signals. Quality scales with volume. Urban Company parallel: quality improvement programmes at scale without proportional headcount.</div><span class="b-badge badge-live">Live</span></div>
+      <div class="b-card orange reveal delay-2"><div class="b-num">02 · Partner ops</div><div class="b-title">Vendor dashboard — partners self-serve their pipeline</div><div class="b-body">External partners track their own status. Reduced ops overhead. Urban Company parallel: service partner management, SP quality tracking, retention programmes.</div><span class="b-badge badge-live">Live</span></div>
+      <div class="b-card orange reveal delay-3"><div class="b-num">03 · Commercial logic</div><div class="b-title">Vendor selection framework + CPI negotiation</div><div class="b-body">Framework matching project to optimal vendor. Own all commercial terms. Urban Company parallel: category economics, partner cost structure, margin optimisation.</div><span class="b-badge badge-build">Building</span></div>
+    </div>
+    <div class="built-grid" style="margin-top:1rem">
+      <div class="b-card teal reveal delay-1"><div class="b-num">04 · Client product</div><div class="b-title">Pre-approval workflow — proposed & shipped end to end</div><div class="b-body">Spotted a client trust gap, proposed the fix, shipped it. Urban Company parallel: customer experience improvements, booking funnel optimisation, trust and safety features.</div><span class="b-badge badge-live">Live</span></div>
+      <div class="b-card teal reveal delay-2"><div class="b-num">05 · Team & people ops</div><div class="b-title">Hired, onboarded & manage ops team of 4</div><div class="b-body">Built the team from scratch. Set OKRs. Run monthly check-ins. Urban Company parallel: cross-functional team leadership, programme team building, ops team management.</div><span class="b-badge badge-live">Done</span></div>
+      <div class="b-card teal reveal delay-3"><div class="b-num">06 · Stealth vertical</div><div class="b-title">Led branding & build of a new expert network vertical</div><div class="b-body">Positioning, naming, go-to-market design, operational structure — all from a blank page. Urban Company parallel: new category launches, vertical expansion, 0→1 business building.</div><span class="b-badge badge-build">In stealth</span></div>
+    </div>
+    <div class="gg reveal">
+      <div class="gg-head"><div class="gg-eye">The pattern</div><div class="gg-title">Every initiative was unsolicited. Every one shipped.</div></div>
+      <div class="gg-cells">
+        <div class="gg-c"><div class="gg-v">Spotted.</div><div class="gg-d">Gap identified before anyone named it</div></div>
+        <div class="gg-c"><div class="gg-v">Proposed.</div><div class="gg-d">Made the case to leadership directly</div></div>
+        <div class="gg-c"><div class="gg-v">Built.</div><div class="gg-d">Designed, coordinated, shipped</div></div>
+        <div class="gg-c"><div class="gg-v">Runs.</div><div class="gg-d">Live, no babysitting needed</div></div>
+      </div>
+    </div>
+  </div>
+</section>
+<section id="why" style="background:var(--white);">
+  <div class="wrap">
+    <div class="sec-eyebrow reveal">Why Urban Company</div>
+    <h2 class="sec-title reveal delay-1">The category leader<br>in a market that's<br>never been won cleanly.</h2>
+    <p class="sec-intro reveal delay-2">Home services is the last large consumer category without a dominant, trusted, tech-first operator. Urban Company is the closest thing to it. That's where I want to build.</p>
+    <div class="why-grid">
+      <div class="why-card orange reveal delay-1"><div class="why-title">This JD describes my last 14 months</div><div class="why-body">1-4 years in fast-paced startup ops. 0→1 builds. Cross-functional team leadership. 10x outcomes. Strategy & ops. That's not a description of what I want to do — it's a description of what I've been doing at Bridgetown since day one.</div></div>
+      <div class="why-card light reveal delay-2"><div class="why-title">Quality at scale is the defining ops challenge</div><div class="why-body">Urban Company's moat is trust — the belief that every service professional who shows up is vetted, trained, and accountable. Maintaining that as you scale to more cities and more categories is a quality systems problem. I've built quality systems that scale without adding headcount. Same problem, different context.</div></div>
+      <div class="why-card light reveal delay-3"><div class="why-title">I build teams, not just systems</div><div class="why-body">The JD says "lead cross-functional teams." I've done this from scratch — hired the team, set the OKRs, run the check-ins. I don't need an existing structure to lead. I build the structure and then lead through it.</div></div>
+      <div class="why-card dark reveal delay-4"><div class="why-title">Series A founder's office → high-growth scaleup</div><div class="why-body">Going from a founding team at a Series A to a strategy & ops role at Urban Company isn't a leap — it's the natural next step. I've been operating at the strategic level since day one. Now I want to apply that at a company with the distribution, brand, and market position to make it count at real scale.</div></div>
+    </div>
+  </div>
+</section>
+<section>
+  <div class="wrap">
+    <div class="sec-eyebrow reveal">Career arc</div>
+    <h2 class="sec-title reveal delay-1">How I got here.</h2>
+    <p class="sec-intro reveal delay-2">Psychology → ops → strategy. The compounding edge.</p>
+    <div class="tl">
+      <div class="tl-item reveal">
+        <div class="tl-date">Jan 2026<br>→ now</div>
+        <div class="tl-right">
+          <div class="tl-role">Product Operations Manager</div>
+          <div class="tl-org">Bridgetown Research · Bengaluru · Founding team</div>
+          <div class="tl-body">Promoted after 11 months. Hired & manage ops team of 4 with OKRs. Work directly with founder and Strategy PM (Director). Own vendor strategy, automated quality systems, vendor dashboard, client product features, process automation, and stealth expert network vertical.</div>
+          <div class="tl-tags"><span class="tag tag-o">Founding team</span><span class="tag tag-o">Hired team of 4</span><span class="tag tag-t">0→1 builder</span><span class="tag tag-d">Series A</span></div>
+        </div>
+      </div>
+      <div class="tl-item reveal delay-1">
+        <div class="tl-date">Mar 2025<br>→ Jan 2026</div>
+        <div class="tl-right">
+          <div class="tl-role">Operations Associate</div>
+          <div class="tl-org">Bridgetown Research · Bengaluru</div>
+          <div class="tl-body">Joined with no ops background. Identified gaps, proposed solutions, built the infrastructure. Promoted in 11 months for thinking above the role.</div>
+          <div class="tl-tags"><span class="tag tag-o">Zero-to-one</span><span class="tag tag-d">Fast learner</span></div>
+        </div>
+      </div>
+      <div class="tl-item reveal delay-2">
+        <div class="tl-date">Jul 2024<br>→ Jan 2025</div>
+        <div class="tl-right">
+          <div class="tl-role">Psychologist & Projects Lead</div>
+          <div class="tl-org">Soukhya · Goa</div>
+          <div class="tl-body">Led mental health projects, managed external relationships, built content strategy voluntarily. First time asking "why don't we have a system for this?" — that question is what got me into ops.</div>
+          <div class="tl-tags"><span class="tag tag-o">Projects lead</span><span class="tag tag-d">Systems thinking</span></div>
+        </div>
+      </div>
+      <div class="tl-item reveal delay-3">
+        <div class="tl-date">2021–2023</div>
+        <div class="tl-right">
+          <div class="tl-role">MSc Counselling Psychology · CGPA 8.96/10</div>
+          <div class="tl-org">Christ University, Delhi</div>
+          <div class="tl-body">Research methodology, behavioural systems, human motivation. 2 international conference presentations. Design Thinking certification, University of Virginia (2024).</div>
+          <div class="tl-tags"><span class="tag tag-t">CGPA 8.96</span><span class="tag tag-d">Design thinking</span></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+<div class="contact-sec" id="contact">
+  <div class="contact-inner">
+    <div class="contact-left reveal-left">
+      <div class="sec-eyebrow">Let's talk</div>
+      <h2 class="sec-title">Open to Senior<br>Manager — Strategy<br>& Ops at Urban<br>Company.</h2>
+      <p>Happy to walk through any initiative in detail — or talk through a specific ops or growth problem you're working on right now.</p>
+    </div>
+    <div class="contact-cards reveal-right">
+      <div class="contact-card"><div><div class="c-label">Phone</div><div class="c-val">+91 96196 06780</div></div><div class="c-arrow">→</div></div>
+      <div class="contact-card"><div><div class="c-label">Email</div><div class="c-val"><a href="mailto:gargisingh.work@gmail.com">gargisingh.work@gmail.com</a></div></div><div class="c-arrow">→</div></div>
+      <div class="contact-card"><div><div class="c-label">LinkedIn</div><div class="c-val"><a href="https://linkedin.com/in/gargi-singh-6a157b212" target="_blank">linkedin.com/in/gargi-singh-6a157b212</a></div></div><div class="c-arrow">→</div></div>
+    </div>
+  </div>
+</div>
+<script>
+const observer = new IntersectionObserver((entries) => {
+  entries.forEach(e => { if(e.isIntersecting) e.target.classList.add('visible'); });
+}, {threshold: 0.1});
+document.querySelectorAll('.reveal, .reveal-left, .reveal-right').forEach(el => observer.observe(el));
+function animateCounter(el) {
+  const target = parseInt(el.dataset.target);
+  const duration = 1400;
+  const start = performance.now();
+  function update(now) {
+    const elapsed = now - start;
+    const progress = Math.min(elapsed / duration, 1);
+    const ease = 1 - Math.pow(1 - progress, 3);
+    el.textContent = Math.round(ease * target);
+    if(progress < 1) requestAnimationFrame(update);
+  }
+  requestAnimationFrame(update);
+}
+const counterObserver = new IntersectionObserver((entries) => {
+  entries.forEach(e => { if(e.isIntersecting) { animateCounter(e.target); counterObserver.unobserve(e.target); } });
+}, {threshold: 0.5});
+document.querySelectorAll('.counter').forEach(el => counterObserver.observe(el));
+</script>
+</body>
+</html>
