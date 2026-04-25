@@ -1,0 +1,311 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Gargi Singh — District by Zomato</title>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;900&family=Playfair+Display:ital,wght@0,900;1,400;1,700&display=swap" rel="stylesheet">
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+:root{
+  --red:#E31837;--red-light:#FEF0F2;
+  --ink:#0A0A0A;--white:#FFFFFF;--cream:#FAF8F3;--warm:#F2EDE4;
+  --border:#E8E3DA;--muted:#7A7068;
+  --gold:#C4941A;
+}
+html{scroll-behavior:smooth}
+body{font-family:'Inter',sans-serif;background:var(--ink);color:var(--white);font-size:16px;line-height:1.6;cursor:none}
+.cursor{width:12px;height:12px;background:var(--red);border-radius:50%;position:fixed;pointer-events:none;z-index:9999;transform:translate(-50%,-50%);transition:transform .1s ease,width .2s ease,height .2s ease}
+.cursor-ring{width:36px;height:36px;border:1.5px solid rgba(255,255,255,0.3);border-radius:50%;position:fixed;pointer-events:none;z-index:9998;transform:translate(-50%,-50%);transition:transform .08s ease}
+body:hover .cursor{opacity:1}
+.reveal{opacity:0;transform:translateY(32px);transition:opacity .8s ease,transform .8s ease}
+.reveal.visible{opacity:1;transform:translateY(0)}
+.reveal-left{opacity:0;transform:translateX(-32px);transition:opacity .8s ease,transform .8s ease}
+.reveal-left.visible{opacity:1;transform:translateX(0)}
+.reveal-right{opacity:0;transform:translateX(32px);transition:opacity .8s ease,transform .8s ease}
+.reveal-right.visible{opacity:1;transform:translateX(0)}
+.delay-1{transition-delay:.15s}.delay-2{transition-delay:.3s}.delay-3{transition-delay:.45s}.delay-4{transition-delay:.6s}
+nav{position:fixed;top:0;left:0;right:0;z-index:100;padding:1.5rem 2rem;display:flex;align-items:center;justify-content:space-between;mix-blend-mode:difference}
+.nav-logo{font-family:'Playfair Display',serif;font-size:18px;font-weight:900;color:var(--white);text-decoration:none;font-style:italic}
+.nav-links{display:flex;gap:2rem;list-style:none}
+.nav-links a{font-size:12px;color:rgba(255,255,255,0.5);text-decoration:none;font-weight:600;letter-spacing:.08em;text-transform:uppercase;transition:color .2s}
+.nav-links a:hover{color:var(--white)}
+.wrap{max-width:1100px;margin:0 auto;padding:0 2rem}
+.hero{min-height:100vh;background:var(--ink);display:flex;flex-direction:column;justify-content:flex-end;padding:0 2rem 4rem;position:relative;overflow:hidden;border-bottom:1px solid rgba(255,255,255,0.08)}
+.hero-bg-text{position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);font-family:'Playfair Display',serif;font-size:clamp(120px,20vw,260px);font-weight:900;color:rgba(255,255,255,0.025);white-space:nowrap;pointer-events:none;letter-spacing:-8px;line-height:1;user-select:none}
+.hero-inner{max-width:1100px;margin:0 auto;width:100%;position:relative;z-index:1}
+.hero-top{display:flex;align-items:flex-start;justify-content:space-between;margin-bottom:3rem}
+.hero-badge{font-size:11px;font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:rgba(255,255,255,0.35);border:1px solid rgba(255,255,255,0.12);padding:6px 14px;border-radius:999px}
+.hero-role{font-size:12px;font-weight:600;letter-spacing:.1em;text-transform:uppercase;color:var(--red);text-align:right}
+.hero h1{font-family:'Playfair Display',serif;font-size:clamp(52px,8vw,110px);font-weight:900;line-height:.92;letter-spacing:-3px;color:var(--white);margin-bottom:2.5rem}
+.hero h1 em{font-style:italic;color:var(--red)}
+.hero h1 .dim{color:rgba(255,255,255,0.2)}
+.hero-bottom{display:grid;grid-template-columns:1fr 1fr 1fr;gap:2rem;align-items:end;border-top:1px solid rgba(255,255,255,0.08);padding-top:2rem}
+.hero-desc{font-size:14px;color:rgba(255,255,255,0.45);line-height:1.75;max-width:320px}
+.hero-desc strong{color:var(--white);font-weight:600}
+.hero-stat{text-align:center}
+.hero-stat .num{font-family:'Playfair Display',serif;font-size:52px;font-weight:900;color:var(--white);line-height:1;letter-spacing:-2px;display:block}
+.hero-stat .num span{color:var(--red)}
+.hero-stat .label{font-size:11px;color:rgba(255,255,255,0.3);font-weight:600;text-transform:uppercase;letter-spacing:.08em;margin-top:4px;display:block}
+.hero-cta{text-align:right}
+.btn-red{background:var(--red);color:#fff;padding:14px 28px;border-radius:999px;font-size:13px;font-weight:700;text-decoration:none;display:inline-block;letter-spacing:.04em;transition:transform .2s}
+.btn-red:hover{transform:translateY(-2px)}
+.btn-outline-white{background:transparent;color:var(--white);padding:14px 28px;border-radius:999px;font-size:13px;font-weight:600;text-decoration:none;display:inline-block;border:1px solid rgba(255,255,255,0.2);letter-spacing:.04em;margin-top:.75rem;transition:border-color .2s}
+.btn-outline-white:hover{border-color:var(--red)}
+.ticker{background:var(--cream);padding:.7rem 0;overflow:hidden;white-space:nowrap}
+.ticker-track{display:inline-block;animation:scroll 30s linear infinite}
+.ticker-track span{font-size:12px;font-weight:700;color:var(--ink);letter-spacing:.08em;text-transform:uppercase;margin:0 2.5rem}
+.ticker-track span::before{content:'◆';margin-right:2rem;font-size:8px;color:var(--red);opacity:.8}
+@keyframes scroll{0%{transform:translateX(0)}100%{transform:translateX(-50%)}}
+.taste-section{background:var(--cream);color:var(--ink);padding:7rem 0;border-bottom:1px solid var(--border)}
+.taste-eyebrow{font-size:11px;font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:var(--red);margin-bottom:.75rem}
+.taste-title{font-family:'Playfair Display',serif;font-size:clamp(32px,5vw,56px);font-weight:900;line-height:1.05;color:var(--ink);margin-bottom:.75rem;letter-spacing:-.02em}
+.taste-title em{font-style:italic;color:var(--muted)}
+.taste-intro{font-size:15px;color:var(--muted);line-height:1.75;margin-bottom:4rem;max-width:540px}
+.taste-grid{display:grid;grid-template-columns:1fr 1fr 1fr;gap:1px;background:var(--border);border-radius:20px;overflow:hidden;margin-bottom:2rem}
+.taste-card{background:var(--white);padding:2.5rem}
+.taste-card.dark{background:var(--ink)}
+.taste-num{font-family:'Playfair Display',serif;font-size:72px;font-weight:900;color:rgba(0,0,0,0.06);line-height:1;letter-spacing:-3px;margin-bottom:-.5rem}
+.taste-card.dark .taste-num{color:rgba(255,255,255,0.04)}
+.taste-label{font-size:11px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--red);margin-bottom:.5rem}
+.taste-name{font-family:'Playfair Display',serif;font-size:22px;font-weight:900;color:var(--ink);line-height:1.2;margin-bottom:.75rem}
+.taste-card.dark .taste-name{color:var(--white)}
+.taste-body{font-size:13px;color:var(--muted);line-height:1.7}
+.taste-card.dark .taste-body{color:rgba(255,255,255,0.45)}
+.taste-tag{display:inline-block;font-size:11px;font-weight:700;padding:4px 12px;border-radius:999px;margin-top:1rem;background:var(--red-light);color:var(--red)}
+.taste-card.dark .taste-tag{background:rgba(255,255,255,0.06);color:rgba(255,255,255,0.4)}
+.gap-section{background:var(--ink);padding:7rem 0;border-bottom:1px solid rgba(255,255,255,0.08)}
+.gap-inner{display:grid;grid-template-columns:1fr 1fr;gap:5rem;align-items:center}
+.gap-pullquote{font-family:'Playfair Display',serif;font-size:clamp(28px,4vw,48px);font-style:italic;font-weight:700;color:var(--white);line-height:1.15;margin-bottom:1.5rem;letter-spacing:-.02em}
+.gap-pullquote span{color:var(--red)}
+.gap-sub{font-size:14px;color:rgba(255,255,255,0.4);line-height:1.75}
+.gap-right{display:flex;flex-direction:column;gap:1.5rem}
+.gap-card{background:rgba(255,255,255,0.03);border:1px solid rgba(255,255,255,0.07);border-radius:16px;padding:2rem;transition:border-color .2s}
+.gap-card:hover{border-color:rgba(227,24,55,0.3)}
+.gap-card-label{font-size:11px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--red);margin-bottom:.5rem}
+.gap-card-title{font-size:16px;font-weight:700;color:var(--white);margin-bottom:.4rem;line-height:1.3}
+.gap-card-body{font-size:13px;color:rgba(255,255,255,0.4);line-height:1.65}
+.bridge-section{background:var(--warm);color:var(--ink);padding:7rem 0;border-bottom:1px solid var(--border)}
+.bridge-grid{display:grid;grid-template-columns:1fr 1fr;gap:1px;background:var(--border);border-radius:20px;overflow:hidden;margin-top:3rem}
+.bridge-cell{background:var(--white);padding:2.5rem}
+.bridge-cell.dark{background:var(--ink)}.bridge-cell.red{background:var(--red)}
+.bridge-eyebrow{font-size:11px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;margin-bottom:.5rem}
+.bridge-cell .bridge-eyebrow{color:var(--muted)}
+.bridge-cell.dark .bridge-eyebrow{color:rgba(255,255,255,0.3)}
+.bridge-cell.red .bridge-eyebrow{color:rgba(255,255,255,0.6)}
+.bridge-title{font-family:'Playfair Display',serif;font-size:22px;font-weight:900;line-height:1.2;margin-bottom:.75rem}
+.bridge-cell .bridge-title{color:var(--ink)}.bridge-cell.dark .bridge-title{color:var(--white)}.bridge-cell.red .bridge-title{color:var(--white)}
+.bridge-body{font-size:13px;line-height:1.7}
+.bridge-cell .bridge-body{color:var(--muted)}.bridge-cell.dark .bridge-body{color:rgba(255,255,255,0.4)}.bridge-cell.red .bridge-body{color:rgba(255,255,255,0.75)}
+.built-section{background:var(--ink);padding:7rem 0;border-bottom:1px solid rgba(255,255,255,0.08)}
+.built-grid{display:grid;grid-template-columns:1fr 1fr 1fr;gap:1rem;margin-bottom:1rem}
+.b-card{background:rgba(255,255,255,0.02);border:1px solid rgba(255,255,255,0.07);border-radius:16px;padding:2rem;position:relative;overflow:hidden;transition:border-color .2s,transform .2s}
+.b-card:hover{border-color:rgba(227,24,55,0.3);transform:translateY(-3px)}
+.b-card::before{content:'';position:absolute;top:0;left:0;right:0;height:2px;background:rgba(255,255,255,0.06)}
+.b-card.r::before{background:var(--red)}
+.b-num{font-size:11px;font-weight:700;color:rgba(255,255,255,0.2);letter-spacing:.08em;text-transform:uppercase;margin-bottom:.75rem}
+.b-card.r .b-num{color:var(--red)}
+.b-title{font-size:15px;font-weight:700;color:var(--white);line-height:1.3;margin-bottom:.5rem}
+.b-body{font-size:13px;color:rgba(255,255,255,0.35);line-height:1.65}
+.b-tag{display:inline-block;font-size:11px;font-weight:700;padding:3px 10px;border-radius:999px;margin-top:.75rem;background:rgba(227,24,55,0.1);color:rgba(227,24,55,0.7);border:1px solid rgba(227,24,55,0.15)}
+.why-section{background:var(--cream);color:var(--ink);padding:7rem 0;border-bottom:1px solid var(--border)}
+.why-big{font-family:'Playfair Display',serif;font-size:clamp(36px,6vw,72px);font-weight:900;line-height:1;letter-spacing:-.03em;color:var(--ink);margin-bottom:3rem}
+.why-big em{font-style:italic;color:var(--red)}
+.why-split{display:grid;grid-template-columns:1fr 1fr;gap:2rem}
+.why-item{border-top:1.5px solid var(--border);padding-top:1.5rem}
+.why-item-num{font-family:'Playfair Display',serif;font-size:13px;font-weight:700;color:var(--red);margin-bottom:.5rem}
+.why-item-title{font-size:17px;font-weight:800;color:var(--ink);margin-bottom:.5rem;line-height:1.2}
+.why-item-body{font-size:13px;color:var(--muted);line-height:1.7}
+.contact-section{background:var(--ink);padding:8rem 0}
+.contact-inner{max-width:1100px;margin:0 auto;padding:0 2rem;text-align:center}
+.contact-pre{font-size:12px;font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:rgba(255,255,255,0.25);margin-bottom:2rem}
+.contact-h{font-family:'Playfair Display',serif;font-size:clamp(44px,8vw,96px);font-weight:900;line-height:.95;letter-spacing:-3px;color:var(--white);margin-bottom:1rem}
+.contact-h em{font-style:italic;color:var(--red)}
+.contact-sub{font-size:15px;color:rgba(255,255,255,0.35);margin-bottom:3rem}
+.contact-info{display:grid;grid-template-columns:1fr 1fr 1fr;gap:1px;background:rgba(255,255,255,0.06);border-radius:16px;overflow:hidden;max-width:700px;margin:0 auto}
+.ci{background:rgba(255,255,255,0.03);padding:1.5rem;text-align:left}
+.ci-label{font-size:11px;font-weight:700;color:rgba(255,255,255,0.2);letter-spacing:.08em;text-transform:uppercase;margin-bottom:4px}
+.ci-val{font-size:14px;font-weight:600;color:var(--white)}
+.ci-val a{color:var(--white);text-decoration:none}
+@media(max-width:768px){
+  .hero h1{letter-spacing:-2px}
+  .hero-bottom,.taste-grid,.gap-inner,.bridge-grid,.built-grid,.why-split,.contact-info{grid-template-columns:1fr}
+  nav{mix-blend-mode:normal;background:rgba(10,10,10,0.9)}
+  .cursor,.cursor-ring{display:none}
+  body{cursor:auto}
+}
+</style>
+</head>
+<body>
+<div class="cursor" id="cursor"></div>
+<div class="cursor-ring" id="cursorRing"></div>
+<nav>
+  <a class="nav-logo" href="#">Gargi Singh</a>
+  <ul class="nav-links">
+    <li><a href="#taste">Taste</a></li>
+    <li><a href="#gap">The gap</a></li>
+    <li><a href="#built">What I built</a></li>
+    <li><a href="#contact">Let's talk</a></li>
+  </ul>
+</nav>
+<div class="hero">
+  <div class="hero-bg-text">DISTRICT</div>
+  <div class="hero-inner">
+    <div class="hero-top reveal">
+      <span class="hero-badge">Brand & Strategy · District by Zomato</span>
+      <span class="hero-role">Data + Taste<br>Not data or taste</span>
+    </div>
+    <h1 class="reveal delay-1">Most creative<br>teams are scared<br>of <em>data.</em><br><span class="dim">I'm not<br>one of them.</span></h1>
+    <div class="hero-bottom reveal delay-2">
+      <p class="hero-desc">Product Operations Manager at Bridgetown Research — <strong>founding team, Series A</strong>. I eat out, go to shows, spot things before they trend. And I build the systems that make great ideas actually scale.</p>
+      <div class="hero-stat">
+        <span class="num"><span class="counter" data-target="11">0</span><span>mo</span></span>
+        <span class="label">Associate → Manager</span>
+      </div>
+      <div class="hero-cta">
+        <a href="#taste" class="btn-red">See my taste</a><br>
+        <a href="#built" class="btn-outline-white">See what I built</a>
+      </div>
+    </div>
+  </div>
+</div>
+<div class="ticker">
+  <div class="ticker-track">
+    <span>The Conservatory · Bengaluru</span><span>Pachaak · Theatrical Dining</span><span>Supper club gap</span><span>Bengaluru's underrated food scene</span><span>Data + taste</span><span>Spots things before they trend</span><span>Founding team · Series A</span><span>The Conservatory · Bengaluru</span><span>Pachaak · Theatrical Dining</span><span>Supper club gap</span><span>Bengaluru's underrated food scene</span><span>Data + taste</span><span>Spots things before they trend</span><span>Founding team · Series A</span>
+  </div>
+</div>
+<div class="taste-section" id="taste">
+  <div class="wrap">
+    <div class="taste-eyebrow reveal">Proof of taste</div>
+    <h2 class="taste-title reveal delay-1">I eat out.<br>I go to shows.<br><em>I notice things.</em></h2>
+    <p class="taste-intro reveal delay-2">Not in a "I have opinions" way. In a "I spotted this before it had a waitlist" way. Here's the evidence.</p>
+    <div class="taste-grid reveal delay-1">
+      <div class="taste-card">
+        <div class="taste-num">01</div>
+        <div class="taste-label">Experiential dining</div>
+        <div class="taste-name">The Conservatory, Bengaluru</div>
+        <div class="taste-body">India's first experiential dessert dining concept. Not a restaurant — a world. I went before it had a queue. The moment I walked in I understood what dining as theatre actually means. It's not about the food. It's about the memory you're buying.</div>
+        <span class="taste-tag">Spotted early</span>
+      </div>
+      <div class="taste-card dark">
+        <div class="taste-num">02</div>
+        <div class="taste-label">Theatrical dining</div>
+        <div class="taste-name">Pachaak — Immersive Theatrical Dining</div>
+        <div class="taste-body">The next evolution of experiential — food as performance, dining as story. Pachaak proves that India has an appetite for experiences that are genuinely hard to explain to someone who wasn't there. That's the most valuable kind of product.</div>
+        <span class="taste-tag">Early adopter</span>
+      </div>
+      <div class="taste-card">
+        <div class="taste-num">03</div>
+        <div class="taste-label">Bengaluru's secret</div>
+        <div class="taste-name">Great food + great treks. Nobody talks about both.</div>
+        <div class="taste-body">Bengaluru has one of India's most underrated food scenes and is 2 hours from some of the country's best treks. Nobody markets this combination. The person who does will unlock a completely new "Bengaluru weekend" narrative.</div>
+        <span class="taste-tag">Untold story</span>
+      </div>
+    </div>
+  </div>
+</div>
+<div class="gap-section" id="gap">
+  <div class="wrap">
+    <div class="gap-inner">
+      <div class="gap-left reveal-left">
+        <div class="taste-eyebrow" style="color:var(--red);font-size:11px;font-weight:700;letter-spacing:.14em;text-transform:uppercase;margin-bottom:.75rem">A gap I've been thinking about</div>
+        <div class="gap-pullquote">"People want to <span>meet strangers</span> over great food. Nobody has made it feel natural yet."</div>
+        <div class="gap-sub">The supper club format has existed forever. But in India it still feels either too expensive, too curated, or too try-hard. The organic version — the one that feels like stumbling into someone's dinner party — doesn't exist at scale yet. That's the product District could build. Not a restaurant. A recurring social format.</div>
+      </div>
+      <div class="gap-right reveal-right delay-1">
+        <div class="gap-card"><div class="gap-card-label">The problem</div><div class="gap-card-title">Social dining is either too expensive or too forced</div><div class="gap-card-body">Supper clubs exist. But the price point excludes most of the people who'd most love it. And the ones that are affordable feel like networking events with better food. Nobody has cracked the version that feels genuinely organic.</div></div>
+        <div class="gap-card"><div class="gap-card-label">The insight</div><div class="gap-card-title">The meal is the excuse. The people are the product.</div><div class="gap-card-body">What people actually want isn't a great restaurant. It's a great story about a Tuesday night they didn't plan for. The food is just the reason to be in the same room. District could own this format before anyone else names it.</div></div>
+        <div class="gap-card"><div class="gap-card-label">Why District</div><div class="gap-card-title">From Michelin Stars to mosh pits — you already get this</div><div class="gap-card-body">District's brief describes exactly the instinct I've been developing: spot the thing before it has a name. The supper club gap is one of those things. I want to be in the room where these ideas get built.</div></div>
+      </div>
+    </div>
+  </div>
+</div>
+<div class="bridge-section" id="bridge">
+  <div class="wrap">
+    <div class="taste-eyebrow reveal" style="color:var(--red)">Why I'm different</div>
+    <h2 class="taste-title reveal delay-1" style="color:var(--ink)">Most creative teams<br>are scared of data.<br><em style="color:var(--muted)">Most data teams<br>are scared of taste.</em></h2>
+    <div class="bridge-grid reveal delay-2">
+      <div class="bridge-cell red"><div class="bridge-eyebrow">The taste side</div><div class="bridge-title">I spot things before they trend</div><div class="bridge-body">The Conservatory before the queue. Pachaak before the press. The supper club gap before someone names it. I eat out, go to shows, and notice the thing that's missing from the experience. That noticing instinct is what District is hiring for.</div></div>
+      <div class="bridge-cell"><div class="bridge-eyebrow">The data side</div><div class="bridge-title">I build the system that proves the instinct right</div><div class="bridge-body">At Bridgetown I built automated quality systems, ops dashboards, and data-driven vendor selection logic. I don't just have opinions — I build the infrastructure that turns opinions into decisions. Creative instinct without measurement is just vibes.</div></div>
+      <div class="bridge-cell dark"><div class="bridge-eyebrow">The rare combination</div><div class="bridge-title">I can be in the room for both conversations</div><div class="bridge-body">When the strategy team asks "what are we actually trying to do?" and the data team asks "how do we know if it worked?" — I can answer both. That's the person District needs. Not a creative who tolerates data. Someone who speaks both languages natively.</div></div>
+      <div class="bridge-cell"><div class="bridge-eyebrow">The proof</div><div class="bridge-title">Promoted in 11 months. Built 6 systems. Hired a team.</div><div class="bridge-body">At a Series A with no playbook, I spotted operational gaps nobody named, proposed solutions to leadership, and shipped 6 systems that are all live. The same pattern applies to culture and brand work — spot, propose, build, run.</div></div>
+    </div>
+  </div>
+</div>
+<div class="built-section" id="built">
+  <div class="wrap">
+    <div class="taste-eyebrow reveal" style="color:var(--red)">The ops side</div>
+    <h2 class="reveal delay-1" style="font-family:'Playfair Display',serif;font-size:clamp(32px,5vw,52px);font-weight:900;color:var(--white);margin-bottom:.75rem;letter-spacing:-.02em;line-height:1.05">I don't just have taste.<br><em style="font-style:italic;color:rgba(255,255,255,0.3)">I ship things.</em></h2>
+    <p class="reveal delay-2" style="font-size:15px;color:rgba(255,255,255,0.4);line-height:1.75;margin-bottom:3rem;max-width:540px">Creative instinct is the starting point. Getting things built and running is the job. Here's my track record.</p>
+    <div class="built-grid">
+      <div class="b-card r reveal delay-1"><div class="b-num">01 · Quality system</div><div class="b-title">Autopublish — 3 automated signals replacing manual review</div><div class="b-body">Fraud detection, quality scoring, identity verification. Same instinct as brand quality control — define what "good" looks like and build a system that catches everything that isn't.</div><span class="b-tag">Live</span></div>
+      <div class="b-card r reveal delay-2"><div class="b-num">02 · Partner product</div><div class="b-title">Vendor dashboard — external partners self-serve</div><div class="b-body">Built a product for external partners. Reduced ops overhead. The instinct to think about the experience of someone on the other side of the platform — that applies to creative and brand work too.</div><span class="b-tag">Live</span></div>
+      <div class="b-card r reveal delay-3"><div class="b-num">03 · Stealth vertical</div><div class="b-title">Led branding of a new expert network — currently in stealth</div><div class="b-body">Positioning, naming, identity, go-to-market. First time working at the intersection of brand strategy and operational design. It's the work I'm most proud of — and the most directly relevant to District.</div><span class="b-tag">In stealth</span></div>
+    </div>
+    <div class="built-grid" style="margin-top:1rem">
+      <div class="b-card reveal delay-1"><div class="b-num">04 · Team</div><div class="b-title">Hired & manage ops team of 4 with OKRs</div><div class="b-body">Designed the process, ran every interview, made every hire. Built a team with a specific cultural profile in mind — not just skills. That's the kind of thinking District needs for its own hiring.</div><span class="b-tag">Done</span></div>
+      <div class="b-card reveal delay-2"><div class="b-num">05 · Strategic initiatives</div><div class="b-title">6 systems — all unsolicited, all live</div><div class="b-body">Every initiative started as a gap I spotted before anyone named it. I made the case to leadership and shipped it. That's the same muscle District is looking for — hunch to execution.</div><span class="b-tag">Live</span></div>
+      <div class="b-card reveal delay-3"><div class="b-num">06 · AI fluency</div><div class="b-title">Already using AI in ways most people are still Googling</div><div class="b-body">You said it in the JD: "you've already figured out how to work with AI in a way that most people are still Googling." I use AI across ops design, quality systems, and creative process. Not as a novelty — as infrastructure.</div><span class="b-tag">Ongoing</span></div>
+    </div>
+  </div>
+</div>
+<div class="why-section" id="why">
+  <div class="wrap">
+    <div class="taste-eyebrow reveal" style="color:var(--red)">Why District</div>
+    <div class="why-big reveal delay-1">"From Michelin Stars<br>to mosh pits."<br><em>Yes. Exactly.</em></div>
+    <div class="why-split">
+      <div class="why-item reveal delay-1"><div class="why-item-num">01</div><div class="why-item-title">You're building something that didn't exist before</div><div class="why-item-body">That's the only brief worth taking. District isn't optimising an existing category — it's creating the infrastructure for a new way India goes out. I want to be in the room where that gets defined, not the room where it gets executed after someone else figured it out.</div></div>
+      <div class="why-item reveal delay-2"><div class="why-item-num">02</div><div class="why-item-title">Work starts from instinct. I have that instinct.</div><div class="why-item-body">The brief says "from a hunch, from something you noticed before anyone thought to measure it." The Conservatory. Pachaak. The supper club gap. These aren't examples I Googled. They're things I noticed before they had press.</div></div>
+      <div class="why-item reveal delay-3"><div class="why-item-num">03</div><div class="why-item-title">I treat strategy as a craft, not a function</div><div class="why-item-body">You said you want people who "treat marketing as a craft, not a function." That's how I think about ops and strategy too. The system is the product. The process is the brand. I don't just want to contribute to District — I want to help define what it stands for.</div></div>
+      <div class="why-item reveal delay-4"><div class="why-item-num">04</div><div class="why-item-title">I've already figured out how to work with AI</div><div class="why-item-body">Not using AI to generate content. Using AI to think faster, prototype ideas, and build systems that used to require three people. That's what District meant and it's where I already am.</div></div>
+    </div>
+  </div>
+</div>
+<div class="contact-section" id="contact">
+  <div class="contact-inner">
+    <div class="contact-pre reveal">Ready when you are</div>
+    <h2 class="contact-h reveal delay-1">Let's build<br><em>District.</em></h2>
+    <p class="contact-sub reveal delay-2">Happy to walk through any of the above — or just talk about the best meal I've had this month.</p>
+    <div class="contact-info reveal delay-4">
+      <div class="ci"><div class="ci-label">Phone</div><div class="ci-val">+91 96196 06780</div></div>
+      <div class="ci"><div class="ci-label">Email</div><div class="ci-val"><a href="mailto:gargisingh.work@gmail.com">gargisingh.work@gmail.com</a></div></div>
+      <div class="ci"><div class="ci-label">LinkedIn</div><div class="ci-val"><a href="https://linkedin.com/in/gargi-singh-6a157b212" target="_blank">gargi-singh-6a157b212</a></div></div>
+    </div>
+  </div>
+</div>
+<script>
+const cursor = document.getElementById('cursor');
+const ring = document.getElementById('cursorRing');
+document.addEventListener('mousemove', e => {
+  cursor.style.left = e.clientX + 'px';
+  cursor.style.top = e.clientY + 'px';
+  setTimeout(() => { ring.style.left = e.clientX + 'px'; ring.style.top = e.clientY + 'px'; }, 80);
+});
+document.querySelectorAll('a, button').forEach(el => {
+  el.addEventListener('mouseenter', () => { cursor.style.width = '24px'; cursor.style.height = '24px'; });
+  el.addEventListener('mouseleave', () => { cursor.style.width = '12px'; cursor.style.height = '12px'; });
+});
+const observer = new IntersectionObserver((entries) => {
+  entries.forEach(e => { if(e.isIntersecting) e.target.classList.add('visible'); });
+}, {threshold: 0.1});
+document.querySelectorAll('.reveal, .reveal-left, .reveal-right').forEach(el => observer.observe(el));
+function animateCounter(el) {
+  const target = parseInt(el.dataset.target);
+  const duration = 1400;
+  const start = performance.now();
+  function update(now) {
+    const elapsed = now - start;
+    const progress = Math.min(elapsed / duration, 1);
+    const ease = 1 - Math.pow(1 - progress, 3);
+    el.textContent = Math.round(ease * target);
+    if(progress < 1) requestAnimationFrame(update);
+  }
+  requestAnimationFrame(update);
+}
+const counterObserver = new IntersectionObserver((entries) => {
+  entries.forEach(e => { if(e.isIntersecting) { animateCounter(e.target); counterObserver.unobserve(e.target); } });
+}, {threshold: 0.5});
+document.querySelectorAll('.counter').forEach(el => counterObserver.observe(el));
+</script>
+</body>
+</html>
