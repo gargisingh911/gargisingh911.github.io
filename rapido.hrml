@@ -1,0 +1,328 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Gargi Singh — Rapido</title>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;900&display=swap" rel="stylesheet">
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+:root{
+  --yellow:#FFD000;--yellow-deep:#B89500;--yellow-light:#FFFBE6;
+  --ink:#0D0D0D;--white:#FFFFFF;--off:#FAFAFA;
+  --border:#E8E8E8;--muted:#666;
+  --green:#0A6E3F;--green-light:#E6F5EE;
+}
+html{scroll-behavior:smooth}
+body{font-family:'Inter',sans-serif;background:var(--ink);color:var(--white);font-size:16px;line-height:1.6}
+.reveal{opacity:0;transform:translateY(28px);transition:opacity .65s ease,transform .65s ease}
+.reveal.visible{opacity:1;transform:translateY(0)}
+.reveal-left{opacity:0;transform:translateX(-28px);transition:opacity .65s ease,transform .65s ease}
+.reveal-left.visible{opacity:1;transform:translateX(0)}
+.reveal-right{opacity:0;transform:translateX(28px);transition:opacity .65s ease,transform .65s ease}
+.reveal-right.visible{opacity:1;transform:translateX(0)}
+.delay-1{transition-delay:.1s}.delay-2{transition-delay:.2s}.delay-3{transition-delay:.3s}.delay-4{transition-delay:.4s}
+nav{position:sticky;top:0;background:rgba(13,13,13,0.97);backdrop-filter:blur(12px);border-bottom:1px solid rgba(255,255,255,0.06);z-index:100;padding:0 2rem}
+.nav-inner{max-width:1060px;margin:0 auto;display:flex;align-items:center;justify-content:space-between;height:56px}
+.nav-logo{font-size:15px;font-weight:900;color:var(--white);text-decoration:none;letter-spacing:-.3px}
+.nav-logo span{color:var(--yellow)}
+.nav-links{display:flex;gap:2rem;list-style:none}
+.nav-links a{font-size:13px;color:rgba(255,255,255,0.4);text-decoration:none;font-weight:500;transition:color .2s}
+.nav-links a:hover{color:var(--yellow)}
+.nav-cta{background:var(--yellow);color:var(--ink)!important;padding:7px 18px;border-radius:999px;font-size:13px!important;font-weight:700!important}
+.wrap{max-width:1060px;margin:0 auto;padding:0 2rem}
+.hero{background:var(--ink);min-height:90vh;display:flex;align-items:center;border-bottom:1px solid rgba(255,255,255,0.06);position:relative;overflow:hidden}
+.hero-glow{position:absolute;top:-150px;left:-150px;width:500px;height:500px;background:radial-gradient(circle,rgba(255,208,0,0.07) 0%,transparent 70%);pointer-events:none}
+.hero-inner{max-width:1060px;margin:0 auto;padding:0 2rem;width:100%;display:grid;grid-template-columns:1fr 380px;gap:4rem;align-items:center;position:relative;z-index:1}
+.hero-badge{display:inline-flex;align-items:center;gap:8px;background:rgba(255,208,0,0.1);border:1px solid rgba(255,208,0,0.2);color:var(--yellow);font-size:11px;font-weight:700;letter-spacing:.12em;text-transform:uppercase;padding:6px 14px;border-radius:999px;margin-bottom:2rem}
+.hero-badge::before{content:'';width:6px;height:6px;background:var(--yellow);border-radius:50%;animation:pulse 2s infinite}
+@keyframes pulse{0%,100%{opacity:1}50%{opacity:.4}}
+.hero h1{font-size:clamp(44px,6.5vw,80px);font-weight:900;line-height:.95;letter-spacing:-3px;color:var(--white);margin-bottom:1.75rem}
+.hero h1 .y{color:var(--yellow)}
+.hero h1 .dim{color:rgba(255,255,255,0.18)}
+.hero-pitch{font-size:15px;color:rgba(255,255,255,0.5);line-height:1.8;max-width:440px;margin-bottom:2rem}
+.hero-pitch strong{color:var(--white);font-weight:600}
+.hero-actions{display:flex;gap:10px;flex-wrap:wrap}
+.btn-yellow{background:var(--yellow);color:var(--ink);padding:12px 24px;border-radius:999px;font-size:14px;font-weight:700;text-decoration:none;display:inline-block;transition:transform .2s}
+.btn-yellow:hover{transform:translateY(-1px)}
+.btn-ghost{background:transparent;color:rgba(255,255,255,0.6);padding:12px 24px;border-radius:999px;font-size:14px;font-weight:500;text-decoration:none;display:inline-block;border:1px solid rgba(255,255,255,0.12);transition:border-color .2s,color .2s}
+.btn-ghost:hover{border-color:var(--yellow);color:var(--yellow)}
+.hero-stats{display:flex;flex-direction:column;gap:1px;background:rgba(255,255,255,0.06);border-radius:20px;overflow:hidden}
+.hs-top{background:var(--yellow);padding:2.5rem}
+.hs-top .num{font-size:56px;font-weight:900;color:var(--ink);line-height:1;letter-spacing:-2px;margin-bottom:4px}
+.hs-top .num sub{font-size:22px;font-weight:700}
+.hs-top .label{font-size:11px;color:rgba(0,0,0,0.45);font-weight:700;text-transform:uppercase;letter-spacing:.08em}
+.hs-bot{display:grid;grid-template-columns:1fr 1fr}
+.hs-cell{background:rgba(255,255,255,0.04);padding:1.5rem;border-right:1px solid rgba(255,255,255,0.06)}
+.hs-cell:last-child{border-right:none}
+.hs-cell .num{font-size:30px;font-weight:900;color:var(--white);line-height:1;letter-spacing:-1px;margin-bottom:3px}
+.hs-cell .num span{color:var(--yellow);font-size:18px}
+.hs-cell .label{font-size:11px;color:rgba(255,255,255,0.3);font-weight:600;text-transform:uppercase;letter-spacing:.06em}
+.ticker{background:var(--yellow);padding:.65rem 0;overflow:hidden;white-space:nowrap}
+.ticker-track{display:inline-block;animation:scroll 22s linear infinite}
+.ticker-track span{font-size:11px;font-weight:800;color:rgba(0,0,0,0.6);letter-spacing:.1em;text-transform:uppercase;margin:0 2rem}
+.ticker-track span::before{content:'◆';margin-right:1rem;font-size:8px;opacity:.5}
+@keyframes scroll{0%{transform:translateX(0)}100%{transform:translateX(-50%)}}
+section{padding:6rem 0;border-bottom:1px solid rgba(255,255,255,0.06)}
+section.light{background:var(--off);border-bottom:1px solid var(--border)}
+.sec-eyebrow{font-size:11px;font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:var(--yellow);margin-bottom:.75rem}
+section.light .sec-eyebrow{color:#B89500}
+.sec-title{font-size:clamp(28px,4vw,44px);font-weight:900;letter-spacing:-1.5px;line-height:1.05;color:var(--white);margin-bottom:.75rem}
+section.light .sec-title{color:var(--ink)}
+.sec-intro{font-size:15px;color:rgba(255,255,255,0.4);line-height:1.75;margin-bottom:3rem;max-width:560px}
+section.light .sec-intro{color:var(--muted)}
+.match-grid{display:grid;grid-template-columns:1fr 1fr;gap:1px;background:rgba(255,255,255,0.06);border-radius:16px;overflow:hidden;margin-bottom:1rem}
+.match-cell{background:#161616;padding:2rem}
+.match-cell.highlight{background:rgba(255,208,0,0.06);border:1px solid rgba(255,208,0,0.15)}
+.match-label{font-size:11px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:rgba(255,255,255,0.25);margin-bottom:.6rem}
+.match-cell.highlight .match-label{color:var(--yellow)}
+.match-req{font-size:15px;font-weight:700;color:rgba(255,255,255,0.55);margin-bottom:.4rem;line-height:1.4}
+.match-cell.highlight .match-req{color:var(--white)}
+.match-proof{font-size:13px;color:rgba(255,255,255,0.3);line-height:1.65}
+.match-cell.highlight .match-proof{color:rgba(255,255,255,0.6)}
+.built-grid{display:grid;grid-template-columns:1fr 1fr 1fr;gap:1rem;margin-bottom:1rem}
+.b-card{background:#161616;border:1px solid rgba(255,255,255,0.06);border-radius:14px;padding:1.75rem;position:relative;overflow:hidden;transition:border-color .2s,transform .2s}
+.b-card:hover{border-color:var(--yellow);transform:translateY(-2px)}
+.b-card::before{content:'';position:absolute;top:0;left:0;right:0;height:3px;background:rgba(255,255,255,0.06)}
+.b-card.y::before{background:var(--yellow)}.b-card.g::before{background:var(--green)}
+.b-num{font-size:11px;font-weight:700;color:rgba(255,255,255,0.25);letter-spacing:.08em;text-transform:uppercase;margin-bottom:.75rem}
+.b-card.y .b-num{color:var(--yellow)}.b-card.g .b-num{color:#2ECC71}
+.b-title{font-size:15px;font-weight:700;color:var(--white);line-height:1.3;margin-bottom:.5rem}
+.b-body{font-size:13px;color:rgba(255,255,255,0.35);line-height:1.65}
+.b-badge{display:inline-block;font-size:11px;font-weight:700;padding:3px 10px;border-radius:999px;margin-top:.75rem}
+.badge-live{background:rgba(0,110,63,0.2);color:#2ECC71;border:1px solid rgba(46,204,113,0.2)}
+.badge-build{background:rgba(255,208,0,0.1);color:rgba(255,208,0,0.7);border:1px solid rgba(255,208,0,0.15)}
+.gg{background:#161616;border:1px solid rgba(255,255,255,0.06);border-radius:16px;overflow:hidden;margin-top:2rem}
+.gg-head{padding:2rem 2.5rem 1.5rem;border-bottom:1px solid rgba(255,255,255,0.06)}
+.gg-eye{font-size:11px;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:var(--yellow);margin-bottom:.3rem}
+.gg-title{font-size:20px;font-weight:900;color:var(--white);letter-spacing:-.5px}
+.gg-cells{display:grid;grid-template-columns:repeat(4,1fr)}
+.gg-c{padding:1.5rem 2rem;border-right:1px solid rgba(255,255,255,0.06);transition:background .2s}
+.gg-c:hover{background:rgba(255,208,0,0.04)}.gg-c:last-child{border-right:none}
+.gg-v{font-size:20px;font-weight:900;color:var(--white);line-height:1;margin-bottom:.4rem}
+.gg-c:hover .gg-v{color:var(--yellow)}
+.gg-d{font-size:12px;color:rgba(255,255,255,0.25);line-height:1.4}
+.why-grid{display:grid;grid-template-columns:1fr 1fr;gap:1rem}
+.why-card{border-radius:14px;padding:2rem;transition:transform .2s}
+.why-card:hover{transform:translateY(-2px)}
+.why-card.y{background:var(--yellow)}.why-card.dark{background:#161616;border:1px solid rgba(255,255,255,0.06)}
+.why-title{font-size:17px;font-weight:800;margin-bottom:.5rem;line-height:1.2;letter-spacing:-.3px}
+.why-card.y .why-title{color:var(--ink)}.why-card.dark .why-title{color:var(--white)}
+.why-body{font-size:13px;line-height:1.7}
+.why-card.y .why-body{color:rgba(0,0,0,0.6)}.why-card.dark .why-body{color:rgba(255,255,255,0.4)}
+.tl{position:relative}
+.tl::before{content:'';position:absolute;left:92px;top:8px;bottom:0;width:1px;background:rgba(255,255,255,0.08)}
+.tl-item{display:grid;grid-template-columns:76px 1fr;gap:0 2rem}
+.tl-date{font-size:11px;color:rgba(255,255,255,0.25);font-weight:600;padding-top:4px;text-align:right;line-height:1.4}
+.tl-right{padding:0 0 2.5rem 2rem;position:relative}
+.tl-right::before{content:'';position:absolute;left:-4px;top:7px;width:8px;height:8px;border-radius:50%;background:var(--ink);border:2px solid rgba(255,255,255,0.2)}
+.tl-item:first-child .tl-right::before{background:var(--yellow);border-color:var(--yellow)}
+.tl-role{font-size:16px;font-weight:700;color:var(--white);margin-bottom:2px}
+.tl-org{font-size:13px;color:var(--yellow);font-weight:600;margin-bottom:.5rem}
+.tl-body{font-size:13px;color:rgba(255,255,255,0.35);line-height:1.7}
+.tl-tags{display:flex;flex-wrap:wrap;gap:5px;margin-top:.6rem}
+.tag{font-size:11px;font-weight:600;padding:4px 12px;border-radius:999px}
+.tag-y{background:rgba(255,208,0,0.1);color:var(--yellow)}
+.tag-g{background:rgba(46,204,113,0.1);color:#2ECC71}
+.tag-w{background:rgba(255,255,255,0.06);color:rgba(255,255,255,0.4)}
+.contact-sec{background:var(--yellow);padding:6rem 0}
+.contact-inner{max-width:1060px;margin:0 auto;padding:0 2rem;display:grid;grid-template-columns:1fr 1fr;gap:4rem;align-items:center}
+.contact-left .sec-eyebrow{color:rgba(0,0,0,0.4)}.contact-left .sec-title{color:var(--ink)}
+.contact-left p{font-size:15px;color:rgba(0,0,0,0.5);line-height:1.7;margin-top:.75rem}
+.contact-cards{display:flex;flex-direction:column;gap:.75rem}
+.contact-card{background:rgba(0,0,0,0.08);border:1px solid rgba(0,0,0,0.1);border-radius:14px;padding:1.25rem 1.5rem;display:flex;align-items:center;justify-content:space-between;transition:background .2s}
+.contact-card:hover{background:rgba(0,0,0,0.15)}
+.c-label{font-size:11px;font-weight:700;color:rgba(0,0,0,0.35);letter-spacing:.08em;text-transform:uppercase;margin-bottom:3px}
+.c-val{font-size:15px;font-weight:700;color:var(--ink)}.c-val a{color:var(--ink);text-decoration:none}
+.c-arrow{font-size:18px;color:rgba(0,0,0,0.25)}
+.counter{display:inline-block}
+@media(max-width:720px){
+  .hero-inner,.match-grid,.built-grid,.why-grid,.contact-inner{grid-template-columns:1fr}
+  .hs-bot{grid-template-columns:1fr 1fr}.gg-cells{grid-template-columns:1fr 1fr}
+  .tl::before{left:72px}.nav-links{display:none}
+}
+</style>
+</head>
+<body>
+<nav>
+  <div class="nav-inner">
+    <a class="nav-logo" href="#">Gargi <span>Singh</span></a>
+    <ul class="nav-links">
+      <li><a href="#match">Role fit</a></li>
+      <li><a href="#built">What I built</a></li>
+      <li><a href="#why">Why Rapido</a></li>
+      <li><a href="#contact" class="nav-cta">Let's talk</a></li>
+    </ul>
+  </div>
+</nav>
+<div class="hero">
+  <div class="hero-glow"></div>
+  <div class="hero-inner">
+    <div class="hero-left">
+      <div class="hero-badge reveal">Senior Operations Executive · Rapido Parcel</div>
+      <h1 class="reveal delay-1">Strong bias<br>for <span class="y">action.</span><br><span class="dim">Tight timelines.<br>Real outcomes.</span></h1>
+      <p class="hero-pitch reveal delay-2">Product Operations Manager at Bridgetown Research — <strong>founding team, Series A</strong>. I analyse data to drive decisions, automate what slows things down, manage stakeholders across functions, and deliver under pressure. That's not my ambition. It's my current job description.</p>
+      <div class="hero-actions reveal delay-3">
+        <a href="#match" class="btn-yellow">See the fit</a>
+        <a href="#built" class="btn-ghost">What I built</a>
+      </div>
+    </div>
+    <div class="hero-stats reveal-right delay-2">
+      <div class="hs-top">
+        <div class="num"><span class="counter" data-target="11">0</span><sub>mo</sub></div>
+        <div class="label">Associate → Manager</div>
+      </div>
+      <div class="hs-bot">
+        <div class="hs-cell"><div class="num"><span class="counter" data-target="4">0</span></div><div class="label">Ops associates hired</div></div>
+        <div class="hs-cell"><div class="num"><span class="counter" data-target="100">0</span><span>+</span></div><div class="label">Live projects managed</div></div>
+      </div>
+    </div>
+  </div>
+</div>
+<div class="ticker">
+  <div class="ticker-track">
+    <span>Founding team · Series A</span><span>Data-driven decisions</span><span>Stakeholder management</span><span>Automated ops workflows</span><span>Pricing & performance tracking</span><span>Works under tight timelines</span><span>Cross-functional ops</span><span>Bias for action</span><span>Founding team · Series A</span><span>Data-driven decisions</span><span>Stakeholder management</span><span>Automated ops workflows</span><span>Pricing & performance tracking</span><span>Works under tight timelines</span><span>Cross-functional ops</span><span>Bias for action</span>
+  </div>
+</div>
+<section id="match">
+  <div class="wrap">
+    <div class="sec-eyebrow reveal">Role fit</div>
+    <h2 class="sec-title reveal delay-1">Rapido Parcel wants a<br>sharp Senior Executive.<br>Here's the direct match.</h2>
+    <p class="sec-intro reveal delay-2">Pricing analysis, automation, stakeholder alignment, KPI tracking, performance reporting — I've been doing all of this across 100+ live projects simultaneously.</p>
+    <div class="match-grid reveal delay-1">
+      <div class="match-cell"><div class="match-label">Rapido needs</div><div class="match-req">Analyse pricing, demand & performance data — Google Sheets, Excel, dashboards</div><div class="match-proof">Inform business strategy through data. Prepare and report on key operational metrics.</div></div>
+      <div class="match-cell highlight"><div class="match-label">I've done this</div><div class="match-req">Built ops dashboard tracking 100+ live projects — requests + review views</div><div class="match-proof">Designed and shipped the ops tracking system at Bridgetown. Monitor performance across all live projects, surface quality signals, and use data to inform which vendors deploy per project. Data isn't something I report on — it's how I make every decision.</div></div>
+    </div>
+    <div class="match-grid reveal delay-2">
+      <div class="match-cell"><div class="match-label">Rapido needs</div><div class="match-req">Automate routine data requirements and reporting workflows</div><div class="match-proof">Enhance efficiency and scalability by removing manual steps from recurring processes.</div></div>
+      <div class="match-cell highlight"><div class="match-label">I've done this</div><div class="match-req">Built autopublish — 3-signal system that replaced manual review entirely</div><div class="match-proof">Fraud detection, quality scoring, identity verification — all automated. Every time my team was doing something a system could do, I built the system. Manual reporting workflows don't survive long around me.</div></div>
+    </div>
+    <div class="match-grid reveal delay-3">
+      <div class="match-cell"><div class="match-label">Rapido needs</div><div class="match-req">Collaborate with stakeholders, resolve bottlenecks, drive alignment</div><div class="match-proof">Execute pricing changes and promotional initiatives across functions. Monitor KPIs and recommend iterative improvements.</div></div>
+      <div class="match-cell highlight"><div class="match-label">I've done this</div><div class="match-req">Cross-functional ops across product, vendors, clients — no handoffs, full ownership</div><div class="match-proof">At a Series A with no vertical hierarchy, every bottleneck is mine to resolve. I coordinate across product, ops, vendor partners, and client teams simultaneously. Stakeholder alignment isn't a soft skill for me — it's the core of how I get anything shipped.</div></div>
+    </div>
+  </div>
+</section>
+<section id="built" class="light">
+  <div class="wrap">
+    <div class="sec-eyebrow reveal">What I built</div>
+    <h2 class="sec-title reveal delay-1">Six systems.<br>All from scratch.<br>All live.</h2>
+    <p class="sec-intro reveal delay-2">At a Series A with no playbook, every system had to be built. Each one maps directly to what Rapido Parcel needs.</p>
+    <div class="built-grid">
+      <div class="b-card y reveal delay-1"><div class="b-num">01 · Automation</div><div class="b-title">Autopublish — fraud, quality & identity signals</div><div class="b-body">3-signal system replacing manual review. Scales with volume. Rapido parallel: automate routine reporting workflows, remove manual data requirements, enhance operational scalability.</div><span class="b-badge badge-live">Live</span></div>
+      <div class="b-card y reveal delay-2"><div class="b-num">02 · Ops dashboard</div><div class="b-title">Requests + review tracking across 100+ live projects</div><div class="b-body">Built the ops visibility layer — performance data, quality signals, status tracking. Rapido parallel: prepare, analyse, and report on pricing, demand, and performance data to inform business strategy.</div><span class="b-badge badge-live">Live</span></div>
+      <div class="b-card y reveal delay-3"><div class="b-num">03 · Commercial</div><div class="b-title">Vendor selection framework + CPI negotiation</div><div class="b-body">Own all commercial terms. Framework matching project to optimal vendor. Rapido parallel: execute pricing changes based on strategic directives, ensuring timely and flawless delivery.</div><span class="b-badge badge-build">Building</span></div>
+    </div>
+    <div class="built-grid" style="margin-top:1rem">
+      <div class="b-card g reveal delay-1"><div class="b-num">04 · Partner product</div><div class="b-title">Vendor dashboard — partners self-serve their pipeline</div><div class="b-body">External partners track own status. Reduced ops overhead. Rapido parallel: monitor campaign performance post-launch, track KPIs, recommend iterative improvements.</div><span class="b-badge badge-live">Live</span></div>
+      <div class="b-card g reveal delay-2"><div class="b-num">05 · Client product</div><div class="b-title">Pre-approval workflow — spotted, proposed, shipped</div><div class="b-body">Spotted client trust gap, made the case to leadership, coordinated the build, shipped it. Rapido parallel: collaborate closely with stakeholders on execution plans, resolve bottlenecks, drive alignment.</div><span class="b-badge badge-live">Live</span></div>
+      <div class="b-card g reveal delay-3"><div class="b-num">06 · Team</div><div class="b-title">Hired & manage ops team of 4 with OKRs</div><div class="b-body">Designed the process, ran every interview, made every hire. Set OKRs, run monthly check-ins. Delivered results under tight timelines with limited resources — that's startup ops.</div><span class="b-badge badge-live">Done</span></div>
+    </div>
+    <div class="gg reveal">
+      <div class="gg-head"><div class="gg-eye">The pattern</div><div class="gg-title">Every initiative was unsolicited. Every one shipped.</div></div>
+      <div class="gg-cells">
+        <div class="gg-c"><div class="gg-v">Spotted.</div><div class="gg-d">Gap identified before anyone named it</div></div>
+        <div class="gg-c"><div class="gg-v">Proposed.</div><div class="gg-d">Made the case to leadership directly</div></div>
+        <div class="gg-c"><div class="gg-v">Built.</div><div class="gg-d">Designed, coordinated, shipped</div></div>
+        <div class="gg-c"><div class="gg-v">Runs.</div><div class="gg-d">Live, no babysitting needed</div></div>
+      </div>
+    </div>
+  </div>
+</section>
+<section id="why">
+  <div class="wrap">
+    <div class="sec-eyebrow reveal">Why Rapido Parcel</div>
+    <h2 class="sec-title reveal delay-1">500% YoY growth.<br>100+ cities.<br>Last-mile is the<br>hardest ops problem.</h2>
+    <p class="sec-intro reveal delay-2">Rapido Parcel is solving the messiest part of logistics — the last mile. That's where ops rigour matters most. That's where I want to operate.</p>
+    <div class="why-grid">
+      <div class="why-card y reveal delay-1"><div class="why-title">Bias for action is my operating mode</div><div class="why-body">The JD says "strong bias for action, deliver under tight timelines, work with limited resources." At a Series A with no hierarchy and no playbook, that's not a trait — it's a survival requirement. I've been operating this way for 14 months. Rapido's pace won't feel like pressure. It'll feel like home.</div></div>
+      <div class="why-card dark reveal delay-2"><div class="why-title">I turn data into decisions, not decks</div><div class="why-body">Pricing analysis, demand tracking, performance dashboards — I've built and maintained these from scratch. The goal was never to produce a report. It was to change what we did next. That's the mindset Rapido Parcel needs from its ops team across 100+ cities.</div></div>
+      <div class="why-card dark reveal delay-3"><div class="why-title">Automation is how I think, not what I do occasionally</div><div class="why-body">Every time I found a manual process, I asked: why isn't this a system? At Rapido scale — 100+ cities, thousands of deliveries daily — manual reporting is a liability. I've replaced manual workflows with automated systems before. I'll do it again faster here.</div></div>
+      <div class="why-card y reveal delay-4"><div class="why-title">High-growth, multi-city ops is exactly my context</div><div class="why-body">500% YoY growth means the ops problem compounds every month. The systems that worked last quarter won't work next quarter. I've been building infrastructure that scales ahead of demand — not scrambling to keep up with it. That's the ops muscle Rapido Parcel needs right now.</div></div>
+    </div>
+  </div>
+</section>
+<section style="background:var(--ink);border-bottom:1px solid rgba(255,255,255,0.06)">
+  <div class="wrap">
+    <div class="sec-eyebrow reveal">Career arc</div>
+    <h2 class="sec-title reveal delay-1">How I got here.</h2>
+    <p class="sec-intro reveal delay-2">Psychology → ops → strategy. The compounding edge.</p>
+    <div class="tl">
+      <div class="tl-item reveal">
+        <div class="tl-date">Jan 2026<br>→ now</div>
+        <div class="tl-right">
+          <div class="tl-role">Product Operations Manager</div>
+          <div class="tl-org">Bridgetown Research · Bengaluru · Founding team</div>
+          <div class="tl-body">Promoted after 11 months. Hired & manage ops team of 4 with OKRs. Work directly with founder and Strategy PM. Own vendor strategy, automated quality systems, ops dashboard, vendor dashboard, client product features, and process automation. Full accountability across 100+ live projects.</div>
+          <div class="tl-tags"><span class="tag tag-y">Founding team</span><span class="tag tag-y">Hired team of 4</span><span class="tag tag-g">Automation</span><span class="tag tag-w">Series A</span></div>
+        </div>
+      </div>
+      <div class="tl-item reveal delay-1">
+        <div class="tl-date">Mar 2025<br>→ Jan 2026</div>
+        <div class="tl-right">
+          <div class="tl-role">Operations Associate</div>
+          <div class="tl-org">Bridgetown Research · Bengaluru</div>
+          <div class="tl-body">Joined with no ops background. Identified gaps, proposed solutions, built the infrastructure. Promoted in 11 months for thinking above the role.</div>
+          <div class="tl-tags"><span class="tag tag-y">Zero-to-one</span><span class="tag tag-w">Fast learner</span></div>
+        </div>
+      </div>
+      <div class="tl-item reveal delay-2">
+        <div class="tl-date">Jul 2024<br>→ Jan 2025</div>
+        <div class="tl-right">
+          <div class="tl-role">Psychologist & Projects Lead</div>
+          <div class="tl-org">Soukhya · Goa</div>
+          <div class="tl-body">Led projects, managed external relationships. Kept asking "why don't we have a system for this?" — that question got me into ops.</div>
+          <div class="tl-tags"><span class="tag tag-w">Projects lead</span><span class="tag tag-w">Systems thinking</span></div>
+        </div>
+      </div>
+      <div class="tl-item reveal delay-3">
+        <div class="tl-date">2021–2023</div>
+        <div class="tl-right">
+          <div class="tl-role">MSc Counselling Psychology · CGPA 8.96/10</div>
+          <div class="tl-org">Christ University, Delhi</div>
+          <div class="tl-body">Research methodology, behavioural systems, human motivation. Design Thinking certification, University of Virginia (2024).</div>
+          <div class="tl-tags"><span class="tag tag-g">CGPA 8.96</span><span class="tag tag-w">Design thinking</span></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+<div class="contact-sec" id="contact">
+  <div class="contact-inner">
+    <div class="contact-left reveal-left">
+      <div class="sec-eyebrow">Let's talk</div>
+      <h2 class="sec-title">Open to Senior<br>Operations Executive<br>roles at Rapido.</h2>
+      <p>Happy to walk through any initiative — or talk about what I'd automate first in Rapido Parcel's ops stack.</p>
+    </div>
+    <div class="contact-cards reveal-right">
+      <div class="contact-card"><div><div class="c-label">Phone</div><div class="c-val">+91 96196 06780</div></div><div class="c-arrow">→</div></div>
+      <div class="contact-card"><div><div class="c-label">Email</div><div class="c-val"><a href="mailto:gargisingh.work@gmail.com">gargisingh.work@gmail.com</a></div></div><div class="c-arrow">→</div></div>
+      <div class="contact-card"><div><div class="c-label">LinkedIn</div><div class="c-val"><a href="https://linkedin.com/in/gargi-singh-6a157b212" target="_blank">linkedin.com/in/gargi-singh-6a157b212</a></div></div><div class="c-arrow">→</div></div>
+    </div>
+  </div>
+</div>
+<script>
+const observer = new IntersectionObserver((entries) => {
+  entries.forEach(e => { if(e.isIntersecting) e.target.classList.add('visible'); });
+}, {threshold: 0.1});
+document.querySelectorAll('.reveal, .reveal-left, .reveal-right').forEach(el => observer.observe(el));
+function animateCounter(el) {
+  const target = parseInt(el.dataset.target);
+  const duration = 1400;
+  const start = performance.now();
+  function update(now) {
+    const elapsed = now - start;
+    const progress = Math.min(elapsed / duration, 1);
+    const ease = 1 - Math.pow(1 - progress, 3);
+    el.textContent = Math.round(ease * target);
+    if(progress < 1) requestAnimationFrame(update);
+  }
+  requestAnimationFrame(update);
+}
+const counterObserver = new IntersectionObserver((entries) => {
+  entries.forEach(e => { if(e.isIntersecting) { animateCounter(e.target); counterObserver.unobserve(e.target); } });
+}, {threshold: 0.5});
+document.querySelectorAll('.counter').forEach(el => counterObserver.observe(el));
+</script>
+</body>
+</html>
