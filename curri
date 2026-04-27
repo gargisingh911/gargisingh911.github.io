@@ -1,0 +1,372 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Gargi Singh — Curri</title>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;900&family=Space+Grotesk:wght@500;600;700&display=swap" rel="stylesheet">
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+:root{
+  --yellow:#FFD000;--yellow-dark:#C9A800;
+  --ink:#0C0C0C;--ink-2:#161616;--ink-3:#1F1F1F;
+  --white:#FFFFFF;--off:#F5F5F0;
+  --border:rgba(255,255,255,0.08);
+  --muted:rgba(255,255,255,0.4);
+  --orange:#FF6B00;
+}
+html{scroll-behavior:smooth}
+body{font-family:'Space Grotesk',sans-serif;background:var(--ink);color:var(--white);font-size:16px;line-height:1.6;overflow-x:hidden}
+.caution{height:36px;background:repeating-linear-gradient(-45deg,var(--yellow) 0px,var(--yellow) 20px,var(--ink) 20px,var(--ink) 40px);width:100%;flex-shrink:0}
+.caution.thin{height:8px}
+.cursor{width:10px;height:10px;background:var(--yellow);border-radius:0;position:fixed;pointer-events:none;z-index:9999;transform:translate(-50%,-50%) rotate(45deg);transition:width .15s,height .15s}
+body{cursor:none}
+@media(max-width:768px){body{cursor:auto}.cursor{display:none}}
+nav{position:sticky;top:0;z-index:100;background:var(--ink);border-bottom:1px solid var(--border)}
+.caution.thin{position:relative;top:0}
+.nav-inner{max-width:1100px;margin:0 auto;display:flex;align-items:center;justify-content:space-between;height:52px;padding:0 2rem}
+.nav-logo{font-size:14px;font-weight:700;color:var(--white);text-decoration:none;letter-spacing:.08em;text-transform:uppercase}
+.nav-logo span{color:var(--yellow)}
+.nav-links{display:flex;gap:2rem;list-style:none}
+.nav-links a{font-size:12px;color:var(--muted);text-decoration:none;font-weight:600;letter-spacing:.08em;text-transform:uppercase;transition:color .2s}
+.nav-links a:hover{color:var(--yellow)}
+.nav-cta{background:var(--yellow);color:var(--ink)!important;padding:6px 16px;border-radius:2px;font-size:12px!important;font-weight:700!important}
+.wrap{max-width:1100px;margin:0 auto;padding:0 2rem}
+.reveal{opacity:0;transform:translateY(24px);transition:opacity .7s ease,transform .7s ease}
+.reveal.visible{opacity:1;transform:translateY(0)}
+.reveal-left{opacity:0;transform:translateX(-24px);transition:opacity .7s ease,transform .7s ease}
+.reveal-left.visible{opacity:1;transform:translateX(0)}
+.reveal-right{opacity:0;transform:translateX(24px);transition:opacity .7s ease,transform .7s ease}
+.reveal-right.visible{opacity:1;transform:translateX(0)}
+.d1{transition-delay:.1s}.d2{transition-delay:.2s}.d3{transition-delay:.3s}.d4{transition-delay:.4s}
+.hero{min-height:100vh;display:grid;grid-template-rows:auto 1fr auto;background:var(--ink);position:relative;overflow:hidden}
+.hero::before{content:'';position:absolute;inset:0;background-image:linear-gradient(rgba(255,208,0,0.04) 1px,transparent 1px),linear-gradient(90deg,rgba(255,208,0,0.04) 1px,transparent 1px);background-size:48px 48px;pointer-events:none}
+.hero-top-tape{background:repeating-linear-gradient(-45deg,var(--yellow) 0,var(--yellow) 20px,var(--ink) 20px,var(--ink) 40px);height:36px}
+.hero-content{display:flex;flex-direction:column;justify-content:flex-end;padding:0 2rem 3rem;position:relative;z-index:1;max-width:1100px;margin:0 auto;width:100%}
+.hero-eyebrow{display:flex;align-items:center;gap:12px;margin-bottom:2rem}
+.hero-badge{font-size:11px;font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:var(--yellow);border:1px solid rgba(255,208,0,0.25);padding:5px 12px;border-radius:2px}
+.hero-dot{width:8px;height:8px;background:var(--yellow);border-radius:0;animation:blink 1.5s infinite}
+@keyframes blink{0%,100%{opacity:1}50%{opacity:.2}}
+.hero h1{font-size:clamp(52px,8.5vw,112px);font-weight:700;line-height:.9;letter-spacing:-4px;color:var(--white);margin-bottom:2rem;text-transform:uppercase}
+.hero h1 .y{color:var(--yellow)}
+.hero h1 .stroke{-webkit-text-stroke:1.5px rgba(255,255,255,0.2);color:transparent}
+.hero-bottom{display:grid;grid-template-columns:1fr 1fr 1fr;gap:2rem;border-top:1px solid var(--border);padding-top:2rem;align-items:end}
+.hero-desc{font-size:14px;color:var(--muted);line-height:1.75;font-family:'Inter',sans-serif}
+.hero-desc strong{color:var(--white);font-weight:600}
+.hero-stats-row{display:flex;gap:2rem;justify-content:center}
+.hs{text-align:center}
+.hs .num{font-size:44px;font-weight:700;color:var(--white);line-height:1;letter-spacing:-2px;display:block}
+.hs .num sub{font-size:20px;color:var(--yellow)}
+.hs .label{font-size:10px;color:var(--muted);font-weight:600;text-transform:uppercase;letter-spacing:.1em;margin-top:4px;display:block}
+.hero-actions{text-align:right;display:flex;flex-direction:column;gap:.75rem;align-items:flex-end}
+.btn-y{background:var(--yellow);color:var(--ink);padding:12px 24px;border-radius:2px;font-size:13px;font-weight:700;text-decoration:none;display:inline-block;letter-spacing:.04em;text-transform:uppercase;transition:transform .15s}
+.btn-y:hover{transform:translateY(-2px)}
+.btn-w{background:transparent;color:var(--white);padding:12px 24px;border-radius:2px;font-size:13px;font-weight:600;text-decoration:none;display:inline-block;border:1px solid var(--border);letter-spacing:.04em;text-transform:uppercase;transition:border-color .2s}
+.btn-w:hover{border-color:var(--yellow);color:var(--yellow)}
+.ticker{background:var(--yellow);padding:.55rem 0;overflow:hidden;white-space:nowrap}
+.ticker-track{display:inline-block;animation:scroll 20s linear infinite}
+.ticker-track span{font-size:11px;font-weight:800;color:var(--ink);letter-spacing:.12em;text-transform:uppercase;margin:0 2rem}
+.ticker-track span::before{content:'▶';margin-right:1.5rem;font-size:8px;opacity:.5}
+@keyframes scroll{0%{transform:translateX(0)}100%{transform:translateX(-50%)}}
+section{padding:6rem 0;border-bottom:1px solid var(--border)}
+.sec-eye{font-size:11px;font-weight:700;letter-spacing:.16em;text-transform:uppercase;color:var(--yellow);margin-bottom:.75rem;display:flex;align-items:center;gap:10px}
+.sec-eye::before{content:'';width:20px;height:2px;background:var(--yellow)}
+.sec-title{font-size:clamp(28px,4.5vw,48px);font-weight:700;letter-spacing:-1.5px;line-height:1.05;color:var(--white);margin-bottom:.75rem;text-transform:uppercase}
+.sec-intro{font-size:15px;color:var(--muted);line-height:1.75;margin-bottom:3rem;max-width:560px;font-family:'Inter',sans-serif}
+.match-stack{display:flex;flex-direction:column;gap:1px;background:var(--border);border-radius:4px;overflow:hidden}
+.match-row{display:grid;grid-template-columns:1fr 1fr;gap:1px;background:var(--border)}
+.mc{background:var(--ink-2);padding:2rem}
+.mc.hl{background:rgba(255,208,0,0.05);border-left:3px solid var(--yellow)}
+.mc-label{font-size:10px;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:var(--muted);margin-bottom:.6rem}
+.mc.hl .mc-label{color:var(--yellow)}
+.mc-req{font-size:15px;font-weight:700;color:rgba(255,255,255,0.55);line-height:1.4;margin-bottom:.4rem}
+.mc.hl .mc-req{color:var(--white)}
+.mc-proof{font-size:13px;color:rgba(255,255,255,0.3);line-height:1.65;font-family:'Inter',sans-serif}
+.mc.hl .mc-proof{color:rgba(255,255,255,0.6)}
+.built-grid{display:grid;grid-template-columns:1fr 1fr 1fr;gap:1px;background:var(--border);border-radius:4px;overflow:hidden;margin-bottom:1px}
+.b-card{background:var(--ink-2);padding:2rem;position:relative;overflow:hidden;transition:background .2s}
+.b-card:hover{background:var(--ink-3)}
+.b-card::after{content:'';position:absolute;top:0;left:0;width:3px;height:100%;background:var(--border)}
+.b-card.y::after{background:var(--yellow)}.b-card.o::after{background:var(--orange)}
+.b-num{font-size:10px;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:var(--muted);margin-bottom:.75rem}
+.b-card.y .b-num{color:var(--yellow)}.b-card.o .b-num{color:var(--orange)}
+.b-title{font-size:15px;font-weight:700;color:var(--white);line-height:1.3;margin-bottom:.5rem}
+.b-body{font-size:13px;color:rgba(255,255,255,0.35);line-height:1.65;font-family:'Inter',sans-serif}
+.b-tag{display:inline-block;font-size:10px;font-weight:700;padding:3px 10px;margin-top:.75rem;letter-spacing:.06em;text-transform:uppercase}
+.tag-live{background:rgba(255,208,0,0.1);color:rgba(255,208,0,0.7);border:1px solid rgba(255,208,0,0.15)}
+.tag-build{background:rgba(255,107,0,0.1);color:rgba(255,107,0,0.7);border:1px solid rgba(255,107,0,0.15)}
+.tag-stealth{background:rgba(255,255,255,0.04);color:rgba(255,255,255,0.25);border:1px solid rgba(255,255,255,0.08)}
+.force-strip{background:var(--ink-2);border:1px solid var(--border);border-radius:4px;overflow:hidden;margin-top:1rem}
+.force-head{padding:2rem 2.5rem 1.5rem;border-bottom:1px solid var(--border);display:flex;align-items:baseline;gap:1.5rem}
+.force-label{font-size:10px;font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:var(--yellow)}
+.force-title{font-size:20px;font-weight:700;color:var(--white);letter-spacing:-.5px;text-transform:uppercase}
+.force-cells{display:grid;grid-template-columns:repeat(4,1fr)}
+.fc{padding:1.5rem 2rem;border-right:1px solid var(--border)}
+.fc:last-child{border-right:none}
+.fc-v{font-size:20px;font-weight:700;color:var(--white);line-height:1;margin-bottom:.4rem;text-transform:uppercase}
+.fc:hover .fc-v{color:var(--yellow)}
+.fc-d{font-size:12px;color:rgba(255,255,255,0.25);line-height:1.4;font-family:'Inter',sans-serif}
+.why-grid{display:grid;grid-template-columns:1fr 1fr;gap:1px;background:var(--border);border-radius:4px;overflow:hidden}
+.wc{background:var(--ink-2);padding:2.5rem;transition:background .2s}
+.wc:hover{background:var(--ink-3)}.wc.y{background:var(--yellow)}
+.wc-title{font-size:17px;font-weight:700;color:var(--white);margin-bottom:.5rem;line-height:1.2;letter-spacing:-.3px;text-transform:uppercase}
+.wc.y .wc-title{color:var(--ink)}
+.wc-body{font-size:13px;color:rgba(255,255,255,0.4);line-height:1.7;font-family:'Inter',sans-serif}
+.wc.y .wc-body{color:rgba(0,0,0,0.6)}
+.progress-section{background:var(--ink-2);border-top:1px solid var(--border);border-bottom:1px solid var(--border);padding:4rem 0}
+.progress-title{font-size:13px;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:var(--muted);margin-bottom:2.5rem}
+.bar-row{margin-bottom:1.5rem}
+.bar-label{display:flex;justify-content:space-between;margin-bottom:.5rem}
+.bar-name{font-size:12px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:var(--white)}
+.bar-pct{font-size:12px;font-weight:700;color:var(--yellow)}
+.bar-track{height:6px;background:rgba(255,255,255,0.06);border-radius:0;overflow:hidden}
+.bar-fill{height:100%;background:var(--yellow);border-radius:0;width:0;transition:width 1.2s cubic-bezier(.4,0,.2,1)}
+.tl{position:relative}
+.tl::before{content:'';position:absolute;left:88px;top:8px;bottom:0;width:1px;background:var(--border)}
+.tl-item{display:grid;grid-template-columns:72px 1fr;gap:0 2rem;margin-bottom:0}
+.tl-date{font-size:10px;color:var(--muted);font-weight:700;padding-top:4px;text-align:right;line-height:1.4;letter-spacing:.06em;text-transform:uppercase}
+.tl-right{padding:0 0 2.5rem 2rem;position:relative}
+.tl-right::before{content:'';position:absolute;left:-5px;top:6px;width:10px;height:10px;background:var(--ink);border:2px solid var(--border);transform:rotate(45deg)}
+.tl-item:first-child .tl-right::before{background:var(--yellow);border-color:var(--yellow)}
+.tl-role{font-size:16px;font-weight:700;color:var(--white);margin-bottom:2px;text-transform:uppercase;letter-spacing:-.3px}
+.tl-org{font-size:12px;color:var(--yellow);font-weight:700;margin-bottom:.5rem;letter-spacing:.04em;text-transform:uppercase}
+.tl-body{font-size:13px;color:rgba(255,255,255,0.35);line-height:1.7;font-family:'Inter',sans-serif}
+.tl-tags{display:flex;flex-wrap:wrap;gap:5px;margin-top:.6rem}
+.tag{font-size:10px;font-weight:700;padding:3px 10px;letter-spacing:.06em;text-transform:uppercase}
+.tag-y{background:rgba(255,208,0,0.08);color:rgba(255,208,0,0.7);border:1px solid rgba(255,208,0,0.15)}
+.tag-o{background:rgba(255,107,0,0.08);color:rgba(255,107,0,0.6);border:1px solid rgba(255,107,0,0.12)}
+.tag-w{background:rgba(255,255,255,0.04);color:rgba(255,255,255,0.3);border:1px solid rgba(255,255,255,0.08)}
+.contact-sec{background:var(--ink);padding:0}
+.contact-tape{background:repeating-linear-gradient(-45deg,var(--yellow) 0,var(--yellow) 20px,var(--ink) 20px,var(--ink) 40px);height:36px}
+.contact-inner{max-width:1100px;margin:0 auto;padding:5rem 2rem;display:grid;grid-template-columns:1fr 1fr;gap:4rem;align-items:center}
+.contact-left .sec-title{color:var(--white)}
+.contact-left p{font-size:15px;color:var(--muted);line-height:1.7;margin-top:.75rem;font-family:'Inter',sans-serif}
+.contact-cards{display:flex;flex-direction:column;gap:1px;background:var(--border);border-radius:4px;overflow:hidden}
+.cc{background:var(--ink-2);padding:1.25rem 1.5rem;display:flex;align-items:center;justify-content:space-between;transition:background .2s}
+.cc:hover{background:var(--ink-3)}
+.cc-l{font-size:10px;font-weight:700;color:var(--muted);letter-spacing:.1em;text-transform:uppercase;margin-bottom:3px}
+.cc-v{font-size:14px;font-weight:700;color:var(--white)}
+.cc-v a{color:var(--white);text-decoration:none}
+.cc-arr{font-size:16px;color:var(--border)}
+.counter{display:inline-block}
+@media(max-width:768px){
+  .hero-bottom,.match-row,.built-grid,.force-cells,.why-grid,.contact-inner{grid-template-columns:1fr}
+  .hero h1{letter-spacing:-2px}.nav-links{display:none}.tl::before{left:68px}
+}
+</style>
+</head>
+<body>
+<div class="cursor" id="cur"></div>
+<nav>
+  <div class="caution thin"></div>
+  <div class="nav-inner">
+    <a class="nav-logo" href="#">Gargi <span>Singh</span></a>
+    <ul class="nav-links">
+      <li><a href="#match">The fit</a></li>
+      <li><a href="#built">Built</a></li>
+      <li><a href="#why">Why Curri</a></li>
+      <li><a href="#contact" class="nav-cta">Let's talk</a></li>
+    </ul>
+  </div>
+</nav>
+<div class="hero">
+  <div class="hero-top-tape"></div>
+  <div class="hero-content">
+    <div class="hero-eyebrow reveal">
+      <span class="hero-badge">Manager, Operations Strategy · Curri</span>
+      <div class="hero-dot"></div>
+    </div>
+    <h1 class="reveal d1">I don't<br>manage<br><span class="y">teams.</span><br><span class="stroke">I manage</span><br>outcomes.</h1>
+    <div class="hero-bottom reveal d2">
+      <p class="hero-desc">Product Operations Manager at Bridgetown Research — <strong>founding team, Series A</strong>. I own ambiguous, cross-functional problems end to end. No playbook. No formal authority. Just execution and measurable business impact.</p>
+      <div class="hero-stats-row">
+        <div class="hs"><span class="num"><span class="counter" data-target="11">0</span><sub>mo</sub></span><span class="label">Associate → Manager</span></div>
+        <div class="hs"><span class="num"><span class="counter" data-target="6">0</span><sub>+</sub></span><span class="label">Systems shipped</span></div>
+        <div class="hs"><span class="num"><span class="counter" data-target="100">0</span><sub>+</sub></span><span class="label">Live projects</span></div>
+      </div>
+      <div class="hero-actions">
+        <a href="#match" class="btn-y">See the fit →</a>
+        <a href="#built" class="btn-w">What I built</a>
+      </div>
+    </div>
+  </div>
+</div>
+<div class="ticker">
+  <div class="ticker-track">
+    <span>Force multiplier for ops leadership</span><span>Drives without formal authority</span><span>Ambiguous problems → measurable outcomes</span><span>Founding team · Series A</span><span>6 systems shipped</span><span>Hired ops team of 4</span><span>Genuine AI fluency</span><span>Data to insight to action</span><span>Force multiplier for ops leadership</span><span>Drives without formal authority</span><span>Ambiguous problems → measurable outcomes</span><span>Founding team · Series A</span><span>6 systems shipped</span><span>Hired ops team of 4</span><span>Genuine AI fluency</span><span>Data to insight to action</span>
+  </div>
+</div>
+<div class="progress-section">
+  <div class="wrap">
+    <div class="progress-title reveal">Operational capability — site assessment</div>
+    <div class="bar-row reveal d1"><div class="bar-label"><span class="bar-name">Cross-functional ops ownership</span><span class="bar-pct">100%</span></div><div class="bar-track"><div class="bar-fill" data-width="100"></div></div></div>
+    <div class="bar-row reveal d2"><div class="bar-label"><span class="bar-name">Ambiguous problem → structured execution</span><span class="bar-pct">100%</span></div><div class="bar-track"><div class="bar-fill" data-width="100"></div></div></div>
+    <div class="bar-row reveal d3"><div class="bar-label"><span class="bar-name">Driving without formal authority</span><span class="bar-pct">100%</span></div><div class="bar-track"><div class="bar-fill" data-width="100"></div></div></div>
+    <div class="bar-row reveal d4"><div class="bar-label"><span class="bar-name">Data → insight → action</span><span class="bar-pct">95%</span></div><div class="bar-track"><div class="bar-fill" data-width="95"></div></div></div>
+    <div class="bar-row reveal"><div class="bar-label"><span class="bar-name">AI fluency — builder, not just user</span><span class="bar-pct">90%</span></div><div class="bar-track"><div class="bar-fill" data-width="90"></div></div></div>
+  </div>
+</div>
+<section id="match">
+  <div class="wrap">
+    <div class="sec-eye reveal">Role fit</div>
+    <h2 class="sec-title reveal d1">Curri's JD.<br>My last 14 months.</h2>
+    <p class="sec-intro reveal d2">Line by line. Every requirement in this JD maps directly to what I've been doing at Bridgetown — without being asked, without a playbook, and without a team above me.</p>
+    <div class="match-stack reveal d1">
+      <div class="match-row">
+        <div class="mc"><div class="mc-label">Curri needs</div><div class="mc-req">Own & drive highest-priority cross-functional ops initiatives end-to-end</div><div class="mc-proof">Individual contributor who manages outcomes, not people. Extension of Ops leadership.</div></div>
+        <div class="mc hl"><div class="mc-label">I've done this</div><div class="mc-req">Every system at Bridgetown — all 6 — started as a gap I spotted and owned end-to-end</div><div class="mc-proof">No hierarchy. No handoffs. From identifying the gap to making the case to leadership to shipping and running it — that's been my entire operating model for 14 months. Autopublish, vendor dashboard, selection framework, pre-approval feature, team ops, stealth vertical — all mine.</div></div>
+      </div>
+      <div class="match-row">
+        <div class="mc"><div class="mc-label">Curri needs</div><div class="mc-req">Identify operational gaps & solve creatively — not by adding headcount or producing more decks</div><div class="mc-proof">Rethink how the work gets done. Force multiplier, not incrementalist.</div></div>
+        <div class="mc hl"><div class="mc-label">I've done this</div><div class="mc-req">Built autopublish — replaced manual review entirely with 3 automated signals</div><div class="mc-proof">Fraud detection + quality scoring + identity verification. Every time my team was doing something a system could do, I built the system. No headcount added. No deck produced. The workflow was rethought and replaced. That's the instinct Curri is describing.</div></div>
+      </div>
+      <div class="match-row">
+        <div class="mc"><div class="mc-label">Curri needs</div><div class="mc-req">Lead ops goal setting, KPI definition, reporting & business reviews</div><div class="mc-proof">Partner with Product, Engineering, Finance, Sales. Provide analysis & updates to executive leadership.</div></div>
+        <div class="mc hl"><div class="mc-label">I've done this</div><div class="mc-req">Work directly with founder & Strategy PM — all OKRs, reporting, and strategic decisions run through me</div><div class="mc-proof">Set OKRs for my team of 4. Built the ops dashboard tracking 100+ live projects. Surface quality signals and performance data to leadership. Cross-functional coordination across product, ops, vendors, and clients — no middleman, no translation layer.</div></div>
+      </div>
+      <div class="match-row">
+        <div class="mc"><div class="mc-label">Curri needs</div><div class="mc-req">Proven track record of driving execution without formal authority</div><div class="mc-proof">Insatiably curious. Data to insight to action fast. Strong operational judgment.</div></div>
+        <div class="mc hl"><div class="mc-label">I've done this</div><div class="mc-req">Series A, no hierarchy — every initiative was unsolicited and driven purely through influence</div><div class="mc-proof">None of the 6 systems I built were requested. I spotted the gap, made the case, and drove execution across functions with no formal authority over any of them. Promoted in 11 months for exactly this. That's not a claim — it's the promotion itself.</div></div>
+      </div>
+    </div>
+  </div>
+</section>
+<section id="built" style="background:var(--ink-2)">
+  <div class="wrap">
+    <div class="sec-eye reveal">What I built</div>
+    <h2 class="sec-title reveal d1">Six systems.<br>Zero headcount added.<br>All live.</h2>
+    <p class="sec-intro reveal d2">Not decks. Not recommendations. Systems that run. Each one started as an ambiguous gap — exactly what Curri is hiring for.</p>
+    <div class="built-grid">
+      <div class="b-card y reveal d1"><div class="b-num">01 · Automation</div><div class="b-title">Autopublish — 3-signal automated quality system</div><div class="b-body">Fraud detection, quality score /5, identity verification. Replaced manual review entirely. Curri parallel: identify ops gaps and solve creatively — not by adding headcount but by rethinking how work gets done.</div><span class="b-tag tag-live">Live</span></div>
+      <div class="b-card y reveal d2"><div class="b-num">02 · Ops visibility</div><div class="b-title">Ops dashboard — 100+ live projects tracked</div><div class="b-body">Built the performance visibility layer — requests, review status, quality signals. Curri parallel: lead KPI definition, reporting, and business reviews with clear analysis to executive leadership.</div><span class="b-tag tag-live">Live</span></div>
+      <div class="b-card y reveal d3"><div class="b-num">03 · Commercial logic</div><div class="b-title">Vendor selection framework + CPI negotiation</div><div class="b-body">Framework matching project to optimal vendor. Own all commercial terms. Curri parallel: complex cross-functional decision-making that touches ops, finance, and vendor management simultaneously.</div><span class="b-tag tag-build">Building</span></div>
+    </div>
+    <div class="built-grid" style="margin-top:1px">
+      <div class="b-card o reveal d1"><div class="b-num">04 · Partner product</div><div class="b-title">Vendor dashboard — external partners self-serve</div><div class="b-body">Built a product for external partners. Reduced ops overhead. Curri parallel: solve for the partner experience in a marketplace ops environment — Curri's driver and business partner ecosystem.</div><span class="b-tag tag-live">Live</span></div>
+      <div class="b-card o reveal d2"><div class="b-num">05 · Client product</div><div class="b-title">Pre-approval workflow — proposed, coordinated, shipped</div><div class="b-body">Spotted a client trust gap, proposed the fix to leadership, owned the build. Curri parallel: take ambiguous problems, establish ownership, deliver measurable business impact.</div><span class="b-tag tag-live">Live</span></div>
+      <div class="b-card reveal d3"><div class="b-num">06 · Stealth vertical</div><div class="b-title">Led branding & build of new expert network vertical</div><div class="b-body">Positioning, naming, GTM design, operational structure — from a blank page. Curri parallel: highest-priority cross-functional initiative that doesn't fit neatly within a single team. Exactly this.</div><span class="b-tag tag-stealth">In stealth</span></div>
+    </div>
+    <div class="force-strip reveal">
+      <div class="force-head"><span class="force-label">The pattern</span><span class="force-title">Every initiative was unsolicited. Every one shipped.</span></div>
+      <div class="force-cells">
+        <div class="fc"><div class="fc-v">Spotted.</div><div class="fc-d">Gap identified before anyone named it</div></div>
+        <div class="fc"><div class="fc-v">Proposed.</div><div class="fc-d">Made the case to leadership directly</div></div>
+        <div class="fc"><div class="fc-v">Built.</div><div class="fc-d">Designed, coordinated, shipped</div></div>
+        <div class="fc"><div class="fc-v">Runs.</div><div class="fc-d">Live, no babysitting needed</div></div>
+      </div>
+    </div>
+  </div>
+</section>
+<section id="why">
+  <div class="wrap">
+    <div class="sec-eye reveal">Why Curri</div>
+    <h2 class="sec-title reveal d1">Construction logistics<br>is the last industry<br>that hasn't been<br>properly fixed.</h2>
+    <p class="sec-intro reveal d2">Last-mile for construction is genuinely hard — unpredictable demand, complex stakeholders, high stakes for every delay. That's where operational strategy matters most.</p>
+    <div class="why-grid reveal d1">
+      <div class="wc y"><div class="wc-title">This role is described as "managing outcomes, not people" — that's how I've operated since day one</div><div class="wc-body">At Bridgetown, I'm an individual contributor with full ownership of 6+ major initiatives. No direct reports on most of them. Pure cross-functional influence. That's exactly the model Curri is describing — and it's the model I've been running for 14 months.</div></div>
+      <div class="wc"><div class="wc-title">"Force multiplier for Ops leadership" — I know what this means from inside</div><div class="wc-body">Working directly with a founder and Strategy Director daily, I've been the person who takes ambiguous leadership priorities and turns them into structured, executable programmes. That translation layer — from vision to OKR to system — is what I do.</div></div>
+      <div class="wc"><div class="wc-title">YC S19, hyper-growth, AI-enabled ops — this is exactly where I want to operate</div><div class="wc-body">Curri is building AI-enabled operations for a massive, underserved market. The front-row seat to that build is what makes this role worth taking. I don't want a stable ops job. I want a hard one with real stakes and real visibility.</div></div>
+      <div class="wc y"><div class="wc-title">Genuine AI fluency — using it to build, not just write emails</div><div class="wc-body">You called it out as a bonus point: "genuine AI fluency — using it to be a builder and move faster." I use AI across ops design, system architecture, quality logic, and creative process. It's infrastructure for me, not a novelty. That's the distinction Curri is making.</div></div>
+    </div>
+  </div>
+</section>
+<section style="background:var(--ink-2)">
+  <div class="wrap">
+    <div class="sec-eye reveal">Career arc</div>
+    <h2 class="sec-title reveal d1">How I got here.</h2>
+    <p class="sec-intro reveal d2">Psychology → ops → strategy. The edge that makes every system different.</p>
+    <div class="tl">
+      <div class="tl-item reveal">
+        <div class="tl-date">Jan 2026 → now</div>
+        <div class="tl-right">
+          <div class="tl-role">Product Operations Manager</div>
+          <div class="tl-org">Bridgetown Research · Bengaluru · Founding team</div>
+          <div class="tl-body">Promoted after 11 months. Hired & manage ops team of 4 with OKRs. Work directly with founder and Strategy PM (Director). Own vendor strategy, automated quality systems, ops & vendor dashboards, client product features, process automation, and stealth expert network vertical. Full strategic + operational accountability across 100+ live projects.</div>
+          <div class="tl-tags"><span class="tag tag-y">Founding team</span><span class="tag tag-y">Hired team of 4</span><span class="tag tag-o">Force multiplier</span><span class="tag tag-w">Series A</span></div>
+        </div>
+      </div>
+      <div class="tl-item reveal d1">
+        <div class="tl-date">Mar 2025 → Jan 2026</div>
+        <div class="tl-right">
+          <div class="tl-role">Operations Associate</div>
+          <div class="tl-org">Bridgetown Research · Bengaluru</div>
+          <div class="tl-body">Joined with no ops background. Identified gaps, proposed solutions, built the infrastructure. Promoted in 11 months for thinking and operating above the role.</div>
+          <div class="tl-tags"><span class="tag tag-y">Zero-to-one</span><span class="tag tag-w">Promoted early</span></div>
+        </div>
+      </div>
+      <div class="tl-item reveal d2">
+        <div class="tl-date">Jul 2024 → Jan 2025</div>
+        <div class="tl-right">
+          <div class="tl-role">Psychologist & Projects Lead</div>
+          <div class="tl-org">Soukhya · Goa</div>
+          <div class="tl-body">Led projects, managed external relationships. Kept asking "why don't we have a system for this?" — that question got me into ops.</div>
+          <div class="tl-tags"><span class="tag tag-w">Projects lead</span><span class="tag tag-w">Systems thinking</span></div>
+        </div>
+      </div>
+      <div class="tl-item reveal d3">
+        <div class="tl-date">2021–2023</div>
+        <div class="tl-right">
+          <div class="tl-role">MSc Counselling Psychology · CGPA 8.96/10</div>
+          <div class="tl-org">Christ University, Delhi</div>
+          <div class="tl-body">Research methodology, behavioural systems, human motivation. Design Thinking certification, University of Virginia (2024). The foundation that makes the ops work different.</div>
+          <div class="tl-tags"><span class="tag tag-o">CGPA 8.96</span><span class="tag tag-w">Design thinking</span></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+<div class="contact-sec" id="contact">
+  <div class="contact-tape"></div>
+  <div class="contact-inner">
+    <div class="contact-left reveal-left">
+      <div class="sec-eye">Let's talk</div>
+      <h2 class="sec-title">Open to Manager,<br>Operations Strategy<br>at Curri.</h2>
+      <p>Happy to walk through any initiative in detail — or talk through Curri's hardest current operational problem.</p>
+    </div>
+    <div class="contact-cards reveal-right">
+      <div class="cc"><div><div class="cc-l">Phone</div><div class="cc-v">+91 96196 06780</div></div><div class="cc-arr">→</div></div>
+      <div class="cc"><div><div class="cc-l">Email</div><div class="cc-v"><a href="mailto:gargisingh.work@gmail.com">gargisingh.work@gmail.com</a></div></div><div class="cc-arr">→</div></div>
+      <div class="cc"><div><div class="cc-l">LinkedIn</div><div class="cc-v"><a href="https://linkedin.com/in/gargi-singh-6a157b212" target="_blank">linkedin.com/in/gargi-singh-6a157b212</a></div></div><div class="cc-arr">→</div></div>
+    </div>
+  </div>
+  <div class="contact-tape"></div>
+</div>
+<script>
+const cur = document.getElementById('cur');
+document.addEventListener('mousemove', e => { cur.style.left = e.clientX+'px'; cur.style.top = e.clientY+'px'; });
+document.querySelectorAll('a,button').forEach(el => {
+  el.addEventListener('mouseenter', () => { cur.style.width='20px'; cur.style.height='20px'; });
+  el.addEventListener('mouseleave', () => { cur.style.width='10px'; cur.style.height='10px'; });
+});
+const obs = new IntersectionObserver(entries => {
+  entries.forEach(e => { if(e.isIntersecting) e.target.classList.add('visible'); });
+}, {threshold: 0.1});
+document.querySelectorAll('.reveal,.reveal-left,.reveal-right').forEach(el => obs.observe(el));
+function animateCounter(el) {
+  const target = parseInt(el.dataset.target);
+  const start = performance.now();
+  const dur = 1400;
+  (function update(now) {
+    const p = Math.min((now-start)/dur,1);
+    const e = 1-Math.pow(1-p,3);
+    el.textContent = Math.round(e*target);
+    if(p<1) requestAnimationFrame(update);
+  })(performance.now());
+}
+const cObs = new IntersectionObserver(entries => {
+  entries.forEach(e => { if(e.isIntersecting) { animateCounter(e.target); cObs.unobserve(e.target); } });
+}, {threshold: 0.5});
+document.querySelectorAll('.counter').forEach(el => cObs.observe(el));
+const bObs = new IntersectionObserver(entries => {
+  entries.forEach(e => {
+    if(e.isIntersecting) {
+      const fill = e.target.querySelector('.bar-fill');
+      if(fill) { setTimeout(() => { fill.style.width = fill.dataset.width+'%'; }, 200); }
+      bObs.unobserve(e.target);
+    }
+  });
+}, {threshold: 0.3});
+document.querySelectorAll('.bar-row').forEach(el => bObs.observe(el));
+</script>
+</body>
+</html>
