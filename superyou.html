@@ -1,0 +1,317 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Gargi Singh — SuperYou</title>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;900&family=Bebas+Neue&display=swap" rel="stylesheet">
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+:root{
+  --red:#E31837;--red-dark:#B01020;--red-light:#FEF0F2;
+  --green:#3DD68C;--green-dark:#1A9E5F;--green-light:#EDFAF4;
+  --ink:#0A0A0A;--white:#FFFFFF;--off:#F8F8F6;
+  --border:#E8E8E8;--muted:#666;
+}
+html{scroll-behavior:smooth}
+body{font-family:'Inter',sans-serif;background:var(--white);color:var(--ink);font-size:16px;line-height:1.6;overflow-x:hidden}
+.reveal{opacity:0;transform:translateY(28px);transition:opacity .7s ease,transform .7s ease}
+.reveal.visible{opacity:1;transform:translateY(0)}
+.reveal-left{opacity:0;transform:translateX(-28px);transition:opacity .7s ease,transform .7s ease}
+.reveal-left.visible{opacity:1;transform:translateX(0)}
+.reveal-right{opacity:0;transform:translateX(28px);transition:opacity .7s ease,transform .7s ease}
+.reveal-right.visible{opacity:1;transform:translateX(0)}
+.d1{transition-delay:.1s}.d2{transition-delay:.2s}.d3{transition-delay:.3s}.d4{transition-delay:.4s}
+nav{position:sticky;top:0;background:var(--red);z-index:100;padding:0 2rem}
+.nav-inner{max-width:1100px;margin:0 auto;display:flex;align-items:center;justify-content:space-between;height:52px}
+.nav-logo{font-family:'Bebas Neue',sans-serif;font-size:22px;color:var(--white);text-decoration:none;letter-spacing:.05em}
+.nav-links{display:flex;gap:2rem;list-style:none}
+.nav-links a{font-size:12px;color:rgba(255,255,255,0.65);text-decoration:none;font-weight:700;letter-spacing:.1em;text-transform:uppercase;transition:color .2s}
+.nav-links a:hover{color:var(--white)}
+.nav-cta{background:var(--white);color:var(--red)!important;padding:6px 16px;border-radius:2px;font-size:12px!important;font-weight:800!important}
+.wrap{max-width:1100px;margin:0 auto;padding:0 2rem}
+.hero{background:var(--ink);min-height:100vh;display:flex;flex-direction:column;justify-content:flex-end;padding:0;overflow:hidden;position:relative}
+.hero-stripe{height:12px;background:var(--red);position:absolute;top:0;left:0;right:0}
+.hero-inner{max-width:1100px;margin:0 auto;width:100%;padding:5rem 2rem 4rem;position:relative;z-index:1}
+.hero-tag{display:inline-block;background:var(--green);color:var(--ink);font-size:11px;font-weight:800;letter-spacing:.14em;text-transform:uppercase;padding:5px 14px;margin-bottom:2rem}
+.hero h1{font-family:'Bebas Neue',sans-serif;font-size:clamp(72px,12vw,160px);line-height:.88;letter-spacing:.02em;color:var(--white);margin-bottom:2.5rem}
+.hero h1 .r{color:var(--red)}.hero h1 .g{color:var(--green)}
+.hero h1 .outline{-webkit-text-stroke:2px rgba(255,255,255,0.2);color:transparent}
+.hero-bottom{display:grid;grid-template-columns:1fr 1fr 1fr;gap:2rem;border-top:1px solid rgba(255,255,255,0.1);padding-top:2rem;align-items:end}
+.hero-desc{font-size:14px;color:rgba(255,255,255,0.5);line-height:1.75}
+.hero-desc strong{color:var(--white);font-weight:600}
+.hero-stats{display:flex;gap:2rem;justify-content:center}
+.hs .num{font-family:'Bebas Neue',sans-serif;font-size:56px;color:var(--white);line-height:1;display:block;letter-spacing:.02em}
+.hs .num span{color:var(--green);font-size:32px}
+.hs .label{font-size:10px;color:rgba(255,255,255,0.3);font-weight:700;text-transform:uppercase;letter-spacing:.1em;display:block}
+.hero-actions{display:flex;flex-direction:column;gap:.75rem;align-items:flex-end}
+.btn-red{background:var(--red);color:#fff;padding:13px 26px;font-size:13px;font-weight:800;text-decoration:none;display:inline-block;letter-spacing:.06em;text-transform:uppercase;transition:background .2s}
+.btn-red:hover{background:var(--red-dark)}
+.btn-outline{background:transparent;color:var(--white);padding:13px 26px;font-size:13px;font-weight:700;text-decoration:none;display:inline-block;border:1.5px solid rgba(255,255,255,0.2);letter-spacing:.06em;text-transform:uppercase;transition:border-color .2s}
+.btn-outline:hover{border-color:var(--green);color:var(--green)}
+.ticker{background:var(--green);padding:.6rem 0;overflow:hidden;white-space:nowrap}
+.ticker-track{display:inline-block;animation:scroll 20s linear infinite}
+.ticker-track span{font-size:11px;font-weight:800;color:var(--ink);letter-spacing:.12em;text-transform:uppercase;margin:0 2rem}
+.ticker-track span::before{content:'★';margin-right:1.5rem;font-size:9px;opacity:.5}
+@keyframes scroll{0%{transform:translateX(0)}100%{transform:translateX(-50%)}}
+section{padding:6rem 0;border-bottom:1px solid var(--border)}
+.sec-eye{font-size:11px;font-weight:800;letter-spacing:.16em;text-transform:uppercase;color:var(--red);margin-bottom:.75rem}
+.sec-title{font-family:'Bebas Neue',sans-serif;font-size:clamp(40px,6vw,72px);line-height:.95;color:var(--ink);margin-bottom:.75rem;letter-spacing:.02em}
+.sec-title .g{color:var(--green-dark)}.sec-title .r{color:var(--red)}
+.sec-intro{font-size:15px;color:var(--muted);line-height:1.75;margin-bottom:3rem;max-width:560px}
+.user-card{background:var(--ink);border-radius:4px;padding:3rem;margin-bottom:1.5rem;position:relative;overflow:hidden}
+.user-card::before{content:'';position:absolute;top:0;left:0;width:6px;height:100%;background:var(--green)}
+.user-quote{font-family:'Bebas Neue',sans-serif;font-size:clamp(24px,3.5vw,40px);color:var(--white);line-height:1.1;margin-bottom:1rem;letter-spacing:.02em}
+.user-quote span{color:var(--green)}
+.user-sub{font-size:13px;color:rgba(255,255,255,0.45);line-height:1.7}
+.user-tags{display:flex;gap:8px;flex-wrap:wrap;margin-top:1.25rem}
+.utag{font-size:11px;font-weight:700;padding:4px 12px;letter-spacing:.06em;text-transform:uppercase;background:rgba(61,214,140,0.1);color:var(--green);border:1px solid rgba(61,214,140,0.2)}
+.match-grid{display:grid;grid-template-columns:1fr 1fr;gap:1px;background:var(--border);border-radius:4px;overflow:hidden;margin-bottom:1rem}
+.mc{background:var(--white);padding:2rem}.mc.hl{background:var(--red);border:none}
+.mc-label{font-size:10px;font-weight:800;letter-spacing:.12em;text-transform:uppercase;color:var(--muted);margin-bottom:.6rem}
+.mc.hl .mc-label{color:rgba(255,255,255,0.6)}
+.mc-req{font-size:15px;font-weight:700;color:var(--ink);margin-bottom:.4rem;line-height:1.4}
+.mc.hl .mc-req{color:var(--white)}
+.mc-proof{font-size:13px;color:var(--muted);line-height:1.65}
+.mc.hl .mc-proof{color:rgba(255,255,255,0.8)}
+.built-grid{display:grid;grid-template-columns:1fr 1fr 1fr;gap:1rem;margin-bottom:1rem}
+.b-card{background:var(--off);border:1.5px solid var(--border);border-radius:4px;padding:2rem;position:relative;overflow:hidden;transition:border-color .2s,transform .2s}
+.b-card:hover{border-color:var(--red);transform:translateY(-3px)}
+.b-card::before{content:'';position:absolute;top:0;left:0;right:0;height:4px;background:var(--border)}
+.b-card.r::before{background:var(--red)}.b-card.g::before{background:var(--green)}
+.b-num{font-size:10px;font-weight:800;letter-spacing:.12em;text-transform:uppercase;color:var(--muted);margin-bottom:.75rem}
+.b-card.r .b-num{color:var(--red)}.b-card.g .b-num{color:var(--green-dark)}
+.b-title{font-size:15px;font-weight:800;color:var(--ink);line-height:1.3;margin-bottom:.5rem}
+.b-body{font-size:13px;color:var(--muted);line-height:1.65}
+.b-tag{display:inline-block;font-size:10px;font-weight:800;padding:3px 10px;margin-top:.75rem;letter-spacing:.06em;text-transform:uppercase}
+.tag-live{background:var(--green-light);color:var(--green-dark)}
+.tag-build{background:var(--red-light);color:var(--red)}
+.tag-stealth{background:var(--off);color:var(--muted);border:1px solid var(--border)}
+.gg{background:var(--ink);border-radius:4px;overflow:hidden;margin-top:2rem}
+.gg-head{padding:2rem 2.5rem 1.5rem;border-bottom:1px solid rgba(255,255,255,0.06)}
+.gg-eye{font-size:10px;font-weight:800;letter-spacing:.14em;text-transform:uppercase;color:var(--green);margin-bottom:.3rem}
+.gg-title{font-family:'Bebas Neue',sans-serif;font-size:24px;color:var(--white);letter-spacing:.04em}
+.gg-cells{display:grid;grid-template-columns:repeat(4,1fr)}
+.gc{padding:1.5rem 2rem;border-right:1px solid rgba(255,255,255,0.06);transition:background .2s}
+.gc:hover{background:rgba(61,214,140,0.04)}.gc:last-child{border-right:none}
+.gc-v{font-family:'Bebas Neue',sans-serif;font-size:24px;color:var(--white);line-height:1;margin-bottom:.4rem;letter-spacing:.04em}
+.gc:hover .gc-v{color:var(--green)}
+.gc-d{font-size:12px;color:rgba(255,255,255,0.25);line-height:1.4}
+.why-grid{display:grid;grid-template-columns:1fr 1fr;gap:1rem}
+.wc{border-radius:4px;padding:2.5rem;transition:transform .2s}
+.wc:hover{transform:translateY(-2px)}
+.wc.red{background:var(--red)}.wc.green{background:var(--green)}.wc.light{background:var(--off);border:1.5px solid var(--border)}.wc.dark{background:var(--ink)}
+.wc-title{font-family:'Bebas Neue',sans-serif;font-size:26px;margin-bottom:.5rem;line-height:1.1;letter-spacing:.04em}
+.wc.red .wc-title,.wc.dark .wc-title{color:var(--white)}
+.wc.green .wc-title{color:var(--ink)}.wc.light .wc-title{color:var(--ink)}
+.wc-body{font-size:13px;line-height:1.7}
+.wc.red .wc-body{color:rgba(255,255,255,0.8)}.wc.dark .wc-body{color:rgba(255,255,255,0.45)}
+.wc.green .wc-body{color:rgba(0,0,0,0.65)}.wc.light .wc-body{color:var(--muted)}
+.tl{position:relative}
+.tl::before{content:'';position:absolute;left:92px;top:8px;bottom:0;width:2px;background:var(--border)}
+.tl-item{display:grid;grid-template-columns:76px 1fr;gap:0 2rem}
+.tl-date{font-size:10px;color:var(--muted);font-weight:700;padding-top:4px;text-align:right;line-height:1.4;letter-spacing:.04em;text-transform:uppercase}
+.tl-right{padding:0 0 2.5rem 2rem;position:relative}
+.tl-right::before{content:'';position:absolute;left:-5px;top:7px;width:10px;height:10px;border-radius:50%;background:var(--white);border:2px solid var(--border)}
+.tl-item:first-child .tl-right::before{background:var(--red);border-color:var(--red)}
+.tl-role{font-size:16px;font-weight:800;color:var(--ink);margin-bottom:2px}
+.tl-org{font-size:12px;color:var(--red);font-weight:700;margin-bottom:.5rem;letter-spacing:.04em;text-transform:uppercase}
+.tl-body{font-size:13px;color:var(--muted);line-height:1.7}
+.tl-tags{display:flex;flex-wrap:wrap;gap:5px;margin-top:.6rem}
+.tag{font-size:10px;font-weight:700;padding:3px 10px;letter-spacing:.06em;text-transform:uppercase}
+.tag-r{background:var(--red-light);color:var(--red)}.tag-g{background:var(--green-light);color:var(--green-dark)}.tag-d{background:var(--ink);color:#fff}
+.contact-sec{background:var(--red);padding:6rem 0}
+.contact-inner{max-width:1100px;margin:0 auto;padding:0 2rem;display:grid;grid-template-columns:1fr 1fr;gap:4rem;align-items:center}
+.contact-left .sec-title{color:var(--white)}.contact-left .sec-eye{color:rgba(255,255,255,0.6)}
+.contact-left p{font-size:15px;color:rgba(255,255,255,0.65);line-height:1.7;margin-top:.75rem}
+.contact-cards{display:flex;flex-direction:column;gap:1px;background:rgba(255,255,255,0.15)}
+.cc{background:rgba(255,255,255,0.08);padding:1.25rem 1.5rem;display:flex;align-items:center;justify-content:space-between;transition:background .2s}
+.cc:hover{background:rgba(255,255,255,0.15)}
+.cc-l{font-size:10px;font-weight:700;color:rgba(255,255,255,0.45);letter-spacing:.1em;text-transform:uppercase;margin-bottom:3px}
+.cc-v{font-size:14px;font-weight:700;color:var(--white)}.cc-v a{color:var(--white);text-decoration:none}
+.cc-arr{font-size:16px;color:rgba(255,255,255,0.3)}
+.counter{display:inline-block}
+@media(max-width:768px){
+  .hero-bottom,.match-grid,.built-grid,.why-grid,.contact-inner,.gg-cells{grid-template-columns:1fr}
+  .hero h1{font-size:72px}.nav-links{display:none}.tl::before{left:72px}
+}
+</style>
+</head>
+<body>
+<nav>
+  <div class="nav-inner">
+    <a class="nav-logo" href="#">Gargi Singh</a>
+    <ul class="nav-links">
+      <li><a href="#user">As a user</a></li>
+      <li><a href="#built">What I built</a></li>
+      <li><a href="#why">Why SuperYou</a></li>
+      <li><a href="#contact" class="nav-cta">Let's talk</a></li>
+    </ul>
+  </div>
+</nav>
+<div class="hero">
+  <div class="hero-stripe"></div>
+  <div class="hero-inner">
+    <div class="hero-tag reveal">Ops & Strategy · SuperYou</div>
+    <h1 class="reveal d1">I BUILD<br><span class="r">SYSTEMS.</span><br>I SNACK<br><span class="g">CLEANLY.</span><br><span class="outline">I OWN</span><br>EVERYTHING.</h1>
+    <div class="hero-bottom reveal d2">
+      <p class="hero-desc">Product Operations Manager at Bridgetown Research — <strong>founding team, Series A</strong>. I spot gaps, propose fixes, build systems, and hire the team that runs them. No playbook. No hierarchy. Full ownership. That's the operating model SuperYou needs right now.</p>
+      <div class="hero-stats">
+        <div class="hs"><span class="num"><span class="counter" data-target="11">0</span><span>mo</span></span><span class="label">Associate → Manager</span></div>
+        <div class="hs"><span class="num"><span class="counter" data-target="6">0</span><span>+</span></span><span class="label">Systems shipped</span></div>
+        <div class="hs"><span class="num"><span class="counter" data-target="4">0</span></span><span class="label">Ops team hired</span></div>
+      </div>
+      <div class="hero-actions">
+        <a href="#user" class="btn-red">My SuperYou POV</a>
+        <a href="#built" class="btn-outline">What I built</a>
+      </div>
+    </div>
+  </div>
+</div>
+<div class="ticker">
+  <div class="ticker-track">
+    <span>Founding team · Series A</span><span>Actual SuperYou bar user</span><span>0→1 systems builder</span><span>Hired ops team of 4</span><span>Automated quality workflows</span><span>Vendor P&L decisions</span><span>Works with founder daily</span><span>Full ownership · no excuses</span><span>Founding team · Series A</span><span>Actual SuperYou bar user</span><span>0→1 systems builder</span><span>Hired ops team of 4</span><span>Automated quality workflows</span><span>Vendor P&L decisions</span><span>Works with founder daily</span><span>Full ownership · no excuses</span>
+  </div>
+</div>
+<section id="user">
+  <div class="wrap">
+    <div class="sec-eye reveal">I'm not just applying. I'm the customer.</div>
+    <h2 class="sec-title reveal d1">THE USER <span class="g">WHO WANTS</span><br>TO BUILD IT.</h2>
+    <p class="sec-intro reveal d2">I use protein supplements. I care about gut health. I know what "fermented yeast protein" means because I've read the labels. That makes me a different kind of ops hire.</p>
+    <div class="user-card reveal d1">
+      <div class="user-quote">"I EAT THEIR PROTEIN BARS. NOT AS A GYM SUPPLEMENT. AS A <span>SNACK THAT DOESN'T LIE TO ME.</span>"</div>
+      <div class="user-sub">I started eating SuperYou bars because I wanted something that filled a snack craving cleanly — no junk, no fake health halo, just actual ingredients I could read. That's a different kind of consumer than the gym bro. It's the everyday person who's done with snacks that pretend to be healthy. SuperYou gets that. I get that. And I want to help scale it.</div>
+      <div class="user-tags">
+        <span class="utag">Protein bar user</span>
+        <span class="utag">Snacks the category cleanly</span>
+        <span class="utag">Reads the label</span>
+        <span class="utag">Knows why it's different</span>
+      </div>
+    </div>
+    <div class="match-grid reveal d2">
+      <div class="mc"><div class="mc-label">What SuperYou is building</div><div class="mc-req">India's most trusted gut-health protein brand — D2C, fast-growing, science-backed</div><div class="mc-proof">Fermented yeast protein. 24g protein. Gut-loving claim. Trustified certified. This is a brand built on credibility — which means every operational decision either builds or erodes the trust the brand is built on.</div></div>
+      <div class="mc hl"><div class="mc-label">Why I'm the right ops hire</div><div class="mc-req">I've been building quality systems that protect a brand promise at scale</div><div class="mc-proof">At Bridgetown I built automated quality signals, vendor accountability systems, and operational infrastructure that maintained quality as volume grew — without adding headcount. That's exactly what SuperYou needs as it scales D2C. Quality can't be manual at scale. It has to be a system.</div></div>
+    </div>
+  </div>
+</section>
+<section id="built" style="background:var(--off)">
+  <div class="wrap">
+    <div class="sec-eye reveal">What I built</div>
+    <h2 class="sec-title reveal d1">SIX SYSTEMS.<br>ZERO <span class="g">TEMPLATES.</span><br>ALL LIVE.</h2>
+    <p class="sec-intro reveal d2">Every system here started as a gap I spotted before anyone named it. Same instinct SuperYou needs — across ops, supply chain, growth, and product.</p>
+    <div class="built-grid">
+      <div class="b-card r reveal d1"><div class="b-num">01 · Quality system</div><div class="b-title">Autopublish — 3-signal automated quality control</div><div class="b-body">Fraud detection + quality scoring + identity verification. Replaced manual review entirely. SuperYou parallel: automated QC at the fulfilment layer — catch defects before they reach the customer, protect the brand promise at scale.</div><span class="b-tag tag-live">Live</span></div>
+      <div class="b-card r reveal d2"><div class="b-num">02 · Ops dashboard</div><div class="b-title">100+ live projects tracked — requests, review, quality signals</div><div class="b-body">Built the visibility layer. Performance data, status tracking, quality signals — all in one place. SuperYou parallel: inventory tracking, order pipeline, SKU-level performance data for D2C ops at scale.</div><span class="b-tag tag-live">Live</span></div>
+      <div class="b-card r reveal d3"><div class="b-num">03 · Commercial logic</div><div class="b-title">Vendor selection framework + cost negotiation</div><div class="b-body">Own all commercial terms. Framework matching project to optimal vendor. SuperYou parallel: supplier/manufacturer negotiations, 3PL selection, cost-per-unit optimisation as volumes scale.</div><span class="b-tag tag-build">Building</span></div>
+    </div>
+    <div class="built-grid" style="margin-top:1rem">
+      <div class="b-card g reveal d1"><div class="b-num">04 · Partner product</div><div class="b-title">Vendor dashboard — partners self-serve their pipeline</div><div class="b-body">External partners track their own status. Reduced ops overhead. SuperYou parallel: distributor/channel partner management as the brand expands beyond D2C into modern trade and quick commerce.</div><span class="b-tag tag-live">Live</span></div>
+      <div class="b-card g reveal d2"><div class="b-num">05 · Team</div><div class="b-title">Hired, onboarded & manage ops team of 4</div><div class="b-body">Designed the hiring process, ran every interview, made every hire, set OKRs. Didn't inherit a team — built one. Early-stage D2C brands need people who hire for culture and capability simultaneously. I've done it.</div><span class="b-tag tag-live">Done</span></div>
+      <div class="b-card reveal d3"><div class="b-num">06 · Stealth vertical</div><div class="b-title">Led branding & build of new expert network vertical</div><div class="b-body">Positioning, naming, GTM design, operational structure — blank page. SuperYou parallel: new SKU launches, category expansion into new formats (sachets, RTDs, bars), new channel strategy.</div><span class="b-tag tag-stealth">In stealth</span></div>
+    </div>
+    <div class="gg reveal">
+      <div class="gg-head"><div class="gg-eye">The pattern</div><div class="gg-title">EVERY INITIATIVE WAS UNSOLICITED. EVERY ONE SHIPPED.</div></div>
+      <div class="gg-cells">
+        <div class="gc"><div class="gc-v">SPOTTED.</div><div class="gc-d">Gap identified before anyone named it</div></div>
+        <div class="gc"><div class="gc-v">PROPOSED.</div><div class="gc-d">Made the case to leadership directly</div></div>
+        <div class="gc"><div class="gc-v">BUILT.</div><div class="gc-d">Designed, coordinated, shipped</div></div>
+        <div class="gc"><div class="gc-v">RUNS.</div><div class="gc-d">Live, no babysitting needed</div></div>
+      </div>
+    </div>
+  </div>
+</section>
+<section id="why">
+  <div class="wrap">
+    <div class="sec-eye reveal">Why SuperYou</div>
+    <h2 class="sec-title reveal d1">D2C HEALTH IS<br>THE HARDEST <span class="r">OPS</span><br>PROBLEM IN<span class="g"> INDIA.</span></h2>
+    <p class="sec-intro reveal d2">Supply chain complexity, cold chain requirements, FSSAI compliance, influencer-driven demand spikes, quality consistency at scale — this is where operational rigour matters most.</p>
+    <div class="why-grid">
+      <div class="wc red reveal d1"><div class="wc-title">I'M THE CUSTOMER AND THE OPERATOR</div><div class="wc-body">Most ops hires at health brands don't actually use the products. I eat SuperYou bars — not as a supplement, as a snack. I pick them because they fill a craving cleanly without the junk. That means I understand SuperYou's real customer: not the gym-first consumer, but the everyday person who wants to snack without compromising. I'll protect that positioning in every ops decision I make because I'm also the person it was built for.</div></div>
+      <div class="wc light reveal d2"><div class="wc-title">FOUNDING TEAM EXPERIENCE — SERIES A PACE</div><div class="wc-body">I'm part of the founding team at Bridgetown Research — Series A, no hierarchy, full ownership. I work directly with the founder daily. I've set OKRs, hired teams, shipped products, and negotiated commercial terms — all without being asked. That's the pace early-stage D2C demands.</div></div>
+      <div class="wc light reveal d3"><div class="wc-title">QUALITY AT SCALE IS THE DEFINING OPS CHALLENGE</div><div class="wc-body">SuperYou's moat is trust — the "Trustified" badge, the fermented yeast science, the no-filler promise. Maintaining that as orders scale from thousands to lakhs is a quality systems problem. I've built automated quality systems that maintained standards as volume grew. Same problem, different product.</div></div>
+      <div class="wc green reveal d4"><div class="wc-title">I BUILD THE SYSTEM THEN HAND IT OFF</div><div class="wc-body">Every system I've built at Bridgetown runs without me babysitting it. I design for handoff. As SuperYou scales and hires specialists — a supply chain head, a fulfilment team, a growth lead — the systems I build will be what they inherit and run. That's the ops foundation a fast-growing D2C brand needs.</div></div>
+    </div>
+  </div>
+</section>
+<section style="background:var(--off)">
+  <div class="wrap">
+    <div class="sec-eye reveal">Career arc</div>
+    <h2 class="sec-title reveal d1">HOW I GOT <span class="g">HERE.</span></h2>
+    <p class="sec-intro reveal d2">Psychology → ops → strategy. The compounding edge.</p>
+    <div class="tl">
+      <div class="tl-item reveal">
+        <div class="tl-date">Jan 2026 → now</div>
+        <div class="tl-right">
+          <div class="tl-role">Product Operations Manager</div>
+          <div class="tl-org">Bridgetown Research · Bengaluru · Founding team</div>
+          <div class="tl-body">Promoted after 11 months. Hired & manage ops team of 4 with OKRs. Work directly with founder and Strategy PM. Own vendor strategy, automated quality systems, ops & vendor dashboards, client product features, process automation, and stealth expert network vertical.</div>
+          <div class="tl-tags"><span class="tag tag-r">Founding team</span><span class="tag tag-r">Hired team of 4</span><span class="tag tag-g">Quality systems</span><span class="tag tag-d">Series A</span></div>
+        </div>
+      </div>
+      <div class="tl-item reveal d1">
+        <div class="tl-date">Mar 2025 → Jan 2026</div>
+        <div class="tl-right">
+          <div class="tl-role">Operations Associate</div>
+          <div class="tl-org">Bridgetown Research · Bengaluru</div>
+          <div class="tl-body">Joined with no ops background. Identified gaps, proposed solutions, built the infrastructure. Promoted in 11 months for thinking above the role.</div>
+          <div class="tl-tags"><span class="tag tag-r">Zero-to-one</span><span class="tag tag-d">Promoted early</span></div>
+        </div>
+      </div>
+      <div class="tl-item reveal d2">
+        <div class="tl-date">Jul 2024 → Jan 2025</div>
+        <div class="tl-right">
+          <div class="tl-role">Psychologist & Projects Lead</div>
+          <div class="tl-org">Soukhya · Goa</div>
+          <div class="tl-body">Led projects, managed external relationships. Kept asking "why don't we have a system for this?" — that question got me into ops.</div>
+          <div class="tl-tags"><span class="tag tag-g">Projects lead</span><span class="tag tag-d">Systems thinking</span></div>
+        </div>
+      </div>
+      <div class="tl-item reveal d3">
+        <div class="tl-date">2021–2023</div>
+        <div class="tl-right">
+          <div class="tl-role">MSc Counselling Psychology · CGPA 8.96/10</div>
+          <div class="tl-org">Christ University, Delhi</div>
+          <div class="tl-body">Research methodology, behavioural systems, human motivation. Design Thinking certification, University of Virginia (2024).</div>
+          <div class="tl-tags"><span class="tag tag-g">CGPA 8.96</span><span class="tag tag-d">Design thinking</span></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+<div class="contact-sec" id="contact">
+  <div class="contact-inner">
+    <div class="contact-left reveal-left">
+      <div class="sec-eye">Let's talk</div>
+      <h2 class="sec-title">OPEN TO OPS<br>& STRATEGY<br>AT SUPERYOU.</h2>
+      <p>Happy to walk through any initiative in detail — or talk about what I'd fix in SuperYou's ops stack in the first 30 days.</p>
+    </div>
+    <div class="contact-cards reveal-right">
+      <div class="cc"><div><div class="cc-l">Phone</div><div class="cc-v">+91 96196 06780</div></div><div class="cc-arr">→</div></div>
+      <div class="cc"><div><div class="cc-l">Email</div><div class="cc-v"><a href="mailto:gargisingh.work@gmail.com">gargisingh.work@gmail.com</a></div></div><div class="cc-arr">→</div></div>
+      <div class="cc"><div><div class="cc-l">LinkedIn</div><div class="cc-v"><a href="https://linkedin.com/in/gargi-singh-6a157b212" target="_blank">linkedin.com/in/gargi-singh-6a157b212</a></div></div><div class="cc-arr">→</div></div>
+    </div>
+  </div>
+</div>
+<script>
+const obs = new IntersectionObserver(entries => {
+  entries.forEach(e => { if(e.isIntersecting) e.target.classList.add('visible'); });
+}, {threshold: 0.1});
+document.querySelectorAll('.reveal,.reveal-left,.reveal-right').forEach(el => obs.observe(el));
+function animateCounter(el) {
+  const target = parseInt(el.dataset.target);
+  const start = performance.now();
+  const dur = 1400;
+  (function update(now) {
+    const p = Math.min((now-start)/dur,1);
+    const e = 1-Math.pow(1-p,3);
+    el.textContent = Math.round(e*target);
+    if(p<1) requestAnimationFrame(update);
+  })(performance.now());
+}
+const cObs = new IntersectionObserver(entries => {
+  entries.forEach(e => { if(e.isIntersecting) { animateCounter(e.target); cObs.unobserve(e.target); } });
+}, {threshold: 0.5});
+document.querySelectorAll('.counter').forEach(el => cObs.observe(el));
+</script>
+</body>
+</html>
