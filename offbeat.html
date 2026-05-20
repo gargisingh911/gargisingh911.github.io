@@ -73,6 +73,14 @@ section{padding:8rem 2.5rem;border-top:1px solid var(--border);position:relative
 .cl-val{font-size:14px;color:var(--white);font-weight:500}
 .cl-val a{color:var(--white);text-decoration:none;transition:opacity .2s}
 .cl-val a:hover{opacity:.6}
+.hero h1:hover .real{animation:glitch .3s steps(2,end) 1}
+@keyframes glitch{
+  0%{text-shadow:2px 0 var(--white)}
+  25%{text-shadow:-2px 0 rgba(255,100,100,0.8),2px 0 rgba(100,200,255,0.8)}
+  50%{text-shadow:2px 2px rgba(255,100,100,0.6)}
+  75%{text-shadow:-1px 0 rgba(100,200,255,0.8)}
+  100%{text-shadow:none}
+}
 @media(max-width:768px){
   .hero-sub-row,.sys-grid,.facts-grid,.contact-inner{grid-template-columns:1fr}
   nav{padding:1.25rem 1.5rem}
@@ -141,12 +149,30 @@ section{padding:8rem 2.5rem;border-top:1px solid var(--border);position:relative
     <div class="sec-num reveal">01 — The proof</div>
     <h2 class="sec-title reveal d1">What I've<br>done so far.</h2>
     <div class="facts-grid">
-      <div class="fact reveal d1"><div class="fact-num"><span class="counter" data-target="11">0</span><sub>mo</sub></div><div class="fact-label">Associate to Manager.<br>Promoted for thinking above the role.</div></div>
-      <div class="fact reveal d2"><div class="fact-num"><span class="counter" data-target="6">0</span><sub>+</sub></div><div class="fact-label">Systems built from zero.<br>All live. All started as gaps I noticed.</div></div>
-      <div class="fact reveal d3"><div class="fact-num"><span class="counter" data-target="4">0</span></div><div class="fact-label">Ops associates hired.<br>I designed the process and made every hire.</div></div>
-      <div class="fact reveal d1"><div class="fact-num"><span class="counter" data-target="100">0</span><sub>+</sub></div><div class="fact-label">Live projects tracked simultaneously.<br>Via a dashboard I built.</div></div>
-      <div class="fact reveal d2"><div class="fact-num">1</div><div class="fact-label">Founder I work with directly, every day.<br>No translation layer.</div></div>
-      <div class="fact reveal d3"><div class="fact-num">0→1</div><div class="fact-label">Every time. Ops, sales, client engagement,<br>brand work, stealth vertical.</div></div>
+      <div class="fact reveal d1">
+        <div class="fact-num"><span class="counter" data-target="11">0</span><sub>mo</sub></div>
+        <div class="fact-label">Associate to Manager.<br>Promoted for thinking above the role.</div>
+      </div>
+      <div class="fact reveal d2">
+        <div class="fact-num"><span class="counter" data-target="6">0</span><sub>+</sub></div>
+        <div class="fact-label">Systems built from zero.<br>All live. All started as gaps I noticed.</div>
+      </div>
+      <div class="fact reveal d3">
+        <div class="fact-num"><span class="counter" data-target="4">0</span></div>
+        <div class="fact-label">Ops associates hired.<br>I designed the process and made every hire.</div>
+      </div>
+      <div class="fact reveal d1">
+        <div class="fact-num"><span class="counter" data-target="100">0</span><sub>+</sub></div>
+        <div class="fact-label">Live projects tracked simultaneously.<br>Via a dashboard I built.</div>
+      </div>
+      <div class="fact reveal d2">
+        <div class="fact-num">1</div>
+        <div class="fact-label">Founder I work with directly, every day.<br>No translation layer.</div>
+      </div>
+      <div class="fact reveal d3">
+        <div class="fact-num">0→1</div>
+        <div class="fact-label">Every time. Ops, sales, client engagement,<br>brand work, stealth vertical.</div>
+      </div>
     </div>
   </div>
 </section>
@@ -156,29 +182,76 @@ section{padding:8rem 2.5rem;border-top:1px solid var(--border);position:relative
     <h2 class="sec-title reveal d1">Six systems.<br>Zero templates.</h2>
     <p class="reveal d2" style="font-size:14px;color:var(--muted);margin-top:1rem;max-width:480px">Each one started as a gap I noticed before it became a problem. I proposed it, coordinated the build, and it runs.</p>
     <div class="sys-grid">
-      <div class="sys-cell reveal d1"><div class="sys-cell-num">01 · Automation</div><div class="sys-cell-title">Autopublish — replaced manual review with 3 automated signals</div><div class="sys-cell-body">Fraud detection, quality scoring, identity verification. Replaced manual review entirely. Built because the manual process wasn't going to scale.</div><span class="sys-cell-tag">Live</span></div>
-      <div class="sys-cell reveal d2"><div class="sys-cell-num">02 · Visibility</div><div class="sys-cell-title">Ops dashboard tracking 100+ live projects</div><div class="sys-cell-body">Performance data, quality signals, project status — all in one view. Built so the team could make decisions faster without chasing information.</div><span class="sys-cell-tag">Live</span></div>
-      <div class="sys-cell reveal d3"><div class="sys-cell-num">03 · Commercial logic</div><div class="sys-cell-title">Vendor selection framework + every CPI negotiation</div><div class="sys-cell-body">Own all commercial terms. Framework decides which vendor deploys per project. P&L thinking at the most granular level — every project, every decision.</div><span class="sys-cell-tag">Building</span></div>
-      <div class="sys-cell reveal d1"><div class="sys-cell-num">04 · Partner product</div><div class="sys-cell-title">Vendor dashboard — external partners self-serve</div><div class="sys-cell-body">External partners self-serve their pipeline status. Reduced the back-and-forth, improved accountability on both sides.</div><span class="sys-cell-tag">Live</span></div>
-      <div class="sys-cell reveal d2"><div class="sys-cell-num">05 · Client product</div><div class="sys-cell-title">Pre-approval workflow — spotted the gap, shipped the fix</div><div class="sys-cell-body">Identified a gap in the client experience, made the case to leadership, coordinated the build, shipped it. End to end — no handoff.</div><span class="sys-cell-tag">Live</span></div>
-      <div class="sys-cell reveal d3"><div class="sys-cell-num">06 · Stealth vertical</div><div class="sys-cell-title">Led branding & build of a new expert network — currently in stealth</div><div class="sys-cell-body">Positioning, naming, GTM, operational design — blank page. Required thinking at the intersection of brand, strategy and ops simultaneously.</div><span class="sys-cell-tag">In stealth</span></div>
+      <div class="sys-cell reveal d1">
+        <div class="sys-cell-num">01 · Automation</div>
+        <div class="sys-cell-title">Autopublish — replaced manual review with 3 automated signals</div>
+        <div class="sys-cell-body">Fraud detection, quality scoring, identity verification. Replaced manual review entirely. Built because the manual process wasn't going to scale.</div>
+        <span class="sys-cell-tag">Live</span>
+      </div>
+      <div class="sys-cell reveal d2">
+        <div class="sys-cell-num">02 · Visibility</div>
+        <div class="sys-cell-title">Ops dashboard tracking 100+ live projects</div>
+        <div class="sys-cell-body">Performance data, quality signals, project status — all in one view. Built so the team could make decisions faster without chasing information.</div>
+        <span class="sys-cell-tag">Live</span>
+      </div>
+      <div class="sys-cell reveal d3">
+        <div class="sys-cell-num">03 · Commercial logic</div>
+        <div class="sys-cell-title">Vendor selection framework + every CPI negotiation</div>
+        <div class="sys-cell-body">Own all commercial terms. Framework decides which vendor deploys per project. P&L thinking at the most granular level — every project, every decision.</div>
+        <span class="sys-cell-tag">Building</span>
+      </div>
+      <div class="sys-cell reveal d1">
+        <div class="sys-cell-num">04 · Partner product</div>
+        <div class="sys-cell-title">Vendor dashboard — external partners self-serve</div>
+        <div class="sys-cell-body">External partners self-serve their pipeline status. Reduced the back-and-forth, improved accountability on both sides.</div>
+        <span class="sys-cell-tag">Live</span>
+      </div>
+      <div class="sys-cell reveal d2">
+        <div class="sys-cell-num">05 · Client product</div>
+        <div class="sys-cell-title">Pre-approval workflow — spotted the gap, shipped the fix</div>
+        <div class="sys-cell-body">Identified a gap in the client experience, made the case to leadership, coordinated the build, shipped it. End to end — no handoff.</div>
+        <span class="sys-cell-tag">Live</span>
+      </div>
+      <div class="sys-cell reveal d3">
+        <div class="sys-cell-num">06 · Stealth vertical</div>
+        <div class="sys-cell-title">Led branding & build of a new expert network — currently in stealth</div>
+        <div class="sys-cell-body">Positioning, naming, GTM, operational design — blank page. The work I'm most proud of because it required thinking at the intersection of brand, strategy and ops simultaneously.</div>
+        <span class="sys-cell-tag">In stealth</span>
+      </div>
     </div>
   </div>
 </section>
 <div class="contact-sec" id="contact">
   <div class="contact-inner">
-    <div class="contact-big reveal-left">Let's<br>talk.</div>
+    <div class="contact-big reveal-left">
+      Let's<br>talk.
+    </div>
     <div class="contact-right reveal-right">
-      <div class="contact-line"><div class="cl-label">Phone</div><div class="cl-val">+91 96196 06780</div></div>
-      <div class="contact-line"><div class="cl-label">Email</div><div class="cl-val"><a href="mailto:gargisingh.work@gmail.com">gargisingh.work@gmail.com</a></div></div>
-      <div class="contact-line"><div class="cl-label">LinkedIn</div><div class="cl-val"><a href="https://linkedin.com/in/gargi-singh-6a157b212" target="_blank">linkedin.com/in/gargi-singh-6a157b212</a></div></div>
-      <div class="contact-line"><div class="cl-label">Portfolio hub</div><div class="cl-val"><a href="https://gargisingh911.github.io" target="_blank">gargisingh911.github.io</a></div></div>
+      <div class="contact-line">
+        <div class="cl-label">Phone</div>
+        <div class="cl-val">+91 96196 06780</div>
+      </div>
+      <div class="contact-line">
+        <div class="cl-label">Email</div>
+        <div class="cl-val"><a href="mailto:gargisingh.work@gmail.com">gargisingh.work@gmail.com</a></div>
+      </div>
+      <div class="contact-line">
+        <div class="cl-label">LinkedIn</div>
+        <div class="cl-val"><a href="https://linkedin.com/in/gargi-singh-6a157b212" target="_blank">linkedin.com/in/gargi-singh-6a157b212</a></div>
+      </div>
+      <div class="contact-line">
+        <div class="cl-label">Portfolio hub</div>
+        <div class="cl-val"><a href="https://gargisingh911.github.io" target="_blank">gargisingh911.github.io</a></div>
+      </div>
     </div>
   </div>
 </div>
 <script>
 const cur = document.getElementById('cur');
-document.addEventListener('mousemove', e => { cur.style.left = e.clientX+'px'; cur.style.top = e.clientY+'px'; });
+document.addEventListener('mousemove', e => {
+  cur.style.left = e.clientX + 'px';
+  cur.style.top = e.clientY + 'px';
+});
 document.querySelectorAll('a, button, .sys-cell, .fact').forEach(el => {
   el.addEventListener('mouseenter', () => cur.classList.add('big'));
   el.addEventListener('mouseleave', () => cur.classList.remove('big'));
@@ -192,14 +265,16 @@ function animateCounter(el) {
   const dur = 1600;
   const start = performance.now();
   (function update(now) {
-    const p = Math.min((now-start)/dur,1);
-    const ease = 1-Math.pow(1-p,4);
-    el.textContent = Math.round(ease*target);
-    if(p<1) requestAnimationFrame(update);
+    const p = Math.min((now - start) / dur, 1);
+    const ease = 1 - Math.pow(1 - p, 4);
+    el.textContent = Math.round(ease * target);
+    if(p < 1) requestAnimationFrame(update);
   })(performance.now());
 }
 const cObs = new IntersectionObserver(entries => {
-  entries.forEach(e => { if(e.isIntersecting) { animateCounter(e.target); cObs.unobserve(e.target); } });
+  entries.forEach(e => {
+    if(e.isIntersecting) { animateCounter(e.target); cObs.unobserve(e.target); }
+  });
 }, {threshold: 0.5});
 document.querySelectorAll('.counter').forEach(el => cObs.observe(el));
 </script>
