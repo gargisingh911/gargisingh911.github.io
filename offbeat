@@ -1,0 +1,207 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Gargi Singh — OFF/BEAT</title>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;900&display=swap" rel="stylesheet">
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+:root{
+  --ink:#0A0A0A;--white:#FFFFFF;--off:#111111;
+  --border:rgba(255,255,255,0.08);
+  --muted:rgba(255,255,255,0.35);
+  --accent:rgba(255,255,255,0.06);
+}
+html{scroll-behavior:smooth}
+body{font-family:'Inter',sans-serif;background:var(--ink);color:var(--white);font-size:16px;line-height:1.6;cursor:none;overflow-x:hidden}
+.cur{width:8px;height:8px;background:var(--white);border-radius:50%;position:fixed;pointer-events:none;z-index:9999;transform:translate(-50%,-50%);transition:width .2s,height .2s,background .2s}
+.cur.big{width:40px;height:40px;background:transparent;border:1px solid rgba(255,255,255,0.3);border-radius:50%}
+@media(max-width:768px){body{cursor:auto}.cur{display:none}}
+body::before{content:'';position:fixed;inset:0;background-image:url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='0.04'/%3E%3C/svg%3E");pointer-events:none;z-index:9997;opacity:.4}
+.reveal{opacity:0;transform:translateY(20px);transition:opacity .9s ease,transform .9s ease}
+.reveal.visible{opacity:1;transform:translateY(0)}
+.reveal-left{opacity:0;transform:translateX(-20px);transition:opacity .9s ease,transform .9s ease}
+.reveal-left.visible{opacity:1;transform:translateX(0)}
+.reveal-right{opacity:0;transform:translateX(20px);transition:opacity .9s ease,transform .9s ease}
+.reveal-right.visible{opacity:1;transform:translateX(0)}
+.d1{transition-delay:.1s}.d2{transition-delay:.2s}.d3{transition-delay:.3s}.d4{transition-delay:.4s}.d5{transition-delay:.5s}
+nav{position:fixed;top:0;left:0;right:0;z-index:100;padding:1.75rem 2.5rem;display:flex;align-items:center;justify-content:space-between}
+.nav-logo{font-size:13px;font-weight:700;color:var(--white);text-decoration:none;letter-spacing:.12em;text-transform:uppercase;opacity:.5;transition:opacity .2s}
+.nav-logo:hover{opacity:1}
+.nav-tag{font-size:11px;color:var(--muted);letter-spacing:.1em;text-transform:uppercase}
+.hero{min-height:100vh;display:flex;flex-direction:column;justify-content:flex-end;padding:0 2.5rem 4rem;position:relative;overflow:hidden}
+.hero-number{position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);font-size:clamp(200px,35vw,480px);font-weight:900;color:rgba(255,255,255,0.02);pointer-events:none;white-space:nowrap;letter-spacing:-20px;user-select:none;animation:drift 20s ease-in-out infinite alternate}
+@keyframes drift{0%{transform:translate(-50%,-50%) scale(1)}100%{transform:translate(-50%,-48%) scale(1.02)}}
+.hero-inner{max-width:1100px;margin:0 auto;width:100%;position:relative;z-index:1}
+.hero-pre{font-size:11px;font-weight:600;letter-spacing:.18em;text-transform:uppercase;color:var(--muted);margin-bottom:2rem}
+.hero h1{font-size:clamp(48px,8vw,100px);font-weight:900;line-height:.92;letter-spacing:-3px;color:var(--white);margin-bottom:3rem}
+.hero h1 .real{color:var(--white)}
+.hero-sub-row{display:grid;grid-template-columns:1fr 1fr 1fr;gap:3rem;border-top:1px solid var(--border);padding-top:2rem}
+.hero-sub-label{font-size:10px;font-weight:600;letter-spacing:.14em;text-transform:uppercase;color:var(--muted);margin-bottom:.4rem}
+.hero-sub-val{font-size:14px;color:var(--white);font-weight:500}
+.scroll-hint{position:absolute;bottom:2rem;right:2.5rem;font-size:10px;letter-spacing:.14em;text-transform:uppercase;color:var(--muted);writing-mode:vertical-rl;display:flex;align-items:center;gap:.75rem}
+.scroll-hint::before{content:'';width:1px;height:40px;background:var(--muted)}
+section{padding:8rem 2.5rem;border-top:1px solid var(--border);position:relative}
+.sec-inner{max-width:1100px;margin:0 auto}
+.sec-num{font-size:11px;font-weight:600;letter-spacing:.14em;text-transform:uppercase;color:var(--muted);margin-bottom:1.5rem}
+.sec-title{font-size:clamp(32px,5vw,56px);font-weight:900;letter-spacing:-2px;line-height:.95;color:var(--white);margin-bottom:1.5rem}
+.ticker{border-top:1px solid var(--border);border-bottom:1px solid var(--border);padding:.75rem 0;overflow:hidden;white-space:nowrap}
+.ticker-track{display:inline-block;animation:scroll 35s linear infinite}
+.ticker-track span{font-size:11px;font-weight:500;color:var(--muted);letter-spacing:.12em;text-transform:uppercase;margin:0 3rem}
+.ticker-track span::before{content:'—';margin-right:3rem;opacity:.3}
+@keyframes scroll{0%{transform:translateX(0)}100%{transform:translateX(-50%)}}
+.sys-grid{display:grid;grid-template-columns:1fr 1fr;gap:1px;background:var(--border);margin-top:3rem}
+.sys-cell{background:var(--ink);padding:2.5rem;transition:background .2s}
+.sys-cell:hover{background:rgba(255,255,255,0.02)}
+.sys-cell-num{font-size:10px;font-weight:600;letter-spacing:.14em;text-transform:uppercase;color:var(--muted);margin-bottom:1rem}
+.sys-cell-title{font-size:17px;font-weight:700;color:var(--white);margin-bottom:.5rem;line-height:1.3}
+.sys-cell-body{font-size:13px;color:var(--muted);line-height:1.7}
+.sys-cell-tag{display:inline-block;font-size:10px;font-weight:600;padding:3px 10px;border:1px solid var(--border);color:var(--muted);letter-spacing:.08em;text-transform:uppercase;margin-top:1rem}
+.facts-grid{display:grid;grid-template-columns:1fr 1fr 1fr;gap:1px;background:var(--border);margin-top:3rem}
+.fact{background:var(--ink);padding:2.5rem;transition:background .3s}
+.fact:hover{background:rgba(255,255,255,0.02)}
+.fact-num{font-size:clamp(40px,6vw,72px);font-weight:900;color:var(--white);line-height:1;letter-spacing:-3px;margin-bottom:.5rem}
+.fact-num sub{font-size:.4em;color:var(--muted);letter-spacing:0}
+.fact-label{font-size:12px;color:var(--muted);line-height:1.5}
+.contact-sec{min-height:60vh;display:flex;align-items:flex-end;padding:8rem 2.5rem 4rem;border-top:1px solid var(--border)}
+.contact-inner{max-width:1100px;margin:0 auto;width:100%;display:grid;grid-template-columns:1fr 1fr;gap:4rem;align-items:end}
+.contact-big{font-size:clamp(48px,8vw,96px);font-weight:900;letter-spacing:-3px;line-height:.92;color:var(--white)}
+.contact-right{display:flex;flex-direction:column;gap:1.5rem}
+.contact-line{border-bottom:1px solid var(--border);padding-bottom:1.5rem}
+.cl-label{font-size:10px;font-weight:600;letter-spacing:.14em;text-transform:uppercase;color:var(--muted);margin-bottom:.3rem}
+.cl-val{font-size:14px;color:var(--white);font-weight:500}
+.cl-val a{color:var(--white);text-decoration:none;transition:opacity .2s}
+.cl-val a:hover{opacity:.6}
+@media(max-width:768px){
+  .hero-sub-row,.sys-grid,.facts-grid,.contact-inner{grid-template-columns:1fr}
+  nav{padding:1.25rem 1.5rem}
+  section{padding:5rem 1.5rem}
+  .hero{padding:0 1.5rem 3rem}
+  .contact-sec{padding:5rem 1.5rem 3rem}
+}
+</style>
+</head>
+<body>
+<div class="cur" id="cur"></div>
+<nav>
+  <a class="nav-logo" href="#">Gargi Singh</a>
+  <span class="nav-tag">Ops & Strategy · OFF/BEAT</span>
+</nav>
+<div class="hero">
+  <div class="hero-number">01</div>
+  <div class="hero-inner">
+    <p class="hero-pre reveal">Gargi Singh · Ops & Strategy · OFF/BEAT</p>
+    <h1 class="reveal d1">
+      I spot gaps.<br>
+      I build<br>
+      <span class="real">systems.</span><br>
+      I own the<br>
+      <span class="real">outcome.</span>
+    </h1>
+    <div class="hero-sub-row reveal d2">
+      <div class="hero-sub-item">
+        <div class="hero-sub-label">Current</div>
+        <div class="hero-sub-val">Product Ops Manager<br>Bridgetown Research · Founding team</div>
+      </div>
+      <div class="hero-sub-item">
+        <div class="hero-sub-label">What I own</div>
+        <div class="hero-sub-val">Ops. Strategy. Sales.<br>Client engagement. All of it.</div>
+      </div>
+      <div class="hero-sub-item">
+        <div class="hero-sub-label">How I work</div>
+        <div class="hero-sub-val">Spot the gap nobody named.<br>Build the system that closes it.</div>
+      </div>
+    </div>
+  </div>
+  <div class="scroll-hint">scroll</div>
+</div>
+<div class="ticker">
+  <div class="ticker-track">
+    <span>Founding team · Series A</span>
+    <span>Promoted in 11 months</span>
+    <span>Hired team of 4</span>
+    <span>6 systems shipped</span>
+    <span>0 to 1 every time</span>
+    <span>Sales & client engagement</span>
+    <span>Strategy that actually ships</span>
+    <span>High agency · first principles</span>
+    <span>Founding team · Series A</span>
+    <span>Promoted in 11 months</span>
+    <span>Hired team of 4</span>
+    <span>6 systems shipped</span>
+    <span>0 to 1 every time</span>
+    <span>Sales & client engagement</span>
+    <span>Strategy that actually ships</span>
+    <span>High agency · first principles</span>
+  </div>
+</div>
+<section id="numbers" style="background:var(--off)">
+  <div class="sec-inner">
+    <div class="sec-num reveal">01 — The proof</div>
+    <h2 class="sec-title reveal d1">What I've<br>done so far.</h2>
+    <div class="facts-grid">
+      <div class="fact reveal d1"><div class="fact-num"><span class="counter" data-target="11">0</span><sub>mo</sub></div><div class="fact-label">Associate to Manager.<br>Promoted for thinking above the role.</div></div>
+      <div class="fact reveal d2"><div class="fact-num"><span class="counter" data-target="6">0</span><sub>+</sub></div><div class="fact-label">Systems built from zero.<br>All live. All started as gaps I noticed.</div></div>
+      <div class="fact reveal d3"><div class="fact-num"><span class="counter" data-target="4">0</span></div><div class="fact-label">Ops associates hired.<br>I designed the process and made every hire.</div></div>
+      <div class="fact reveal d1"><div class="fact-num"><span class="counter" data-target="100">0</span><sub>+</sub></div><div class="fact-label">Live projects tracked simultaneously.<br>Via a dashboard I built.</div></div>
+      <div class="fact reveal d2"><div class="fact-num">1</div><div class="fact-label">Founder I work with directly, every day.<br>No translation layer.</div></div>
+      <div class="fact reveal d3"><div class="fact-num">0→1</div><div class="fact-label">Every time. Ops, sales, client engagement,<br>brand work, stealth vertical.</div></div>
+    </div>
+  </div>
+</section>
+<section id="built">
+  <div class="sec-inner">
+    <div class="sec-num reveal">02 — What I built</div>
+    <h2 class="sec-title reveal d1">Six systems.<br>Zero templates.</h2>
+    <p class="reveal d2" style="font-size:14px;color:var(--muted);margin-top:1rem;max-width:480px">Each one started as a gap I noticed before it became a problem. I proposed it, coordinated the build, and it runs.</p>
+    <div class="sys-grid">
+      <div class="sys-cell reveal d1"><div class="sys-cell-num">01 · Automation</div><div class="sys-cell-title">Autopublish — replaced manual review with 3 automated signals</div><div class="sys-cell-body">Fraud detection, quality scoring, identity verification. Replaced manual review entirely. Built because the manual process wasn't going to scale.</div><span class="sys-cell-tag">Live</span></div>
+      <div class="sys-cell reveal d2"><div class="sys-cell-num">02 · Visibility</div><div class="sys-cell-title">Ops dashboard tracking 100+ live projects</div><div class="sys-cell-body">Performance data, quality signals, project status — all in one view. Built so the team could make decisions faster without chasing information.</div><span class="sys-cell-tag">Live</span></div>
+      <div class="sys-cell reveal d3"><div class="sys-cell-num">03 · Commercial logic</div><div class="sys-cell-title">Vendor selection framework + every CPI negotiation</div><div class="sys-cell-body">Own all commercial terms. Framework decides which vendor deploys per project. P&L thinking at the most granular level — every project, every decision.</div><span class="sys-cell-tag">Building</span></div>
+      <div class="sys-cell reveal d1"><div class="sys-cell-num">04 · Partner product</div><div class="sys-cell-title">Vendor dashboard — external partners self-serve</div><div class="sys-cell-body">External partners self-serve their pipeline status. Reduced the back-and-forth, improved accountability on both sides.</div><span class="sys-cell-tag">Live</span></div>
+      <div class="sys-cell reveal d2"><div class="sys-cell-num">05 · Client product</div><div class="sys-cell-title">Pre-approval workflow — spotted the gap, shipped the fix</div><div class="sys-cell-body">Identified a gap in the client experience, made the case to leadership, coordinated the build, shipped it. End to end — no handoff.</div><span class="sys-cell-tag">Live</span></div>
+      <div class="sys-cell reveal d3"><div class="sys-cell-num">06 · Stealth vertical</div><div class="sys-cell-title">Led branding & build of a new expert network — currently in stealth</div><div class="sys-cell-body">Positioning, naming, GTM, operational design — blank page. Required thinking at the intersection of brand, strategy and ops simultaneously.</div><span class="sys-cell-tag">In stealth</span></div>
+    </div>
+  </div>
+</section>
+<div class="contact-sec" id="contact">
+  <div class="contact-inner">
+    <div class="contact-big reveal-left">Let's<br>talk.</div>
+    <div class="contact-right reveal-right">
+      <div class="contact-line"><div class="cl-label">Phone</div><div class="cl-val">+91 96196 06780</div></div>
+      <div class="contact-line"><div class="cl-label">Email</div><div class="cl-val"><a href="mailto:gargisingh.work@gmail.com">gargisingh.work@gmail.com</a></div></div>
+      <div class="contact-line"><div class="cl-label">LinkedIn</div><div class="cl-val"><a href="https://linkedin.com/in/gargi-singh-6a157b212" target="_blank">linkedin.com/in/gargi-singh-6a157b212</a></div></div>
+      <div class="contact-line"><div class="cl-label">Portfolio hub</div><div class="cl-val"><a href="https://gargisingh911.github.io" target="_blank">gargisingh911.github.io</a></div></div>
+    </div>
+  </div>
+</div>
+<script>
+const cur = document.getElementById('cur');
+document.addEventListener('mousemove', e => { cur.style.left = e.clientX+'px'; cur.style.top = e.clientY+'px'; });
+document.querySelectorAll('a, button, .sys-cell, .fact').forEach(el => {
+  el.addEventListener('mouseenter', () => cur.classList.add('big'));
+  el.addEventListener('mouseleave', () => cur.classList.remove('big'));
+});
+const obs = new IntersectionObserver(entries => {
+  entries.forEach(e => { if(e.isIntersecting) e.target.classList.add('visible'); });
+}, {threshold: 0.08});
+document.querySelectorAll('.reveal, .reveal-left, .reveal-right').forEach(el => obs.observe(el));
+function animateCounter(el) {
+  const target = parseInt(el.dataset.target);
+  const dur = 1600;
+  const start = performance.now();
+  (function update(now) {
+    const p = Math.min((now-start)/dur,1);
+    const ease = 1-Math.pow(1-p,4);
+    el.textContent = Math.round(ease*target);
+    if(p<1) requestAnimationFrame(update);
+  })(performance.now());
+}
+const cObs = new IntersectionObserver(entries => {
+  entries.forEach(e => { if(e.isIntersecting) { animateCounter(e.target); cObs.unobserve(e.target); } });
+}, {threshold: 0.5});
+document.querySelectorAll('.counter').forEach(el => cObs.observe(el));
+</script>
+</body>
+</html>
