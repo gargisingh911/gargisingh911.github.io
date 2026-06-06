@@ -1,0 +1,875 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>Rishita's Weekly Kitchen</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400;1,700&family=Lora:ital,wght@0,400;0,600;1,400&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet"/>
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400;1,700&family=Lora:ital,wght@0,400;0,600;1,400&family=DM+Sans:wght@300;400;500&display=swap');
+:root{
+  --ink:#2A1A0E; --paper:#FBF6EC; --aged:#F2E8D0; --warm:#FAF3E0;
+  --accent:#B8621A; --alight:#EDD5B3; --sage:#4A7A4E; --sagelite:#CAE0CA;
+  --rose:#C06050; --roselight:#F0DAD6; --deep:#7A3810; --muted:#7A6548;
+  --border:rgba(42,26,14,0.13); --card:#FEFCF5;
+  --sketch1:#E5D8BF; --sketch2:#C8B48A;
+}
+*{box-sizing:border-box;margin:0;padding:0;}
+body{font-family:"DM Sans",sans-serif;background:var(--paper);color:var(--ink);min-height:100vh;}
+
+/* subtle paper grain */
+body::after{content:"";position:fixed;inset:0;background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='200' height='200'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.75' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='200' height='200' filter='url(%23n)' opacity='0.028'/%3E%3C/svg%3E");pointer-events:none;z-index:9998;}
+
+/* ── HEADER ── */
+header{background:var(--ink);color:var(--paper);padding:2.2rem 1.5rem 2rem;text-align:center;position:relative;overflow:hidden;}
+header::before{content:"";position:absolute;inset:0;background:radial-gradient(ellipse at 25% 70%,rgba(184,98,26,0.22) 0%,transparent 55%),radial-gradient(ellipse at 80% 15%,rgba(74,122,78,0.18) 0%,transparent 50%);pointer-events:none;}
+header::after{content:"";position:absolute;top:-30px;right:-20px;width:180px;height:180px;border-radius:62% 38% 70% 30%/48% 62% 38% 52%;background:rgba(184,98,26,0.07);transform:rotate(-20deg);pointer-events:none;}
+.hinner{position:relative;z-index:1;}
+.htag{display:inline-block;font-family:"Lora",serif;font-size:11px;font-style:italic;color:var(--alight);background:rgba(184,98,26,0.2);padding:4px 18px;border-radius:20px;margin-bottom:0.9rem;border:1px solid rgba(184,98,26,0.35);letter-spacing:0.5px;}
+header h1{font-family:"Playfair Display",serif;font-size:clamp(2.2rem,6vw,3.6rem);font-weight:700;line-height:1.1;margin-bottom:0.3rem;letter-spacing:-0.5px;}
+header h1 em{font-style:italic;color:var(--alight);}
+.hsub{font-size:13px;color:rgba(251,246,236,0.5);font-weight:300;margin-bottom:1.5rem;font-family:"Lora",serif;font-style:italic;}
+
+/* ── MUSIC ── */
+.jplayer{display:inline-flex;align-items:center;gap:10px;background:rgba(255,255,255,0.06);border:1px solid rgba(255,255,255,0.12);border-radius:40px;padding:7px 16px;user-select:none;flex-wrap:wrap;justify-content:center;max-width:540px;}
+.vinyl{width:30px;height:30px;border-radius:50%;background:conic-gradient(#1a0f08 0deg 30deg,#2d1a0e 30deg 60deg,#1a0f08 60deg 90deg,#2d1a0e 90deg 120deg,#1a0f08 120deg 150deg,#2d1a0e 150deg 180deg,#1a0f08 180deg 210deg,#2d1a0e 210deg 240deg,#1a0f08 240deg 270deg,#2d1a0e 270deg 300deg,#1a0f08 300deg 330deg,#2d1a0e 330deg 360deg);display:flex;align-items:center;justify-content:center;flex-shrink:0;}
+.vinyl.spin{animation:vs 2.4s linear infinite;}
+@keyframes vs{to{transform:rotate(360deg);}}
+.vctr{width:8px;height:8px;border-radius:50%;background:var(--alight);}
+.mname{font-size:12px;font-weight:500;max-width:160px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;color:var(--paper);}
+.mart{font-size:10px;color:rgba(251,246,236,0.42);}
+.genre-toggle{display:flex;gap:4px;}
+.gtog{padding:3px 9px;border-radius:10px;font-size:10px;cursor:pointer;border:1px solid rgba(255,255,255,0.18);background:transparent;color:rgba(251,246,236,0.6);font-family:"DM Sans",sans-serif;transition:all .15s;}
+.gtog.on{background:var(--accent);color:white;border-color:var(--accent);}
+.jbtns{display:flex;align-items:center;gap:5px;}
+.jbtn{width:24px;height:24px;border-radius:50%;background:rgba(255,255,255,0.1);border:none;cursor:pointer;color:var(--paper);font-size:10px;display:flex;align-items:center;justify-content:center;font-family:"DM Sans",sans-serif;}
+.jbtn.pri{background:var(--accent);}
+.vslide{-webkit-appearance:none;appearance:none;width:52px;height:3px;border-radius:2px;background:rgba(255,255,255,0.18);outline:none;cursor:pointer;}
+.vslide::-webkit-slider-thumb{-webkit-appearance:none;width:12px;height:12px;border-radius:50%;background:var(--alight);}
+.vslide::-moz-range-thumb{width:12px;height:12px;border-radius:50%;background:var(--alight);border:none;}
+
+/* ── NAV ── */
+nav{background:var(--aged);border-bottom:2px solid var(--sketch2);padding:0 1.2rem;display:flex;overflow-x:auto;scrollbar-width:none;position:sticky;top:0;z-index:100;}
+nav::-webkit-scrollbar{display:none;}
+.nday{padding:12px 15px;font-size:13px;font-weight:400;color:var(--muted);cursor:pointer;border-bottom:2.5px solid transparent;white-space:nowrap;background:none;border-top:none;border-left:none;border-right:none;font-family:"Lora",serif;font-style:italic;transition:color .15s;}
+.nday:hover{color:var(--ink);}
+.nday.active{color:var(--accent);border-bottom-color:var(--accent);font-weight:600;}
+.nextra{margin-left:auto;display:flex;align-items:center;gap:4px;padding:5px 0;}
+.npill{padding:5px 10px;border-radius:12px;font-size:11px;font-weight:500;cursor:pointer;border:1px solid var(--sketch2);background:transparent;color:var(--muted);font-family:"DM Sans",sans-serif;white-space:nowrap;transition:all .15s;}
+.npill:hover{background:var(--alight);color:var(--deep);}
+.npill.af{background:var(--alight);color:var(--deep);border-color:var(--accent);}
+
+/* ── MAIN ── */
+main{max-width:920px;margin:0 auto;padding:1.6rem 1.4rem 4rem;position:relative;z-index:1;}
+
+/* ── PORTIONS BAR ── */
+.portions-bar{background:var(--aged);border:1.5px solid var(--sketch2);border-radius:14px;padding:0.85rem 1.2rem;margin-bottom:1.1rem;display:flex;align-items:center;gap:12px;flex-wrap:wrap;}
+.portions-bar label{font-size:13px;font-weight:500;font-family:"Lora",serif;}
+.port-ctrl{display:flex;align-items:center;gap:8px;}
+.port-btn{width:26px;height:26px;border-radius:50%;border:1.5px solid var(--sketch2);background:var(--card);cursor:pointer;font-size:15px;display:flex;align-items:center;justify-content:center;color:var(--ink);transition:background .15s;}
+.port-btn:hover{background:var(--alight);}
+.port-num{font-family:"Playfair Display",serif;font-size:1.2rem;font-weight:700;min-width:22px;text-align:center;color:var(--accent);}
+.port-note{font-size:12px;color:var(--muted);font-style:italic;}
+.meal-type-toggle{margin-left:auto;display:flex;gap:5px;}
+.mtt{padding:5px 10px;border-radius:10px;font-size:11px;cursor:pointer;border:1.5px solid var(--sketch2);background:transparent;color:var(--muted);font-family:"DM Sans",sans-serif;transition:all .15s;}
+.mtt:hover{border-color:var(--accent);color:var(--deep);}
+.mtt.on{background:var(--sagelite);color:var(--sage);border-color:var(--sage);}
+
+/* ── PREP BAR ── */
+.prep-bar{background:var(--ink);color:var(--paper);border-radius:14px;padding:1rem 1.3rem;margin-bottom:1.1rem;display:flex;align-items:center;gap:12px;}
+.prep-bar h3{font-family:"Playfair Display",serif;font-size:14px;margin-bottom:2px;}
+.prep-bar p{font-size:12px;color:rgba(251,246,236,0.55);line-height:1.5;}
+.pbadge{margin-left:auto;background:var(--accent);color:white;font-size:11px;font-weight:500;padding:4px 11px;border-radius:20px;white-space:nowrap;flex-shrink:0;}
+.reuse-bar{background:var(--sagelite);border:1px solid rgba(74,122,78,0.3);border-radius:12px;padding:0.75rem 1rem;margin-bottom:1.2rem;font-size:12px;color:#2A5230;line-height:1.55;}
+
+/* ── DAY HEADER ── */
+.day-hdr{display:flex;align-items:baseline;gap:10px;margin-bottom:0.9rem;}
+.day-hdr h2{font-family:"Playfair Display",serif;font-size:1.8rem;font-weight:700;letter-spacing:-0.3px;}
+.dvibe{font-size:13px;color:var(--muted);font-style:italic;font-family:"Lora",serif;}
+
+/* ── RECIPE CHOOSER ── */
+.chooser-card{background:var(--card);border:1.5px solid var(--sketch2);border-radius:16px;padding:1.2rem;margin-bottom:1.2rem;position:relative;overflow:hidden;}
+.chooser-card::before{content:"";position:absolute;top:-20px;right:-20px;width:100px;height:100px;border-radius:50%;background:radial-gradient(circle,rgba(184,98,26,0.07) 0%,transparent 70%);pointer-events:none;}
+.chooser-card h3{font-family:"Playfair Display",serif;font-size:1rem;margin-bottom:0.25rem;}
+.chooser-sub{font-size:12px;color:var(--muted);margin-bottom:1rem;font-style:italic;}
+.chooser-progress{display:flex;gap:3px;margin-bottom:12px;}
+.cpip{height:3px;border-radius:2px;background:var(--sketch2);flex:1;}
+.cpip.done{background:var(--accent);}
+.chooser-q{font-size:14px;font-weight:500;margin-bottom:10px;line-height:1.4;font-family:"Lora",serif;}
+.chooser-opts{display:flex;flex-wrap:wrap;gap:6px;margin-bottom:10px;}
+.copt{padding:7px 13px;border-radius:20px;border:1.5px solid var(--sketch2);background:var(--aged);cursor:pointer;font-size:12px;font-family:"DM Sans",sans-serif;color:var(--ink);transition:all .15s;}
+.copt:hover,.copt.sel{border-color:var(--accent);background:var(--alight);color:var(--deep);}
+.chooser-free{width:100%;padding:8px 12px;border:1.5px solid var(--sketch2);border-radius:10px;font-size:13px;font-family:"Lora",serif;font-style:italic;background:var(--aged);color:var(--ink);resize:none;outline:none;margin-bottom:8px;}
+.chooser-free:focus{border-color:var(--accent);}
+.chooser-send{padding:7px 16px;border-radius:20px;font-size:12px;font-weight:500;cursor:pointer;border:none;background:var(--accent);color:white;font-family:"DM Sans",sans-serif;}
+.chooser-result{padding:1rem;background:var(--sagelite);border-radius:12px;font-size:13px;color:#2A5230;border:1px solid rgba(74,122,78,0.25);}
+.chooser-result h4{font-family:"Playfair Display",serif;font-size:1rem;margin-bottom:6px;}
+.chooser-reset,.copen-btn + .chooser-reset{margin-top:8px;font-size:12px;color:var(--accent);cursor:pointer;background:none;border:none;font-family:"Lora",serif;font-style:italic;display:block;}
+.copen-btn{margin-top:6px;padding:5px 12px;border-radius:20px;font-size:11px;cursor:pointer;border:none;background:var(--accent);color:white;font-family:"DM Sans",sans-serif;}
+
+/* ── MEAL CARDS ── */
+.mgrid{display:grid;grid-template-columns:1fr 1fr;gap:1rem;margin-bottom:1.6rem;}
+@media(max-width:580px){.mgrid{grid-template-columns:1fr;}}
+.mcard{background:var(--card);border:1.5px solid var(--sketch2);border-radius:16px;overflow:hidden;cursor:pointer;transition:transform .2s,box-shadow .2s;position:relative;}
+.mcard:hover{transform:translateY(-3px);box-shadow:0 14px 32px rgba(42,26,14,0.11);}
+.mcard-top{padding:1.1rem 1.1rem 0.85rem;}
+.mtag{font-size:9px;font-weight:600;letter-spacing:2px;text-transform:uppercase;padding:3px 9px;border-radius:8px;display:inline-block;margin-bottom:7px;}
+.tl{background:var(--sagelite);color:var(--sage);}
+.td{background:var(--roselight);color:var(--rose);}
+.mcard h3{font-family:"Playfair Display",serif;font-size:1.05rem;font-weight:700;line-height:1.3;margin-bottom:4px;}
+.mdesc{font-size:12px;color:var(--muted);line-height:1.55;font-family:"Lora",serif;font-style:italic;}
+.mcard-ft{padding:0.65rem 1.1rem;border-top:1px solid var(--sketch1);display:flex;align-items:center;justify-content:space-between;background:rgba(242,232,208,0.4);}
+.chips{display:flex;gap:8px;}
+.chip{font-size:10px;color:var(--muted);}
+.ebtn{font-size:11px;color:var(--accent);font-weight:600;cursor:pointer;background:none;border:none;font-family:"Lora",serif;font-style:italic;padding:0;}
+.tiffin-ok{display:inline-block;font-size:9px;background:var(--sagelite);color:var(--sage);padding:2px 7px;border-radius:6px;margin-left:5px;font-weight:500;}
+.tiffin-no{display:inline-block;font-size:9px;background:var(--roselight);color:var(--rose);padding:2px 7px;border-radius:6px;margin-left:5px;font-weight:500;}
+
+/* ── BOOKLET ── */
+.filter-bar{display:flex;gap:6px;flex-wrap:wrap;margin-bottom:1rem;}
+.fbtn{padding:5px 12px;border-radius:20px;font-size:11px;cursor:pointer;border:1.5px solid var(--sketch2);background:transparent;color:var(--muted);font-family:"DM Sans",sans-serif;transition:all .15s;}
+.fbtn.on{background:var(--alight);color:var(--deep);border-color:var(--accent);}
+.booklet-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(195px,1fr));gap:0.9rem;margin-bottom:1.6rem;}
+.bcard{background:var(--card);border:1.5px solid var(--sketch2);border-radius:14px;padding:1rem;cursor:pointer;transition:transform .15s,box-shadow .15s;}
+.bcard:hover{transform:translateY(-2px);box-shadow:0 8px 22px rgba(42,26,14,0.09);}
+.bcard-day{font-size:9px;letter-spacing:1.5px;text-transform:uppercase;color:var(--muted);margin-bottom:4px;}
+.bcard h4{font-family:"Playfair Display",serif;font-size:0.95rem;font-weight:700;line-height:1.25;margin-bottom:4px;}
+.bcard p{font-size:11px;color:var(--muted);line-height:1.4;font-style:italic;}
+.bcard-tags{display:flex;gap:4px;margin-top:7px;flex-wrap:wrap;}
+.bt{font-size:9px;padding:2px 7px;border-radius:6px;background:var(--alight);color:var(--deep);}
+
+/* ── DESSERTS ── */
+.dgrid{display:grid;grid-template-columns:repeat(auto-fill,minmax(195px,1fr));gap:0.9rem;margin-bottom:1.6rem;}
+.dcard{background:var(--card);border:1.5px solid rgba(192,96,80,0.2);border-radius:14px;padding:1rem;cursor:pointer;transition:transform .15s,box-shadow .15s;}
+.dcard:hover{transform:translateY(-2px);box-shadow:0 8px 22px rgba(192,96,80,0.1);}
+.dcard-icon{font-size:26px;margin-bottom:7px;}
+.dcard h4{font-family:"Playfair Display",serif;font-size:0.95rem;font-weight:700;margin-bottom:3px;}
+.dcard p{font-size:11px;color:var(--muted);font-style:italic;line-height:1.4;margin-bottom:7px;}
+.dcard-ft{display:flex;gap:4px;flex-wrap:wrap;}
+
+/* ── OVERVIEW ── */
+.ov-sec{margin-top:1.6rem;}
+.ov-sec h3{font-family:"Playfair Display",serif;font-size:1rem;margin-bottom:0.75rem;}
+.ovgrid{display:grid;grid-template-columns:repeat(auto-fit,minmax(88px,1fr));gap:6px;}
+.ovc{background:var(--card);border:1.5px solid var(--sketch2);border-radius:12px;padding:0.65rem;cursor:pointer;text-align:center;transition:all .15s;}
+.ovc:hover{border-color:var(--accent);}
+.ovc.active{border-color:var(--accent);background:var(--alight);}
+.ovlbl{font-size:9px;letter-spacing:1.5px;text-transform:uppercase;color:var(--muted);margin-bottom:2px;}
+.ovname{font-family:"Playfair Display",serif;font-size:0.9rem;font-weight:700;}
+
+/* ── SUNDAY QUIZ ── */
+.sq-card{background:var(--card);border:1.5px solid var(--sketch2);border-radius:16px;padding:1.2rem;margin-bottom:1rem;}
+.sq-card h3{font-family:"Playfair Display",serif;font-size:1rem;margin-bottom:0.75rem;}
+.sq-opts{display:flex;flex-direction:column;gap:7px;}
+.sqopt{padding:10px 14px;border-radius:10px;border:1.5px solid var(--sketch2);background:var(--aged);cursor:pointer;font-size:13px;text-align:left;font-family:"Lora",serif;font-style:italic;color:var(--ink);transition:all .15s;}
+.sqopt:hover{border-color:var(--accent);background:var(--alight);}
+.sq-result{margin-top:1rem;padding:1rem;background:var(--sagelite);border-radius:10px;font-size:13px;color:#2A5230;line-height:1.6;border:1px solid rgba(74,122,78,0.2);}
+.sq-result h4{font-family:"Playfair Display",serif;font-size:1rem;margin-bottom:4px;}
+.sq-back{margin-top:8px;font-size:12px;color:var(--accent);cursor:pointer;background:none;border:none;font-family:"Lora",serif;font-style:italic;}
+
+/* ── JOURNAL ── */
+.jentry{background:var(--aged);border:1.5px solid var(--sketch2);border-radius:12px;padding:1rem;position:relative;margin-bottom:8px;}
+.jentry-date{font-size:10px;color:var(--muted);margin-bottom:4px;}
+.jentry-title{font-family:"Playfair Display",serif;font-size:0.95rem;font-weight:700;margin-bottom:5px;}
+.jentry-body{font-size:13px;font-style:italic;line-height:1.6;font-family:"Lora",serif;}
+.jentry-photo{margin-top:8px;max-width:100%;max-height:200px;border-radius:8px;object-fit:cover;border:1.5px solid var(--sketch2);}
+.jentry-del{position:absolute;top:8px;right:8px;background:none;border:none;cursor:pointer;color:var(--muted);font-size:13px;}
+
+/* ── MODAL ── */
+.overlay{display:none;position:fixed;inset:0;background:rgba(42,26,14,0.6);z-index:1000;align-items:center;justify-content:center;padding:1rem;}
+.overlay.open{display:flex;}
+.modal{background:var(--paper);border-radius:20px;max-width:610px;width:100%;max-height:90vh;overflow-y:auto;animation:sup .22s ease;border:1.5px solid var(--sketch2);position:relative;}
+@keyframes sup{from{transform:translateY(14px);opacity:0;}to{transform:translateY(0);opacity:1;}}
+.mhdr{padding:1.1rem 1.3rem 0.85rem;position:sticky;top:0;background:var(--paper);border-bottom:1.5px solid var(--sketch2);display:flex;align-items:flex-start;justify-content:space-between;gap:1rem;z-index:10;}
+.mtag2{font-size:9px;letter-spacing:2px;text-transform:uppercase;color:var(--accent);margin-bottom:2px;font-family:"DM Sans",sans-serif;}
+.mtitle2{font-family:"Playfair Display",serif;font-size:1.3rem;font-weight:700;line-height:1.2;}
+.mclose{background:rgba(42,26,14,0.08);border:none;width:32px;height:32px;border-radius:50%;cursor:pointer;font-size:15px;display:flex;align-items:center;justify-content:center;flex-shrink:0;color:var(--ink);position:relative;z-index:20;pointer-events:auto;transition:background .15s;}
+.mclose:hover{background:rgba(42,26,14,0.18);}
+.mbody{padding:1.2rem 1.3rem;}
+.msec{margin-bottom:1.1rem;}
+.msec h4{font-size:9px;letter-spacing:2px;text-transform:uppercase;color:var(--accent);font-weight:600;margin-bottom:7px;}
+.ilist{list-style:none;display:flex;flex-direction:column;gap:5px;}
+.ilist li{display:flex;align-items:center;gap:8px;font-size:13px;font-family:"Lora",serif;}
+.ilist li::before{content:"";width:4px;height:4px;border-radius:50%;background:var(--accent);flex-shrink:0;}
+.reused-tag{color:var(--sage);font-size:10px;margin-left:3px;}
+.slist{display:flex;flex-direction:column;gap:8px;}
+.step{display:flex;gap:10px;align-items:flex-start;font-size:13px;line-height:1.65;font-family:"Lora",serif;}
+.snum{width:21px;height:21px;border-radius:50%;background:var(--alight);color:var(--deep);font-size:11px;font-weight:700;display:flex;align-items:center;justify-content:center;flex-shrink:0;margin-top:2px;}
+.ptip{background:var(--sagelite);border-left:3px solid var(--sage);padding:9px 12px;border-radius:0 8px 8px 0;font-size:12px;color:#2A5230;line-height:1.55;font-style:italic;}
+.portion-note{font-size:12px;color:var(--muted);margin-bottom:9px;padding:6px 11px;background:var(--alight);border-radius:8px;font-style:italic;}
+
+/* ── TIMER + GAMES ── */
+.tg-sec{margin-top:1.1rem;border-top:1.5px solid var(--sketch2);padding-top:1rem;}
+.tg-h{font-size:9px;letter-spacing:2px;text-transform:uppercase;color:var(--accent);font-weight:600;margin-bottom:10px;}
+.timer-row{display:flex;align-items:center;gap:10px;margin-bottom:10px;}
+.tdisp{font-family:"Playfair Display",serif;font-size:1.9rem;font-weight:700;min-width:74px;color:var(--ink);}
+.tdisp.run{color:var(--accent);}.tdisp.done{color:var(--sage);}
+.tbtns{display:flex;gap:5px;}
+.tbtn{padding:5px 12px;border-radius:20px;font-size:11px;font-weight:500;cursor:pointer;border:1.5px solid var(--sketch2);background:var(--card);color:var(--ink);font-family:"DM Sans",sans-serif;transition:all .15s;}
+.tbtn:hover{background:var(--aged);}
+.tbtn.pri{background:var(--accent);color:white;border-color:var(--accent);}
+.nudge-banner{background:linear-gradient(135deg,var(--alight),var(--sagelite));border:1.5px solid var(--sketch2);border-radius:12px;padding:0.75rem 1rem;margin-bottom:10px;font-size:13px;color:var(--ink);font-style:italic;display:none;}
+.nudge-banner.show{display:block;}
+.nudge-banner strong{font-style:normal;font-family:"Playfair Display",serif;}
+.gtabs{display:flex;gap:5px;margin-bottom:9px;flex-wrap:wrap;}
+.gtab{padding:4px 10px;border-radius:20px;font-size:11px;font-weight:500;cursor:pointer;border:1.5px solid var(--sketch2);background:transparent;color:var(--muted);font-family:"DM Sans",sans-serif;transition:all .15s;}
+.gtab.on{background:var(--ink);color:var(--paper);border-color:var(--ink);}
+.garea{background:var(--aged);border-radius:12px;padding:0.85rem;}
+
+/* articles */
+.art-card{background:var(--card);border:1.5px solid var(--sketch2);border-radius:10px;padding:0.9rem;margin-bottom:8px;}
+.art-cat{font-size:9px;letter-spacing:2px;text-transform:uppercase;color:var(--accent);font-weight:600;margin-bottom:3px;}
+.art-title{font-size:13px;font-weight:700;margin-bottom:3px;font-family:"Playfair Display",serif;}
+.art-author{font-size:11px;color:var(--muted);margin-bottom:7px;font-style:italic;}
+.art-body{font-size:12px;color:var(--ink);line-height:1.68;font-family:"Lora",serif;}
+
+/* sudoku */
+.sudo-grid{display:grid;grid-template-columns:repeat(9,1fr);gap:2px;max-width:270px;margin:0 auto 9px;}
+.sudo-grid input{width:100%;aspect-ratio:1;text-align:center;font-size:12px;font-weight:500;font-family:"DM Sans",sans-serif;border:1px solid #ccc;border-radius:3px;background:white;color:var(--ink);-moz-appearance:textfield;outline:none;padding:0;}
+.sudo-grid input::-webkit-outer-spin-button,.sudo-grid input::-webkit-inner-spin-button{-webkit-appearance:none;}
+.sudo-grid input.gv{background:var(--alight);color:var(--deep);font-weight:700;}
+.sudo-grid input.wrong{background:#FDECEA;color:#B02020;}
+.sudo-grid input.ok{background:var(--sagelite);color:#2A5230;}
+.sudo-grid input.br{border-right:2px solid #666!important;}
+.sudo-grid input.bb{border-bottom:2px solid #666!important;}
+.sbtns{display:flex;gap:7px;justify-content:center;}
+/* scramble */
+.scr-word{font-family:"Playfair Display",serif;font-size:1.8rem;font-weight:700;text-align:center;color:var(--accent);letter-spacing:6px;margin-bottom:8px;}
+.scr-inp{width:100%;padding:6px 10px;border:1.5px solid var(--sketch2);border-radius:8px;font-size:13px;font-family:"DM Sans",sans-serif;background:white;color:var(--ink);margin-bottom:6px;}
+.scr-hint{font-size:11px;color:var(--muted);text-align:center;margin-bottom:7px;font-style:italic;}
+.scr-res{font-size:12px;font-weight:500;text-align:center;padding:4px;border-radius:7px;min-height:20px;}
+.scr-res.win{background:var(--sagelite);color:#2A5230;}
+/* 2048 */
+.g48{display:grid;grid-template-columns:repeat(4,1fr);gap:5px;background:#3d2e1e;padding:6px;border-radius:9px;max-width:206px;margin:0 auto 7px;}
+.t48{aspect-ratio:1;border-radius:4px;display:flex;align-items:center;justify-content:center;font-weight:700;font-size:12px;font-family:"DM Sans",sans-serif;background:rgba(251,246,236,0.1);color:transparent;}
+.t2{background:#EEE4DA;color:#776E65;}.t4{background:#EDE0C8;color:#776E65;}
+.t8{background:#F2B179;color:white;}.t16{background:#F59563;color:white;}
+.t32{background:#F67C5F;color:white;}.t64{background:#F65E3B;color:white;}
+.t128{background:#EDCF72;color:white;font-size:10px;}.t256{background:#EDCC61;color:white;font-size:10px;}
+.g48info{display:flex;justify-content:space-between;align-items:center;margin-bottom:5px;font-size:12px;color:var(--muted);}
+.g48info span{font-weight:700;color:var(--ink);}
+
+footer{text-align:center;padding:1.5rem;color:var(--muted);font-size:12px;border-top:1.5px solid var(--sketch2);font-family:"Lora",serif;font-style:italic;position:relative;z-index:1;}
+.note{position:fixed;pointer-events:none;font-size:16px;opacity:0;animation:fn 4s ease-out forwards;z-index:9999;color:var(--alight);}
+@keyframes fn{0%{opacity:0;transform:translateY(0) rotate(-8deg);}20%{opacity:.65;}100%{opacity:0;transform:translateY(-75px) rotate(13deg);}}
+
+/* ── ILLUSTRATED CARDS ── */
+.mcard{background:var(--card);border:none;border-radius:20px;overflow:visible;cursor:pointer;
+  transition:transform .22s,box-shadow .22s;position:relative;
+  box-shadow:2px 3px 0 var(--sketch2),4px 5px 0 rgba(200,180,138,0.4);}
+.mcard:hover{transform:translateY(-4px) rotate(-0.4deg);
+  box-shadow:4px 7px 0 var(--sketch2),7px 10px 0 rgba(200,180,138,0.35);}
+.mcard-illus{width:100%;height:160px;display:block;border-radius:16px 16px 0 0;overflow:hidden;background:var(--aged);}
+.mcard-illus svg{width:100%;height:100%;}
+.mcard-top{padding:0.9rem 1rem 0.75rem;}
+.mcard h3{font-family:"Playfair Display",serif;font-size:1rem;font-weight:700;line-height:1.3;margin-bottom:3px;}
+.mdesc{font-size:11px;color:var(--muted);line-height:1.5;font-family:"Lora",serif;font-style:italic;}
+.mcard-ft{padding:0.6rem 1rem;border-top:1px dashed var(--sketch2);display:flex;align-items:center;
+  justify-content:space-between;background:rgba(242,232,208,0.5);border-radius:0 0 20px 20px;}
+
+/* header watercolour splash */
+.wc-splash{position:absolute;border-radius:50%;filter:blur(18px);pointer-events:none;opacity:0.55;}
+
+/* dessert cards illustrated */
+.dcard{background:var(--card);border:none;border-radius:18px;overflow:visible;cursor:pointer;
+  transition:transform .18s,box-shadow .18s;
+  box-shadow:2px 3px 0 rgba(192,96,80,0.3),4px 5px 0 rgba(192,96,80,0.15);}
+.dcard:hover{transform:translateY(-3px);box-shadow:4px 6px 0 rgba(192,96,80,0.3);}
+.dcard-illus{width:100%;height:120px;border-radius:14px 14px 0 0;overflow:hidden;display:block;}
+.dcard-body{padding:0.85rem 0.9rem 0.9rem;}
+
+</style>
+</head>
+<body>
+
+<header>
+  <div class="hinner">
+    <div class="htag">a little kitchen for Rishita</div>
+    <h1><em>Weekday Table</em></h1>
+    <p class="hsub">prepped with love on Sunday evening &middot; Melbourne</p>
+    <div class="jplayer">
+      <div class="vinyl" id="vinyl"><div class="vctr"></div></div>
+      <div class="mtrack">
+        <div class="mname" id="mname">Press play &#9834;</div>
+        <div class="mart">music while you cook</div>
+      </div>
+      <div class="genre-toggle">
+        <button class="gtog on" data-genre="bollywood">Bollywood</button>
+        <button class="gtog" data-genre="english">English</button>
+      </div>
+      <div class="jbtns">
+        <button class="jbtn" id="jprev">&#9664;</button>
+        <button class="jbtn pri" id="jplay">&#9654;</button>
+        <button class="jbtn" id="jnext">&#9654;&#9654;</button>
+        <button class="jbtn" id="jshuffle" style="font-size:9px">&#8646;</button>
+      </div>
+      <input class="vslide" type="range" id="vslide" min="0" max="1" step="0.05" value="0.6"/>
+    </div>
+  </div>
+</header>
+
+<nav>
+  <button class="nday active" data-day="0">Mon</button>
+  <button class="nday" data-day="1">Tue</button>
+  <button class="nday" data-day="2">Wed</button>
+  <button class="nday" data-day="3">Thu</button>
+  <button class="nday" data-day="4">Fri</button>
+  <button class="nday" data-day="5">Sat</button>
+  <button class="nday" data-day="6">Sun</button>
+  <div class="nextra">
+    <button class="npill af" id="btn-meals">&#127869;</button>
+    <button class="npill" id="btn-booklet">&#128216; All</button>
+    <button class="npill" id="btn-desserts">&#127822; Sweet</button>
+    <button class="npill" id="btn-grocery">&#128722;</button>
+    <button class="npill" id="btn-journal">&#128221;</button>
+  </div>
+</nav>
+
+<main>
+  <!-- portions -->
+  <div class="portions-bar">
+    <label>&#127860; Portions:</label>
+    <div class="port-ctrl">
+      <button class="port-btn" id="port-minus">&#8722;</button>
+      <div class="port-num" id="port-num">1</div>
+      <button class="port-btn" id="port-plus">&#43;</button>
+    </div>
+    <span style="font-size:12px;color:var(--muted);font-style:italic">ingredients scale automatically</span>
+    <div class="meal-type-toggle" title="Filter by where you'll eat">
+      <button class="mtt on" data-t="all">All meals</button>
+      <button class="mtt" data-t="home">&#127968; Eat at home</button>
+      <button class="mtt" data-t="tiffin">&#127857; Carrying tiffin</button>
+    </div>
+  </div>
+
+  <div class="prep-bar">
+    <div style="font-size:22px;flex-shrink:0">&#9201;</div>
+    <div>
+      <h3>Sunday Prep &mdash; 5 PM, ~90 mins</h3>
+      <p>Cook rice &amp; lentils &middot; roast veg &middot; boil eggs &middot; chop onion &amp; garlic. Done.</p>
+    </div>
+    <div class="pbadge">Prep Sunday</div>
+  </div>
+  <div class="reuse-bar">
+    <strong>&#9855; Smart pantry:</strong> ~18 ingredients cover all 14 meals. <span style="color:var(--sage);font-weight:500">Green dots</span> on grocery items appear in 3+ meals.
+  </div>
+
+  <!-- MEALS VIEW -->
+  <div id="meals-view">
+    <div class="day-hdr">
+      <h2 id="day-name">Monday</h2>
+      <span class="dvibe" id="day-vibe">Fresh start, warm bowl</span>
+    </div>
+
+    <!-- recipe chooser — sits right at the top, collapsible -->
+    <div class="chooser-card" id="chooser-card">
+      <h3>&#127358; What should Rishita cook?</h3>
+      <p class="chooser-sub">Answer a few questions or just tell me what you feel like.</p>
+      <div id="chooser-body"></div>
+    </div>
+
+    <div class="mgrid" id="meals-grid"></div>
+    <div id="sunday-quiz" style="display:none"></div>
+
+    <div class="ov-sec">
+      <h3>This week at a glance</h3>
+      <div class="ovgrid" id="ov-grid"></div>
+    </div>
+  </div>
+
+  <!-- BOOKLET VIEW -->
+  <div id="booklet-view" style="display:none">
+    <div class="day-hdr">
+      <h2>Recipe Booklet</h2>
+      <span class="dvibe">All 14 meals + Sunday specials</span>
+    </div>
+    <div class="filter-bar" id="filter-bar"></div>
+    <div class="booklet-grid" id="booklet-grid"></div>
+  </div>
+
+  <!-- GROCERY VIEW -->
+  <div id="grocery-view" style="display:none">
+    <div class="day-hdr">
+      <h2>Grocery List</h2>
+      <span class="dvibe">One trolley, whole week</span>
+    </div>
+    <div class="ggrid" id="groc-grid"></div>
+  </div>
+
+  <!-- DESSERTS VIEW -->
+  <div id="desserts-view" style="display:none">
+    <div class="day-hdr"><h2>Sweet Things</h2><span class="dvibe">quick &middot; healthy &middot; satisfying</span></div>
+    <div style="background:linear-gradient(135deg,var(--roselight,#F5E0DE),var(--alight));border-radius:14px;padding:1rem 1.2rem;margin-bottom:1.2rem;display:flex;gap:12px;align-items:center;">
+      <span style="font-size:28px">&#127822;</span>
+      <p style="font-size:13px;font-style:italic;line-height:1.5">Quick desserts that actually feel good. Nothing fussy, nothing that requires a mixer.</p>
+    </div>
+    <div class="dgrid" id="desserts-grid"></div>
+  </div>
+
+  <!-- JOURNAL VIEW -->
+  <div id="journal-view" style="display:none">
+    <div class="day-hdr"><h2>Kitchen Journal</h2><span class="dvibe">photos, notes, memories</span></div>
+    <div style="background:var(--card,#FFFEF8);border:1.5px solid var(--sketch2,#D4C4A0);border-radius:16px;padding:1.4rem;margin-bottom:1rem;">
+      <h3 style="font-family:'Playfair Display',serif;font-size:1.2rem;margin-bottom:0.4rem">Add an entry</h3>
+      <p style="font-size:12px;color:var(--muted);font-style:italic;margin-bottom:1rem">Log what you cooked, how it turned out, any tweaks.</p>
+      <input type="text" id="jrnl-title" placeholder="What did you cook?" style="width:100%;padding:8px 11px;border:1.5px solid var(--sketch2,#D4C4A0);border-radius:10px;font-size:13px;font-family:'Lora',serif;background:var(--aged,#F5EDD8);color:var(--ink,#2C1810);outline:none;margin-bottom:8px;"/>
+      <textarea id="jrnl-body" placeholder="How did it go? Any changes? How did it taste?" style="width:100%;padding:8px 11px;border:1.5px solid var(--sketch2,#D4C4A0);border-radius:10px;font-size:13px;font-family:'Lora',serif;font-style:italic;background:var(--aged,#F5EDD8);color:var(--ink,#2C1810);outline:none;resize:vertical;min-height:90px;margin-bottom:8px;"></textarea>
+      <div style="display:flex;gap:8px;flex-wrap:wrap;align-items:center;">
+        <label style="padding:7px 14px;border-radius:20px;font-size:12px;font-weight:500;cursor:pointer;border:1.5px solid var(--sketch2,#D4C4A0);background:var(--aged,#F5EDD8);color:var(--ink);font-family:'DM Sans',sans-serif;">
+          &#128247; Add photo
+          <input type="file" id="jrnl-photo" accept="image/*" style="display:none">
+        </label>
+        <button id="jrnl-save" style="padding:7px 16px;border-radius:20px;font-size:12px;font-weight:500;cursor:pointer;border:none;background:var(--accent);color:white;font-family:'DM Sans',sans-serif;">Save entry</button>
+        <span id="jrnl-photo-name" style="font-size:11px;color:var(--muted);font-style:italic"></span>
+      </div>
+      <div style="background:var(--aged,#F5EDD8);border:1.5px solid var(--sketch2,#D4C4A0);border-radius:12px;padding:1rem;margin-top:1rem;">
+        <h4 style="font-family:'Playfair Display',serif;font-size:0.95rem;margin-bottom:0.5rem">Share your entry</h4>
+        <div style="display:flex;gap:8px;flex-wrap:wrap;">
+          <input type="email" id="share-email" placeholder="Friend's email address" style="flex:1;padding:7px 11px;border:1.5px solid var(--sketch2,#D4C4A0);border-radius:10px;font-size:13px;font-family:'DM Sans',sans-serif;background:white;color:var(--ink);outline:none;min-width:160px;"/>
+          <button id="share-btn" style="padding:7px 14px;border-radius:20px;font-size:12px;font-weight:500;cursor:pointer;border:none;background:var(--accent);color:white;font-family:'DM Sans',sans-serif;">Send &#8594;</button>
+        </div>
+        <p style="font-size:11px;color:var(--muted);margin-top:6px;font-style:italic">Opens your email app with the entry pre-filled.</p>
+      </div>
+    </div>
+    <div id="jrnl-entries" style="display:flex;flex-direction:column;gap:10px;"></div>
+  </div>
+
+</main>
+
+<!-- MODAL -->
+<div class="overlay" id="modal">
+  <div class="modal">
+    <div class="mhdr">
+      <div>
+        <div class="mtag2" id="m-tag"></div>
+        <div class="mtitle2" id="m-title"></div>
+      </div>
+      <button class="mclose" id="m-close">&#10005;</button>
+    </div>
+    <div class="mbody" id="m-body"></div>
+  </div>
+</div>
+
+<footer>made with care for Rishita &middot; Melbourne &middot; good food, good reads, good music</footer>
+<script>
+
+var AC,mGain,playing=false,schedTimer=null,tick=0,BPM=108,blen,shuffleOn=false,genre="bollywood",tIdx=0;
+var TRACKS={
+  bollywood:["Rabba Rabba (Silk Route)","Alizeh (Ae Dil Hai Mushkil)","Tum Ho Toh (Rock On)","Naadan Parindey (Rockstar)","Ik Vaari Aa (Fitoor)","Channa Mereya (ADHM)","Tum Se Hi (Jab We Met)","Kabira (Yeh Jawaani)","Phir Le Aya Dil (Barfi)","Ae Dil Hai Mushkil","Agar Tum Saath Ho","Raabta"],
+  english:["Postcards (Peter Cat)","With You (Peter Cat)","Floated By (Peter Cat)","Autumn Leaves (Bossa)","Girl from Ipanema","Blue Bossa","Wave (Tom Jobim)","So What (Miles)","Fly Me to the Moon","Misty","Corcovado","Summer Samba"]
+};
+var BCHORDS={Am:[220.0,261.6,329.6],Dm:[293.7,349.2,440.0],E7:[164.8,207.7,246.9,329.6],F:[174.6,220.0,261.6],C:[261.6,329.6,392.0],G:[196.0,246.9,293.7],Em:[164.8,196.0,246.9]};
+var BPROG=["Am","Dm","E7","Am","F","C","Dm","E7","Am","Am","G","Am"];
+var BMEL=[0,3,7,10,12,10,7,5,3,0,3,5,7,5,3,0];
+var ECHORDS={Dm7:[146.8,174.6,220.0,261.6],G7:[196.0,246.9,293.7,369.9],Cmaj7:[130.8,164.8,196.0,246.9],Am7:[110.0,138.6,164.8,196.0],Fmaj7:[87.3,110.0,130.8,164.8],Em7:[82.4,98.0,123.5,164.8],A7:[110.0,138.6,164.8,207.7]};
+var EPROG=["Dm7","G7","Cmaj7","Cmaj7","Am7","A7","Dm7","G7","Fmaj7","Em7","A7","Am7"];
+var EMEL=[0,4,7,9,12,7,5,4,2,0,4,7,9,5,7,9];
+function hz(s){return 261.6*Math.pow(2,s/12);}
+function vol(){return parseFloat(document.getElementById("vslide").value);}
+function initAC(){if(AC)return;AC=new(window.AudioContext||window.webkitAudioContext)();mGain=AC.createGain();mGain.gain.value=vol();mGain.connect(AC.destination);blen=60/BPM;}
+function tone(f,t0,dur,g,type){var o=AC.createOscillator(),gn=AC.createGain();o.type=type||"sine";o.frequency.value=f;gn.gain.setValueAtTime(0,t0);gn.gain.linearRampToValueAtTime(g,t0+0.012);gn.gain.exponentialRampToValueAtTime(0.001,t0+dur);o.connect(gn);gn.connect(mGain);o.start(t0);o.stop(t0+dur+0.04);}
+function noiseB(t0,dur,g,fc){try{var buf=AC.createBuffer(1,Math.ceil(AC.sampleRate*dur),AC.sampleRate),d=buf.getChannelData(0);for(var i=0;i<d.length;i++)d[i]=Math.random()*2-1;var src=AC.createBufferSource();src.buffer=buf;var flt=AC.createBiquadFilter();flt.type="bandpass";flt.frequency.value=fc||8000;flt.Q.value=0.7;var gn=AC.createGain();gn.gain.setValueAtTime(g,t0);gn.gain.exponentialRampToValueAtTime(0.001,t0+dur);src.connect(flt);flt.connect(gn);gn.connect(mGain);src.start(t0);src.stop(t0+dur+0.02);}catch(e){}}
+function schedBeat(b,t){var v=vol(),sw=b%2===1?blen*0.06:0,bt=t+sw;var chords=genre==="bollywood"?BCHORDS:ECHORDS,prog=genre==="bollywood"?BPROG:EPROG,mel=genre==="bollywood"?BMEL:EMEL;var chord=chords[prog[b%prog.length]]||[220,261.6,329.6];if(b%4===0||b%4===2){tone(55,bt,0.2,v*0.5,"sine");tone(85,bt,0.06,v*0.22,"sine");}if(b%4===1||b%4===3){noiseB(bt,0.1,v*(genre==="bollywood"?0.18:0.13),2600);tone(200,bt,0.05,v*0.1,"triangle");}noiseB(bt,0.035,b%2===0?v*0.1:v*0.06,9000);if(b%8===2||b%8===6)noiseB(bt+blen*0.5,0.03,v*0.06,8000);tone(chord[0]/2,bt,blen*0.75,v*0.36,"sine");if(b%4===3){var np=chords[prog[(b+1)%prog.length]]||chord;tone(np[0]/2*Math.pow(2,-1/12),bt+blen*0.5,blen*0.4,v*0.18,"sine");}if(b%4===1||b%4===2){chord.forEach(function(f,i){tone(f,bt,blen*0.5,v*0.055/(i+1),"triangle");});}if(genre==="bollywood"&&b%8===4){noiseB(bt,0.08,v*0.12,1800);tone(chord[0]*1.5,bt,0.06,v*0.06,"triangle");}if(b%2===0){var s=mel[(b/2)%mel.length];tone(hz(s+(b%16<8?0:2)),bt+blen*0.08,blen*1.0,v*0.1,"triangle");}}
+function schedLoop(){if(!playing)return;var now=AC.currentTime;while(tick<now+0.22){schedBeat(Math.round(tick/blen)%128,tick);tick+=blen;}schedTimer=setTimeout(schedLoop,75);}
+function setTrack(i){var list=TRACKS[genre];tIdx=((i%list.length)+list.length)%list.length;document.getElementById("mname").textContent=list[tIdx];}
+function togglePlay(){initAC();if(AC.state==="suspended")AC.resume();playing=!playing;document.getElementById("jplay").innerHTML=playing?"&#9646;&#9646;":"&#9654;";document.getElementById("vinyl").classList.toggle("spin",playing);if(playing){tick=AC.currentTime+0.05;schedLoop();spawnNotes();}else clearTimeout(schedTimer);}
+function setGenre(g){genre=g;document.querySelectorAll(".gtog").forEach(function(b){b.classList.toggle("on",b.getAttribute("data-genre")===g);});setTrack(0);}
+document.getElementById("jplay").addEventListener("click",togglePlay);
+document.getElementById("jprev").addEventListener("click",function(){setTrack(tIdx-1);});
+document.getElementById("jnext").addEventListener("click",function(){setTrack(tIdx+1);});
+document.getElementById("jshuffle").addEventListener("click",function(){shuffleOn=!shuffleOn;this.style.color=shuffleOn?"var(--accent)":"";if(shuffleOn)setTrack(Math.floor(Math.random()*TRACKS[genre].length));});
+document.querySelectorAll(".gtog").forEach(function(b){b.addEventListener("click",function(){setGenre(b.getAttribute("data-genre"));});});
+document.getElementById("vslide").addEventListener("input",function(){if(mGain)mGain.gain.value=parseFloat(this.value);});
+setInterval(function(){if(!playing)return;setTrack(shuffleOn?Math.floor(Math.random()*TRACKS[genre].length):tIdx+1);},150000);
+
+var PORTIONS=1,mealTypeFilter="all";
+var days=[{name:"Monday",vibe:"Fresh start, warm bowl"},{name:"Tuesday",vibe:"Midweek, bright flavours"},{name:"Wednesday",vibe:"Hump day, something fun"},{name:"Thursday",vibe:"Almost there, easy does it"},{name:"Friday",vibe:"End of week, treat yourself"},{name:"Saturday",vibe:"Slow morning energy"},{name:"Sunday",vibe:"Your day — cheat or experiment?"}];
+
+var ALL_MEALS=[
+  {day:0,type:"lunch",name:"Spiced Lentil Soup & Toast",tiffin:false,desc:"Red lentils with cumin, tomato and garlic. Thick, filling, 20 minutes.",time:"20 min",cal:480,tsec:1200,tags:["vegetarian","comfort","easy"],ingr:[{n:"Red lentils",qty:1,unit:"cup",r:true},{n:"Canned tomatoes",qty:0.5,unit:"can",r:true},{n:"Onion",qty:1,unit:"",r:true},{n:"Garlic cloves",qty:3,unit:"",r:true},{n:"Cumin",qty:1,unit:"tsp",r:true},{n:"Turmeric",qty:0.5,unit:"tsp",r:true},{n:"Bread slices",qty:2,unit:"",r:false}],steps:["Fry onion and garlic in oil until soft, 4 min.","Add cumin and turmeric, stir 30 sec.","Add lentils, tomatoes and 2 cups water per portion.","Simmer 15 min until thick. Season well.","Serve with buttered toast."],tip:"Make a double batch on Sunday. Gets better by day 2."},
+  {day:0,type:"dinner",name:"Egg Fried Rice",tiffin:true,desc:"Cold Sunday rice fried with eggs, spring onions and soy.",time:"15 min",cal:520,tsec:900,tags:["eggs","quick","easy","protein"],ingr:[{n:"Cooked rice",qty:2,unit:"cups",r:true},{n:"Eggs",qty:3,unit:"",r:true},{n:"Spring onions",qty:3,unit:"",r:true},{n:"Soy sauce",qty:2,unit:"tbsp",r:true},{n:"Sesame oil",qty:1,unit:"tsp",r:false},{n:"Frozen peas",qty:0.5,unit:"cup",r:false}],steps:["Heat oil in a wok on high.","Add cold rice, fry 3 min until slightly crisp.","Push rice aside, scramble eggs in the gap.","Mix through. Add peas and spring onions.","Splash soy sauce and sesame oil. Toss."],tip:"Cold rice fries much better than fresh."},
+  {day:1,type:"lunch",name:"Tomato Egg Shakshuka",tiffin:false,desc:"Eggs poached in spiced tomato sauce. 15 minutes, pantry staples.",time:"15 min",cal:430,tsec:900,tags:["eggs","vegetarian","quick","spicy"],ingr:[{n:"Canned tomatoes",qty:1,unit:"can",r:true},{n:"Eggs",qty:3,unit:"",r:true},{n:"Onion",qty:1,unit:"",r:true},{n:"Garlic cloves",qty:2,unit:"",r:true},{n:"Paprika",qty:1,unit:"tsp",r:true},{n:"Cumin",qty:0.5,unit:"tsp",r:true},{n:"Bread",qty:2,unit:"slices",r:false}],steps:["Fry onion and garlic in oil, 3 min.","Add paprika and cumin, stir 30 sec.","Pour in tomatoes, simmer 5 min.","Make 3 wells, crack in eggs. Cover pan.","Cook 5-6 min. Yolks just set."],tip:"The tomato base keeps 4 days. Reheat and add fresh eggs."},
+  {day:1,type:"dinner",name:"Dal Tadka with Rice",tiffin:true,desc:"Monday leftover soup gets a sizzling butter and spice pour.",time:"10 min",cal:510,tsec:600,tags:["vegetarian","quick","reuse","comfort"],ingr:[{n:"Leftover lentil soup",qty:1,unit:"bowl",r:true},{n:"Cooked rice",qty:1,unit:"cup",r:true},{n:"Butter",qty:1,unit:"tbsp",r:false},{n:"Mustard seeds",qty:0.5,unit:"tsp",r:false},{n:"Curry leaves",qty:6,unit:"",r:false},{n:"Dried chilli",qty:1,unit:"",r:false}],steps:["Reheat lentil soup with a splash of water.","Melt butter in a small pan on high.","Add mustard seeds, wait for them to pop.","Add curry leaves and chilli, sizzle 20 sec.","Pour hot butter over dal. Serve with rice."],tip:"This is why you made extra soup on Monday."},
+  {day:2,type:"lunch",name:"Spinach & Cheese Quesadillas",tiffin:true,desc:"Flour tortillas with wilted spinach and cheddar, pan-fried crispy.",time:"15 min",cal:490,tsec:900,tags:["vegetarian","quick","fun"],ingr:[{n:"Flour tortillas",qty:2,unit:"",r:false},{n:"Baby spinach",qty:1,unit:"big handful",r:true},{n:"Cheddar",qty:60,unit:"g",r:false},{n:"Garlic cloves",qty:1,unit:"",r:true},{n:"Chilli flakes",qty:0.5,unit:"tsp",r:true},{n:"Greek yoghurt",qty:3,unit:"tbsp",r:true}],steps:["Wilt spinach with garlic in a pan, 2 min. Set aside.","Lay tortilla, cover half with cheese and spinach.","Fold over. Press into dry hot pan.","Fry 2-3 min per side until golden and crispy.","Cut into wedges. Serve with yoghurt."],tip:"Wilt a big batch of spinach on Sunday."},
+  {day:2,type:"dinner",name:"Pasta Aglio e Olio",tiffin:false,desc:"Spaghetti, garlic, olive oil, chilli, parmesan. Greatest 15-min pasta.",time:"15 min",cal:560,tsec:900,tags:["vegetarian","quick","italian","comfort"],ingr:[{n:"Spaghetti",qty:100,unit:"g",r:false},{n:"Garlic cloves",qty:5,unit:"",r:true},{n:"Olive oil",qty:4,unit:"tbsp",r:true},{n:"Chilli flakes",qty:0.5,unit:"tsp",r:true},{n:"Parmesan",qty:30,unit:"g",r:false},{n:"Parsley",qty:1,unit:"handful",r:false}],steps:["Boil spaghetti in well-salted water till al dente.","Slice garlic thin. Fry in oil on very low heat until golden.","Add chilli flakes. Turn off heat.","Add pasta and a ladle of pasta water. Toss well.","Top with parmesan and parsley."],tip:"Do NOT burn the garlic. Low and slow is everything."},
+  {day:3,type:"lunch",name:"Yoghurt Bowl with Egg & Veg",tiffin:true,desc:"No-cook assembly. Yoghurt, boiled egg, leftover veg, olive oil.",time:"5 min",cal:400,tsec:300,tags:["eggs","no-cook","quick","light","protein"],ingr:[{n:"Greek yoghurt",qty:1,unit:"cup",r:true},{n:"Boiled eggs",qty:2,unit:"",r:true},{n:"Roasted veg (leftover)",qty:1,unit:"cup",r:true},{n:"Olive oil",qty:1,unit:"tbsp",r:true},{n:"Chilli flakes",qty:0.25,unit:"tsp",r:true}],steps:["Spoon yoghurt into a bowl.","Halve boiled eggs, place on top.","Add leftover roasted veg.","Drizzle olive oil. Salt and pepper.","Chilli flakes. Done."],tip:"Boil 6 eggs on Sunday. They solve Thursday lunches."},
+  {day:3,type:"dinner",name:"Tomato Rice with Fried Egg",tiffin:true,desc:"Rice in spiced tomato sauce, topped with a crispy fried egg.",time:"25 min",cal:480,tsec:1500,tags:["eggs","vegetarian","easy","comfort"],ingr:[{n:"Rice",qty:1,unit:"cup",r:true},{n:"Canned tomatoes",qty:0.5,unit:"can",r:true},{n:"Onion",qty:1,unit:"",r:true},{n:"Garlic cloves",qty:2,unit:"",r:true},{n:"Cumin",qty:0.5,unit:"tsp",r:true},{n:"Paprika",qty:0.5,unit:"tsp",r:true},{n:"Eggs",qty:2,unit:"",r:true}],steps:["Fry onion and garlic 3 min. Add cumin and paprika.","Add rice, stir to coat.","Pour in tomatoes and 1.5 cups water. Season.","Cover and simmer 18 min on low.","Fry eggs until crispy edges. Serve on rice."],tip:"Brilliant way to use last of the canned tomatoes."},
+  {day:4,type:"lunch",name:"Fried Egg Sandwich",tiffin:false,desc:"Two fried eggs on buttered toast with hot sauce. It is Friday.",time:"8 min",cal:420,tsec:480,tags:["eggs","quick","fun"],ingr:[{n:"Eggs",qty:2,unit:"",r:true},{n:"Bread slices",qty:2,unit:"",r:false},{n:"Butter",qty:1,unit:"tbsp",r:false},{n:"Hot sauce or chilli flakes",qty:1,unit:"dash",r:true}],steps:["Butter and toast bread until golden.","Fry eggs in butter, sunny side up.","Lay on toast. Hot sauce. Salt. Pepper.","Eat immediately.","It is Friday. No further instructions."],tip:"You earned this."},
+  {day:4,type:"dinner",name:"Masoor Dal & Roti",tiffin:true,desc:"Red lentil dal with garam masala and fresh tomato.",time:"25 min",cal:530,tsec:1500,tags:["vegetarian","comfort","spicy","protein"],ingr:[{n:"Red lentils",qty:1,unit:"cup",r:true},{n:"Onion",qty:1,unit:"",r:true},{n:"Garlic cloves",qty:3,unit:"",r:true},{n:"Fresh tomato",qty:1,unit:"",r:true},{n:"Garam masala",qty:1,unit:"tsp",r:false},{n:"Turmeric",qty:0.5,unit:"tsp",r:true},{n:"Roti",qty:2,unit:"",r:false}],steps:["Fry onion until edges brown, 5-6 min.","Add garlic, cook 1 min.","Add tomato, garam masala and turmeric, cook 3 min.","Add lentils and 2 cups water. Simmer 15 min.","Serve with warmed roti."],tip:"Garam masala makes this completely different from Monday."},
+  {day:5,type:"lunch",name:"Avocado Toast with Eggs",tiffin:false,desc:"Smashed avo on sourdough with fried eggs and chilli flakes.",time:"12 min",cal:520,tsec:720,tags:["eggs","vegetarian","light","fun"],ingr:[{n:"Sourdough slices",qty:2,unit:"",r:false},{n:"Avocado",qty:1,unit:"",r:false},{n:"Eggs",qty:2,unit:"",r:true},{n:"Lemon",qty:0.5,unit:"",r:false},{n:"Chilli flakes",qty:0.5,unit:"tsp",r:true},{n:"Olive oil",qty:1,unit:"tbsp",r:true}],steps:["Toast sourdough.","Mash avocado with lemon juice and salt.","Fry or poach eggs.","Spread avo on toast, top with egg.","Chilli flakes and olive oil drizzle."],tip:"It is Saturday. Enjoy the process."},
+  {day:5,type:"dinner",name:"One-Pot Chicken & Rice",tiffin:true,desc:"Chicken thighs and rice in spiced stock. Mostly hands-off.",time:"45 min",cal:610,tsec:2700,tags:["chicken","one-pot","protein","comfort"],ingr:[{n:"Chicken thighs",qty:2,unit:"",r:false},{n:"Rice",qty:1,unit:"cup",r:true},{n:"Onion",qty:1,unit:"",r:true},{n:"Garlic cloves",qty:3,unit:"",r:true},{n:"Cumin",qty:1,unit:"tsp",r:true},{n:"Paprika",qty:1,unit:"tsp",r:true},{n:"Chicken stock",qty:400,unit:"ml",r:false}],steps:["Brown chicken thighs, skin down, 4 min each side. Remove.","Fry onion and garlic in same pot, 3 min.","Add spices and rice, stir to coat.","Pour in stock. Nestle chicken on top.","Cover, low heat, 30 min. Rest 5 min."],tip:"Make extra rice here for Sunday prep."},
+  {day:-1,type:"dinner",name:"Chilli Garlic Noodles",tiffin:true,desc:"Noodles with garlic, chilli oil, egg and soy. 12 minutes.",time:"12 min",cal:490,tsec:720,tags:["eggs","quick","spicy","fun"],ingr:[{n:"Noodles (any kind)",qty:100,unit:"g",r:false},{n:"Garlic cloves",qty:3,unit:"",r:true},{n:"Chilli oil",qty:1,unit:"tbsp",r:false},{n:"Soy sauce",qty:2,unit:"tbsp",r:true},{n:"Egg",qty:1,unit:"",r:true},{n:"Spring onion",qty:2,unit:"",r:true}],steps:["Boil noodles 3-4 min. Drain.","Fry garlic in oil 1 min.","Add chilli oil and soy. Toss noodles through.","Fry egg separately, crispy edges.","Top noodles with egg and spring onion."],tip:"The chilli oil does all the work."},
+  {day:-1,type:"lunch",name:"Chickpea Salad",tiffin:true,desc:"Canned chickpeas with cucumber, tomato, feta and lemon. No cooking.",time:"8 min",cal:380,tsec:480,tags:["vegetarian","no-cook","light","protein","quick"],ingr:[{n:"Canned chickpeas",qty:1,unit:"can",r:false},{n:"Cucumber",qty:0.5,unit:"",r:false},{n:"Cherry tomatoes",qty:1,unit:"handful",r:false},{n:"Feta",qty:50,unit:"g",r:false},{n:"Olives",qty:10,unit:"",r:false},{n:"Lemon juice and olive oil",qty:2,unit:"tbsp each",r:true}],steps:["Drain and rinse chickpeas.","Chop cucumber and halve tomatoes.","Toss everything together.","Dress with lemon juice and olive oil.","Crumble feta on top."],tip:"Make it the night before and it actually improves."},
+  {day:-1,type:"dinner",name:"Garlic Mushrooms on Toast",tiffin:false,desc:"Mushrooms cooked in butter and garlic until silky. On thick toast.",time:"12 min",cal:380,tsec:720,tags:["vegetarian","quick","light","comfort"],ingr:[{n:"Mushrooms",qty:200,unit:"g",r:false},{n:"Garlic cloves",qty:3,unit:"",r:true},{n:"Butter",qty:2,unit:"tbsp",r:false},{n:"Thyme",qty:2,unit:"sprigs",r:false},{n:"Sourdough",qty:2,unit:"slices",r:false},{n:"Parsley",qty:1,unit:"handful",r:false}],steps:["Slice mushrooms. Toast bread.","Melt butter in pan on medium-high.","Add mushrooms, do not stir 2 min, let them brown.","Add garlic and thyme. Cook 2 more min.","Pile on toast. Parsley on top."],tip:"Don't crowd the mushrooms. Hot pan, give them space."},
+  {day:-1,type:"lunch",name:"Rajma Chawal",tiffin:true,desc:"Kidney beans in tomato and onion masala. The great Indian comfort meal.",time:"30 min",cal:540,tsec:1800,tags:["vegetarian","comfort","spicy","protein","one-pot"],ingr:[{n:"Canned kidney beans",qty:1,unit:"can",r:false},{n:"Onion",qty:1,unit:"",r:true},{n:"Canned tomatoes",qty:0.5,unit:"can",r:true},{n:"Garlic and ginger paste",qty:1,unit:"tsp each",r:true},{n:"Cumin, coriander and garam masala",qty:1,unit:"tsp each",r:false},{n:"Cooked rice",qty:1,unit:"cup",r:true}],steps:["Fry onion until deep brown, 8 min.","Add garlic-ginger paste, cook 1 min.","Add spices, cook 2 min.","Add tomatoes, cook 5 min.","Add kidney beans, simmer 15 min."],tip:"The longer you simmer, the better it gets."},
+  {day:-1,type:"dinner",name:"Paneer Bhurji",tiffin:true,desc:"Scrambled paneer with onion, tomato and spices. 15 minutes.",time:"15 min",cal:500,tsec:900,tags:["vegetarian","quick","protein","spicy"],ingr:[{n:"Paneer",qty:200,unit:"g",r:false},{n:"Onion",qty:1,unit:"",r:true},{n:"Tomato",qty:1,unit:"",r:true},{n:"Garlic cloves",qty:2,unit:"",r:true},{n:"Cumin, turmeric and chilli",qty:0.5,unit:"tsp each",r:true},{n:"Roti or bread",qty:2,unit:"",r:false}],steps:["Crumble paneer into chunks.","Fry onion and garlic 3 min. Add tomato, cook 3 min.","Add spices.","Add paneer, mix and cook 4 min.","Serve with roti."],tip:"Soak cold paneer in warm water 10 min first."},
+  {day:-1,type:"lunch",name:"Aloo Paratha + Yoghurt",tiffin:true,desc:"Spiced potato flatbread, pan-fried until golden.",time:"35 min",cal:560,tsec:2100,tags:["vegetarian","comfort","fun"],ingr:[{n:"Potatoes (boiled, mashed)",qty:2,unit:"medium",r:false},{n:"Whole wheat flour",qty:1,unit:"cup",r:false},{n:"Onion (finely chopped)",qty:0.5,unit:"",r:true},{n:"Cumin, coriander and chilli",qty:0.5,unit:"tsp each",r:true},{n:"Greek yoghurt",qty:0.5,unit:"cup",r:true},{n:"Butter",qty:1,unit:"tbsp",r:false}],steps:["Mix flour with water to make soft dough. Rest 10 min.","Mix mashed potato with onion and spices.","Roll dough circle, add filling, fold and seal.","Roll into a paratha. Fry in butter 2-3 min per side.","Serve with cold yoghurt."],tip:"Don't overfill. A thin layer of potato works best."},
+  {day:-1,type:"dinner",name:"Tomato Egg Drop Soup",tiffin:false,desc:"Tomatoes and eggs in a silky broth. 12 minutes.",time:"12 min",cal:320,tsec:720,tags:["eggs","quick","light","comfort"],ingr:[{n:"Tomatoes",qty:2,unit:"",r:true},{n:"Eggs",qty:3,unit:"",r:true},{n:"Spring onions",qty:2,unit:"",r:true},{n:"Soy sauce",qty:1,unit:"tbsp",r:true},{n:"Sesame oil",qty:1,unit:"tsp",r:false},{n:"Cornflour",qty:1,unit:"tsp",r:false}],steps:["Fry tomatoes in oil 2 min.","Add 3 cups water, bring to boil.","Beat eggs. Stir the soup in a circle.","Pour eggs in slowly while stirring.","Add soy sauce, sesame oil, spring onions."],tip:"Light dinner. Ready in 12 minutes."},
+  {day:-1,type:"lunch",name:"Miso Butter Eggs on Rice",tiffin:true,desc:"Soft scrambled eggs with miso and butter on rice. 10 minutes.",time:"10 min",cal:480,tsec:600,tags:["eggs","quick","comfort","protein"],ingr:[{n:"Eggs",qty:3,unit:"",r:true},{n:"Cooked rice",qty:1,unit:"cup",r:true},{n:"White miso paste",qty:1,unit:"tsp",r:false},{n:"Butter",qty:1,unit:"tbsp",r:false},{n:"Spring onions",qty:2,unit:"",r:true},{n:"Soy sauce",qty:1,unit:"tsp",r:true}],steps:["Warm rice in a bowl.","Whisk eggs gently. Cook on low, stirring slowly.","When just set but still soft, take off heat.","Stir in miso and butter off the heat.","Spoon over rice. Spring onions and soy."],tip:"Low heat and off while still slightly wet."},
+  {day:-1,type:"dinner",name:"Brown Butter Pasta",tiffin:false,desc:"Butter cooked until nutty, tossed with pasta and parmesan.",time:"20 min",cal:580,tsec:1200,tags:["vegetarian","fun","comfort","quick"],ingr:[{n:"Pasta",qty:100,unit:"g",r:false},{n:"Butter",qty:3,unit:"tbsp",r:false},{n:"Parmesan",qty:30,unit:"g",r:false},{n:"Sage leaves",qty:6,unit:"",r:false},{n:"Black pepper",qty:1,unit:"tsp",r:true}],steps:["Boil pasta in salted water.","Put butter in a light-coloured pan on medium.","Watch carefully: foam, nutty smell, then golden.","Remove from heat. Add sage.","Toss with pasta and parmesan."],tip:"Once you know brown butter, you put it on everything."},
+  {day:6,type:"cheat",name:"Takeaway Night",tiffin:false,desc:"Order whatever you have been craving. You earned this.",time:"0 min",cal:0,tsec:0,tags:["cheat","fun"],ingr:[{n:"Your phone",qty:1,unit:"",r:false}],steps:["Open your delivery app.","Order what you have been craving.","Eat on the couch, no plates required.","Watch something good.","Rest. Prep starts at 5 PM."],tip:"Cheat meals are part of the plan."},
+  {day:6,type:"experiment",name:"Brown Butter Pasta",tiffin:false,desc:"Butter cooked until nutty and golden. A technique that changes everything.",time:"20 min",cal:580,tsec:1200,tags:["vegetarian","fun","experiment"],ingr:[{n:"Pasta",qty:100,unit:"g",r:false},{n:"Butter",qty:3,unit:"tbsp",r:false},{n:"Parmesan",qty:30,unit:"g",r:false},{n:"Sage leaves",qty:6,unit:"",r:false},{n:"Black pepper",qty:1,unit:"tsp",r:true}],steps:["Boil pasta in salted water.","Put butter in a light-coloured pan on medium.","Watch: foam, nutty smell, then golden.","Remove from heat. Add sage.","Toss with pasta and parmesan."],tip:"Once you know brown butter you will put it on everything."},
+  {day:6,type:"experiment",name:"Miso Butter Eggs on Rice",tiffin:true,desc:"Soft scrambled eggs with miso and butter. Japanese comfort.",time:"10 min",cal:480,tsec:600,tags:["eggs","quick","experiment"],ingr:[{n:"Eggs",qty:3,unit:"",r:true},{n:"Cooked rice",qty:1,unit:"cup",r:true},{n:"White miso paste",qty:1,unit:"tsp",r:false},{n:"Butter",qty:1,unit:"tbsp",r:false},{n:"Spring onions",qty:2,unit:"",r:true}],steps:["Warm rice.","Cook eggs low and slow, stirring softly.","Off heat, stir in miso and butter.","Spoon over rice. Spring onions on top.","Done in under 10 minutes."],tip:"Low heat and off while still slightly wet."},
+  {day:6,type:"experiment",name:"Tadka Dal Soup",tiffin:true,desc:"Your dal made into a proper restaurant soup with crispy garlic tadka.",time:"20 min",cal:460,tsec:1200,tags:["vegetarian","experiment","protein","comfort"],ingr:[{n:"Red lentils",qty:1,unit:"cup",r:true},{n:"Onion",qty:1,unit:"",r:true},{n:"Garlic cloves",qty:4,unit:"",r:true},{n:"Cumin and turmeric",qty:1,unit:"tsp each",r:true},{n:"Ghee",qty:1,unit:"tbsp",r:false},{n:"Lemon juice",qty:2,unit:"tbsp",r:false}],steps:["Cook lentils with water and turmeric 15 min until soft.","Blend partially with a spoon for texture.","Fry garlic in ghee until golden and crispy.","Add cumin seeds, let them pop.","Pour sizzling tadka over soup. Squeeze lemon."],tip:"The crispy garlic on top is the whole point."}
+];
+
+var DESSERTS=[
+  {icon:"\u{1F34F}",name:"Banana Nice Cream",desc:"Frozen banana blended until creamy. 5 minutes.",time:"5 min",cal:180,ingr:["2 frozen bananas","1 tbsp peanut butter or 1 tsp cocoa"],steps:["Freeze bananas overnight (sliced).","Blend from frozen until smooth and creamy.","Add peanut butter or cocoa.","Eat immediately or freeze 20 min for firmer texture."],tip:"Must be properly frozen or it will not be creamy."},
+  {icon:"\u{1F370}",name:"Chocolate Mug Cake",desc:"A real chocolate cake in a mug in the microwave. 5 minutes.",time:"5 min",cal:280,ingr:["3 tbsp flour","3 tbsp sugar","2 tbsp cocoa","1 egg","3 tbsp milk","2 tbsp oil","pinch salt"],steps:["Mix all dry ingredients in a large mug.","Add egg, milk and oil. Stir well.","Microwave on high 90 seconds.","Let sit 1 min before eating.","Eat straight from the mug."],tip:"Do not overcook. 90 seconds is enough."},
+  {icon:"\u{1F372}",name:"Honey Yoghurt with Fruit",desc:"Greek yoghurt, honey, walnuts and whatever fruit you have.",time:"3 min",cal:200,ingr:["1 cup Greek yoghurt","1 tbsp honey","handful walnuts","any fruit"],steps:["Spoon yoghurt into a bowl.","Drizzle honey generously.","Add crushed walnuts.","Add sliced fruit.","Done."],tip:"Freeze 30 min and it becomes proper frozen yoghurt."},
+  {icon:"\u{1F36E}",name:"Peanut Butter Rice Crisps",desc:"No bake. Peanut butter, honey and rice cereal. 10 minutes.",time:"10 min",cal:220,ingr:["1 cup puffed rice cereal","3 tbsp peanut butter","2 tbsp honey","pinch salt"],steps:["Melt peanut butter and honey in a pan on low.","Add salt. Stir.","Add rice cereal and mix well.","Press into a small lined dish.","Refrigerate 20 min. Cut into squares."],tip:"Works with any nut butter."},
+  {icon:"\u{1F34A}",name:"Stewed Cinnamon Apples",desc:"Apples with butter, cinnamon and sugar until jammy. With yoghurt.",time:"12 min",cal:160,ingr:["2 apples (peeled and sliced)","1 tbsp butter","1 tbsp brown sugar","0.5 tsp cinnamon","pinch nutmeg"],steps:["Melt butter in a pan on medium.","Add apple slices, sugar, cinnamon and nutmeg.","Cook 8-10 min until soft and caramelised.","Serve warm over yoghurt.","Great cold the next day too."],tip:"A bit tart is better than too sweet."},
+  {icon:"\u{1F961}",name:"Frozen Mango with Chilli & Lime",desc:"Frozen mango, chilli powder, lime juice. 2-minute Indian-inspired dessert.",time:"2 min",cal:120,ingr:["1 cup frozen mango cubes","0.5 lime (juice)","pinch chilli powder or chaat masala","pinch salt"],steps:["Take frozen mango out 5 min before.","Squeeze lime juice over.","Sprinkle chilli and salt.","Toss gently.","Eat immediately while still cold."],tip:"Chaat masala instead of chilli is even better."},
+  {icon:"\u2615",name:"Dates with Tahini & Sea Salt",desc:"Medjool dates, tahini inside, flaky sea salt. 3 ingredients.",time:"3 min",cal:180,ingr:["4-5 Medjool dates","2 tbsp tahini","flaky sea salt"],steps:["Pit the dates.","Spoon a little tahini inside each.","Press closed gently.","Sprinkle flaky sea salt.","Eat immediately or refrigerate up to 3 days."],tip:"Medjool dates are essential. Regular dates are too dry."},
+  {icon:"\u{1F367}",name:"Chia Pudding (overnight)",desc:"Chia seeds soaked in coconut milk overnight.",time:"5 min + overnight",cal:210,ingr:["3 tbsp chia seeds","1 cup coconut or oat milk","1 tsp honey","0.5 tsp vanilla","fruit to top"],steps:["Mix chia seeds, milk, honey and vanilla in a jar.","Stir well. Leave 5 min, stir again.","Refrigerate overnight.","In the morning, top with fruit.","Done."],tip:"Stir twice in the first 10 minutes or it clumps."},
+  {icon:"\u{1F36B}",name:"Dark Chocolate & Almonds",desc:"Good dark chocolate, roasted almonds, salt flakes. A ritual.",time:"1 min",cal:200,ingr:["2-3 squares dark chocolate (70%+)","handful roasted almonds","flaky sea salt"],steps:["Break chocolate into pieces.","Arrange almonds alongside.","Sprinkle salt.","Eat slowly.","That is the whole recipe."],tip:"70% or above. The better the chocolate, the better this is."},
+  {icon:"\u{1F968}",name:"Rose Milk",desc:"Cold milk with rose syrup and cardamom. 2-minute drink-dessert.",time:"2 min",cal:150,ingr:["1.5 cups cold milk","1 tbsp rose syrup","pinch of cardamom","ice"],steps:["Add rose syrup to cold milk.","Add cardamom and stir.","Pour over ice.","Drink slowly.","That is it."],tip:"Full-fat milk. Skim milk makes this sad."},
+  {icon:"\u{1F353}",name:"Strawberry Fool",desc:"Crushed strawberries folded into whipped cream.",time:"10 min",cal:190,ingr:["1 cup strawberries","0.5 cup double cream","1 tbsp sugar","0.5 tsp vanilla"],steps:["Mash half the strawberries with sugar.","Whip cream until soft peaks.","Fold crushed strawberry into cream.","Top with remaining strawberries.","Chill 15 min or eat immediately."],tip:"Do not overwhip the cream or it goes grainy."},
+  {icon:"\u{1F369}",name:"Chai Banana Bread",desc:"The classic with cardamom and ginger. 10 min prep, 45 min bake.",time:"55 min",cal:240,ingr:["3 ripe bananas","1.5 cups flour","0.5 cup sugar","1 egg","0.25 cup oil","1 tsp baking soda","0.5 tsp cardamom","0.5 tsp ginger","pinch salt"],steps:["Preheat oven 175C.","Mash bananas well.","Mix in egg, oil, sugar.","Fold in flour, soda, spices, salt.","Bake in a loaf tin 45-50 min."],tip:"The darker the bananas, the sweeter and better."}
+];
+
+
+var ARTICLES=[
+  {cat:"Friendships",title:"Why adult friendships are so hard — and what actually helps",author:"Marisa G. Franco, psychologist",body:"As adults we stop putting ourselves in situations where friendships naturally form. Research shows that proximity, repeated exposure and an environment that encourages vulnerability are the three key ingredients for friendship — and we lose all three after university. The fix is surprisingly simple: you have to reach out first, more often than feels comfortable, and do it without waiting to feel close first. Closeness is a consequence of showing up, not a condition for it. If you are waiting until you feel ready, you will be waiting forever."},
+  {cat:"Love",title:"The difference between loving someone and being in love",author:"Esther Perel, couples therapist",body:"We talk about falling in love as if it happens to us — as if we are passive in it. But long-term love is a practice. It requires choosing to see the person in front of you rather than the story you have built about them. Desire thrives on mystery and distance; intimacy thrives on closeness and safety. The work of love is holding both at once. Most couples fail not because they stopped loving each other but because they stopped being curious about each other. Curiosity is the antidote to contempt."},
+  {cat:"Life",title:"What 85 years of Harvard research says about happiness",author:"Robert Waldinger, psychiatrist",body:"We followed people from their teens into their nineties. The single clearest finding: good relationships keep us happier and healthier. Not wealth, not fame, not achievement — relationships. And not just the number of them. It is the quality that matters. People who were most satisfied with their relationships at 50 were the healthiest at 80. Loneliness is as physically harmful as smoking 15 cigarettes a day. The question is not whether relationships matter. It is whether we are investing in them the way we invest in our careers."},
+  {cat:"Friendships",title:"On the loneliness of being known only in parts",author:"Johann Hari, journalist",body:"Modern life fragments us. We show up differently at work, at home, with friends, online. The result is a kind of intimacy debt — we are surrounded by people but rarely fully seen. The most painful form of loneliness is not being alone. It is being with people and still feeling invisible. The antidote is not more socialising. It is deeper contact — fewer people, more honesty, longer conversations with more of yourself in them. We are starving for depth in a world that offers breadth."},
+  {cat:"Life",title:"The psychology of a good Sunday",author:"Daniel Kahneman, adapted",body:"Kahneman's work on the experiencing self versus the remembering self has an interesting implication: the way you end things matters disproportionately. A good Sunday evening — intentional, restful, quietly productive — does not just feel good in the moment. It colours the entire week in memory. The feeling of having reset, prepared, taken care of yourself: it compounds. What you do on Sunday evening is essentially what you think of your whole week. Meal prep counts."},
+  {cat:"Love",title:"On maintenance — the quiet work of lasting relationships",author:"Alain de Botton, philosopher",body:"We romanticise grand gestures and crisis moments in relationships. But the actual texture of love is made up of tiny things done consistently: remembering what matters to someone, asking how the difficult conversation went, being interested even when you are tired. Relationships degrade not through betrayal but through neglect — through the thousand small moments when we were elsewhere. Maintenance is not unromantic. It is the most loving thing."}
+];
+
+var GROCERY={
+  "Fridge":[{n:"Eggs",qty:12,unit:"",r:true},{n:"Butter",qty:1,unit:"block",r:false},{n:"Greek yoghurt",qty:500,unit:"g",r:true},{n:"Chicken thighs",qty:2,unit:"",r:false},{n:"Parmesan",qty:1,unit:"wedge",r:false},{n:"Avocado",qty:1,unit:"",r:false}],
+  "Pantry":[{n:"Red lentils",qty:500,unit:"g",r:true},{n:"Rice",qty:1,unit:"kg",r:true},{n:"Canned tomatoes",qty:3,unit:"cans",r:true},{n:"Spaghetti",qty:500,unit:"g",r:false},{n:"Flour tortillas",qty:1,unit:"pack",r:false},{n:"Roti",qty:1,unit:"pack",r:false}],
+  "Fresh":[{n:"Onions",qty:4,unit:"",r:true},{n:"Garlic",qty:1,unit:"head",r:true},{n:"Baby spinach",qty:1,unit:"bag",r:true},{n:"Spring onions",qty:1,unit:"bunch",r:true},{n:"Tomatoes",qty:3,unit:"",r:true},{n:"Sourdough",qty:1,unit:"loaf",r:false}],
+  "Spices":[{n:"Cumin",qty:1,unit:"jar",r:true},{n:"Turmeric",qty:1,unit:"jar",r:true},{n:"Smoked paprika",qty:1,unit:"jar",r:true},{n:"Garam masala",qty:1,unit:"jar",r:false},{n:"Chilli flakes",qty:1,unit:"jar",r:true},{n:"Soy sauce",qty:1,unit:"bottle",r:true},{n:"Olive oil",qty:1,unit:"bottle",r:true}]
+};
+
+var SUDO_P=[[5,3,0,0,7,0,0,0,0],[6,0,0,1,9,5,0,0,0],[0,9,8,0,0,0,0,6,0],[8,0,0,0,6,0,0,0,3],[4,0,0,8,0,3,0,0,1],[7,0,0,0,2,0,0,0,6],[0,6,0,0,0,0,2,8,0],[0,0,0,4,1,9,0,0,5],[0,0,0,0,8,0,0,7,9]];
+var SUDO_S=[[5,3,4,6,7,8,9,1,2],[6,7,2,1,9,5,3,4,8],[1,9,8,3,4,2,5,6,7],[8,5,9,7,6,1,4,2,3],[4,2,6,8,5,3,7,9,1],[7,1,3,9,2,4,8,5,6],[9,6,1,5,3,7,2,8,4],[2,8,7,4,1,9,6,3,5],[3,4,5,2,8,6,1,7,9]];
+var SCRW=[{w:"GARLIC",h:"In almost every meal"},{w:"LENTILS",h:"Your MVP"},{w:"PAPRIKA",h:"Smoky red spice"},{w:"TURMERIC",h:"Makes everything golden"},{w:"SOURDOUGH",h:"Melbourne bread"},{w:"QUESADILLA",h:"Wednesday lunch"},{w:"SPAGHETTI",h:"Wednesday dinner"},{w:"AVOCADO",h:"Saturday brunch hero"},{w:"OMELETTE",h:"French egg dish"},{w:"PARMESAN",h:"Italian cheese"}];
+var scrI=0,scrScore=0,b48,s48;
+
+function init48(){b48=[[0,0,0,0],[0,0,0,0],[0,0,0,0],[0,0,0,0]];s48=0;add48();add48();render48();}
+function add48(){var e=[];for(var r=0;r<4;r++)for(var c=0;c<4;c++)if(!b48[r][c])e.push([r,c]);if(!e.length)return;var p=e[Math.floor(Math.random()*e.length)];b48[p[0]][p[1]]=Math.random()<0.85?2:4;}
+function slide48(row){var a=row.filter(function(v){return v;});for(var i=0;i<a.length-1;i++){if(a[i]===a[i+1]){s48+=a[i]*2;a[i]*=2;a.splice(i+1,1);}}while(a.length<4)a.push(0);return a;}
+function move48(dir){var old=JSON.stringify(b48);if(dir==="left"){for(var r=0;r<4;r++)b48[r]=slide48(b48[r]);}else if(dir==="right"){for(var r=0;r<4;r++)b48[r]=slide48(b48[r].slice().reverse()).reverse();}else{for(var c=0;c<4;c++){var col=b48.map(function(rr){return rr[c];});var nc=dir==="up"?slide48(col):slide48(col.reverse()).reverse();for(var r=0;r<4;r++)b48[r][c]=nc[r];}}if(JSON.stringify(b48)!==old){add48();render48();}}
+function render48(){var g=document.getElementById("g48");if(!g)return;g.innerHTML="";for(var r=0;r<4;r++)for(var c=0;c<4;c++){var v=b48[r][c],d=document.createElement("div");d.className="t48"+(v?" t"+v:"");d.textContent=v||"";g.appendChild(d);}var sc=document.getElementById("sc48");if(sc)sc.textContent=s48;}
+
+var tIv=null,tRem=0,tRun=false,nudgeShown=false;
+function startTimer(sec){clearInterval(tIv);tRem=sec;tRun=true;nudgeShown=false;tickT();tIv=setInterval(tickT,1000);}
+function tickT(){var el=document.getElementById("tdisp");if(!el)return;if(tRem<=0){clearInterval(tIv);tRun=false;el.className="tdisp done";el.textContent="Done!";return;}tRem--;var m=Math.floor(tRem/60),s=tRem%60;el.textContent=(m<10?"0":"")+m+":"+(s<10?"0":"")+s;el.className="tdisp run";if(!nudgeShown&&tRem>0){nudgeShown=true;var nb=document.getElementById("nudge-banner");if(nb){nb.classList.add("show");setTimeout(function(){nb.classList.remove("show");},7000);}}}
+function pauseTimer(){if(tRun){clearInterval(tIv);tRun=false;}else if(tRem>0){tRun=true;tIv=setInterval(tickT,1000);}var b=document.getElementById("tpause");if(b)b.textContent=tRun?"Pause":"Resume";}
+function fmtT(s){var m=Math.floor(s/60),sec=s%60;return(m<10?"0":"")+m+":"+(sec<10?"0":"")+sec;}
+function fmtQty(qty,p){var v=qty*p;if(v===Math.floor(v))return v;var fr=[[0.25,"\u00bc"],[0.5,"\u00bd"],[0.75,"\u00be"],[0.33,"\u2153"],[0.67,"\u2154"]];var w=Math.floor(v),f=v-w;for(var i=0;i<fr.length;i++)if(Math.abs(f-fr[i][0])<0.08)return(w?w+" ":"")+fr[i][1];return Math.round(v*10)/10;}
+
+function buildGameHTML(tsec){
+  var artHTML=ARTICLES.map(function(a){return'<div class="art-card"><div class="art-cat">'+a.cat+'</div><div class="art-title">'+a.title+'</div><div class="art-author">'+a.author+'</div><div class="art-body">'+a.body+'</div></div>';}).join("");
+  return'<div class="tg-sec"><div class="tg-h">Cook Timer + While You Wait</div>'+
+    '<div id="nudge-banner" class="nudge-banner"><strong>Food is cooking.</strong> While you wait — play sudoku, read something good, or try 2048. Tabs below.</div>'+
+    '<div class="timer-row"><div class="tdisp" id="tdisp">'+fmtT(tsec)+'</div><div class="tbtns"><button class="tbtn pri" id="tstart">Start</button><button class="tbtn" id="tpause">Pause</button></div></div>'+
+    '<div class="gtabs"><button class="gtab on" data-g="sudo">Sudoku</button><button class="gtab" data-g="scr">Scramble</button><button class="gtab" data-g="g48">2048</button><button class="gtab" data-g="art">Good Reads</button></div>'+
+    '<div class="garea"><div id="gp-sudo">'+buildSudo()+'</div><div id="gp-scr" style="display:none">'+buildScr()+'</div><div id="gp-g48" style="display:none">'+build48html()+'</div><div id="gp-art" style="display:none">'+artHTML+'</div></div></div>';
+}
+function buildSudo(){var h='<div class="sudo-grid" id="sudo-grid">';for(var r=0;r<9;r++)for(var c=0;c<9;c++){var v=SUDO_P[r][c],cl="";if(c===2||c===5)cl+=" br";if(r===2||r===5)cl+=" bb";h+=v?'<input class="gv'+cl+'" type="number" min="1" max="9" value="'+v+'" readonly data-r="'+r+'" data-c="'+c+'">'
+:'<input class="'+cl.trim()+'" type="number" min="1" max="9" data-r="'+r+'" data-c="'+c+'">';}return h+'</div><div class="sbtns"><button class="tbtn" id="sudo-chk">Check</button><button class="tbtn" id="sudo-clr">Clear</button></div>';}
+function buildScr(){var w=SCRW[scrI],sh=w.w.split("").sort(function(){return Math.random()-0.5;}).join("");return'<div class="scr-word" id="scr-word">'+sh+'</div><p class="scr-hint" id="scr-hint">'+w.h+'</p><input class="scr-inp" id="scr-inp" type="text" placeholder="Unscramble it..."/><div class="scr-res" id="scr-res"></div><div style="display:flex;gap:7px;justify-content:center;margin-top:8px"><button class="tbtn" id="scr-nxt">Next</button></div><p style="font-size:11px;color:var(--muted);text-align:center;margin-top:5px">Solved: <span id="scr-sc">'+scrScore+'</span></p>';}
+function build48html(){return'<div class="g48info"><span>Score: <span id="sc48">0</span></span><button class="tbtn" id="new48">New</button></div><div class="g48" id="g48"></div><p style="font-size:11px;color:var(--muted);text-align:center;margin-top:5px">Arrow keys to move</p>';}
+
+function attachGameListeners(tsec){
+  document.getElementById("tstart").addEventListener("click",function(){startTimer(tsec);});
+  document.getElementById("tpause").addEventListener("click",pauseTimer);
+  document.querySelectorAll(".gtab").forEach(function(tab){
+    tab.addEventListener("click",function(){
+      document.querySelectorAll(".gtab").forEach(function(t){t.classList.remove("on");});tab.classList.add("on");
+      var g=tab.getAttribute("data-g");
+      ["sudo","scr","g48","art"].forEach(function(id){var p=document.getElementById("gp-"+id);if(p)p.style.display=id===g?"block":"none";});
+      if(g==="g48")init48();if(g==="scr")loadScr(scrI);
+    });
+  });
+  var sc=document.getElementById("sudo-chk");
+  if(sc)sc.addEventListener("click",function(){document.querySelectorAll("#sudo-grid input:not(.gv)").forEach(function(inp){var r=+inp.getAttribute("data-r"),c=+inp.getAttribute("data-c"),v=+inp.value;if(!v){inp.classList.remove("ok","wrong");return;}if(v===SUDO_S[r][c]){inp.classList.add("ok");inp.classList.remove("wrong");}else{inp.classList.add("wrong");inp.classList.remove("ok");}});});
+  var cl=document.getElementById("sudo-clr");if(cl)cl.addEventListener("click",function(){document.querySelectorAll("#sudo-grid input:not(.gv)").forEach(function(inp){inp.value="";inp.classList.remove("ok","wrong");});});
+  var si=document.getElementById("scr-inp");if(si)si.addEventListener("input",checkScr);
+  var sn=document.getElementById("scr-nxt");if(sn)sn.addEventListener("click",function(){loadScr((scrI+1)%SCRW.length);});
+  var n48=document.getElementById("new48");if(n48)n48.addEventListener("click",init48);
+  init48();
+}
+function loadScr(idx){scrI=idx;var w=SCRW[idx],sh=w.w.split("").sort(function(){return Math.random()-0.5;}).join("");var sw=document.getElementById("scr-word"),sh2=document.getElementById("scr-hint"),si=document.getElementById("scr-inp"),sr=document.getElementById("scr-res");if(sw)sw.textContent=sh;if(sh2)sh2.textContent=w.h;if(si)si.value="";if(sr){sr.textContent="";sr.className="scr-res";}}
+function checkScr(){var si=document.getElementById("scr-inp"),sr=document.getElementById("scr-res"),ss=document.getElementById("scr-sc");if(!si||!sr)return;if(si.value.toUpperCase()===SCRW[scrI].w){scrScore++;sr.className="scr-res win";sr.textContent="Correct! "+SCRW[scrI].w;if(ss)ss.textContent=scrScore;setTimeout(function(){loadScr((scrI+1)%SCRW.length);},1300);}}
+
+var modalPhotos=[];
+function buildPhotoSection(){
+  return'<div class="photo-upload-sec"><h4>Your photo</h4>'+
+    '<label for="modal-photo-input" style="display:block;border:2px dashed #D4C4A0;border-radius:12px;padding:1rem;text-align:center;cursor:pointer;background:#F5EDD8;margin-bottom:8px;font-size:12px;color:#8B7355;font-style:italic;">'+
+    '&#128247; Tap to add a photo of what you cooked</label>'+
+    '<input type="file" id="modal-photo-input" accept="image/*" style="display:none;">'+
+    '<div class="photo-preview" id="photo-preview"></div>'+
+    '<div style="display:flex;gap:6px;flex-wrap:wrap;"><input style="flex:1;padding:6px 10px;border:1.5px solid #D4C4A0;border-radius:10px;font-size:12px;background:white;outline:none;min-width:140px;" type="email" id="modal-share-email" placeholder="Send to (email)"/><button style="padding:6px 12px;border-radius:20px;font-size:11px;font-weight:500;cursor:pointer;border:none;background:var(--accent,#C4763A);color:white;font-family:DM Sans,sans-serif;" id="modal-share-btn">Send &#8594;</button></div></div>';
+}
+function attachPhotoListeners(mealName){
+  modalPhotos=[];
+  var inp=document.getElementById("modal-photo-input");
+  if(inp)inp.addEventListener("change",function(){
+    Array.from(inp.files).forEach(function(file){var reader=new FileReader();reader.onload=function(e){modalPhotos.push(e.target.result);var prev=document.getElementById("photo-preview");if(prev){var img=document.createElement("img");img.src=e.target.result;prev.appendChild(img);}};reader.readAsDataURL(file);});
+  });
+  var sb=document.getElementById("modal-share-btn");
+  if(sb)sb.addEventListener("click",function(){var email=document.getElementById("modal-share-email").value.trim();if(!email){alert("Enter an email address first");return;}var sub=encodeURIComponent("I just made: "+mealName);var body=encodeURIComponent("Hey! Just cooked "+mealName+" from my meal planner. Thought you would want to know!");window.location.href="mailto:"+email+"?subject="+sub+"&body="+body;});
+}
+
+var CQ=[
+  {id:"mood",q:"What is your mood right now?",opts:["Party mode, feed me well","Lazy, minimum effort","Tired and need comfort","Healthy and motivated","Treating myself"]},
+  {id:"workout",q:"Did you work out today?",opts:["Yes, protein please","Yes, carbs to refuel","No, keeping it lighter","No, I want something indulgent"]},
+  {id:"goal",q:"Any specific goal for this meal?",opts:["Just eat well","High protein","Low calorie","Cheat meal energy","Something very quick"]},
+  {id:"diet",q:"Any preference?",opts:["Full vegetarian","Eggs are fine","Whatever, meat included"]},
+  {id:"time",q:"How much time have you got?",opts:["Under 10 min","10-20 min","20-30 min","30+ min is fine"]},
+  {id:"carrying",q:"Eating at home or carrying to work?",opts:["Eating at home","Carrying as tiffin","Not sure yet"]},
+  {id:"flavour",q:"What flavour are you craving?",opts:["Warm and spicy","Fresh and light","Rich and comforting","Sour and tangy","Whatever is easiest"]}
+];
+var cAns={},cIdx=0,cDone=false,cFree=false;
+
+function scoreAllMeals(ans){
+  var pool=ALL_MEALS.filter(function(m){return m.type!=="cheat"&&m.type!=="experiment";});
+  return pool.map(function(m){
+    var sc=Math.random()*0.4;
+    var mood=ans.mood||"",wo=ans.workout||"",goal=ans.goal||"",diet=ans.diet||"",time=ans.time||"",carry=ans.carrying||"",flavour=ans.flavour||"";
+    if(mood==="Party mode, feed me well"&&m.cal>500)sc+=2;
+    if(mood==="Lazy, minimum effort"&&m.tsec<=900)sc+=3;
+    if(mood==="Tired and need comfort"&&m.tags.indexOf("comfort")>-1)sc+=3;
+    if(mood==="Healthy and motivated"&&(m.tags.indexOf("light")>-1||m.tags.indexOf("protein")>-1))sc+=2;
+    if(mood==="Treating myself"&&(m.tags.indexOf("fun")>-1||m.cal>500))sc+=2;
+    if((wo==="Yes, protein please"||goal==="High protein")&&m.tags.indexOf("protein")>-1)sc+=3;
+    if(wo==="Yes, carbs to refuel"&&(m.name.toLowerCase().indexOf("rice")>-1||m.name.toLowerCase().indexOf("pasta")>-1))sc+=2;
+    if((wo==="No, keeping it lighter"||goal==="Low calorie")&&m.cal<450)sc+=2;
+    if((wo==="No, I want something indulgent")&&m.cal>520)sc+=2;
+    if(goal==="Something very quick"&&m.tsec<=600)sc+=3;
+    if(goal==="Cheat meal energy"&&m.tags.indexOf("fun")>-1)sc+=2;
+    if(diet==="Full vegetarian"&&m.tags.indexOf("chicken")>-1)sc-=10;
+    if(diet==="Full vegetarian"&&m.tags.indexOf("vegetarian")>-1)sc+=2;
+    if(diet==="Eggs are fine"&&m.tags.indexOf("chicken")>-1)sc-=5;
+    if(time==="Under 10 min"&&m.tsec<=600)sc+=3;
+    if(time==="10-20 min"&&m.tsec<=1200)sc+=2;
+    if(time==="20-30 min"&&m.tsec<=1800)sc+=1;
+    if(carry==="Carrying as tiffin"&&!m.tiffin)sc-=4;
+    if(carry==="Carrying as tiffin"&&m.tiffin)sc+=2;
+    if(carry==="Eating at home"&&!m.tiffin)sc+=1;
+    if(flavour==="Warm and spicy"&&m.tags.indexOf("spicy")>-1)sc+=2;
+    if(flavour==="Fresh and light"&&m.tags.indexOf("light")>-1)sc+=2;
+    if(flavour==="Rich and comforting"&&m.tags.indexOf("comfort")>-1)sc+=2;
+    if(flavour==="Whatever is easiest"&&m.tsec<=900)sc+=2;
+    return{m:m,sc:sc};
+  }).sort(function(a,b){return b.sc-a.sc;}).slice(0,3).map(function(x){return x.m;});
+}
+
+function matchFreeText(txt){
+  txt=txt.toLowerCase();
+  var pool=ALL_MEALS.filter(function(m){return m.type!=="cheat"&&m.type!=="experiment";});
+  var kw={"quick":function(m){return m.tsec<=900;},"fast":function(m){return m.tsec<=600;},"egg":function(m){return m.tags.indexOf("eggs")>-1;},"rice":function(m){return m.name.toLowerCase().indexOf("rice")>-1;},"pasta":function(m){return m.name.toLowerCase().indexOf("pasta")>-1;},"dal":function(m){return m.name.toLowerCase().indexOf("dal")>-1||m.name.toLowerCase().indexOf("lentil")>-1;},"spicy":function(m){return m.tags.indexOf("spicy")>-1;},"veg":function(m){return m.tags.indexOf("vegetarian")>-1;},"protein":function(m){return m.tags.indexOf("protein")>-1;},"light":function(m){return m.cal<450;},"comfort":function(m){return m.tags.indexOf("comfort")>-1;},"tiffin":function(m){return m.tiffin;},"chicken":function(m){return m.tags.indexOf("chicken")>-1;},"toast":function(m){return m.name.toLowerCase().indexOf("toast")>-1;},"soup":function(m){return m.name.toLowerCase().indexOf("soup")>-1;},"noodle":function(m){return m.name.toLowerCase().indexOf("noodle")>-1;}};
+  var scored=pool.map(function(m){var sc=Math.random()*0.3;Object.keys(kw).forEach(function(k){if(txt.indexOf(k)>-1&&kw[k](m))sc+=2;});return{m:m,sc:sc};}).sort(function(a,b){return b.sc-a.sc;});
+  return scored.slice(0,3).map(function(x){return x.m;});
+}
+
+function renderChooser(){
+  var body=document.getElementById("chooser-body");if(!body)return;
+  if(cFree){
+    body.innerHTML='<textarea class="chooser-free" id="c-free" rows="2" placeholder="e.g. quick and spicy, or egg tiffin, or protein after gym, or tired and want something warm..."></textarea><button class="chooser-send" id="c-send">Find meals &#8594;</button><button class="chooser-reset" id="c-back">&#8592; Use the questions</button>';
+    document.getElementById("c-send").addEventListener("click",function(){var t=document.getElementById("c-free").value.trim();if(!t)return;showChooserResults(matchFreeText(t),"Based on: \u201c"+t+"\u201d");});
+    document.getElementById("c-back").addEventListener("click",function(){cFree=false;cIdx=0;cDone=false;cAns={};renderChooser();});
+    return;
+  }
+  if(cDone){showChooserResults(scoreAllMeals(cAns),"Your top picks today");return;}
+  var q=CQ[cIdx];
+  var pips=CQ.map(function(_,i){return'<div class="cpip'+(i<cIdx?" done":"")+'"></div>';}).join("");
+  body.innerHTML='<div class="chooser-progress">'+pips+'</div><p class="chooser-q">'+q.q+'</p><div class="chooser-opts">'+q.opts.map(function(o){return'<button class="copt" data-v="'+o+'">'+o+'</button>';}).join("")+'</div><button class="chooser-reset" id="c-free-btn">Just tell me what I feel like &#8594;</button>';
+  body.querySelectorAll(".copt").forEach(function(btn){btn.addEventListener("click",function(){cAns[q.id]=btn.getAttribute("data-v");cIdx++;if(cIdx>=CQ.length)cDone=true;renderChooser();});});
+  document.getElementById("c-free-btn").addEventListener("click",function(){cFree=true;renderChooser();});
+}
+
+function showChooserResults(results,label){
+  var body=document.getElementById("chooser-body");
+  body.innerHTML='<div class="chooser-result"><h4>'+label+'</h4>'+
+    results.map(function(m,i){
+      return'<div style="margin-bottom:8px;padding-bottom:8px;border-bottom:'+(i<results.length-1?"1px solid rgba(90,138,94,0.2)":"none")+'">'+
+        '<strong>'+m.name+'</strong>'+(m.tiffin?'<span class="tiffin-ok">tiffin-ok</span>':'')+'<br/>'+
+        '<span style="font-size:11px;color:#3D5C40;font-style:italic">'+m.time+' &middot; ~'+(m.cal*PORTIONS)+' kcal &middot; '+m.desc+'</span><br/>'+
+        '<button class="copen-btn" data-idx="'+ALL_MEALS.indexOf(m)+'">Open recipe &#8594;</button>'+
+        '</div>';
+    }).join("")+
+    '</div><button class="chooser-reset" id="c-rst">Start over</button>';
+  body.querySelectorAll(".copen-btn").forEach(function(btn){btn.addEventListener("click",function(){openModal(parseInt(btn.getAttribute("data-idx")));});});
+  document.getElementById("c-rst").addEventListener("click",function(){cAns={};cIdx=0;cDone=false;cFree=false;renderChooser();});
+}
+
+var sqStep=0;
+function buildSundayQuiz(){
+  var sq=document.getElementById("sunday-quiz");if(!sq)return;
+  sq.innerHTML='<div class="sq-card"><h3>It\'s Sunday. What\'s the vibe?</h3><div class="sq-opts">'+
+    ["Cheat meal, I deserve it","Surprise me with something to cook","Let me choose the experiment"].map(function(o){return'<button class="sqopt" data-v="'+o+'">'+o+'</button>';}).join("")+
+    '</div></div>';
+  sq.querySelectorAll(".sqopt").forEach(function(btn){
+    btn.addEventListener("click",function(){
+      var v=btn.getAttribute("data-v");
+      var exps=ALL_MEALS.filter(function(m){return m.type==="experiment";});
+      var cheat=ALL_MEALS.filter(function(m){return m.type==="cheat";})[0];
+      if(v==="Cheat meal, I deserve it")showSundayResult(ALL_MEALS.indexOf(cheat));
+      else if(v==="Surprise me with something to cook")showSundayResult(ALL_MEALS.indexOf(exps[Math.floor(Math.random()*exps.length)]));
+      else buildSundayChoose();
+    });
+  });
+}
+function buildSundayChoose(){
+  var sq=document.getElementById("sunday-quiz");
+  var exps=ALL_MEALS.filter(function(m){return m.type==="experiment";});
+  sq.innerHTML='<div class="sq-card"><h3>Which experiment?</h3><div class="sq-opts">'+exps.map(function(m){return'<button class="sqopt" data-idx="'+ALL_MEALS.indexOf(m)+'">'+m.name+' \u2014 <span style="font-size:11px;font-style:normal;color:var(--muted)">'+m.time+'</span></button>';}).join("")+'</div></div>';
+  sq.querySelectorAll(".sqopt").forEach(function(btn){btn.addEventListener("click",function(){showSundayResult(parseInt(btn.getAttribute("data-idx")));});});
+}
+function showSundayResult(idx){
+  var m=ALL_MEALS[idx];
+  var sq=document.getElementById("sunday-quiz");
+  sq.innerHTML='<div class="sq-card"><div class="sq-result"><h4>'+(m.type==="cheat"?"Tonight: "+m.name:"Let\'s cook: "+m.name)+'</h4><p style="margin-bottom:10px;font-style:italic">'+m.desc+'</p><button class="tbtn pri" id="sq-open">See recipe &#8594;</button></div><button class="sq-back" id="sq-back">&#8592; Change answer</button></div>';
+  document.getElementById("sq-open").addEventListener("click",function(){openModal(idx);});
+  document.getElementById("sq-back").addEventListener("click",function(){sqStep=0;buildSundayQuiz();});
+}
+
+var currentDay=0;
+function showDay(idx){
+  currentDay=idx;
+  document.querySelectorAll(".nday").forEach(function(b,i){b.classList.toggle("active",i===idx);});
+  document.getElementById("day-name").textContent=days[idx].name;
+  document.getElementById("day-vibe").textContent=days[idx].vibe;
+  var mg=document.getElementById("meals-grid"),sq=document.getElementById("sunday-quiz"),cc=document.getElementById("chooser-card");
+  if(idx===6){mg.style.display="none";sq.style.display="block";if(cc)cc.style.display="none";buildSundayQuiz();}
+  else{mg.style.display="";sq.style.display="none";if(cc)cc.style.display="block";renderMeals();cAns={};cIdx=0;cDone=false;cFree=false;renderChooser();}
+  document.querySelectorAll(".ovc").forEach(function(c,i){c.classList.toggle("active",i===idx);});
+}
+
+var MEAL_ILLUS = {
+  'Spiced Lentil Soup & Toast': '<svg viewBox="0 0 300 160" xmlns="http://www.w3.org/2000/svg">\n  <rect width="300" height="160" fill="#F5EDD8"/>\n  <!-- bowl -->\n  <ellipse cx="150" cy="100" rx="75" ry="45" fill="#E8D5B0" stroke="#C8A878" stroke-width="1.5"/>\n  <ellipse cx="150" cy="88" rx="72" ry="42" fill="#D4562A" opacity="0.85"/>\n  <!-- soup texture -->\n  <circle cx="135" cy="82" r="6" fill="#C04020" opacity="0.6"/>\n  <circle cx="155" cy="92" r="4" fill="#B83A18" opacity="0.5"/>\n  <circle cx="168" cy="78" r="5" fill="#C84828" opacity="0.55"/>\n  <!-- lemon slice -->\n  <circle cx="155" cy="85" r="10" fill="#F0D848" opacity="0.8"/>\n  <circle cx="155" cy="85" r="7" fill="#E8C830" opacity="0.5"/>\n  <line x1="155" y1="78" x2="155" y2="92" stroke="#D0AA20" stroke-width="0.8"/>\n  <line x1="148" y1="81" x2="162" y2="89" stroke="#D0AA20" stroke-width="0.8"/>\n  <!-- bowl rim highlight -->\n  <ellipse cx="150" cy="88" rx="72" ry="12" fill="none" stroke="#E8C890" stroke-width="2" opacity="0.5"/>\n  <!-- toast -->\n  <rect x="215" y="55" width="45" height="28" rx="4" fill="#D4A84B" transform="rotate(-15 215 55)"/>\n  <rect x="217" y="57" width="41" height="24" rx="3" fill="#E8C070" opacity="0.6" transform="rotate(-15 215 55)"/>\n  <!-- garlic cloves scattered -->\n  <ellipse cx="52" cy="60" rx="10" ry="14" fill="#F0EBD8" stroke="#C8B890" stroke-width="1.2" transform="rotate(20 52 60)"/>\n  <ellipse cx="62" cy="55" rx="8" ry="11" fill="#EDE5D0" stroke="#C8B890" stroke-width="1" transform="rotate(-10 62 55)"/>\n  <!-- onion half -->\n  <ellipse cx="60" cy="120" rx="18" ry="12" fill="#E8C0A8" stroke="#C89878" stroke-width="1.2"/>\n  <path d="M42 120 Q60 108 78 120" fill="none" stroke="#D0A888" stroke-width="1"/>\n  <path d="M44 116 Q60 106 76 116" fill="none" stroke="#C89878" stroke-width="0.8"/>\n  <!-- cumin seeds -->\n  <ellipse cx="230" cy="120" rx="2" ry="5" fill="#7A5030" transform="rotate(30 230 120)"/>\n  <ellipse cx="238" cy="118" rx="2" ry="5" fill="#7A5030" transform="rotate(-20 238 118)"/>\n  <ellipse cx="235" cy="128" rx="2" ry="5" fill="#7A5030" transform="rotate(10 235 128)"/>\n  <!-- labels in sketch handwriting style -->\n  <text x="30" y="50" font-family="Lora,serif" font-size="9" fill="#7A6548" font-style="italic" transform="rotate(-8 30 50)">red lentils</text>\n  <text x="205" y="52" font-family="Lora,serif" font-size="9" fill="#7A6548" font-style="italic" transform="rotate(10 205 52)">toast</text>\n  <text x="218" y="115" font-family="Lora,serif" font-size="9" fill="#7A6548" font-style="italic">cumin</text>\n</svg>',
+  'Egg Fried Rice': '<svg viewBox="0 0 300 160" xmlns="http://www.w3.org/2000/svg">\n  <rect width="300" height="160" fill="#F2EAD4"/>\n  <!-- wok -->\n  <ellipse cx="150" cy="105" rx="88" ry="35" fill="#5A4030" opacity="0.9"/>\n  <ellipse cx="150" cy="95" rx="84" ry="33" fill="#8B6A40" opacity="0.85"/>\n  <!-- rice bed -->\n  <ellipse cx="150" cy="92" rx="78" ry="28" fill="#F0E8C8"/>\n  <!-- rice dots -->\n  <g fill="#E8D8A8" opacity="0.8">\n    <rect x="122" y="82" width="6" height="3" rx="1.5" transform="rotate(20 122 82)"/>\n    <rect x="135" y="88" width="6" height="3" rx="1.5" transform="rotate(-15 135 88)"/>\n    <rect x="148" y="84" width="6" height="3" rx="1.5" transform="rotate(5 148 84)"/>\n    <rect x="162" y="90" width="6" height="3" rx="1.5" transform="rotate(-25 162 90)"/>\n    <rect x="155" y="80" width="6" height="3" rx="1.5" transform="rotate(35 155 80)"/>\n    <rect x="138" y="96" width="6" height="3" rx="1.5" transform="rotate(-5 138 96)"/>\n    <rect x="168" y="85" width="6" height="3" rx="1.5" transform="rotate(15 168 85)"/>\n  </g>\n  <!-- egg pools -->\n  <ellipse cx="145" cy="87" rx="18" ry="12" fill="#F8D840" opacity="0.75"/>\n  <ellipse cx="145" cy="87" rx="8" ry="7" fill="#F0B820" opacity="0.8"/>\n  <!-- spring onion green streaks -->\n  <path d="M120 76 Q135 90 128 102" stroke="#5A9A40" stroke-width="2.5" fill="none" opacity="0.8"/>\n  <path d="M170 78 Q158 92 164 104" stroke="#4A8A30" stroke-width="2" fill="none" opacity="0.7"/>\n  <!-- soy sauce bottle -->\n  <rect x="248" y="40" width="20" height="55" rx="4" fill="#2A1A08" opacity="0.85"/>\n  <rect x="251" y="35" width="14" height="10" rx="3" fill="#3A2A18" opacity="0.8"/>\n  <rect x="250" y="55" width="20" height="18" fill="#C83018" opacity="0.7"/>\n  <!-- sesame seeds -->\n  <circle cx="52" cy="72" r="2" fill="#C8A870"/>\n  <circle cx="58" cy="68" r="2" fill="#C8A870"/>\n  <circle cx="55" cy="78" r="2" fill="#C8A870"/>\n  <circle cx="64" cy="74" r="2" fill="#C8A870"/>\n  <text x="30" y="62" font-family="Lora,serif" font-size="9" fill="#7A6548" font-style="italic">sesame</text>\n  <text x="238" y="38" font-family="Lora,serif" font-size="9" fill="#7A6548" font-style="italic" transform="rotate(5 238 38)">soy</text>\n  <text x="210" y="130" font-family="Lora,serif" font-size="9" fill="#7A6548" font-style="italic">spring onion</text>\n</svg>',
+  'Tomato Egg Shakshuka': '<svg viewBox="0 0 300 160" xmlns="http://www.w3.org/2000/svg">\n  <rect width="300" height="160" fill="#F5EAD8"/>\n  <!-- pan -->\n  <ellipse cx="150" cy="100" rx="85" ry="40" fill="#5A3020" stroke="#3A1A10" stroke-width="1.5"/>\n  <ellipse cx="150" cy="92" rx="80" ry="37" fill="#C84020" opacity="0.9"/>\n  <!-- tomato sauce swirls -->\n  <path d="M100 88 Q130 78 160 90 Q185 80 200 92" stroke="#A82010" stroke-width="2.5" fill="none" opacity="0.6"/>\n  <path d="M108 96 Q140 86 168 98" stroke="#B83018" stroke-width="2" fill="none" opacity="0.5"/>\n  <!-- eggs -->\n  <ellipse cx="128" cy="88" rx="18" ry="14" fill="white" opacity="0.9"/>\n  <circle cx="128" cy="88" r="7" fill="#F8C820" opacity="0.9"/>\n  <ellipse cx="170" cy="90" rx="18" ry="14" fill="white" opacity="0.9"/>\n  <circle cx="170" cy="90" r="7" fill="#F8C820" opacity="0.9"/>\n  <!-- feta crumbles -->\n  <rect x="138" y="82" width="6" height="4" rx="2" fill="white" opacity="0.8"/>\n  <rect x="148" y="94" width="7" height="4" rx="2" fill="white" opacity="0.75"/>\n  <rect x="156" y="84" width="5" height="4" rx="2" fill="white" opacity="0.8"/>\n  <!-- bread slices -->\n  <rect x="28" y="55" width="40" height="55" rx="6" fill="#D4A030" transform="rotate(-12 28 55)"/>\n  <rect x="31" y="58" width="34" height="49" rx="5" fill="#E8C050" opacity="0.5" transform="rotate(-12 28 55)"/>\n  <!-- paprika powder -->\n  <circle cx="252" cy="68" r="14" fill="#C83020" opacity="0.75"/>\n  <circle cx="252" cy="68" r="9" fill="#E04020" opacity="0.5"/>\n  <text x="235" y="55" font-family="Lora,serif" font-size="9" fill="#7A6548" font-style="italic">paprika</text>\n  <text x="22" y="50" font-family="Lora,serif" font-size="9" fill="#7A6548" font-style="italic" transform="rotate(-8 22 50)">bread</text>\n  <text x="115" y="130" font-family="Lora,serif" font-size="9" fill="#7A6548" font-style="italic">tomato &amp; eggs</text>\n</svg>',
+  'Dal Tadka with Rice': '<svg viewBox="0 0 300 160" xmlns="http://www.w3.org/2000/svg">\n  <rect width="300" height="160" fill="#F5EDD8"/>\n  <!-- rice mound on left -->\n  <ellipse cx="78" cy="105" rx="42" ry="28" fill="#F0E8C0" stroke="#D8CC90" stroke-width="1.2"/>\n  <ellipse cx="78" cy="100" rx="38" ry="22" fill="#F8F0D0"/>\n  <!-- rice texture -->\n  <g fill="#E8D890" opacity="0.8">\n    <rect x="62" y="94" width="5" height="2.5" rx="1.2" transform="rotate(15 62 94)"/>\n    <rect x="72" y="98" width="5" height="2.5" rx="1.2" transform="rotate(-20 72 98)"/>\n    <rect x="82" y="92" width="5" height="2.5" rx="1.2" transform="rotate(5 82 92)"/>\n    <rect x="88" y="100" width="5" height="2.5" rx="1.2" transform="rotate(30 88 100)"/>\n  </g>\n  <!-- dal bowl -->\n  <ellipse cx="185" cy="105" rx="70" ry="38" fill="#E0A840" stroke="#C89030" stroke-width="1.5"/>\n  <ellipse cx="185" cy="95" rx="66" ry="35" fill="#D4882A" opacity="0.9"/>\n  <!-- tadka sizzle lines -->\n  <path d="M175 82 Q185 78 195 82" stroke="#F8D040" stroke-width="2" fill="none" opacity="0.8"/>\n  <circle cx="178" cy="86" r="3" fill="#F0A020" opacity="0.7"/>\n  <circle cx="190" cy="83" r="2.5" fill="#F0A020" opacity="0.65"/>\n  <circle cx="198" cy="87" r="3" fill="#E89020" opacity="0.7"/>\n  <!-- mustard seeds -->\n  <circle cx="50" cy="55" r="3" fill="#2A1A08"/>\n  <circle cx="58" cy="52" r="3" fill="#2A1A08"/>\n  <circle cx="54" cy="62" r="3" fill="#2A1A08"/>\n  <circle cx="64" cy="57" r="3" fill="#2A1A08"/>\n  <!-- curry leaves -->\n  <path d="M240 50 Q248 44 255 50 Q248 56 240 50Z" fill="#4A8030" opacity="0.8"/>\n  <path d="M248 55 Q256 49 263 55 Q256 61 248 55Z" fill="#5A9040" opacity="0.75"/>\n  <path d="M235 58 Q243 52 250 58 Q243 64 235 58Z" fill="#4A8030" opacity="0.7"/>\n  <text x="34" y="46" font-family="Lora,serif" font-size="9" fill="#7A6548" font-style="italic">mustard</text>\n  <text x="228" y="44" font-family="Lora,serif" font-size="9" fill="#7A6548" font-style="italic">curry leaves</text>\n  <text x="48" y="128" font-family="Lora,serif" font-size="9" fill="#7A6548" font-style="italic">rice</text>\n  <text x="168" y="138" font-family="Lora,serif" font-size="9" fill="#7A6548" font-style="italic">dal tadka</text>\n</svg>',
+  'Spinach & Cheese Quesadillas': '<svg viewBox="0 0 300 160" xmlns="http://www.w3.org/2000/svg">\n  <rect width="300" height="160" fill="#F2EAD4"/>\n  <!-- two quesadilla wedges -->\n  <path d="M150 30 L80 130 L220 130 Z" fill="#D4A040" stroke="#C89030" stroke-width="1.5"/>\n  <path d="M150 30 L82 132 L218 132 Z" fill="#E8B850" opacity="0.5"/>\n  <!-- cheese drip -->\n  <path d="M110 90 Q108 110 112 128" stroke="#F8D840" stroke-width="3" fill="none" opacity="0.8"/>\n  <path d="M188 92 Q190 112 186 128" stroke="#F8D840" stroke-width="3" fill="none" opacity="0.7"/>\n  <!-- spinach bits -->\n  <ellipse cx="140" cy="95" rx="8" ry="5" fill="#4A8A30" opacity="0.7" transform="rotate(20 140 95)"/>\n  <ellipse cx="158" cy="100" rx="7" ry="4" fill="#5A9A40" opacity="0.65" transform="rotate(-15 158 100)"/>\n  <ellipse cx="150" cy="85" rx="6" ry="4" fill="#4A8030" opacity="0.7" transform="rotate(5 150 85)"/>\n  <!-- yoghurt dip -->\n  <circle cx="248" cy="90" r="22" fill="white" opacity="0.85" stroke="#D4C4A0" stroke-width="1.2"/>\n  <circle cx="248" cy="90" r="14" fill="#F8F4E8" opacity="0.6"/>\n  <!-- chilli flakes scattered -->\n  <rect x="52" y="58" width="4" height="2" rx="1" fill="#C83020" transform="rotate(30 52 58)"/>\n  <rect x="62" y="52" width="4" height="2" rx="1" fill="#C83020" transform="rotate(-20 62 52)"/>\n  <rect x="58" y="65" width="3" height="2" rx="1" fill="#B82010" transform="rotate(50 58 65)"/>\n  <text x="230" y="75" font-family="Lora,serif" font-size="9" fill="#7A6548" font-style="italic">yoghurt</text>\n  <text x="38" y="50" font-family="Lora,serif" font-size="9" fill="#7A6548" font-style="italic">chilli</text>\n  <text x="120" y="148" font-family="Lora,serif" font-size="9" fill="#7A6548" font-style="italic">spinach &amp; cheese</text>\n</svg>',
+  'Pasta Aglio e Olio': '<svg viewBox="0 0 300 160" xmlns="http://www.w3.org/2000/svg">\n  <rect width="300" height="160" fill="#F5EDD8"/>\n  <!-- bowl -->\n  <ellipse cx="150" cy="108" rx="82" ry="38" fill="#E0CCA8" stroke="#C8B48A" stroke-width="1.5"/>\n  <ellipse cx="150" cy="98" rx="78" ry="36" fill="#E8D5B0"/>\n  <!-- pasta nest -->\n  <g fill="none" stroke="#D4A840" stroke-width="2.5" opacity="0.8">\n    <path d="M115 95 Q130 80 148 95 Q165 110 178 95"/>\n    <path d="M118 102 Q135 88 152 102 Q168 116 180 102"/>\n    <path d="M112 89 Q128 75 145 89 Q162 103 175 89"/>\n  </g>\n  <!-- garlic slivers -->\n  <ellipse cx="92" cy="55" rx="6" ry="14" fill="#F8F0D8" stroke="#D0C090" stroke-width="1.2" transform="rotate(-25 92 55)"/>\n  <ellipse cx="104" cy="50" rx="5" ry="12" fill="#F5EBD0" stroke="#D0C090" stroke-width="1" transform="rotate(15 104 50)"/>\n  <ellipse cx="83" cy="48" rx="5" ry="11" fill="#F8F0D8" stroke="#D0C090" stroke-width="1" transform="rotate(-40 83 48)"/>\n  <!-- chilli -->\n  <path d="M210 45 Q230 38 240 52 Q235 62 220 60 Q208 55 210 45Z" fill="#C83020" opacity="0.85"/>\n  <path d="M210 45 Q206 38 208 32" stroke="#4A8030" stroke-width="1.8" fill="none"/>\n  <!-- parmesan shavings -->\n  <rect x="145" y="84" width="18" height="6" rx="3" fill="#F8EEC0" opacity="0.8" transform="rotate(15 145 84)"/>\n  <rect x="160" y="92" width="14" height="5" rx="2.5" fill="#F8EEC0" opacity="0.7" transform="rotate(-20 160 92)"/>\n  <!-- parsley -->\n  <circle cx="250" cy="110" r="12" fill="#5A9A40" opacity="0.7"/>\n  <circle cx="262" cy="105" r="9" fill="#4A8A30" opacity="0.65"/>\n  <circle cx="255" cy="120" r="8" fill="#5A9A40" opacity="0.6"/>\n  <text x="70" y="42" font-family="Lora,serif" font-size="9" fill="#7A6548" font-style="italic">garlic</text>\n  <text x="207" y="38" font-family="Lora,serif" font-size="9" fill="#7A6548" font-style="italic">chilli</text>\n  <text x="240" y="100" font-family="Lora,serif" font-size="9" fill="#7A6548" font-style="italic">parsley</text>\n</svg>',
+  'Yoghurt Bowl with Egg & Veg': '<svg viewBox="0 0 300 160" xmlns="http://www.w3.org/2000/svg">\n  <rect width="300" height="160" fill="#F5EDD8"/>\n  <!-- bowl -->\n  <ellipse cx="150" cy="105" rx="80" ry="40" fill="#E0CCA8" stroke="#C8B48A" stroke-width="1.5"/>\n  <ellipse cx="150" cy="95" rx="76" ry="37" fill="white" opacity="0.9"/>\n  <!-- yoghurt swirl -->\n  <path d="M130 90 Q150 82 168 92 Q158 100 145 96 Q138 92 130 90Z" fill="#F8F4E8" opacity="0.5"/>\n  <!-- boiled egg halves -->\n  <ellipse cx="125" cy="92" rx="16" ry="12" fill="white" opacity="0.9" stroke="#E8D8B0" stroke-width="1"/>\n  <ellipse cx="125" cy="92" rx="9" ry="7" fill="#F8D840" opacity="0.85"/>\n  <ellipse cx="162" cy="94" rx="16" ry="12" fill="white" opacity="0.9" stroke="#E8D8B0" stroke-width="1"/>\n  <ellipse cx="162" cy="94" rx="9" ry="7" fill="#F8D840" opacity="0.85"/>\n  <!-- roasted veg bits -->\n  <rect x="138" y="84" width="10" height="7" rx="2" fill="#C85020" opacity="0.7"/>\n  <rect x="152" y="86" width="9" height="6" rx="2" fill="#D46030" opacity="0.65"/>\n  <!-- olive oil drizzle -->\n  <path d="M108 78 Q118 85 112 95" stroke="#D4A830" stroke-width="2.5" fill="none" opacity="0.7"/>\n  <!-- chilli flakes -->\n  <rect x="245" y="65" width="5" height="2.5" rx="1.2" fill="#C83020" transform="rotate(25 245 65)"/>\n  <rect x="255" y="60" width="5" height="2.5" rx="1.2" fill="#B82010" transform="rotate(-15 255 60)"/>\n  <rect x="250" y="72" width="4" height="2" rx="1" fill="#C83020" transform="rotate(40 250 72)"/>\n  <text x="95" y="68" font-family="Lora,serif" font-size="9" fill="#7A6548" font-style="italic">olive oil</text>\n  <text x="235" y="56" font-family="Lora,serif" font-size="9" fill="#7A6548" font-style="italic">chilli</text>\n  <text x="110" y="130" font-family="Lora,serif" font-size="9" fill="#7A6548" font-style="italic">yoghurt &amp; egg</text>\n</svg>',
+  'Tomato Rice with Fried Egg': '<svg viewBox="0 0 300 160" xmlns="http://www.w3.org/2000/svg">\n  <rect width="300" height="160" fill="#F2EAD4"/>\n  <!-- plate -->\n  <ellipse cx="150" cy="105" rx="82" ry="38" fill="#E8C8A0" stroke="#C8A870" stroke-width="1.5"/>\n  <ellipse cx="150" cy="95" rx="78" ry="35" fill="#C83018" opacity="0.85"/>\n  <!-- rice visible through tomato -->\n  <g fill="#F0E8C0" opacity="0.4">\n    <rect x="128" y="88" width="5" height="2.5" rx="1.2" transform="rotate(20 128 88)"/>\n    <rect x="142" y="92" width="5" height="2.5" rx="1.2" transform="rotate(-10 142 92)"/>\n    <rect x="165" y="90" width="5" height="2.5" rx="1.2" transform="rotate(5 165 90)"/>\n  </g>\n  <!-- fried egg on top -->\n  <ellipse cx="150" cy="88" rx="24" ry="18" fill="white" opacity="0.9"/>\n  <circle cx="150" cy="86" r="10" fill="#F8C820" opacity="0.9"/>\n  <!-- crispy egg edges -->\n  <path d="M126 88 Q128 82 134 84" stroke="#E8A010" stroke-width="1.5" fill="none" opacity="0.5"/>\n  <path d="M172 90 Q170 83 165 86" stroke="#E8A010" stroke-width="1.5" fill="none" opacity="0.5"/>\n  <!-- tomato halves scattered -->\n  <ellipse cx="52" cy="72" rx="16" ry="14" fill="#C83020" opacity="0.8" stroke="#A82010" stroke-width="1"/>\n  <path d="M38 70 Q52 60 66 70 Q52 80 38 70Z" fill="#E84030" opacity="0.4"/>\n  <!-- paprika and cumin on side -->\n  <circle cx="248" cy="70" r="10" fill="#C83020" opacity="0.7"/>\n  <ellipse cx="265" cy="75" rx="2" ry="6" fill="#7A5030" transform="rotate(20 265 75)"/>\n  <ellipse cx="258" cy="80" rx="2" ry="6" fill="#7A5030" transform="rotate(-10 258 80)"/>\n  <text x="32" y="60" font-family="Lora,serif" font-size="9" fill="#7A6548" font-style="italic">tomato</text>\n  <text x="235" y="60" font-family="Lora,serif" font-size="9" fill="#7A6548" font-style="italic">spices</text>\n</svg>',
+  'Fried Egg Sandwich': '<svg viewBox="0 0 300 160" xmlns="http://www.w3.org/2000/svg">\n  <rect width="300" height="160" fill="#F5EDD8"/>\n  <!-- bread slice bottom -->\n  <rect x="80" y="90" width="140" height="45" rx="8" fill="#C89030"/>\n  <rect x="82" y="92" width="136" height="41" rx="7" fill="#E8C050" opacity="0.4"/>\n  <!-- bread slice top -->\n  <rect x="80" y="55" width="140" height="38" rx="8" fill="#C89030"/>\n  <rect x="82" y="57" width="136" height="34" rx="7" fill="#E8C050" opacity="0.4"/>\n  <!-- butter smear -->\n  <path d="M90 62 Q130 58 160 64 Q190 60 210 66" stroke="#F8E870" stroke-width="4" fill="none" opacity="0.6"/>\n  <!-- fried egg -->\n  <ellipse cx="150" cy="82" rx="35" ry="22" fill="white" opacity="0.95"/>\n  <circle cx="150" cy="80" r="13" fill="#F8C820" opacity="0.9"/>\n  <!-- hot sauce drops -->\n  <circle cx="55" cy="65" r="6" fill="#C83020" opacity="0.85"/>\n  <circle cx="67" cy="72" r="4" fill="#D84020" opacity="0.7"/>\n  <circle cx="50" cy="76" r="5" fill="#C02010" opacity="0.8"/>\n  <!-- salt and pepper -->\n  <circle cx="242" cy="60" r="3" fill="#2A1A0E" opacity="0.7"/>\n  <circle cx="250" cy="55" r="3" fill="#2A1A0E" opacity="0.6"/>\n  <circle cx="246" cy="68" r="2" fill="#F8F8F0" opacity="0.8"/>\n  <circle cx="254" cy="63" r="2" fill="#F8F8F0" opacity="0.7"/>\n  <text x="36" y="56" font-family="Lora,serif" font-size="9" fill="#7A6548" font-style="italic">hot sauce</text>\n  <text x="232" y="50" font-family="Lora,serif" font-size="9" fill="#7A6548" font-style="italic">s &amp; p</text>\n  <text x="110" y="148" font-family="Lora,serif" font-size="9" fill="#7A6548" font-style="italic">Friday energy</text>\n</svg>',
+  'Masoor Dal & Roti': '<svg viewBox="0 0 300 160" xmlns="http://www.w3.org/2000/svg">\n  <rect width="300" height="160" fill="#F5EDD8"/>\n  <!-- roti stack -->\n  <ellipse cx="82" cy="112" rx="40" ry="12" fill="#C89030"/>\n  <ellipse cx="82" cy="105" rx="40" ry="12" fill="#D4A040"/>\n  <ellipse cx="82" cy="98" rx="40" ry="12" fill="#E8B850"/>\n  <!-- char marks on roti -->\n  <path d="M62 98 Q75 96 90 98 Q82 100 62 98Z" fill="#7A5020" opacity="0.4"/>\n  <path d="M68 102 Q80 100 96 102" fill="#7A5020" opacity="0.3" stroke="#7A5020" stroke-width="1.5"/>\n  <!-- dal bowl -->\n  <ellipse cx="188" cy="108" rx="75" ry="36" fill="#E0A030" stroke="#C08820" stroke-width="1.5"/>\n  <ellipse cx="188" cy="98" rx="71" ry="33" fill="#D07818" opacity="0.9"/>\n  <!-- garam masala aroma circles -->\n  <circle cx="178" cy="78" r="5" fill="#8B3A18" opacity="0.5"/>\n  <circle cx="192" cy="74" r="4" fill="#A04820" opacity="0.45"/>\n  <circle cx="202" cy="80" r="5" fill="#8B3A18" opacity="0.5"/>\n  <!-- tomato chunks -->\n  <ellipse cx="175" cy="92" rx="9" ry="7" fill="#C83020" opacity="0.75"/>\n  <ellipse cx="195" cy="95" rx="8" ry="6" fill="#D04028" opacity="0.7"/>\n  <!-- ginger piece -->\n  <path d="M42 55 Q50 48 62 52 Q58 62 48 60 Q40 60 42 55Z" fill="#D4A030" stroke="#C09020" stroke-width="1"/>\n  <text x="30" y="44" font-family="Lora,serif" font-size="9" fill="#7A6548" font-style="italic">ginger</text>\n  <text x="168" y="130" font-family="Lora,serif" font-size="9" fill="#7A6548" font-style="italic">masoor dal</text>\n  <text x="55" y="128" font-family="Lora,serif" font-size="9" fill="#7A6548" font-style="italic">roti</text>\n</svg>',
+  'Avocado Toast with Eggs': '<svg viewBox="0 0 300 160" xmlns="http://www.w3.org/2000/svg">\n  <rect width="300" height="160" fill="#F2EDD8"/>\n  <!-- toast slice -->\n  <rect x="75" y="60" width="150" height="75" rx="10" fill="#C89030"/>\n  <rect x="78" y="63" width="144" height="69" rx="9" fill="#E8C050" opacity="0.35"/>\n  <!-- avocado smash -->\n  <ellipse cx="150" cy="88" rx="60" ry="28" fill="#7AB840" opacity="0.85"/>\n  <path d="M108 84 Q130 76 152 82 Q168 78 188 86" stroke="#5A9020" stroke-width="2" fill="none" opacity="0.5"/>\n  <!-- avocado seed shape -->\n  <ellipse cx="150" cy="90" rx="14" ry="12" fill="#8B5E20" opacity="0.6"/>\n  <ellipse cx="150" cy="90" rx="9" ry="8" fill="#A07030" opacity="0.5"/>\n  <!-- egg on top -->\n  <ellipse cx="150" cy="80" rx="22" ry="16" fill="white" opacity="0.92"/>\n  <circle cx="150" cy="78" r="9" fill="#F8C820" opacity="0.9"/>\n  <!-- avocado half on side -->\n  <path d="M42 65 Q55 45 68 65 Q68 90 55 95 Q42 90 42 65Z" fill="#7AB840" opacity="0.8"/>\n  <ellipse cx="55" cy="75" rx="10" ry="12" fill="#8B5E20" opacity="0.7"/>\n  <!-- lemon half -->\n  <circle cx="252" cy="80" r="20" fill="#F0D840" opacity="0.8"/>\n  <circle cx="252" cy="80" r="14" fill="#F8E850" opacity="0.5"/>\n  <line x1="252" y1="62" x2="252" y2="98" stroke="#D8C020" stroke-width="1"/>\n  <line x1="234" y1="80" x2="270" y2="80" stroke="#D8C020" stroke-width="1"/>\n  <!-- chilli flakes -->\n  <rect x="178" y="68" width="4" height="2" rx="1" fill="#C83020" transform="rotate(30 178 68)"/>\n  <rect x="185" y="72" width="4" height="2" rx="1" fill="#B82010" transform="rotate(-15 185 72)"/>\n  <text x="28" y="56" font-family="Lora,serif" font-size="9" fill="#7A6548" font-style="italic">avocado</text>\n  <text x="237" y="65" font-family="Lora,serif" font-size="9" fill="#7A6548" font-style="italic">lemon</text>\n  <text x="105" y="150" font-family="Lora,serif" font-size="9" fill="#7A6548" font-style="italic">smashed avo</text>\n</svg>',
+  'One-Pot Chicken & Rice': '<svg viewBox="0 0 300 160" xmlns="http://www.w3.org/2000/svg">\n  <rect width="300" height="160" fill="#F5EDD8"/>\n  <!-- pot -->\n  <rect x="60" y="50" width="180" height="95" rx="15" fill="#5A4030" stroke="#3A2820" stroke-width="2"/>\n  <rect x="63" y="53" width="174" height="89" rx="13" fill="#8B6840" opacity="0.5"/>\n  <!-- rice at bottom -->\n  <ellipse cx="150" cy="128" rx="80" ry="18" fill="#F0E8C0"/>\n  <g fill="#E8D890" opacity="0.6">\n    <rect x="118" y="123" width="5" height="2.5" rx="1.2" transform="rotate(10 118 123)"/>\n    <rect x="135" y="126" width="5" height="2.5" rx="1.2" transform="rotate(-15 135 126)"/>\n    <rect x="155" y="122" width="5" height="2.5" rx="1.2" transform="rotate(20 155 122)"/>\n    <rect x="170" y="125" width="5" height="2.5" rx="1.2" transform="rotate(-5 170 125)"/>\n  </g>\n  <!-- golden stock liquid -->\n  <ellipse cx="150" cy="105" rx="78" ry="25" fill="#D4881A" opacity="0.7"/>\n  <!-- chicken thigh shapes -->\n  <path d="M118 95 Q135 80 152 90 Q148 108 132 110 Q115 108 118 95Z" fill="#C87830" opacity="0.9"/>\n  <path d="M152 90 Q170 78 184 90 Q182 108 166 110 Q150 108 152 90Z" fill="#C87830" opacity="0.9"/>\n  <!-- pot handles -->\n  <rect x="42" y="80" width="22" height="12" rx="6" fill="#4A3020" stroke="#3A2018" stroke-width="1.5"/>\n  <rect x="236" y="80" width="22" height="12" rx="6" fill="#4A3020" stroke="#3A2018" stroke-width="1.5"/>\n  <!-- spice jar -->\n  <rect x="245" y="40" width="18" height="28" rx="4" fill="#C83020" opacity="0.8"/>\n  <rect x="247" y="36" width="14" height="8" rx="2" fill="#D84030" opacity="0.7"/>\n  <text x="237" y="35" font-family="Lora,serif" font-size="9" fill="#7A6548" font-style="italic">paprika</text>\n  <text x="98" y="148" font-family="Lora,serif" font-size="9" fill="#7A6548" font-style="italic">one pot</text>\n</svg>',
+};
+
+var DEFAULT_ILLUS = '<svg viewBox="0 0 300 160" xmlns="http://www.w3.org/2000/svg">\n  <rect width="300" height="160" fill="#F5EDD8"/>\n  <ellipse cx="150" cy="105" rx="80" ry="38" fill="#E0CCA8" stroke="#C8B48A" stroke-width="1.5"/>\n  <ellipse cx="150" cy="95" rx="76" ry="35" fill="#D4882A" opacity="0.8"/>\n  <circle cx="135" cy="90" r="8" fill="#C87030" opacity="0.6"/>\n  <circle cx="155" cy="85" r="6" fill="#B86020" opacity="0.55"/>\n  <circle cx="165" cy="95" r="7" fill="#C87030" opacity="0.5"/>\n  <text x="100" y="145" font-family="Lora,serif" font-size="10" fill="#7A6548" font-style="italic">from Rishita\'s kitchen</text>\n</svg>';
+
+function renderMeals(){
+  var grid=document.getElementById("meals-grid");
+  var dm=ALL_MEALS.filter(function(m){
+    if(m.day!==currentDay||m.type==="cheat"||m.type==="experiment")return false;
+    if(mealTypeFilter==="tiffin"&&!m.tiffin)return false;
+    if(mealTypeFilter==="home"&&m.tiffin)return false;
+    return true;
+  });
+  grid.innerHTML=dm.map(function(m){
+    var idx=ALL_MEALS.indexOf(m),icon=m.type==="lunch"?"&#9728;":"&#127769;",label=m.type==="lunch"?"Lunch":"Dinner";
+    var illus=MEAL_ILLUS[m.name]||DEFAULT_ILLUS;
+    return'<div class="mcard" data-idx="'+idx+'">'+
+      '<div class="mcard-illus">'+illus+'</div>'+
+      '<div class="mcard-top"><span class="mtag t'+m.type[0]+'">'+icon+' '+label+'</span>'+(m.tiffin?'<span class="tiffin-ok">tiffin</span>':'')+'<h3>'+m.name+'</h3><p class="mdesc">'+m.desc+'</p></div>'+
+      '<div class="mcard-ft"><div class="chips"><span class="chip">&#9201; '+m.time+'</span><span class="chip">~'+(m.cal*PORTIONS)+' kcal</span></div><button class="ebtn">open &#8594;</button></div></div>';
+  }).join("");
+  if(!dm.length)grid.innerHTML='<p style="grid-column:1/-1;font-size:13px;color:var(--muted);font-style:italic;text-align:center;padding:1rem">No meals match this filter.</p>';
+  grid.querySelectorAll(".mcard").forEach(function(card){card.addEventListener("click",function(){openModal(parseInt(card.getAttribute("data-idx")));});});
+}
+
+function renderOverview(){
+  var grid=document.getElementById("ov-grid");
+  var labels=["Mon","Tue","Wed","Thu","Fri","Sat","Sun"];
+  grid.innerHTML=days.map(function(d,i){return'<div class="ovc'+(i===0?" active":"")+'" data-i="'+i+'"><div class="ovlbl">'+labels[i]+'</div><div class="ovname">'+d.name.slice(0,3)+'</div></div>';}).join("");
+  grid.querySelectorAll(".ovc").forEach(function(c){c.addEventListener("click",function(){showDay(parseInt(c.getAttribute("data-i")));});});
+}
+
+var activeFilters=[];
+var ALL_FILTERS=["vegetarian","eggs","chicken","quick","protein","light","spicy","comfort","tiffin-ok","one-pot","no-cook"];
+function renderBooklet(){
+  var fbBar=document.getElementById("filter-bar");
+  fbBar.innerHTML=ALL_FILTERS.map(function(f){return'<button class="fbtn'+(activeFilters.indexOf(f)>-1?" on":"")+'" data-f="'+f+'">'+f+'</button>';}).join("");
+  fbBar.querySelectorAll(".fbtn").forEach(function(btn){btn.addEventListener("click",function(){var f=btn.getAttribute("data-f");var i=activeFilters.indexOf(f);if(i>-1)activeFilters.splice(i,1);else activeFilters.push(f);renderBooklet();});});
+  var pool=ALL_MEALS.filter(function(m){return m.type!=="cheat"&&m.type!=="experiment";});
+  if(activeFilters.length){pool=pool.filter(function(m){return activeFilters.every(function(f){if(f==="tiffin-ok")return m.tiffin;return m.tags.indexOf(f)>-1;});});}
+  var grid=document.getElementById("booklet-grid");
+  grid.innerHTML=pool.map(function(m){
+    var idx=ALL_MEALS.indexOf(m),dayLabel=m.day===-1?"Any day":days[m.day]?days[m.day].name:m.type;
+    return'<div class="bcard" data-idx="'+idx+'"><div class="bcard-day">'+dayLabel+(m.tiffin?'<span class="tiffin-ok" style="margin-left:4px">tiffin</span>':'')+'</div><h4>'+m.name+'</h4><p>'+m.desc+'</p><div class="bcard-tags">'+m.tags.slice(0,3).map(function(t){return'<span class="bt">'+t+'</span>';}).join("")+'<span class="bt">'+m.time+'</span></div></div>';
+  }).join("");
+  if(!pool.length)grid.innerHTML='<p style="grid-column:1/-1;font-size:13px;color:var(--muted);font-style:italic;text-align:center;padding:2rem">No recipes match those filters.</p>';
+  grid.querySelectorAll(".bcard").forEach(function(card){card.addEventListener("click",function(){openModal(parseInt(card.getAttribute("data-idx")));});});
+}
+
+function renderDesserts(){
+  var grid=document.getElementById("desserts-grid");
+  grid.innerHTML=DESSERTS.map(function(d,i){return'<div class="dcard" data-i="'+i+'"><div class="dcard-icon">'+d.icon+'</div><h4>'+d.name+'</h4><p>'+d.desc+'</p><div class="dcard-ft"><span class="bt">'+d.time+'</span><span class="bt">~'+d.cal+' kcal</span></div></div>';}).join("");
+  grid.querySelectorAll(".dcard").forEach(function(card){card.addEventListener("click",function(){var d=DESSERTS[parseInt(card.getAttribute("data-i"))];openDessertModal(d);});});
+}
+
+function openDessertModal(d){
+  document.getElementById("m-tag").textContent="Sweet Things \u00b7 Quick Dessert";
+  document.getElementById("m-title").textContent=d.name;
+  var il=d.ingr.map(function(i){return'<li>'+i+'</li>';}).join("");
+  var sl=d.steps.map(function(s,i){return'<div class="step"><div class="snum">'+(i+1)+'</div><span>'+s+'</span></div>';}).join("");
+  document.getElementById("m-body").innerHTML='<div class="msec"><h4>Ingredients</h4><ul class="ilist">'+il+'</ul></div><div class="msec"><h4>Method</h4><div class="slist">'+sl+'</div></div><div class="msec"><h4>Note</h4><div class="ptip">'+d.tip+'</div></div>';
+  document.getElementById("modal").classList.add("open");
+  document.body.style.overflow="hidden";
+}
+
+function openModal(idx){
+  clearInterval(tIv);tRun=false;nudgeShown=false;
+  var m=ALL_MEALS[idx];
+  var typeLabel=m.type==="lunch"?"Lunch":m.type==="cheat"?"Cheat Night":m.type==="experiment"?"Sunday Experiment":"Dinner";
+  document.getElementById("m-tag").textContent=typeLabel+(m.day>=0?" \u00b7 "+days[m.day].name:"");
+  document.getElementById("m-title").textContent=m.name;
+  var pNote='<div class="portion-note">&#127860; Scaled for <strong>'+PORTIONS+'</strong> portion'+(PORTIONS>1?"s":"")+'</div>';
+  var il=m.ingr.map(function(i){var q=i.unit?fmtQty(i.qty,PORTIONS)+" "+i.unit:fmtQty(i.qty,PORTIONS);return'<li>'+q+' '+i.n+(i.r?'<span class="reused-tag"> (reused)</span>':'')+'</li>';}).join("");
+  var sl=m.steps.map(function(s,i){return'<div class="step"><div class="snum">'+(i+1)+'</div><span>'+s+'</span></div>';}).join("");
+  document.getElementById("m-body").innerHTML=pNote+'<div class="msec"><h4>Ingredients</h4><ul class="ilist">'+il+'</ul></div><div class="msec"><h4>Method</h4><div class="slist">'+sl+'</div></div><div class="msec"><h4>Prep note</h4><div class="ptip">'+m.tip+'</div></div>'+(m.tsec>0?buildGameHTML(m.tsec):'')+buildPhotoSection();
+  document.getElementById("modal").classList.add("open");
+  document.body.style.overflow="hidden";
+  if(m.tsec>0)attachGameListeners(m.tsec);
+  attachPhotoListeners(m.name);
+}
+
+function closeModal(){clearInterval(tIv);tRun=false;document.getElementById("modal").classList.remove("open");document.body.style.overflow="";}
+
+function renderGrocery(){
+  var grid=document.getElementById("groc-grid");
+  grid.innerHTML=Object.keys(GROCERY).map(function(cat){
+    var items=GROCERY[cat].map(function(item){var q=item.unit?fmtQty(item.qty,PORTIONS)+" "+item.unit:fmtQty(item.qty,PORTIONS);return'<div class="gi"><div class="gchk">&#10003;</div><span class="qty-s">'+q+'</span><span>'+item.n+'</span>'+(item.r?'<div class="rdot"></div>':'')+'</div>';}).join("");
+    return'<div class="gcat"><h4>'+cat+'</h4>'+items+'</div>';
+  }).join("");
+  grid.querySelectorAll(".gi").forEach(function(el){el.addEventListener("click",function(){el.classList.toggle("ck");});});
+}
+
+var jrnlEntries=[],jrnlPhotoData=null;
+document.getElementById("jrnl-photo").addEventListener("change",function(){var f=this.files[0];if(!f)return;var reader=new FileReader();reader.onload=function(e){jrnlPhotoData=e.target.result;document.getElementById("jrnl-photo-name").textContent=f.name;};reader.readAsDataURL(f);});
+document.getElementById("jrnl-save").addEventListener("click",function(){var t=document.getElementById("jrnl-title").value.trim(),b=document.getElementById("jrnl-body").value.trim();if(!t&&!b){alert("Write something first!");return;}var entry={title:t||"Untitled",body:b,photo:jrnlPhotoData,date:new Date().toLocaleDateString("en-AU",{weekday:"short",day:"numeric",month:"short",year:"numeric"})};jrnlEntries.unshift(entry);document.getElementById("jrnl-title").value="";document.getElementById("jrnl-body").value="";document.getElementById("jrnl-photo-name").textContent="";jrnlPhotoData=null;renderJournal();});
+document.getElementById("share-btn").addEventListener("click",function(){var email=document.getElementById("share-email").value.trim();if(!email){alert("Enter an email address");return;}var latest=jrnlEntries[0];if(!latest){alert("Save a journal entry first!");return;}var sub=encodeURIComponent("Kitchen journal: "+latest.title);var body=encodeURIComponent(latest.title+"\n"+latest.date+"\n\n"+latest.body);window.location.href="mailto:"+email+"?subject="+sub+"&body="+body;});
+function renderJournal(){var el=document.getElementById("jrnl-entries");el.innerHTML=jrnlEntries.map(function(e,i){return'<div class="jentry"><div class="jentry-date">'+e.date+'</div><div class="jentry-title">'+e.title+'</div><div class="jentry-body">'+e.body+'</div>'+(e.photo?'<img class="jentry-photo" src="'+e.photo+'" alt="food photo">':'')+'<button class="jentry-del" data-i="'+i+'">&#10005;</button></div>';}).join("");el.querySelectorAll(".jentry-del").forEach(function(btn){btn.addEventListener("click",function(){jrnlEntries.splice(parseInt(btn.getAttribute("data-i")),1);renderJournal();});});}
+
+document.querySelectorAll(".nday").forEach(function(btn){btn.addEventListener("click",function(){showDay(parseInt(btn.getAttribute("data-day")));});});
+function switchView(active){["meals","booklet","desserts","grocery","journal"].forEach(function(id){var el=document.getElementById(id+"-view");if(!el)return;var show=id===active;el.style.display=show?"block":"none";if(el.classList.contains("groc-sec")||el.classList.contains("vis")){if(show)el.classList.add("vis");else el.classList.remove("vis");}});document.querySelectorAll(".npill").forEach(function(p){p.classList.remove("af");});}
+document.getElementById("btn-meals").addEventListener("click",function(){switchView("meals");this.classList.add("af");});
+document.getElementById("btn-booklet").addEventListener("click",function(){switchView("booklet");this.classList.add("af");renderBooklet();});
+document.getElementById("btn-desserts").addEventListener("click",function(){switchView("desserts");this.classList.add("af");renderDesserts();});
+document.getElementById("btn-grocery").addEventListener("click",function(){switchView("grocery");this.classList.add("af");renderGrocery();});
+document.getElementById("btn-journal").addEventListener("click",function(){switchView("journal");this.classList.add("af");});
+document.getElementById("port-minus").addEventListener("click",function(){if(PORTIONS>1){PORTIONS--;document.getElementById("port-num").textContent=PORTIONS;renderMeals();renderGrocery();}});
+document.getElementById("port-plus").addEventListener("click",function(){if(PORTIONS<10){PORTIONS++;document.getElementById("port-num").textContent=PORTIONS;renderMeals();renderGrocery();}});
+document.querySelectorAll(".mtt").forEach(function(btn){btn.addEventListener("click",function(){mealTypeFilter=btn.getAttribute("data-t");document.querySelectorAll(".mtt").forEach(function(b){b.classList.remove("on");});btn.classList.add("on");renderMeals();});});
+document.getElementById("m-close").addEventListener("click",closeModal);
+document.getElementById("modal").addEventListener("click",function(e){if(e.target===document.getElementById("modal"))closeModal();});
+document.addEventListener("keydown",function(e){if(!document.getElementById("modal").classList.contains("open"))return;var gp=document.getElementById("gp-g48");if(!gp||gp.style.display==="none")return;var map={"ArrowLeft":"left","ArrowRight":"right","ArrowUp":"up","ArrowDown":"down"};if(map[e.key]){e.preventDefault();move48(map[e.key]);}});
+
+function spawnNotes(){if(!playing)return;var chars=["\u266a","\u266b","\u266c","\u266d"];var note=document.createElement("div");note.className="note";note.textContent=chars[Math.floor(Math.random()*chars.length)];note.style.left=(15+Math.random()*70)+"%";note.style.top=(50+Math.random()*30)+"vh";document.body.appendChild(note);setTimeout(function(){if(note.parentNode)note.parentNode.removeChild(note);},4000);setTimeout(spawnNotes,2200);}
+
+renderMeals();renderOverview();renderChooser();renderGrocery();
+</script>
+</body>
+</html>
